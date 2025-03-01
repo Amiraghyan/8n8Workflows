@@ -1,0 +1,259 @@
+{
+  "active": false,
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Get good example",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get good example": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-27T14:22:23.360Z",
+  "id": "dDONnHsStnd8JGYM",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "bigaddict.shop Blog generator",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('On form submission').item.json['What\\'s on your mind?'] }}",
+        "options": {
+          "systemMessage": "=### AI Blog Post Generator Prompt  \n\n#### **OBJECTIVE**  \nThe AI Assistant's role is to generate well-structured, engaging, and informative blog posts for the user's website. The content should be optimized for readability, search engines (SEO), and audience engagement while maintaining the brand’s tone and style.  \n\n---\n\n#### **CONTEXT**  \nThe AI will generate blog posts based on a given topic, category, or keyword provided by the user. The output should be formatted in a way that is easily publishable on the website, including appropriate headings, subheadings, and structured paragraphs.  \n\n- **Tone & Style:** Professional yet engaging; educational yet accessible.  \n- **Target Audience:** Business professionals, entrepreneurs, and general readers interested in technology, business, or related fields.  \n- **SEO Optimization:** Use relevant keywords naturally, include meta descriptions where applicable, and structure content for readability (e.g., bullet points, subheadings).  \n\n---\n\n#### **INSTRUCTIONS**  \n1. **Title Generation:**  \n   - Create a compelling, clear, and SEO-friendly title relevant to the given topic.  \n   - Ensure the title is engaging and encourages clicks.  \n\n2. **Introduction Paragraph:**  \n   - Start with a hook to grab attention.  \n   - Provide a brief overview of what the reader will learn.  \n\n3. **Main Content Structure:**  \n   - Use multiple sections with informative subheadings.  \n   - Each section should be detailed, concise, and easy to understand.  \n   - Include examples, statistics, or real-world applications where relevant.  \n\n4. **Conclusion:**  \n   - Summarize the key takeaways.  \n   - Optionally, include a call to action (e.g., \"Let us know your thoughts in the comments!\" or \"Subscribe for more insights\").  \n\n5. **Category Assignment:**  \n   - Assign a category to the post based on its content (e.g., Technology, Business, Marketing, Finance).  \n\n6. **Formatting:**   \n   - Ensure readability with short paragraphs and clear structure.  \n\n---"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        440,
+        0
+      ],
+      "id": "6acd7e12-0202-49d4-b930-d30febec4d47",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        420,
+        160
+      ],
+      "id": "b0bdeac8-a000-4cb5-bc4e-111a47959634",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Et4q5oYJBE7kF0BW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://bigaddict.shop/api/create-post/",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "title",
+              "value": "={{ $json.blog_title }}"
+            },
+            {
+              "name": "content",
+              "value": "={{ $json.blog_content }}"
+            },
+            {
+              "name": "category_id",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "4667ee4a-2b9b-4042-a2d9-eb812ea28129",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mu09wGOOgUYJeHiU",
+          "name": "bigaddict_shop"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://bigaddict.shop/api/posts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        0
+      ],
+      "id": "45792368-0e2a-4369-88c2-a2b198f0f18c",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mu09wGOOgUYJeHiU",
+          "name": "bigaddict_shop"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nlet data = {\"example\": {\n  \"title\": $input.first().json.posts[0].title,\n  \"content\": $input.first().json.posts[0].content,\n  \"category\": $input.first().json.posts[0].category__name\n  }};\n\nreturn data;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "d82643d7-806b-4caf-abfa-242727b0578c",
+      "name": "Get good example"
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "formTitle": "AI blog post generator",
+        "formDescription": "This form generates blogs for the user based on the thought provided",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What's on your mind?",
+              "fieldType": "textarea",
+              "placeholder": "Can be anything creative",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -140,
+        0
+      ],
+      "id": "b7fc2b7b-36aa-4335-a064-1c33086d3863",
+      "name": "On form submission",
+      "webhookId": "91c678e2-8c6e-4f4e-a40c-659f8d9d28c2",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "RsuPAnyy8brkp1Pf",
+          "name": "BigAddict Shop Blog Trainer Password"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "id": "375fcf7a-8ab4-424e-9051-4ffac6f67590",
+      "name": "Markdown"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "What's on your mind?": "blog post to show importance of having a website in 2025\r\n\r\n",
+          "submittedAt": "2025-02-28T23:46:22.651+03:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-01T06:58:30.599Z",
+  "versionId": "cf637be4-b0da-424f-86d6-f8c8c6c8bbc9"
+}
