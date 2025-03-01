@@ -1,0 +1,667 @@
+{
+  "active": false,
+  "connections": {
+    "Filter > 90%": {
+      "main": [
+        [
+          {
+            "node": "Get Top Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Top Result": {
+      "main": [
+        [
+          {
+            "node": "Tavily Extract Top Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tavily API Key": {
+      "main": [
+        [
+          {
+            "node": "Tavily Search Topic",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tavily Search Topic": {
+      "main": [
+        [
+          {
+            "node": "Filter > 90%",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tavily Extract Top Search": {
+      "main": [
+        [
+          {
+            "node": "Summarize Web Page Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Tavily API Key",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Web Page Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG researcher": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract page": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Hacker News": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-16T08:55:29.776Z",
+  "id": "g3lJuFpzWqQsT6Nv",
+  "meta": {
+    "templateId": "2768",
+    "templateCredsSetupCompleted": true
+  },
+  "name": "🤖🔍 The Ultimate Free AI-Powered Researcher with Tavily Web Search & Extract",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Tavily API Search Endpoint\n\n**Base URL**: `https://api.tavily.com/search`\n**Method**: POST\n\n### Required Parameters\n- `query`: The search query string\n- `api_key`: Your Tavily API key\n\n### Optional Parameters\n- `search_depth`: \"basic\" or \"advanced\" (default: \"basic\")\n- `topic`: \"general\" or \"news\" (default: \"general\") \n- `max_results`: Maximum number of results to return (default: 5)\n- `include_images`: Include query-related images (default: false)\n- `include_answer`: Include AI-generated answer (default: false)\n- `include_raw_content`: Include parsed HTML content (default: false)\n- `include_domains`: List of domains to include\n- `exclude_domains`: List of domains to exclude\n- `time_range`: Filter by time range (\"day\", \"week\", \"month\", \"year\")\n- `days`: Number of days back for news results (default: 3)\n\n### Example Request\n```json\n{\n    \"api_key\": \"tvly-YOUR_API_KEY\",\n    \"query\": \"Who is Leo Messi?\",\n    \"search_depth\": \"basic\",\n    \"include_answer\": false,\n    \"include_images\": true,\n    \"max_results\": 5\n}\n```\n",
+        "height": 940,
+        "width": 520,
+        "color": 4
+      },
+      "id": "e029204b-2e05-4262-b464-7c1b3a995f91",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1540,
+        320
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Tavily API Extract Endpoint \n\n**Base URL**: `https://api.tavily.com/extract`\n**Method**: POST\n\n### Required Parameters\n- `urls`: Single URL string or array of URLs\n- `api_key`: Your Tavily API key\n\n### Optional Parameters\n- `include_images`: Include extracted images (default: false)\n\n### Example Request\n```json\n{\n    \"api_key\": \"tvly-YOUR_API_KEY\", \n    \"urls\": [\n        \"https://en.wikipedia.org/wiki/Artificial_intelligence\",\n        \"https://en.wikipedia.org/wiki/Machine_learning\"\n    ]\n}\n```",
+        "height": 720,
+        "width": 640,
+        "color": 6
+      },
+      "id": "6c47edec-6c6e-460d-b098-f9a26caa5f8e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2100,
+        320
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Tavily API Documentation\n\nThe Tavily REST API provides seamless access to Tavily Search, a powerful search engine for LLM agents, and Tavily Extract, an advanced web scraping solution optimized for LLMs.\n\nhttps://docs.tavily.com/docs/rest-api/examples\n\nhttps://docs.tavily.com/docs/rest-api/api-reference#parameters\n\nThe Tavily API provides two main endpoints for search and data extraction.\n\nThe API returns JSON responses containing:\n\n- Search results with titles, URLs, and content\n- Extracted raw content from specified URLs\n- Response time metrics\n- Any error messages for failed requests\n\n\n**Note**: Error handling should check for failed results in the response before processing.\n",
+        "height": 540,
+        "width": 420,
+        "color": 3
+      },
+      "id": "cacae1d1-c9ec-4c2f-ba5d-f782257697cc",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1080,
+        320
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Tavily Use Cases\n\n📜 Why Use Tavily API for Data Enrichment?\n\nhttps://docs.tavily.com/docs/use-cases/data-enrichment\n\n💡 Why Use Tavily API for Company Research?\n\nhttps://docs.tavily.com/docs/use-cases/company-research\n\n🔍 GPT Researcher\n\nhttps://docs.tavily.com/docs/gpt-researcher/introduction",
+        "height": 360,
+        "width": 420
+      },
+      "id": "16e977f4-e72d-474c-a04b-3f3ad51cc322",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1080,
+        900
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"api_key\": \"tvly-YOUR_API_KEY\",\n    \"query\": \"What is n8n?\",\n    \"search_depth\": \"basic\",\n    \"include_answer\": false,\n    \"include_images\": true,\n    \"include_image_descriptions\": true,\n    \"include_raw_content\": false,\n    \"max_results\": 5,\n    \"include_domains\": [],\n    \"exclude_domains\": []\n}",
+        "options": {}
+      },
+      "id": "7e4d0b3c-761d-42b9-bbbe-6ceb366fdc6f",
+      "name": "Tavily Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1740,
+        1080
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/extract",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"api_key\": \"tvly-YOUR_API_KEY\",\n    \"urls\": [\n        \"https://en.wikipedia.org/wiki/Artificial_intelligence\"\n    ]\n}",
+        "options": {}
+      },
+      "id": "47c0bfcf-a187-4b15-b208-2458c934d5f7",
+      "name": "Tavily Extract",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2360,
+        860
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "content": "## Tavily API Overview\nhttps://docs.tavily.com/docs/welcome\n\nThe Tavily API provides a specialized search engine built specifically for AI agents and LLM applications, offering two main endpoints:\n\n## Search Endpoint\n\nThe search endpoint enables intelligent web searching with:\n\n**Key Features**\n- Query-based search with customizable depth (\"basic\" or \"advanced\")\n- Topic filtering for general or news content\n- Control over result quantity and content type\n- Domain inclusion/exclusion capabilities\n- Time range filtering and news date restrictions\n\n## Extract Endpoint\n\nThe extract endpoint focuses on content retrieval:\n\n**Key Features**\n- Single or batch URL processing\n- Raw content extraction\n- Optional image extraction\n- Structured response format\n\n## Implementation Benefits\n\n**For AI Integration**\n- Optimized for RAG (Retrieval Augmented Generation)\n- Single API call handles searching, scraping and filtering\n- Customizable response formats\n- Built-in content relevance scoring\n\n**Technical Advantages**\n- JSON response format\n- Error handling for failed requests\n- Response time metrics\n- Flexible content filtering options\n\n\nThis API is designed to simplify the integration of real-time web data into AI applications while ensuring high-quality, relevant results through intelligent processing and filtering.",
+        "height": 1020,
+        "width": 660,
+        "color": 7
+      },
+      "id": "47791d39-087b-4104-aa0d-ef98deee945c",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a73e848c-f7e7-4b3a-ae99-930c577b47be",
+              "name": "results",
+              "type": "object",
+              "value": "={{ \n$if($json.results.isEmpty(), $('Tavily Search Topic').item.json.results.first(), $json.results.first())\n}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "76b291bc-8c34-44f1-b366-09c9f51089e2",
+      "name": "Get Top Result",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1620,
+        1400
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/extract",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "=",
+        "options": {}
+      },
+      "id": "4b098e57-eff2-4e70-9429-23b5c3d936c2",
+      "name": "Tavily Extract Top Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1840,
+        1400
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8fd0cfc4-7adc-45f9-a278-d217e362ebfb",
+              "name": "results",
+              "type": "array",
+              "value": "={{ $json.results.filter(item => item.score > 0.80) }}"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "f593e164-1c9d-46e6-a619-39fe621c829f",
+      "name": "Filter > 90%",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1400,
+        1400
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n    \"api_key\": \"{{ $json.api_key }}\",\n    \"query\": \"{{ $('When Executed by Another Workflow').item.json.topic }}\",\n    \"search_depth\": \"advanced\",\n    \"include_answer\": false,\n    \"include_images\": true,\n    \"time_range\": \"m\"\n    \"include_image_descriptions\": true,\n    \"include_raw_content\": false,\n    \"max_results\": 5,\n    \"include_domains\": [],\n    \"exclude_domains\": []\n}",
+        "options": {}
+      },
+      "id": "fadd100c-0335-42c2-9c3d-48e6d17eb2f9",
+      "name": "Tavily Search Topic",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1180,
+        1400
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize this web content and provide in Markdown format:  {{ $json.results[0].raw_content }}"
+      },
+      "id": "994bb3ee-598b-4d3f-bcfc-16c9cca36657",
+      "name": "Summarize Web Page Content",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        2060,
+        1400
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "content": "## Tavily Search and Extract with AI Summarization Example",
+        "height": 400,
+        "width": 1980,
+        "color": 5
+      },
+      "id": "d5520da7-f6bc-470e-ab96-e04097041f08",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        640,
+        1300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "035660a9-bb58-4ecb-bad3-7f4d017fa69f",
+              "name": "api_key",
+              "type": "string",
+              "value": "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"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9bd6c18e-aabf-4719-b9c4-ac91b36891a1",
+      "name": "Tavily API Key",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        960,
+        1400
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "### Tavily API Key\nhttps://app.tavily.com/home",
+        "height": 80,
+        "color": 7
+      },
+      "id": "0213756a-35c4-46a8-9b79-2e8a81852177",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        900,
+        1580
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "topic"
+            },
+            {
+              "name": "company_details",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        760,
+        1400
+      ],
+      "id": "d502de80-0c43-4576-bc23-0764e8976a6c",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        1580
+      ],
+      "id": "4c99659b-5049-4bb2-967a-20df1aaac53d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Et4q5oYJBE7kF0BW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\"Create a research paper analyzing how {{ $json.topic }} influences or relates to {{ $json.company_details.toJsonString() }}. Focus on insights that can be turned into blogs and social media posts for its audience and customers. Include actionable recommendations for content angles and messaging.\"",
+        "options": {
+          "systemMessage": "=---\n## OBJECTIVE  \nThe assistant's primary role is to craft well-structured, high-quality research papers based on the user's topic and provided tools. The assistant must gather relevant, up-to-date information, synthesize findings, and format the paper according to academic standards.\n\n---\n\n## CONTEXT  \nYou are an AI-powered research assistant designed to help users create comprehensive and well-researched academic papers. The research papers you generate should follow proper academic conventions, including structure, citations, and coherent argumentation.  \n\n### **Research Paper Structure**  \nA standard research paper consists of the following sections:  \n1. **Title Page** (if required) – Includes the paper’s title, the author’s name, institutional affiliation, and date.  \n2. **Abstract** – A brief summary (150-250 words) of the paper, including the research question, methodology, key findings, and conclusion.  \n3. **Introduction** – Introduces the research topic, its significance, research questions, and a preview of the structure of the paper.  \n4. **Literature Review** – Summarizes existing research, highlighting key studies and gaps that the current paper addresses.  \n5. **Methodology** – Describes the research methods used (if applicable), such as data collection, analysis techniques, or theoretical frameworks.  \n6. **Results/Findings** – Presents the research findings with supporting evidence.  \n7. **Discussion** – Interprets the findings, compares them with prior research, and explains their implications.  \n8. **Conclusion** – Summarizes key insights, addresses limitations, and suggests directions for future research.  \n9. **References/Bibliography** – Lists all cited sources in APA, MLA, or any specified format.  \n\nThe assistant must follow this structure while ensuring logical coherence, proper citation of sources, and clarity in argumentation.\n\n---\n\n## INSTRUCTIONS  \n\n1. **Gather Information:**  \n   - Use the **RAG Researcher** tool to scrape real-time information from reputable sources.  \n   - If the user provides a URL, use the **Extract Page** tool to pull relevant data.  \n   - Cross-check data for accuracy and reliability.  \n\n2. **Structure the Paper:**  \n   - Ensure the paper follows the standard research paper format.  \n   - Maintain clear and logical transitions between sections.  \n   - Ensure the argument flows cohesively from introduction to conclusion.  \n\n3. **Cite Sources Properly:**  \n   - Use proper citation styles (APA, MLA, Chicago, etc.), as requested by the user.  \n   - Include in-text citations and a reference list.  \n   - Avoid plagiarism by paraphrasing and crediting sources correctly.  \n\n4. **Maintain Academic Tone & Clarity:**  \n   - Use formal, precise, and objective language.  \n   - Avoid unnecessary jargon but ensure terminology relevant to the field is used appropriately.  \n   - Proofread for grammatical accuracy and coherence.  \n\n5. **Use the API Store (if needed):**  \n   - Retrieve API keys for any tools that require authentication.  \n   - Ensure secure handling of API credentials.  \n\n---\n\n## OUTPUT REQUIREMENTS  \n\n- A **fully formatted research paper** in a structured document format (Word or PDF).  \n- **A summary of findings** in bullet points (if requested).  \n- A **reference list** formatted according to the required citation style.  \n- Optionally, **a research outline** before generating the full paper to allow user feedback.  \n\n---\n\n## EXAMPLES  \n\n### **Example 1: Research Paper on Climate Change Impact on Agriculture**  \n\n#### User Request:  \n*\"I need a research paper on how climate change is affecting agriculture. APA citations, please.\"*  \n\n#### Assistant Actions:  \n1. Uses **RAG Researcher** to gather the latest studies on climate change and agriculture.  \n2. Extracts information from relevant sources.  \n3. Structures the paper into sections (Introduction, Literature Review, Findings, etc.).  \n4. Writes the paper using formal academic language.  \n5. Cites sources properly in APA format.  \n6. Generates a reference list and provides the final paper in Word or PDF.  \n\n---\n\n### **Example 2: Literature Review on AI in Healthcare**  \n\n#### User Request:  \n*\"I need a literature review on artificial intelligence in healthcare. Use MLA format.\"*  \n\n#### Assistant Actions:  \n1. Uses **RAG Researcher** to find peer-reviewed articles on AI in healthcare.  \n2. Extracts information from journals and reports using **Extract Page** if URLs are provided.  \n3. Writes a structured literature review, summarizing existing studies and identifying gaps.  \n4. Uses MLA citation style throughout the paper.  \n5. Provides the completed literature review in a document.  \n\n---"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1180,
+        1880
+      ],
+      "id": "75e8c93f-e77e-4b50-83c3-816d1ec4a363",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        2100
+      ],
+      "id": "fe68d237-2e5f-4d5a-abc8-5be1ad028dc4",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Et4q5oYJBE7kF0BW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Autonomously research various trusted sources and gather the most relevant information to your query.",
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"api_key\": \"{{ $fromAI(\"tavily_api_key\") }}\",\n    \"query\": \"{{ $fromAI(\"query\") }}\",\n    \"search_depth\": \"{{ $fromAI(\"search_depth\", \"Either `basic` or `advanced`\") }}\",\n    \"include_answer\": false,\n    \"include_images\": {{ $fromAI(\"include_image\", \"Whether to include images.\", \"bool\") }},\n    \"time_range\": \"{{ $fromAI(\"time_range\", \"`d` for day, `w` for week and `m` for month and `year` for year\") }}\"\n    \"include_image_descriptions\": true,\n    \"include_raw_content\": false,\n    \"max_results\": {{ $fromAI(\"results\", \"Number of results\") }},\n    \"include_domains\": [],\n    \"exclude_domains\": []\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "tavily_api_key",
+              "description": "API key for tavily RAG"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1360,
+        2140
+      ],
+      "id": "5aa37ea3-9c81-429c-b738-d3f879958e25",
+      "name": "RAG researcher"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        2140
+      ],
+      "id": "fc0f08aa-6c25-4e19-b48d-8ec74695cf9d",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        2140
+      ],
+      "id": "cd7e64b7-e036-4dd5-a401-20a6a13aab7c",
+      "name": "SerpAPI",
+      "credentials": {
+        "serpApi": {
+          "id": "tV3uXUoUUzLAplpS",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use this tool to retrieve API keys from an AirTable",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app5MrGYwlswptqM8",
+          "mode": "list",
+          "cachedResultName": "AI-SocialAmplifier",
+          "cachedResultUrl": "https://airtable.com/app5MrGYwlswptqM8"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9W9e5en7nMcNYd",
+          "mode": "list",
+          "cachedResultName": "Research Agent APIs",
+          "cachedResultUrl": "https://airtable.com/app5MrGYwlswptqM8/tbl9W9e5en7nMcNYd"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1480,
+        2140
+      ],
+      "id": "49578cc3-5f52-4757-a3d0-e95daa8f7959",
+      "name": "API store",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "mWJaciC4G76McSYX",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Scrape data from an url.",
+        "method": "POST",
+        "url": "https://api.tavily.com/extract",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"api_key\": \"{{ $fromAI(\"api_key\", \"tavily api key\") }}\",\n    \"urls\": [\n        \"{{ $fromAI(\"url\") }}\"\n    ]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1800,
+        2140
+      ],
+      "id": "9e3961da-3d28-4de5-91e8-2dd5e6a9442c",
+      "name": "Extract page"
+    },
+    {
+      "parameters": {
+        "resource": "all",
+        "returnAll": true,
+        "additionalFields": {
+          "keyword": "={{ $fromAI(\"keyword\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.hackerNewsTool",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        2140
+      ],
+      "id": "9d4b3b04-c68a-4db8-8ab9-6e9518608986",
+      "name": "Hacker News"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "topic": "marketing automation for small businesses",
+          "company_details": {
+            "company_name": "Binary Craft Technologies",
+            "Company_description": "Binary Craft Technologies specializes in crafting custom automation solutions using the 8n8 platform. The company helps businesses eliminate time-consuming manual tasks by seamlessly integrating and automating complex business processes—ranging from sales and marketing to operations and finance. By connecting essential business tools and streamlining workflows, Binary Craft Technologies enables companies to focus on growth and strategic priorities, delivering tangible ROI and operational efficiency.",
+            "company_product": "Custom 8n8 Automation Solutions: Tailored automation services designed to connect disparate business tools and optimize workflows. Sales & Marketing Automation: Automated lead capture, personalized email sequences, social media management, and CRM updates. Operational Efficiency Tools: Automation of data entry, report generation, inventory management, and order fulfillment processes. Financial Process Automation: Streamlined invoice processing, expense tracking, and the creation of accurate, timely financial reports. Consultation Services: Free consultations to assess current workflows and design customized automation strategies for scaling business operations.",
+            "target_market": "Binary Craft Technologies primarily targets businesses operating in fast-paced, competitive environments that seek to:  Enhance Efficiency: Organizations looking to eliminate repetitive manual tasks. Integrate Systems: Companies needing seamless connectivity between their CRM, marketing tools, and operational systems. Scale Operations: Businesses aiming to reduce costs, increase revenue, and drive growth through automated processes. Achieve Tangible ROI: Enterprises focused on measurable business outcomes through streamlined operations and automation."
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-17T06:34:36.666Z",
+  "versionId": "222810eb-f9cf-44c1-b8cf-1e155a17c27c"
+}
