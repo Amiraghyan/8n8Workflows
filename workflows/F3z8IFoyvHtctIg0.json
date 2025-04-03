@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Merge": {
       "main": [
@@ -251,8 +251,10 @@
   },
   "createdAt": "2025-04-03T20:50:44.991Z",
   "id": "F3z8IFoyvHtctIg0",
-  "meta": null,
-  "name": "My workflow",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI social media Amplifier",
   "nodes": [
     {
       "parameters": {
@@ -419,112 +421,112 @@
           "schema": [
             {
               "id": "id",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "readOnly": true,
-              "required": false,
               "displayName": "id",
-              "defaultMatch": true
-            },
-            {
-              "id": "Post",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": false,
               "required": false,
-              "displayName": "Post",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
             },
             {
               "id": "Title",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": false,
-              "required": false,
               "displayName": "Title",
+              "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
             },
             {
               "id": "Url",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": false,
-              "required": false,
               "displayName": "Url",
+              "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
             },
             {
               "id": "Tweet",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": false,
-              "required": false,
               "displayName": "Tweet",
+              "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
             },
             {
               "id": "LinkedIn",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": false,
-              "required": false,
               "displayName": "LinkedIn",
+              "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
             },
             {
               "id": "Date",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": true,
-              "required": false,
               "displayName": "Date",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Last Modified",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "readOnly": true,
               "required": false,
-              "displayName": "Last Modified",
               "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "TDone",
-              "type": "boolean",
+              "canBeUsedToMatch": true,
               "display": true,
-              "removed": true,
+              "type": "dateTime",
               "readOnly": false,
-              "required": false,
-              "displayName": "TDone",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "removed": true
             },
             {
               "id": "LDone",
-              "type": "boolean",
-              "display": true,
-              "removed": false,
-              "readOnly": false,
-              "required": false,
               "displayName": "LDone",
+              "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TDone",
+              "displayName": "TDone",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
@@ -541,7 +543,13 @@
         1776,
         420
       ],
-      "typeVersion": 2.1
+      "typeVersion": 2.1,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "crJqrZz9qjbZ2Tu6",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
     },
     {
       "parameters": {
@@ -885,7 +893,13 @@
         720
       ],
       "id": "b41164d0-f38d-4021-8d0c-6078e139ba99",
-      "name": "Airtable"
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "crJqrZz9qjbZ2Tu6",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
     },
     {
       "parameters": {
@@ -933,7 +947,13 @@
         1556,
         720
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "ezy89fni1GDj7rwE",
+          "name": "bigaddict"
+        }
+      }
     },
     {
       "parameters": {
@@ -1087,7 +1107,13 @@
         1776,
         720
       ],
-      "typeVersion": 2.1
+      "typeVersion": 2.1,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "crJqrZz9qjbZ2Tu6",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1113,9 +1139,18 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Check for unposted posts": {
+      "recurrenceRules": [
+        0
+      ]
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-03T20:51:49.000Z",
-  "versionId": "247e4842-4dbe-45d4-8bdd-cbbf32efce72"
+  "triggerCount": 2,
+  "updatedAt": "2025-04-03T21:06:37.000Z",
+  "versionId": "e2706f14-1575-4806-85f3-c3dbac594a65"
 }
