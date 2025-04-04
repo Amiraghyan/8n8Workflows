@@ -62,7 +62,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "Bigaddict.shop contact form",
   "nodes": [
     {
       "parameters": {
@@ -272,6 +272,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-04T06:47:51.000Z",
-  "versionId": "44a3d768-a805-4f6e-9b65-d78fe5d32c8d"
+  "updatedAt": "2025-04-04T09:26:55.000Z",
+  "versionId": "ce7168fe-0af1-4afa-a828-11f22a52543a"
 }
