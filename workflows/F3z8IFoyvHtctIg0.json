@@ -906,7 +906,7 @@
         "sortFieldsUi": {
           "sortField": [
             {
-              "fieldName": "Date"
+              "fieldName": "createdTime"
             }
           ]
         },
@@ -1142,17 +1142,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        6
+        10
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        6
+        8
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-03T21:06:37.000Z",
-  "versionId": "e2706f14-1575-4806-85f3-c3dbac594a65"
+  "updatedAt": "2025-04-04T05:36:32.000Z",
+  "versionId": "c26718ac-ee04-4f10-99b9-3bdab42dfe87"
 }
