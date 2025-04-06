@@ -1,0 +1,64 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-06T21:00:01.231Z",
+  "id": "1CvPOmcuoLbwL8El",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "eac00ff3-60c5-4607-99da-db4d66b23e31",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "edge": "accounts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "e3c777bb-8540-492f-8654-86ee37712228",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "hCM9MbaCDl8uBUI6",
+          "name": "Facebook Graph account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-06T21:00:01.231Z",
+  "versionId": "e023fd95-b015-4368-918e-a315c129bf8b"
+}
