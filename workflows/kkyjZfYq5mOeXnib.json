@@ -1,56 +1,95 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "JSON Parser": {
-      "ai_outputParser": [
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
         [
           {
-            "node": "Assign labels for message",
-            "type": "ai_outputParser",
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     },
-    "Gmail trigger": {
+    "Sentiment Analysis": {
       "main": [
         [
           {
-            "node": "Get message content",
+            "node": "Split out assigned labels1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out assigned labels1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out assigned labels1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out assigned labels1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out assigned labels1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Get all labels": {
+    "Get all labels1": {
       "main": [
         [
           {
-            "node": "Merge corresponding labels",
+            "node": "Merge corresponding labels1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Set label values": {
+    "Split out assigned labels1": {
       "main": [
         [
           {
-            "node": "Get all labels",
+            "node": "Merge corresponding labels1",
             "type": "main",
-            "index": 0
+            "index": 1
           },
           {
-            "node": "Split out assigned labels",
+            "node": "Get all labels1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Aggregate label IDs": {
+    "Merge corresponding labels1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate label IDs1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate label IDs1": {
       "main": [
         [
           {
@@ -61,72 +100,23 @@
         ]
       ]
     },
-    "Get message content": {
+    "Gmail Trigger": {
       "main": [
         [
           {
-            "node": "Assign labels for message",
+            "node": "Gmail",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
           {
             "node": "Sentiment Analysis",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Assign labels for message": {
-      "main": [
-        [
-          {
-            "node": "Set label values",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split out assigned labels": {
-      "main": [
-        [
-          {
-            "node": "Merge corresponding labels",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Merge corresponding labels": {
-      "main": [
-        [
-          {
-            "node": "Aggregate label IDs",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Assign labels for message",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Sentiment Analysis",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -142,88 +132,51 @@
   "nodes": [
     {
       "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyMinute"
-            }
-          ]
-        },
-        "simple": false,
-        "filters": {},
-        "options": {}
+        "inputText": "=<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
+        "options": {
+          "categories": "SPAM, Notification, Requires Reply, Job Alert, Newsletters"
+        }
       },
-      "id": "fb36352d-f18a-441f-a923-408913a4d9ad",
-      "name": "Gmail trigger",
-      "type": "n8n-nodes-base.gmailTrigger",
-      "position": [
-        0,
-        280
-      ],
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
       "typeVersion": 1,
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "8ThqC1trQqFGaMfX",
-          "name": "Gmail account"
-        }
-      }
+      "position": [
+        440,
+        355
+      ],
+      "id": "1b226f3f-a1fa-4b61-ae88-68d01dd9207f",
+      "name": "Sentiment Analysis"
     },
     {
       "parameters": {
-        "operation": "get",
-        "messageId": "={{ $json.id }}",
-        "simple": false,
+        "modelName": "models/gemini-1.5-flash-latest",
         "options": {}
       },
-      "id": "eb567fc7-8210-4ba1-ae14-3ea766113489",
-      "name": "Get message content",
-      "type": "n8n-nodes-base.gmail",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
       "position": [
-        220,
-        280
+        528,
+        575
       ],
-      "typeVersion": 2.1,
-      "webhookId": "6ee349b5-7f44-4b89-b850-1a8bdfd7e15c",
+      "id": "d7465c9d-f4d5-414f-977b-e2773fc8c316",
+      "name": "Google Gemini Chat Model1",
       "credentials": {
-        "gmailOAuth2": {
-          "id": "8ThqC1trQqFGaMfX",
-          "name": "Gmail account"
+        "googlePalmApi": {
+          "id": "kSDjT64QAeHAQtTi",
+          "name": "Google Gemini(PaLM) Api account"
         }
       }
-    },
-    {
-      "parameters": {
-        "fields": {
-          "values": [
-            {
-              "name": "labels",
-              "type": "arrayValue",
-              "arrayValue": "={{ $json.labels }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "95d68e65-3b35-4f4a-9510-d6d1651a0dc9",
-      "name": "Set label values",
-      "type": "n8n-nodes-base.set",
-      "position": [
-        816,
-        280
-      ],
-      "typeVersion": 3.2
     },
     {
       "parameters": {
         "resource": "label",
         "returnAll": true
       },
-      "id": "b35ca4a9-fea2-4522-8d29-d55d7e1bc9fb",
-      "name": "Get all labels",
+      "id": "7d1927d1-ca64-4ab8-a5bd-6f7ae88997e9",
+      "name": "Get all labels1",
       "type": "n8n-nodes-base.gmail",
       "position": [
         1036,
-        180
+        280
       ],
       "typeVersion": 2.1,
       "webhookId": "28718e53-8d61-4e00-b158-f51b7c5825f8",
@@ -236,15 +189,15 @@
     },
     {
       "parameters": {
-        "fieldToSplitOut": "labels",
+        "fieldToSplitOut": "sentimentAnalysis.category",
         "options": {}
       },
-      "id": "abd62d21-6f94-44e2-8c95-672507a32bd6",
-      "name": "Split out assigned labels",
+      "id": "d7ca70c5-ff9f-49c6-a91c-2816a8d10ad5",
+      "name": "Split out assigned labels1",
       "type": "n8n-nodes-base.splitOut",
       "position": [
-        1036,
-        380
+        816,
+        355
       ],
       "typeVersion": 1
     },
@@ -255,18 +208,18 @@
           "values": [
             {
               "field1": "name",
-              "field2": "labels"
+              "field2": "sentimentAnalysis.category"
             }
           ]
         },
         "options": {}
       },
-      "id": "33f5ea47-88fc-4e50-bafb-45cf9b73170e",
-      "name": "Merge corresponding labels",
+      "id": "87e7c3ef-2f6b-446b-8eda-198eedfe14f6",
+      "name": "Merge corresponding labels1",
       "type": "n8n-nodes-base.merge",
       "position": [
         1256,
-        280
+        355
       ],
       "typeVersion": 2.1
     },
@@ -283,30 +236,34 @@
         },
         "options": {}
       },
-      "id": "edc241c9-9747-43e9-9561-fd743e1b085f",
-      "name": "Aggregate label IDs",
+      "id": "768c9a71-0ff3-4958-8929-4aa3786fdbf4",
+      "name": "Aggregate label IDs1",
       "type": "n8n-nodes-base.aggregate",
       "position": [
         1476,
-        280
+        355
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
-        "operation": "addLabels",
-        "messageId": "={{ $('Gmail trigger').item.json[\"id\"] }}",
-        "labelIds": "={{ $json.label_ids }}"
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
       },
-      "id": "4301c97b-0b83-4df1-b088-5635c82d44f4",
-      "name": "Add labels to message",
-      "type": "n8n-nodes-base.gmail",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
       "position": [
-        1696,
-        280
+        0,
+        355
       ],
-      "typeVersion": 2.1,
-      "webhookId": "8ef2dc0c-2169-424f-8851-f58a0488b779",
+      "id": "c34fda2d-0d02-42d8-b616-abd630e1711d",
+      "name": "Gmail Trigger",
       "credentials": {
         "gmailOAuth2": {
           "id": "8ThqC1trQqFGaMfX",
@@ -316,101 +273,66 @@
     },
     {
       "parameters": {
-        "prompt": "={{ $json.text }}",
-        "messages": {
-          "messageValues": [
-            {
-              "message": "Your task is to categorize the message according to the following labels.\n\nNewsletters - email about sponsored content, cooperation etc.\nSpam - Unsolicited emails that may contain suspicious links or attachments.\nNotification - Password reset emails, verification requests, email that doesn't require response.\nRequires Reply - These are emails from individuals or corporations that need to be replied to.\n\nOne email can have more than one label. Return only label names in JSON format, nothing else. Do not make things up. "
-            }
-          ]
-        }
+        "operation": "get",
+        "messageId": "={{ $json.id }}"
       },
-      "id": "faac7895-bd37-4d27-b712-389d01464120",
-      "name": "Assign labels for message",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
       "position": [
-        440,
-        280
+        220,
+        355
       ],
-      "typeVersion": 1.3
-    },
-    {
-      "parameters": {
-        "jsonSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"labels\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\",\n        \"enum\": [\"Inquiry\", \"Partnership\", \"Notification\"]\n      }\n    }\n  },\n  \"required\": [\"labels\"]\n}\n"
-      },
-      "id": "3a2e5981-9ebf-4006-8ccb-d46481a109b6",
-      "name": "JSON Parser",
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "position": [
-        588,
-        500
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        468,
-        500
-      ],
-      "id": "7135f78f-efa4-4e9f-97a4-9f04c0b1e2b6",
-      "name": "Google Gemini Chat Model",
+      "id": "ada404c9-91d2-4b2a-a23c-c3cf8c61a054",
+      "name": "Gmail",
+      "webhookId": "7aa95a16-65ad-478d-8bbf-0b59b31d5ce5",
       "credentials": {
-        "googlePalmApi": {
-          "id": "kSDjT64QAeHAQtTi",
-          "name": "Google Gemini(PaLM) Api account"
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
         }
       }
     },
     {
       "parameters": {
-        "inputText": "=<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
-        "options": {
-          "categories": "Newsletter, Spam, Notification, RequiresReply"
-        }
+        "operation": "addLabels",
+        "messageId": "={{ $('Sentiment Analysis').item.json.id }}",
+        "labelIds": "={{ $json.label_ids }}"
       },
-      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
-      "typeVersion": 1,
+      "id": "4301c97b-0b83-4df1-b088-5635c82d44f4",
+      "name": "Add labels to message",
+      "type": "n8n-nodes-base.gmail",
       "position": [
-        640,
-        740
+        1700,
+        360
       ],
-      "id": "1b226f3f-a1fa-4b61-ae88-68d01dd9207f",
-      "name": "Sentiment Analysis"
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-1.5-flash-latest",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        740,
-        960
-      ],
-      "id": "d7465c9d-f4d5-414f-977b-e2773fc8c316",
-      "name": "Google Gemini Chat Model1",
+      "typeVersion": 2.1,
+      "webhookId": "8ef2dc0c-2169-424f-8851-f58a0488b779",
       "credentials": {
-        "googlePalmApi": {
-          "id": "kSDjT64QAeHAQtTi",
-          "name": "Google Gemini(PaLM) Api account"
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
         }
       }
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1744037355,
+        "possibleDuplicates": [
+          "19610ba24730be79",
+          "19610b83431efe54"
+        ]
+      }
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-07T12:43:45.000Z",
-  "versionId": "fe66c51a-3330-4a6b-97e6-7bd9ce1408ff"
+  "triggerCount": 1,
+  "updatedAt": "2025-04-07T14:48:20.000Z",
+  "versionId": "ab22f245-a152-45c5-a24b-bc6f0b564048"
 }
