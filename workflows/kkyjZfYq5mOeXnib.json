@@ -5,96 +5,8 @@
       "ai_languageModel": [
         [
           {
-            "node": "Sentiment Analysis",
+            "node": "Decide the email category",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sentiment Analysis": {
-      "main": [
-        [
-          {
-            "node": "Split out assigned labels1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Split out assigned labels1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Split out assigned labels1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Split out assigned labels1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Split out assigned labels1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get all labels1": {
-      "main": [
-        [
-          {
-            "node": "Merge corresponding labels1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split out assigned labels1": {
-      "main": [
-        [
-          {
-            "node": "Merge corresponding labels1",
-            "type": "main",
-            "index": 1
-          },
-          {
-            "node": "Get all labels1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge corresponding labels1": {
-      "main": [
-        [
-          {
-            "node": "Aggregate label IDs1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate label IDs1": {
-      "main": [
-        [
-          {
-            "node": "Add labels to message",
-            "type": "main",
             "index": 0
           }
         ]
@@ -104,18 +16,113 @@
       "main": [
         [
           {
-            "node": "Gmail",
+            "node": "Read the gmail",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Gmail": {
+    "Read the gmail": {
       "main": [
         [
           {
-            "node": "Sentiment Analysis",
+            "node": "Decide the email category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decide the email category": {
+      "main": [
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split out the email's category": {
+      "main": [
+        [
+          {
+            "node": "Merge category with lables",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Get all labels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all labels": {
+      "main": [
+        [
+          {
+            "node": "Merge category with lables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge category with lables": {
+      "main": [
+        [
+          {
+            "node": "Aggregate label IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate label IDs": {
+      "main": [
+        [
+          {
+            "node": "Add labels to message",
             "type": "main",
             "index": 0
           }
@@ -130,22 +137,6 @@
   },
   "name": "Email labeler",
   "nodes": [
-    {
-      "parameters": {
-        "inputText": "=<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
-        "options": {
-          "categories": "SPAM, Notification, Requires Reply, Job Alert, Newsletters"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
-      "typeVersion": 1,
-      "position": [
-        440,
-        355
-      ],
-      "id": "1b226f3f-a1fa-4b61-ae88-68d01dd9207f",
-      "name": "Sentiment Analysis"
-    },
     {
       "parameters": {
         "modelName": "models/gemini-1.5-flash-latest",
@@ -165,85 +156,6 @@
           "name": "Google Gemini(PaLM) Api account"
         }
       }
-    },
-    {
-      "parameters": {
-        "resource": "label",
-        "returnAll": true
-      },
-      "id": "7d1927d1-ca64-4ab8-a5bd-6f7ae88997e9",
-      "name": "Get all labels1",
-      "type": "n8n-nodes-base.gmail",
-      "position": [
-        1036,
-        280
-      ],
-      "typeVersion": 2.1,
-      "webhookId": "28718e53-8d61-4e00-b158-f51b7c5825f8",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "8ThqC1trQqFGaMfX",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "fieldToSplitOut": "sentimentAnalysis.category",
-        "options": {}
-      },
-      "id": "d7ca70c5-ff9f-49c6-a91c-2816a8d10ad5",
-      "name": "Split out assigned labels1",
-      "type": "n8n-nodes-base.splitOut",
-      "position": [
-        816,
-        355
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "mergeByFields": {
-          "values": [
-            {
-              "field1": "name",
-              "field2": "sentimentAnalysis.category"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "87e7c3ef-2f6b-446b-8eda-198eedfe14f6",
-      "name": "Merge corresponding labels1",
-      "type": "n8n-nodes-base.merge",
-      "position": [
-        1256,
-        355
-      ],
-      "typeVersion": 2.1
-    },
-    {
-      "parameters": {
-        "fieldsToAggregate": {
-          "fieldToAggregate": [
-            {
-              "fieldToAggregate": "id",
-              "renameField": true,
-              "outputFieldName": "label_ids"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "768c9a71-0ff3-4958-8929-4aa3786fdbf4",
-      "name": "Aggregate label IDs1",
-      "type": "n8n-nodes-base.aggregate",
-      "position": [
-        1476,
-        355
-      ],
-      "typeVersion": 1
     },
     {
       "parameters": {
@@ -273,6 +185,28 @@
     },
     {
       "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Decide the email category').item.json.id }}",
+        "labelIds": "={{ $json.label_ids }}"
+      },
+      "id": "4301c97b-0b83-4df1-b088-5635c82d44f4",
+      "name": "Add labels to message",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1696,
+        355
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "8ef2dc0c-2169-424f-8851-f58a0488b779",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "operation": "get",
         "messageId": "={{ $json.id }}"
       },
@@ -283,7 +217,7 @@
         355
       ],
       "id": "ada404c9-91d2-4b2a-a23c-c3cf8c61a054",
-      "name": "Gmail",
+      "name": "Read the gmail",
       "webhookId": "7aa95a16-65ad-478d-8bbf-0b59b31d5ce5",
       "credentials": {
         "gmailOAuth2": {
@@ -294,25 +228,98 @@
     },
     {
       "parameters": {
-        "operation": "addLabels",
-        "messageId": "={{ $('Sentiment Analysis').item.json.id }}",
-        "labelIds": "={{ $json.label_ids }}"
+        "inputText": "=<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
+        "options": {
+          "categories": "SPAM, Notification, Requires Reply, Job Alert, Newsletters, Advertisement"
+        }
       },
-      "id": "4301c97b-0b83-4df1-b088-5635c82d44f4",
-      "name": "Add labels to message",
-      "type": "n8n-nodes-base.gmail",
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1,
       "position": [
-        1700,
+        440,
         360
       ],
+      "id": "1b226f3f-a1fa-4b61-ae88-68d01dd9207f",
+      "name": "Decide the email category"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "sentimentAnalysis.category",
+        "options": {}
+      },
+      "id": "d7ca70c5-ff9f-49c6-a91c-2816a8d10ad5",
+      "name": "Split out the email's category",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        816,
+        355
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "label",
+        "returnAll": true
+      },
+      "id": "7d1927d1-ca64-4ab8-a5bd-6f7ae88997e9",
+      "name": "Get all labels",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1036,
+        280
+      ],
       "typeVersion": 2.1,
-      "webhookId": "8ef2dc0c-2169-424f-8851-f58a0488b779",
+      "webhookId": "28718e53-8d61-4e00-b158-f51b7c5825f8",
       "credentials": {
         "gmailOAuth2": {
           "id": "8ThqC1trQqFGaMfX",
           "name": "Gmail account"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "name",
+              "field2": "sentimentAnalysis.category"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "87e7c3ef-2f6b-446b-8eda-198eedfe14f6",
+      "name": "Merge category with lables",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1256,
+        355
+      ],
+      "typeVersion": 2.1
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "id",
+              "renameField": true,
+              "outputFieldName": "label_ids"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "768c9a71-0ff3-4958-8929-4aa3786fdbf4",
+      "name": "Aggregate label IDs",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        1476,
+        355
+      ],
+      "typeVersion": 1
     }
   ],
   "pinData": {},
@@ -323,16 +330,15 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1744037355,
+        "lastTimeChecked": 1744048414,
         "possibleDuplicates": [
-          "19610ba24730be79",
-          "19610b83431efe54"
+          "1961162e569db1f9"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-07T14:48:20.000Z",
-  "versionId": "ab22f245-a152-45c5-a24b-bc6f0b564048"
+  "updatedAt": "2025-04-07T16:40:38.000Z",
+  "versionId": "40df8da0-6708-4c40-8bc8-132d58e950c7"
 }
