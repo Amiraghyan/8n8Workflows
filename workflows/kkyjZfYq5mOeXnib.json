@@ -77,6 +77,20 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split out the email's category",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -228,9 +242,10 @@
     },
     {
       "parameters": {
-        "inputText": "=<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
+        "inputText": "=<EmailSubject>\n{{ $json.Subject }}\n</EmailSubject>\n<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
         "options": {
-          "categories": "SPAM, Notification, Requires Reply, Job Alert, Newsletters, Advertisement"
+          "categories": "SPAM, Job Alert, Newsletters, Advertisement, OTP Code, Social media, Sent from Individual, Alerts & Reminders",
+          "systemPromptTemplate": "You are highly intelligent and accurate email category analyzer. Analyze the category of the provided email which is in text format and HTML format. Categorize it into one of the following: {categories}. Use the provided formatting instructions. Only output the JSON."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
@@ -330,15 +345,16 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1744048414,
+        "lastTimeChecked": 1744129657,
         "possibleDuplicates": [
-          "1961162e569db1f9"
+          "196163a8b84dd12e",
+          "196162b643fd33df"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-07T16:40:38.000Z",
-  "versionId": "40df8da0-6708-4c40-8bc8-132d58e950c7"
+  "updatedAt": "2025-04-08T13:46:25.000Z",
+  "versionId": "f466e9dd-9bd2-4020-bcdc-e014689657c0"
 }
