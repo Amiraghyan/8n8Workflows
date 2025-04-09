@@ -3,13 +3,7 @@
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
-        [
-          {
-            "node": "HTML",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -28,17 +22,6 @@
       ],
       "id": "d507d850-01ec-4c40-b4ea-561c39781cf5",
       "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.html",
-      "typeVersion": 1.2,
-      "position": [
-        220,
-        0
-      ],
-      "id": "9b55dcec-43ed-40c2-b24f-00bd293a4408",
-      "name": "HTML"
     }
   ],
   "pinData": {},
@@ -48,6 +31,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-09T10:04:42.529Z",
-  "versionId": "3d65440d-e9fd-4c22-8331-9e2b22c257b0"
+  "updatedAt": "2025-04-09T11:21:11.000Z",
+  "versionId": "4aa91f6d-4c1b-4a05-8cc3-7dbd53dd2aee"
 }
