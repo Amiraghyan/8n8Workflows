@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Merge": {
       "main": [
@@ -373,7 +373,7 @@
     },
     {
       "parameters": {
-        "person": "=wencreatives254",
+        "person": "OVBYEtaS6y",
         "text": "={{ $('Filter Errored').item.json.output.linkedin }}",
         "additionalFields": {}
       },
@@ -593,7 +593,8 @@
           "id": "OMqkkCQonnsFxZRZ",
           "name": "Airtable Personal Access Token account 2"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1139,9 +1140,16 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Check for unposted posts": {
+      "recurrenceRules": []
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-04-09T12:50:49.000Z",
-  "versionId": "677b6ce0-50b9-4b35-86fb-8697260a5711"
+  "triggerCount": 2,
+  "updatedAt": "2025-04-09T13:15:04.000Z",
+  "versionId": "b4c68216-e5e7-4598-bcae-a94fe10c9165"
 }
