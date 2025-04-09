@@ -33,7 +33,9 @@
     },
     {
       "parameters": {
-        "edge": "accounts",
+        "graphApiVersion": "v22.0",
+        "node": "464469953420881",
+        "edge": "feed",
         "options": {}
       },
       "type": "n8n-nodes-base.facebookGraphApi",
@@ -47,7 +49,7 @@
       "credentials": {
         "facebookGraphApi": {
           "id": "hCM9MbaCDl8uBUI6",
-          "name": "Facebook Graph account"
+          "name": "Binary Craft Technologies"
         }
       }
     }
@@ -59,6 +61,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-06T21:00:01.231Z",
-  "versionId": "e023fd95-b015-4368-918e-a315c129bf8b"
+  "updatedAt": "2025-04-09T10:03:57.000Z",
+  "versionId": "5266dc12-ae65-4168-ba9f-b5025744eaf3"
 }
