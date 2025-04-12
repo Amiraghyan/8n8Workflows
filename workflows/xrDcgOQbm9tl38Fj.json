@@ -45,17 +45,6 @@
         ]
       ]
     },
-    "GPT 4o": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Image Prompt Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Image Prompt Agent": {
       "main": [
         [
@@ -357,11 +346,24 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Image Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-12T08:57:52.306Z",
   "id": "xrDcgOQbm9tl38Fj",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "My workflow 3",
   "nodes": [
     {
@@ -391,7 +393,17 @@
           "cachedResultName": "Sheet1",
           "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uV_ntbZr8PCbhpXaZ5LyPTNPQxWzlyXujkc-fxlerUQ/edit#gid=2079710925"
         },
-        "options": {}
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "videoStatus",
+              "lookupValue": "To Do"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
@@ -453,25 +465,6 @@
     },
     {
       "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o",
-          "mode": "list",
-          "cachedResultName": "gpt-4o"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        900,
-        460
-      ],
-      "id": "0eb03742-2b5b-4499-8a2c-e494252736ab",
-      "name": "GPT 4o"
-    },
-    {
-      "parameters": {
         "promptType": "define",
         "text": "=Animal: {{ $json.animals }}\nStyle: {{ $('Set Animals').item.json.style }}",
         "options": {
@@ -527,6 +520,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.piapi.ai/api/v1/task",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n    \"model\": \"Qubico/flux1-dev\",\n    \"task_type\": \"txt2img\",\n    \"input\": {\n        \"prompt\": \"{{ $json.prompts }}\",\n        \"width\": 540, \n        \"height\": 960\n    } \n}",
@@ -539,7 +534,13 @@
         720
       ],
       "id": "e6a20041-44b7-4eae-ab98-552afa90e4d3",
-      "name": "Generate Image"
+      "name": "Generate Image",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "LiSx4hPXiP0a0s6c",
+          "name": "PIAPI"
+        }
+      }
     },
     {
       "parameters": {
@@ -558,6 +559,8 @@
     {
       "parameters": {
         "url": "=https://api.piapi.ai/api/v1/task/{{ $json.data.task_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -567,7 +570,13 @@
         720
       ],
       "id": "b9d9dbba-f345-48e0-8f88-16b3e9a725a5",
-      "name": "Get Images"
+      "name": "Get Images",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "LiSx4hPXiP0a0s6c",
+          "name": "PIAPI"
+        }
+      }
     },
     {
       "parameters": {
@@ -601,8 +610,10 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
+          "value": "1uV_ntbZr8PCbhpXaZ5LyPTNPQxWzlyXujkc-fxlerUQ",
           "mode": "list",
-          "value": ""
+          "cachedResultName": "Short Ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uV_ntbZr8PCbhpXaZ5LyPTNPQxWzlyXujkc-fxlerUQ/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -744,7 +755,13 @@
         1020
       ],
       "id": "33bfc3c2-a560-4d5b-b08e-f651fa37426b",
-      "name": "Video Status"
+      "name": "Video Status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxLHucxvh2gDb3FO",
+          "name": "Google Sheets account"
+        }
+      }
     },
     {
       "parameters": {
@@ -754,11 +771,17 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        320,
+        300,
         1220
       ],
       "id": "1478ed6e-ddfe-4767-aa14-826c33f05e4f",
-      "name": "Flash 2.0"
+      "name": "Flash 2.0",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
     },
     {
       "parameters": {
@@ -804,6 +827,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.elevenlabs.io/v1/sound-generation",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -826,7 +851,13 @@
         1020
       ],
       "id": "06594c89-84c3-4d7c-82c8-e1b59d410953",
-      "name": "Generate Audio"
+      "name": "Generate Audio",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "L7hk7YAb4UDiRO6v",
+          "name": "Eleven Labs"
+        }
+      }
     },
     {
       "parameters": {
@@ -838,9 +869,10 @@
         },
         "folderId": {
           "__rl": true,
+          "value": "1pCh2tWlytNrDv3UQXzg3vvXgKL2Weif_",
           "mode": "list",
-          "value": "root",
-          "cachedResultName": "/ (Root folder)"
+          "cachedResultName": "Audio Files",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1pCh2tWlytNrDv3UQXzg3vvXgKL2Weif_"
         },
         "options": {}
       },
@@ -851,7 +883,13 @@
         1020
       ],
       "id": "1ebe11d7-637a-4dbd-9a68-19bca6a2c5c1",
-      "name": "Upload to Drive"
+      "name": "Upload to Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "yU7hRpcETF7lMkPI",
+          "name": "Google Drive account"
+        }
+      }
     },
     {
       "parameters": {
@@ -872,15 +910,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.creatomate.com/v1/renders",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer API KEY HERE"
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"template_id\": \"d02f8e71-6e1b-4ab9-9c5e-629c35a845b7\",\n  \"modifications\": {\n    \"Video-1.source\": \"{{ $json.urls[0].url }}\",\n    \"Video-2.source\": \"{{ $json.urls[1].url }}\",\n    \"Video-3.source\": \"{{ $json.urls[2].url }}\",\n    \"Video-4.source\": \"{{ $json.urls[3].url }}\",\n    \"Audio-Track.source\": \"{{ $('Upload to Drive').first().json.webContentLink }}\",\n    \"Text-1.text\": \"{{ $('Grab Idea').first().json['animal 1'] }}\",\n    \"Text-2.text\": \"{{ $('Grab Idea').first().json['animal 2'] }}\",\n    \"Text-3.text\": \"{{ $('Grab Idea').first().json['animal 3'] }}\",\n    \"Text-4.text\": \"{{ $('Grab Idea').first().json['animal 4'] }}\"\n  }\n}",
@@ -893,7 +924,13 @@
         760
       ],
       "id": "faf9385e-3315-4717-8e91-8c8f545f4fb5",
-      "name": "Render Video"
+      "name": "Render Video",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "g79yznYUFnWTd84q",
+          "name": "Creatomate"
+        }
+      }
     },
     {
       "parameters": {
@@ -942,15 +979,23 @@
         980
       ],
       "id": "a6b7f125-f3a8-4bda-9812-03c4772c93f8",
-      "name": "Upload Video"
+      "name": "Upload Video",
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "2xaDwzk3U2ocGJRb",
+          "name": "YouTube account"
+        }
+      }
     },
     {
       "parameters": {
         "operation": "update",
         "documentId": {
           "__rl": true,
+          "value": "1uV_ntbZr8PCbhpXaZ5LyPTNPQxWzlyXujkc-fxlerUQ",
           "mode": "list",
-          "value": ""
+          "cachedResultName": "Short Ideas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uV_ntbZr8PCbhpXaZ5LyPTNPQxWzlyXujkc-fxlerUQ/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -1092,10 +1137,17 @@
         980
       ],
       "id": "5bf678a7-f946-46d1-9738-95985be1e0a3",
-      "name": "Update Sheet"
+      "name": "Update Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxLHucxvh2gDb3FO",
+          "name": "Google Sheets account"
+        }
+      }
     },
     {
       "parameters": {
+        "sendTo": "davidnjihia536@gmail.com",
         "subject": "=New Short Processed: {{ $('Grab Idea').first().json.title }}",
         "emailType": "text",
         "message": "=[Name],\n\nA new short has been created and is awaiting your approval.\n\nIt is called \"{{ $('Grab Idea').first().json.title }}\".\n\nYou can view it here: \n\nCheers!",
@@ -1111,7 +1163,13 @@
       ],
       "id": "00e06a44-5cde-47ba-b75e-e0d4a4ccb48b",
       "name": "Notification",
-      "webhookId": "495213a9-3d81-40bf-a612-1240bf7498db"
+      "webhookId": "495213a9-3d81-40bf-a612-1240bf7498db",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1228,6 +1286,8 @@
     {
       "parameters": {
         "url": "=https://api.dev.runwayml.com/v1/tasks/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -1246,7 +1306,13 @@
         720
       ],
       "id": "5bcf6c20-0355-47dd-8976-22b9db8f406a",
-      "name": "Get Videos"
+      "name": "Get Videos",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KLPiocmIKFFUl1Bl",
+          "name": "Runway API"
+        }
+      }
     },
     {
       "parameters": {
@@ -1267,12 +1333,20 @@
       ],
       "id": "1d34f5dc-34b3-44cf-bdcd-a73ad0046771",
       "name": "Generate Videos (Kling)",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "g79yznYUFnWTd84q",
+          "name": "Creatomate"
+        }
+      },
       "disabled": true
     },
     {
       "parameters": {
         "method": "POST",
         "url": "https://api.dev.runwayml.com/v1/image_to_video",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -1316,7 +1390,13 @@
         720
       ],
       "id": "6ff3f2ed-c71f-4e11-b1a4-5f938710bde7",
-      "name": "Generate Videos"
+      "name": "Generate Videos",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KLPiocmIKFFUl1Bl",
+          "name": "Runway API"
+        }
+      }
     },
     {
       "parameters": {
@@ -1400,7 +1480,13 @@
         1020
       ],
       "id": "fb629fd0-a2fe-48ef-84d1-06fd5709ebdf",
-      "name": "Share File"
+      "name": "Share File",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "yU7hRpcETF7lMkPI",
+          "name": "Google Drive account"
+        }
+      }
     },
     {
       "parameters": {
@@ -1417,6 +1503,26 @@
       "typeVersion": 1,
       "id": "1ef8af74-d07f-4f2a-8c6f-72985e78b239",
       "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        520
+      ],
+      "id": "e90a00b9-18cb-409a-b29a-21f8ed2087dc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1426,6 +1532,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-12T08:57:52.306Z",
-  "versionId": "61378725-ac00-45f1-93bb-06953abd7ac3"
+  "updatedAt": "2025-04-12T10:39:07.000Z",
+  "versionId": "be60e5c8-771d-49d2-82f5-ea4ab594eec5"
 }
