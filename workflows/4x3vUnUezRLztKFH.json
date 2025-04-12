@@ -1,0 +1,1811 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Configure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "HTML5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML5": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "HTML7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML7": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out2": {
+      "main": [
+        [
+          {
+            "node": "HTML9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML9": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Split Out3": {
+      "main": [
+        [
+          {
+            "node": "Extract products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out4": {
+      "main": [
+        [
+          {
+            "node": "Extract affiliated pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Edit Fields6": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Summarize available data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Summarize available data",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Scrape the job ad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure": {
+      "main": [
+        [
+          {
+            "node": "Get job board RSS feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get job board RSS feed": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape the job ad": {
+      "main": [
+        [
+          {
+            "node": "Extract job ad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract job ad": {
+      "main": [
+        [
+          {
+            "node": "Extract location data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract location data": {
+      "main": [
+        [
+          {
+            "node": "Google X-Ray Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google X-Ray Search": {
+      "main": [
+        [
+          {
+            "node": "Results?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Results?": {
+      "main": [
+        [
+          {
+            "node": "Set Linkedin URL from the first result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Extract main blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract main blocks": {
+      "main": [
+        [
+          {
+            "node": "Extract info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract locations",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract about us",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract employees",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract updates",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Are there products?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Are there affiliated pages?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract info": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract about us": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract employees": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract locations": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract updates": {
+      "main": [
+        [
+          {
+            "node": "Split Out2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Are there products?": {
+      "main": [
+        [
+          {
+            "node": "Split Out3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Are there affiliated pages?": {
+      "main": [
+        [
+          {
+            "node": "Split Out4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No affiliated pages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No affiliated pages": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No products": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract products": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract affiliated pages": {
+      "main": [
+        [
+          {
+            "node": "Aggregate4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize available data": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Linkedin URL from the first result": {
+      "main": [
+        [
+          {
+            "node": "Clean linkedin url",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean linkedin url": {
+      "main": [
+        [
+          {
+            "node": "Scrape LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize available data",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T07:12:33.978Z",
+  "id": "4x3vUnUezRLztKFH",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Job Search",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        200
+      ],
+      "id": "7b9f5e98-ab66-4262-8d3e-e65d1a86e3c0",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  if (item.json.area_html) {\n    const parts = item.json.area_html.split('<span class=\"before:middot\"></span>');\n  item.json.area = parts?.[0]?.trim()\n  item.json.followers = parts?.[1]?.trim()\n  }\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3000,
+        280
+      ],
+      "id": "27d2fd25-f0bd-481f-9f47-3ec148efcee3",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "definitions",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        680
+      ],
+      "id": "c4bb59a0-578e-4bcd-9b3f-6895c5582a74",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "definitions",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "key",
+              "cssSelector": "dt"
+            },
+            {
+              "key": "value",
+              "cssSelector": "dd"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3220,
+        680
+      ],
+      "id": "da8bf048-7c9a-4579-bd36-79f0f8c1a066",
+      "name": "HTML5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = {};\n// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  let value = item.json.value;\n  const key = item.json.key;\n  if (key === 'Website') {\n    value = value.split('\\n')[0]\n  }\n  data[item.json.key] = value;\n}\n\nreturn {\n  ...data,\n  description: $('Extract about us').first().json.description\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3440,
+        680
+      ],
+      "id": "ddfe3939-6f4b-4f2c-b46f-bde5519529b2",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "employee",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        880
+      ],
+      "id": "074ccbce-47a4-41cc-9e81-f3972a4386bc",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "employee",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "h3"
+            },
+            {
+              "key": "title",
+              "cssSelector": "h4"
+            },
+            {
+              "key": "linkedin_url",
+              "cssSelector": "a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3200,
+        880
+      ],
+      "id": "bdd2a208-8e0b-4727-9035-d65df59d02db",
+      "name": "HTML7"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "employees",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        880
+      ],
+      "id": "cd8f2022-c219-43ad-8414-33aa758f0e9d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "article",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2960,
+        1100
+      ],
+      "id": "155064c1-9e3a-4269-9783-9b1fd9963ac3",
+      "name": "Split Out2"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "article",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "link",
+              "cssSelector": ".main-feed-card__overlay-link",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "content",
+              "cssSelector": "[data-test-id=\"main-feed-activity-card__commentary\"]"
+            },
+            {
+              "key": "reshared_content",
+              "cssSelector": "[data-test-id=\"feed-reshare-content__commentary\"]"
+            },
+            {
+              "key": "time",
+              "cssSelector": "time",
+              "skipSelectors": "span"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3180,
+        1100
+      ],
+      "id": "789372c8-3336-4a49-af0a-793a43dc0d2c",
+      "name": "HTML9"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  Object.keys(item.json).forEach(key => {\n    if (!item.json[key]) {\n      delete item.json[key]\n    }\n  })\n  \n  let time;\n  if (item.json.time.endsWith('h')) {\n    time = { hours: parseInt(item.json.time) }\n  }\n  else if (item.json.time.endsWith('d')) {\n    time = { days: parseInt(item.json.time) }\n  } else if (item.json.time.endsWith('w')) {\n    time = { weeks: parseInt(item.json.time) }\n  } else if (item.json.time.endsWith('mo')) {\n    time = { months: parseInt(item.json.time) }\n  }\n\n  if (time) {\n    item.json.posted_at = $now.minus(time).toFormat('yyyy-MM-dd')\n  }\n\n  delete item.json.time\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3400,
+        1100
+      ],
+      "id": "327c45f9-9c51-4b3c-8717-3e90da7ff974",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "db889fcb-eb49-4c25-aed7-19d00c63c23c",
+              "leftValue": "={{ DateTime.fromISO($json.posted_at).toSeconds() }}",
+              "rightValue": "={{ $now.minus(3, 'months').toSeconds() }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        3620,
+        1100
+      ],
+      "id": "bf2f8771-bb69-4e4c-89b0-f2bd1f731cca",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "updates",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3840,
+        1100
+      ],
+      "id": "2da4fdab-a159-4d5a-8456-85a9dbc0ddb7",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "products",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        1320
+      ],
+      "id": "407a985c-cf83-4892-a802-81f26a4fb932",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "products",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        1320
+      ],
+      "id": "9131eb3c-8cc2-4efe-8adc-b5d460315c64",
+      "name": "Split Out3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "50bff6d4-3e6f-4104-b345-62b84a818ae7",
+              "name": "products",
+              "value": "={{ $json.products }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3840,
+        1380
+      ],
+      "id": "94a547a9-f40b-467a-a2da-9ba0518e38e6",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "affiliate_pages",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        1720
+      ],
+      "id": "dd085169-f61e-4ac8-a5b8-525e143019a6",
+      "name": "Split Out4"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "affiliate_pages",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        1720
+      ],
+      "id": "8095383a-a658-4b87-a910-f190ce17b652",
+      "name": "Aggregate4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c2149253-32cd-43ce-82e3-815832fd3042",
+              "name": "affiliate_pages",
+              "value": "={{ $json.affiliate_pages }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3840,
+        1720
+      ],
+      "id": "d9dce7e5-2f14-4315-a35f-b128e6cd2ad2",
+      "name": "Edit Fields6"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 7,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        4480,
+        700
+      ],
+      "id": "c75f1c8a-04c1-4945-bb55-0e577fac1820",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        4820,
+        780
+      ],
+      "id": "3b259580-d3a4-4790-8500-46a899ae7479",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n    \"type\": \"object\",\n    \"properties\": {\n        \"company_summary\": {\n            \"type\": \"string\",\n            \"description\": \"The summary of the company information\"\n        },\n        \"why_good_prospect\": {\n            \"type\": \"string\",\n            \"description\": \"Explanation why this company is a good prospect\"\n        }\n    },\n    \"required\": [\n        \"company_summary\",\n        \"why_good_prospect\"\n    ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        5760,
+        1300
+      ],
+      "id": "112b5ffb-62d3-4782-b5b9-12f69836a84b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        400,
+        200
+      ],
+      "id": "e3069e05-69b7-4709-a824-5ac4952b3702",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "maxItems": 15,
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        60,
+        200
+      ],
+      "id": "d8544d85-2a42-4efb-8925-9074aa299fdf",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "content": "# Configure",
+        "height": 360,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        80
+      ],
+      "id": "34a9d2ef-6a37-40ce-88ee-dc9582967b24",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Change or remove the limit",
+        "height": 440,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3b4de5eb-5859-4743-9390-3aec0f1209ab",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "baa6e64d-4305-421a-be0a-60cc6d2b06bf",
+              "name": "GOOGLE_API_KEY",
+              "value": "AIzaSyBkjl4DhweXlMcxa2mThx5JgKXuvNpRoUg",
+              "type": "string"
+            },
+            {
+              "id": "d8e33d4c-b790-488f-a57c-58b80bb5824d",
+              "name": "GOOGLE_CUSTOM_SEARCH",
+              "value": "e3881f79a6fc343d9",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -540,
+        200
+      ],
+      "id": "c7ee4c41-1b1f-45dd-8935-bbf9975d4281",
+      "name": "Configure"
+    },
+    {
+      "parameters": {
+        "url": "https://remotive.com/remote-jobs/feed/software-dev",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        200
+      ],
+      "id": "b7c3299d-3261-4483-b981-3eed8c095c7d",
+      "name": "Get job board RSS feed"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        220
+      ],
+      "id": "265e7bcc-a7df-472e-82b0-54495f8ca425",
+      "name": "Scrape the job ad"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "info",
+              "cssSelector": ".tw-mt-4.tw-text-sm"
+            },
+            {
+              "key": "job_ad",
+              "cssSelector": ".tw-flex > section > .tw-mt-8 > .left > div:nth-child(1)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        220
+      ],
+      "id": "e31d9fa9-e5b7-46c1-a998-a9140b18e105",
+      "name": "Extract job ad"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  const location = item.json.info.split('Location:')[1]\n  item.json.location = location.slice(0, location.length - 1).replace(/\\n/g, '').trim()\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        220
+      ],
+      "id": "64eb69a2-1b70-4e32-9b3f-aab9fd1d4e4c",
+      "name": "Extract location data"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/customsearch/v1",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "={{ $('Configure').item.json.GOOGLE_API_KEY }}"
+            },
+            {
+              "name": "cx",
+              "value": "={{ $('Configure').item.json.GOOGLE_CUSTOM_SEARCH }}"
+            },
+            {
+              "name": "q",
+              "value": "={{ `site:linkedin.com/company ${$('Get job board RSS feed').item.json['dc:creator']} ${$json.location}` }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        820,
+        720
+      ],
+      "id": "1e23bdd5-145b-45e7-bf12-efd33fd5c524",
+      "name": "Google X-Ray Search"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6a5c5157-a1de-46c9-b6fa-c3f999a76d1e",
+              "leftValue": "={{ $json.searchInformation.totalResults.toNumber() }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "ec5a091f-e9c1-4ed5-8e0e-af7ddcccf0db",
+              "leftValue": "={{ $json.items[0].link }}",
+              "rightValue": "linkedin.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1040,
+        720
+      ],
+      "id": "1d577d87-f4fb-4126-a708-87571419ea77",
+      "name": "Results?"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.linkedin_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "user-agent",
+              "value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "referer",
+              "value": "https://www.google.com/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1720,
+        700
+      ],
+      "id": "fe2d337d-e6d2-48e1-ac55-16e307b638b9",
+      "name": "Scrape LinkedIn"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "about_us",
+              "cssSelector": ".core-section-container[data-test-id=\"about-us\"]",
+              "returnValue": "html"
+            },
+            {
+              "key": "locations",
+              "cssSelector": ".core-section-container.locations",
+              "returnValue": "html"
+            },
+            {
+              "key": "employees",
+              "cssSelector": ".core-section-container[data-test-id=\"employees-at\"]",
+              "returnValue": "html"
+            },
+            {
+              "key": "updates",
+              "cssSelector": ".core-section-container[data-test-id=\"updates\"]",
+              "returnValue": "html"
+            },
+            {
+              "key": "info",
+              "cssSelector": ".top-card-layout__card .top-card-layout__entity-info:nth-child(1)",
+              "returnValue": "html"
+            },
+            {
+              "key": "products",
+              "cssSelector": ".core-section-container > .core-section-container__content > .base-card",
+              "returnValue": "html",
+              "returnArray": true
+            },
+            {
+              "key": "crunchbase",
+              "cssSelector": "a[data-tracking-control-name=\"funding_crunchbase\"]",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "affiliate_pages",
+              "cssSelector": "section[data-test-id=\"affiliated-pages\"] > div > ul > li",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2180,
+        700
+      ],
+      "id": "9948e1ec-1238-4832-83e4-ea2cca98dd95",
+      "name": "Extract main blocks"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "info",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "h1"
+            },
+            {
+              "key": "category",
+              "cssSelector": "h2"
+            },
+            {
+              "key": "area_html",
+              "cssSelector": "h3",
+              "returnValue": "html"
+            },
+            {
+              "key": "summary",
+              "cssSelector": "h4"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2780,
+        280
+      ],
+      "id": "a203cdb1-e0aa-4bad-89eb-9c06ca91b63c",
+      "name": "Extract info"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "about_us",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "description",
+              "cssSelector": "p"
+            },
+            {
+              "key": "definitions",
+              "cssSelector": "dl > div",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2780,
+        680
+      ],
+      "id": "55b182c5-fbbe-47fa-9f94-859722b52fd8",
+      "name": "Extract about us"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "employees",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "employee",
+              "cssSelector": "ul li",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2760,
+        880
+      ],
+      "id": "2f936f9d-2064-4536-ac1e-3bf0853181a3",
+      "name": "Extract employees"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "locations",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "locations",
+              "cssSelector": "div[id^=\"address-\"]",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3140,
+        460
+      ],
+      "id": "f5d8d0eb-ff7c-45aa-92fb-71c81bcb365b",
+      "name": "Extract locations"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "updates",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "article",
+              "cssSelector": "div[data-id=\"entire-feed-card-link\"]",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        2740,
+        1100
+      ],
+      "id": "af8d2ad0-db35-4319-bb91-135745afc814",
+      "name": "Extract updates"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4a990f72-dc16-464c-b35c-1573c38b2d18",
+              "leftValue": "={{ $json.products }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2740,
+        1340
+      ],
+      "id": "a6141918-3d61-4d13-990d-295b73bdcb6d",
+      "name": "Are there products?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4b4a37dd-46e9-46f3-8dc6-1767a75375c2",
+              "leftValue": "={{ $json.affiliate_pages }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2740,
+        1740
+      ],
+      "id": "32b79148-95ed-4a10-832d-c0eb702b9bb7",
+      "name": "Are there affiliated pages?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2fa0ab4a-ca7c-47ab-90cc-75f8fe83b372",
+              "name": "affiliate_pages",
+              "value": "[]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2980,
+        1940
+      ],
+      "id": "0b223b5c-77ba-41f5-9cc0-7fe2a05d8ce9",
+      "name": "No affiliated pages"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6d5b89ba-9161-4999-bf63-8b0dad2d0f86",
+              "name": "products",
+              "value": "=[]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2980,
+        1500
+      ],
+      "id": "e4205172-4300-4da0-ba52-b372478bc9a8",
+      "name": "No products"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "products",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "h3",
+              "skipSelectors": "img"
+            },
+            {
+              "key": "category",
+              "cssSelector": "h4 a"
+            },
+            {
+              "key": "description",
+              "cssSelector": "p"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3200,
+        1320
+      ],
+      "id": "f549b457-7754-4590-a1dc-c1e250af83cb",
+      "name": "Extract products"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "affiliate_pages",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": "h3"
+            },
+            {
+              "key": "link",
+              "cssSelector": "a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        3200,
+        1720
+      ],
+      "id": "07630d87-45a5-4da2-bd2f-5de8f8604c77",
+      "name": "Extract affiliated pages"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<Instruction>\nOur company sells marketing services. We scraped a list of marketing jobs, and found the linkedin profile and other data points of the advertiser.\n\nCreate a summary about this prospect that can be shared in the company Slack for the sales team.\n\nThe important signals are\n1. The company is looking for a hire, use information from the job ad\n2. The company does have a team that we target\n\nAlso make sure information from their new updates are also extracted.\n\nThe structure of the message should have\n1. Name of the company\n2. Quick summary of the company\n3. Why it's a good prospect\n</Instruction>\n\n<JobAd>\n{{ $('Extract job ad').item.json.job_ad }}\n</JobAd>\n\n<Data>\n{{ JSON.stringify($json.data, null, 2) }}\n</Data>",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        5580,
+        1080
+      ],
+      "id": "1d2c5155-8bcb-4785-a9fa-0eb5d4e33695",
+      "name": "Summarize available data"
+    },
+    {
+      "parameters": {
+        "content": "# Use the data\n\nPush the collected data into\n\n- your CRM\n- Airtable\n- Google Sheets\n- Notion\n- postgres\n- ...",
+        "height": 760,
+        "width": 660
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5260,
+        720
+      ],
+      "id": "d13422a6-6f30-4518-9892-77015d1804b0",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Extracting the data from LinkedIn\n\n## The CSS selectors could occasionally change - don't panic, very easy to fix, just replace them in the workflow. As of 25/4/10 these selectors are working",
+        "height": 2160,
+        "width": 2920
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        0
+      ],
+      "id": "cf1c5920-4503-4fc0-83ad-c94f7e28473b",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# Wait\n\n## To avoid being flagged or detected, wait some seconds before doing another scraping",
+        "height": 380,
+        "width": 440
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5740,
+        2060
+      ],
+      "id": "75142f70-43d4-43c5-8fca-9c3484e23335",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        6120,
+        2280
+      ],
+      "id": "13bd064d-a102-4216-9548-a6616873f6bc",
+      "name": "Wait 5s",
+      "webhookId": "0c941134-e324-4857-8e36-2ded681a4b38"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "11f75f95-038e-49c4-b7b3-2eb765ad2d1b",
+              "name": "linkedin_url",
+              "value": "={{ $json.items[0].link }}",
+              "type": "string"
+            },
+            {
+              "id": "dd80b252-cd03-42f4-be70-069f565d046a",
+              "name": "description",
+              "value": "={{ $json.items[0].pagemap.metatags[0]['og:description'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        700
+      ],
+      "id": "c71a3373-c032-4ea3-8c22-5f8b09297761",
+      "name": "Set Linkedin URL from the first result"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  const companySlugMatch = item.json.linkedin_url.match(/[^linkedin]+linkedin\\.com\\/company\\/([^\\/]+)/);\n  if (companySlugMatch) {\n    const companySlug = companySlugMatch[1];\n    item.json.linkedin_url = `https://www.linkedin.com/company/${companySlug}`;\n  }\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        700
+      ],
+      "id": "6830760f-0301-4c02-8368-e7b93251f658",
+      "name": "Clean linkedin url"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        5640,
+        1300
+      ],
+      "id": "8651f501-f4f5-4288-85c9-143d1c451804",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5090878071",
+        "text": "=<b>Company name:</b> {{ $('Aggregate3').item.json.data[0].name }}\n<b>Category:</b> {{ $('Aggregate3').item.json.data[0].category }}\n<b>LinkedIn Page:</b> <a href=\"{{ $('Set Linkedin URL from the first result').item.json.linkedin_url }}\">{{ $('Set Linkedin URL from the first result').item.json.linkedin_url }}</a>\n<b>Website:</b> <a href=\"{{ $('Aggregate3').item.json.data[0].Website }}\">{{ $('Aggregate3').item.json.data[0].Website }}</a>\n{{ $('Extract main blocks').item.json.crunchbase ? `<b>Crunchbase:</b> <a href=\"${$('Extract main blocks').item.json.crunchbase.split('?')[0]}\">${$('Extract main blocks').item.json.crunchbase.split('?')[0]}</a>` : '' }}\n\n<b>Summary</b>\n{{ $json.output.company_summary }}\n\n<b>Why is it a good prospect</b>\n{{ $json.output.why_good_prospect }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        6200,
+        880
+      ],
+      "id": "dae88c94-239f-4838-9292-c873753e8676",
+      "name": "Telegram",
+      "webhookId": "1012e982-3a59-41ba-8827-f606e2ab94f0",
+      "credentials": {
+        "telegramApi": {
+          "id": "uxcOVpXzJTvxJM5k",
+          "name": "addictassistant"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-11T23:01:43.000Z",
+  "versionId": "be0b6ee5-07bc-4c74-867b-73a59b995137"
+}
