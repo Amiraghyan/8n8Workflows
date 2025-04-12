@@ -1142,10 +1142,14 @@
   },
   "staticData": {
     "node:Schedule Trigger": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        6
+      ]
     },
     "node:Check for unposted posts": {
-      "recurrenceRules": []
+      "recurrenceRules": [
+        10
+      ]
     }
   },
   "tags": [],
