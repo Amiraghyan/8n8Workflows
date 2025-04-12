@@ -1,0 +1,33 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-04-12T22:44:58.996Z",
+  "id": "P9FMdvfiY9r9wiYO",
+  "meta": null,
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "2a5fe509-b12b-4d55-ac69-12a08f397145"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c75e5f99-ed25-4c9f-91db-0cbb4936bdd9",
+      "name": "MCP Server Trigger",
+      "webhookId": "2a5fe509-b12b-4d55-ac69-12a08f397145"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-12T22:44:58.996Z",
+  "versionId": "c8baa0eb-a18e-491f-baf6-ebf0e6cfaa2c"
+}
