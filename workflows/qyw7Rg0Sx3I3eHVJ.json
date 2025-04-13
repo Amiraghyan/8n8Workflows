@@ -1,0 +1,438 @@
+{
+  "active": true,
+  "connections": {
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Long term memory",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Long term memory": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-13T15:31:06.438Z",
+  "id": "qyw7Rg0Sx3I3eHVJ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Long term memory for Claude",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "6bcc2009-1dd5-4e97-8e18-c1c266aaf6e9"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        200
+      ],
+      "id": "c9da7f31-ddfe-4968-97e8-d9827731d4e3",
+      "name": "MCP Server Trigger",
+      "webhookId": "6bcc2009-1dd5-4e97-8e18-c1c266aaf6e9"
+    },
+    {
+      "parameters": {
+        "modelName": "models/text-embedding-004"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        560
+      ],
+      "id": "6d9b7865-ea3a-45cc-b50f-141cb82dccd1",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "retrieve_memory",
+        "toolDescription": "Call this tool to retrieve specific documents from long-term memory based on a direct query.",
+        "tableName": "claude_desktop_memory",
+        "topK": 5,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        -840,
+        440
+      ],
+      "id": "12084ecf-626b-4236-8395-e309e91d8b30",
+      "name": "Long term memory",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Aiven Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "route"
+            },
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        960
+      ],
+      "id": "4feb4ac6-6f6d-4904-9d0f-ac66a9cb6139",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "name": "add_to_memory",
+        "description": "Call this tool to add documents or content into long-term memory for future reference.",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "route": "add_to_memory",
+            "data": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data', `This is the document or content that's to be saved for future retrival`, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "route",
+              "displayName": "route",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        -480,
+        420
+      ],
+      "id": "fa922c84-bd87-4608-9e64-0935d637392b",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        960
+      ],
+      "id": "06eea4ca-4d65-4aba-96d5-c2168265da79",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Aiven Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "add_to_memory",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "43d6cb58-5acc-4126-bd55-9ee25d05dbe0"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "52a15d4c-6a5f-4498-afe8-06513a522fc3",
+                    "leftValue": "={{ $json.route }}",
+                    "rightValue": "get_ranked_memories",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -740,
+        960
+      ],
+      "id": "fb9318b0-98f7-47c1-9dba-2bd884aaf586",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "prompt": "prompt",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        1320
+      ],
+      "id": "800b52f4-7e62-4d53-9f96-ef1fcfe5e599",
+      "name": "Postgres PGVector Store1",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Aiven Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "get_ranked_memories",
+        "description": "Call this tool to fetch multiple ranked memory entries from long-term memory that are most relevant to the input prompt.",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "route": "get_ranked_memories",
+            "data": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data', `Query to retrive ranked memories from the long-term memory`, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "route",
+              "displayName": "route",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        -280,
+        420
+      ],
+      "id": "d3c17c8b-c7bf-45d2-97ec-3b675ec6013d",
+      "name": "Call n8n Workflow Tool1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        380,
+        1180
+      ],
+      "id": "bbcbd5b9-9a71-45e5-a339-8860f38178f1",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        480,
+        1400
+      ],
+      "id": "eab2439a-e5bc-4334-b623-c2a9ac338351",
+      "name": "Recursive Character Text Splitter"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-13T16:19:26.000Z",
+  "versionId": "56c4f8e3-b84b-492b-983e-0257f82d7c5d"
+}
