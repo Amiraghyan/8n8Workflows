@@ -1027,8 +1027,7 @@
     },
     {
       "parameters": {
-        "maxItems": 15,
-        "keep": "lastItems"
+        "maxItems": 5
       },
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
@@ -1806,6 +1805,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-11T23:01:43.000Z",
-  "versionId": "be0b6ee5-07bc-4c74-867b-73a59b995137"
+  "updatedAt": "2025-04-13T14:41:57.000Z",
+  "versionId": "1814e7c2-10d3-4a9d-9da4-236208a03fd8"
 }
