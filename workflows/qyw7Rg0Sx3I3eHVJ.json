@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Embeddings Google Gemini": {
       "ai_embedding": [
@@ -433,6 +433,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-13T16:19:26.000Z",
+  "updatedAt": "2025-04-13T17:22:30.000Z",
   "versionId": "56c4f8e3-b84b-492b-983e-0257f82d7c5d"
 }
