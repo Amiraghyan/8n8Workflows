@@ -1,0 +1,121 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-14T08:22:55.050Z",
+  "id": "wZbuTWwWgzjgaixj",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "b1bc0d1e-b1a6-428a-85cd-345c231fec91",
+      "name": "When chat message received",
+      "webhookId": "532541f0-f31e-4bd0-8604-c314dfd62adf"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        440,
+        0
+      ],
+      "id": "520ad0fc-fa4f-4da4-afc4-a41e6a2409e4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        360,
+        220
+      ],
+      "id": "c674d2f8-9534-4841-a9d6-bd355e32d4f7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        540,
+        220
+      ],
+      "id": "c39557b6-16f4-4eb0-8826-da66cbdb27e3",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Aiven Postgres"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-14T08:22:55.050Z",
+  "versionId": "a7d4e73d-ab18-4ffd-a71c-70d5bc3fabd2"
+}
