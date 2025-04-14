@@ -40,7 +40,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "Business Finder Reddit",
   "nodes": [
     {
       "parameters": {
@@ -107,6 +107,19 @@
           "name": "Aiven Postgres"
         }
       }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        1140
+      ],
+      "id": "156dab0e-aca6-4c56-bed4-332f64100a42",
+      "name": "When Executed by Another Workflow"
     }
   ],
   "pinData": {},
@@ -116,6 +129,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-14T08:22:55.050Z",
-  "versionId": "a7d4e73d-ab18-4ffd-a71c-70d5bc3fabd2"
+  "updatedAt": "2025-04-14T10:39:27.000Z",
+  "versionId": "8924adb1-ed72-4f8f-98e4-2210a30c605d"
 }
