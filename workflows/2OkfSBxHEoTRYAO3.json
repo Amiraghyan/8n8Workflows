@@ -1,0 +1,273 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Generate filename",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate filename": {
+      "main": [
+        [
+          {
+            "node": "Download video footage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download video footage": {
+      "main": [
+        [
+          {
+            "node": "Update video footage Detail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-14T09:14:51.216Z",
+  "id": "2OkfSBxHEoTRYAO3",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Video Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ed9741f2-25ed-4e9e-a7ce-93aa8e22b75d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA",
+          "mode": "list",
+          "cachedResultName": "Motivational Videos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Video pool",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        220,
+        0
+      ],
+      "id": "d4177e1e-c15e-48fc-85b2-702e5dfa0542",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxLHucxvh2gDb3FO",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "f28ad47a-ad97-4e40-a862-b08ed8f7f31f",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3de5ccfe-23c4-4a43-a39b-a917db39ddcf",
+              "name": "File name",
+              "value": "={{ Array.from({ length: 10 }, () => Math.random().toString(36)[2]).join('') }}",
+              "type": "string"
+            },
+            {
+              "id": "db87ceb8-be73-42fe-a920-5e7e1d8191a5",
+              "name": "Folder Name",
+              "value": "footage",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        0
+      ],
+      "id": "aa637553-d65c-4c23-b665-cb6f40d49ed4",
+      "name": "Generate filename"
+    },
+    {
+      "parameters": {
+        "executeOnce": "={{ false }}",
+        "command": "=yt-dlp -o \"./{{ $('Generate File Name').item.json['Folder Name'] }}/{{ $('Generate File Name').item.json['File Name'] }}.mp4\" \"{{ $('Get Youtube Video').item.json['Video Path'] }}\" -f \"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best\"\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        880,
+        0
+      ],
+      "id": "7f65577a-da40-4f10-923a-c973fd96308b",
+      "name": "Download video footage"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA",
+          "mode": "list",
+          "cachedResultName": "Motivational Videos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Video pool",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/18pRBjou_47lWCh2kvmF_h3ry0usFnjBWAEapk2cLQaA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Video Path",
+              "displayName": "Video Path",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Internal Path",
+              "displayName": "Internal Path",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "f08c8428-0468-4f0d-bafc-cfa137a4d93f",
+      "name": "Update video footage Detail",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "nxLHucxvh2gDb3FO",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-14T09:28:18.000Z",
+  "versionId": "2a9c68df-2b73-49c7-9f3f-05616115d62c"
+}
