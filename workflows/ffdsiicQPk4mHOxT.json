@@ -1,0 +1,89 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-14T09:41:05.726Z",
+  "id": "ffdsiicQPk4mHOxT",
+  "meta": null,
+  "name": "Shutter stocke image",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3849436-f388-41e7-8cc1-b025b1190ba2",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://api.shutterstock.com/v2/images/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "hiking"
+            },
+            {
+              "name": "image_type",
+              "value": "photo"
+            },
+            {
+              "name": "orientation",
+              "value": "vertical"
+            },
+            {
+              "name": "people_number",
+              "value": "3"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "0a092f03-4967-4e7d-b796-66d03efa9fc1",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "qbUhJkQVDd7Ws1vO",
+          "name": "Shutter Stock"
+        },
+        "httpHeaderAuth": {
+          "id": "jm5vP2WXYOw53HaP",
+          "name": "Shuuter Stock"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-14T09:45:25.000Z",
+  "versionId": "1d15e7bb-4411-4ae9-907c-1669d79887e2"
+}
