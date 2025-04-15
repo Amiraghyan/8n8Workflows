@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Output The Results",
+            "node": "Supabase1",
             "type": "main",
             "index": 0
           }
@@ -100,27 +100,9 @@
     },
     "Post Sentiment Analysis": {
       "main": [
-        [
-          {
-            "node": "Positive Posts Draft",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Neutral  Posts Draft",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Negative  Posts Draft",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [],
+        [],
+        []
       ]
     },
     "Filter Posts By Features": {
@@ -181,6 +163,28 @@
           }
         ]
       ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-14T08:22:55.050Z",
@@ -217,57 +221,6 @@
     },
     {
       "parameters": {
-        "resource": "draft",
-        "subject": "Positive Post",
-        "message": "={{ $json.postcontent }}",
-        "options": {}
-      },
-      "id": "fd964180-3e98-463d-87f0-640736613244",
-      "name": "Positive Posts Draft",
-      "type": "n8n-nodes-base.gmail",
-      "position": [
-        760,
-        960
-      ],
-      "webhookId": "f9dabe4c-9c74-4486-932a-606ea4bb830f",
-      "typeVersion": 2.1
-    },
-    {
-      "parameters": {
-        "resource": "draft",
-        "subject": "Neutral Post",
-        "message": "={{ $json.postcontent }}",
-        "options": {}
-      },
-      "id": "ffd8422c-abf2-42dc-880c-fe456453a520",
-      "name": "Neutral  Posts Draft",
-      "type": "n8n-nodes-base.gmail",
-      "position": [
-        780,
-        1140
-      ],
-      "webhookId": "f9dabe4c-9c74-4486-932a-606ea4bb830f",
-      "typeVersion": 2.1
-    },
-    {
-      "parameters": {
-        "resource": "draft",
-        "subject": "Negative Post",
-        "message": "={{ $json.postcontent }}",
-        "options": {}
-      },
-      "id": "a028d873-e66f-4fd7-a6e7-7c973026e13d",
-      "name": "Negative  Posts Draft",
-      "type": "n8n-nodes-base.gmail",
-      "position": [
-        780,
-        1360
-      ],
-      "webhookId": "f9dabe4c-9c74-4486-932a-606ea4bb830f",
-      "typeVersion": 2.1
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "id": "53d84399-2dcf-4660-9f4b-28660d5d2dda",
@@ -293,120 +246,6 @@
         820
       ],
       "typeVersion": 3
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "mode": "id",
-          "value": "1C8grVByPo3osYiV5X1pWhEUR9NhBXJGXBE75wC5o6rE"
-        },
-        "sheetName": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gid=0",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C8grVByPo3osYiV5X1pWhEUR9NhBXJGXBE75wC5o6rE/edit#gid=0",
-          "cachedResultName": "sheet1"
-        },
-        "columns": {
-          "value": {
-            "Upvotes": "={{ $json.upvotes }}",
-            "Post_url": "={{ $json.url }}",
-            "Post_date": "={{ $json.date }}",
-            "Post_summary": "={{ $json.response.text }}",
-            "Post_solution": "={{ $json.message.content }}",
-            "Subreddit_size": "={{ $json.subreddit_subscribers }}"
-          },
-          "schema": [
-            {
-              "id": "Subreddit",
-              "type": "string",
-              "display": true,
-              "removed": true,
-              "required": false,
-              "displayName": "Subreddit",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Subreddit_size",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Subreddit_size",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Post_date",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Post_date",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Upvotes",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Upvotes",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Post_url",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Post_url",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Post_summary",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Post_summary",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Post_solution",
-              "type": "string",
-              "display": true,
-              "removed": false,
-              "required": false,
-              "displayName": "Post_solution",
-              "defaultMatch": false,
-              "canBeUsedToMatch": true
-            }
-          ],
-          "mappingMode": "defineBelow",
-          "matchingColumns": [
-            "test"
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "id": "ae7a98d4-4a08-4310-9518-a69963d69472",
-      "name": "Output The Results",
-      "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        1020,
-        260
-      ],
-      "typeVersion": 4.5
     },
     {
       "parameters": {
@@ -543,6 +382,18 @@
               "name": "date",
               "type": "string",
               "value": "={{ DateTime.fromSeconds($json.created).toISO() }}"
+            },
+            {
+              "id": "c5daf3a3-c9bd-4265-ae7a-6a08825f041b",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "797c6d1d-19f5-4511-b808-590c0293331c",
+              "name": "subreddit",
+              "value": "={{ $json.subreddit }}",
+              "type": "string"
             }
           ]
         },
@@ -688,8 +539,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        460,
-        680
+        320,
+        440
       ],
       "id": "f9875ad0-6911-447b-8721-792a9180a724",
       "name": "Find Proper Solutions"
@@ -712,6 +563,97 @@
       ],
       "id": "d1d2212d-ed0d-41c1-8b8e-7b63b1ed5bb4",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "a58fce41-845f-4c11-972c-44df20b2af61"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1940,
+        2180
+      ],
+      "id": "36461097-fc21-4dcc-b9c4-ec9f5108355f",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "tableId": "ideas",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "title"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1720,
+        2180
+      ],
+      "id": "35ff6cdd-5c99-4d63-9805-253af5d36064",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "S1BsqJ97qhS3sGQB",
+          "name": "Pain2Profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "ideas",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "title"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        480
+      ],
+      "id": "fb0ad8c7-b1b0-454d-9279-81d2416ca502",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "S1BsqJ97qhS3sGQB",
+          "name": "Pain2Profit"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1005,6 +947,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-15T08:59:05.000Z",
-  "versionId": "1139d944-b85d-4e52-8576-b4eab22c3e3b"
+  "updatedAt": "2025-04-15T09:40:11.000Z",
+  "versionId": "afe6fadc-98ac-451a-9004-f1281772ce79"
 }
