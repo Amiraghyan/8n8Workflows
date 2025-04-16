@@ -87,14 +87,9 @@
       "main": [
         [
           {
-            "node": "Insert new subreddits",
+            "node": "Analysis Content  By AI",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -105,32 +100,6 @@
           {
             "node": "Get Posts",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Analysis Content  By AI",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Post Summarization",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Post Sentiment Analysis",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
-            "node": "Find Proper Solutions",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -241,6 +210,33 @@
           {
             "node": "Postgres",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -420,11 +416,10 @@
       "name": "Analysis Content  By AI",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
-        -860,
-        540
+        -880,
+        500
       ],
-      "typeVersion": 1.7,
-      "disabled": true
+      "typeVersion": 1.7
     },
     {
       "parameters": {
@@ -497,26 +492,6 @@
         40
       ],
       "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        -840,
-        680
-      ],
-      "id": "58326725-5d37-4ee7-b136-b7f1216a1c12",
-      "name": "Google Gemini Chat Model",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "Lv8LqTGpfGzDWuiH",
-          "name": "Google Gemini(PaLM) Api account 2"
-        }
-      }
     },
     {
       "parameters": {
@@ -786,13 +761,14 @@
       "parameters": {
         "mode": "combine",
         "combineBy": "combineByPosition",
+        "numberInputs": 3,
         "options": {}
       },
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        -2160,
-        560
+        -1860,
+        540
       ],
       "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
       "name": "Merge"
@@ -942,8 +918,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1960,
-        560
+        -1560,
+        540
       ],
       "id": "53ec2970-2849-4717-a0a3-484f17604bd8",
       "name": "Postgres",
@@ -951,6 +927,63 @@
         "postgres": {
           "id": "STEiiGYKeUTcdagW",
           "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<Post Title>\n{{ $json.selftext }}\n</Post Title>\n<Post Content>\n{{ $json.selftext }}\n</Post Content>",
+        "options": {
+          "systemMessage": "<task>\nProvide a maximum of 5 tags that are relevant for the post above.\n</task>\n<context>\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1640,
+        880
+      ],
+      "id": "f802670a-c0dc-4385-b95c-b45ab23e20ac",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1640,
+        1060
+      ],
+      "id": "42bde69d-ec16-4939-8401-c88564e1049c",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ezQM9X7CutaxDzrH",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        660
+      ],
+      "id": "120edab8-7ebc-4db6-9958-bf8d6604a151",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ezQM9X7CutaxDzrH",
+          "name": "OpenRouter account"
         }
       }
     }
@@ -1154,6 +1187,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-16T13:32:29.000Z",
-  "versionId": "a13e00e1-3288-4ada-ab85-8f1457da2fb5"
+  "updatedAt": "2025-04-16T16:40:49.000Z",
+  "versionId": "0798c18e-c557-421c-8b58-edb2d9e1a766"
 }
