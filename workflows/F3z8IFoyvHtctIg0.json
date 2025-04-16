@@ -792,13 +792,13 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.0-flash",
+        "modelName": "models/gemini-1.5-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        548,
+        540,
         540
       ],
       "id": "faa4e800-6c7f-4409-9866-5f1fcd86f094",
@@ -1142,17 +1142,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        20
+        22
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        18
+        20
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-04T05:36:32.000Z",
-  "versionId": "c26718ac-ee04-4f10-99b9-3bdab42dfe87"
+  "updatedAt": "2025-04-16T18:37:41.000Z",
+  "versionId": "5f0c7cab-6e5d-4380-9900-767bd561cd55"
 }
