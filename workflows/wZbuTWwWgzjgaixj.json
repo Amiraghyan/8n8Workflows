@@ -47,7 +47,13 @@
     },
     "Analysis Content  By AI": {
       "main": [
-        []
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Filter Posts By Content": {
@@ -90,6 +96,16 @@
             "node": "Analysis Content  By AI",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Tag generater",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -116,45 +132,12 @@
         ]
       ]
     },
-    "When Executed by Another Workflow": {
-      "main": [
-        [
-          {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Switch": {
-      "main": [
-        [
-          {
-            "node": "Supabase",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Google Gemini Chat Model1": {
       "ai_languageModel": [
         [
           {
             "node": "Sentiment Analysis",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request": {
-      "ai_tool": [
-        [
-          {
-            "node": "Analysis Content  By AI",
-            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -215,16 +198,11 @@
         ]
       ]
     },
-    "AI Agent": {
-      "main": [
-        []
-      ]
-    },
     "OpenRouter Chat Model": {
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "Tag generater",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -238,6 +216,17 @@
             "node": "Analysis Content  By AI",
             "type": "ai_languageModel",
             "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag generater": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
           }
         ]
       ]
@@ -409,15 +398,15 @@
       "parameters": {
         "agent": "conversationalAgent",
         "promptType": "define",
-        "text": "Decide whether this reddit post is describing a business-related problem or a need for a solution. The post should mention a specific challenge \n or requirement that a business is trying to address.\nReddit post:  {{ $json.postcontent }}\nIs this post about a business problem or need for a solution ? Output only yes or no",
+        "text": "=Decide whether this reddit post is describing a business-related problem or a need for a solution. The post should mention a specific challenge \n or requirement that a business is trying to address.\nReddit post:  {{ $json.selftext }}\nIs this post about a business problem or need for a solution ? Output only yes or no",
         "options": {}
       },
       "id": "d291e29b-0530-4f28-b049-5a1e4670e268",
       "name": "Analysis Content  By AI",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
-        -880,
-        500
+        -1840,
+        680
       ],
       "typeVersion": 1.7
     },
@@ -463,22 +452,6 @@
     },
     {
       "parameters": {
-        "content": "# Analysis Content\n## Emerging market needs\n## Underserved customer demands",
-        "height": 680,
-        "width": 820,
-        "color": 4
-      },
-      "id": "0852e598-63c5-4d49-9c14-735e2eb8fa1f",
-      "name": "Sticky Note2",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -1220,
-        360
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "content": "# Insight Generation And Output \n## Generates executive summaries of key opportunities\n## Consolidates findings in Google Sheets",
         "height": 640,
         "width": 1220,
@@ -506,90 +479,6 @@
       ],
       "id": "f9875ad0-6911-447b-8721-792a9180a724",
       "name": "Find Proper Solutions"
-    },
-    {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "route"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -2160,
-        2180
-      ],
-      "id": "d1d2212d-ed0d-41c1-8b8e-7b63b1ed5bb4",
-      "name": "When Executed by Another Workflow"
-    },
-    {
-      "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "leftValue": "",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "a58fce41-845f-4c11-972c-44df20b2af61"
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
-      "position": [
-        -1940,
-        2180
-      ],
-      "id": "36461097-fc21-4dcc-b9c4-ec9f5108355f",
-      "name": "Switch"
-    },
-    {
-      "parameters": {
-        "tableId": "ideas",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "title"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        -1720,
-        2180
-      ],
-      "id": "35ff6cdd-5c99-4d63-9805-253af5d36064",
-      "name": "Supabase",
-      "credentials": {
-        "supabaseApi": {
-          "id": "S1BsqJ97qhS3sGQB",
-          "name": "Pain2Profit"
-        }
-      }
     },
     {
       "parameters": {
@@ -653,20 +542,6 @@
           "name": "Google Gemini(PaLM) Api account 2"
         }
       }
-    },
-    {
-      "parameters": {
-        "toolDescription": "Use this tool to send a get http request",
-        "url": "={{ $fromAI('url') }}"
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
-      "typeVersion": 1.1,
-      "position": [
-        -740,
-        660
-      ],
-      "id": "41aec88a-12b2-41c8-a39d-1085ad2812b2",
-      "name": "HTTP Request"
     },
     {
       "parameters": {
@@ -745,8 +620,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -2600,
-        500
+        -1980,
+        420
       ],
       "id": "ea7bd5da-7582-439e-b97a-0a9632dbdff1",
       "name": "Insert new subreddits",
@@ -767,8 +642,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        -1860,
-        540
+        -1240,
+        460
       ],
       "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
       "name": "Merge"
@@ -790,8 +665,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -2380,
-        500
+        -1760,
+        420
       ],
       "id": "1ccdf18a-40eb-4799-9059-d31db811af37",
       "name": "Set subreddit database id"
@@ -918,8 +793,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1560,
-        540
+        -940,
+        460
       ],
       "id": "53ec2970-2849-4717-a0a3-484f17604bd8",
       "name": "Postgres",
@@ -932,31 +807,14 @@
     },
     {
       "parameters": {
-        "promptType": "define",
-        "text": "=<Post Title>\n{{ $json.selftext }}\n</Post Title>\n<Post Content>\n{{ $json.selftext }}\n</Post Content>",
-        "options": {
-          "systemMessage": "<task>\nProvide a maximum of 5 tags that are relevant for the post above.\n</task>\n<context>\n"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
-      "position": [
-        -1640,
-        880
-      ],
-      "id": "f802670a-c0dc-4385-b95c-b45ab23e20ac",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": "deepseek/deepseek-r1:free",
+        "model": "deepseek/deepseek-v3-base:free",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -1640,
-        1060
+        -2000,
+        1040
       ],
       "id": "42bde69d-ec16-4939-8401-c88564e1049c",
       "name": "OpenRouter Chat Model",
@@ -975,8 +833,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -880,
-        660
+        -2100,
+        720
       ],
       "id": "120edab8-7ebc-4db6-9958-bf8d6604a151",
       "name": "OpenRouter Chat Model1",
@@ -986,6 +844,39 @@
           "name": "OpenRouter account"
         }
       }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -1520,
+        780
+      ],
+      "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<Post Title>\n{{ $json.selftext }}\n</Post Title>\n<Post Content>\n{{ $json.selftext }}\n</Post Content>",
+        "options": {
+          "systemMessage": "=<task>\nYou are a tag generation assistant helping categorize Reddit-style posts that identify real-world problems or business opportunities.\n\nYour goal is to return up to 5 short, relevant tags that describe the core topics, industries, or business themes mentioned or implied in the post.\n\nThese tags should help users quickly understand what the post is about and make it easy to group similar posts together.\n\nUse lowercase, kebab-case formatting (e.g., \"freelancing\", \"job-market\", \"ai-tools\").\n</task>\n\n<guidelines>\n- Be concise. Each tag should be a single compound word or phrase (e.g., \"remote-work\", not \"this is about remote work\").\n- Tags should reflect the content, not vague concepts.\n- Do not include hashtags or extra symbols.\n- Avoid repeating words across multiple tags (e.g., \"ai\" and \"ai-tools\" – pick the more descriptive one).\n</guidelines>\n\n<format>\nReturn only a JSON array of strings:\n[\"tag-one\", \"tag-two\", \"tag-three\"]\n</format>"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1840,
+        940
+      ],
+      "id": "f802670a-c0dc-4385-b95c-b45ab23e20ac",
+      "name": "Tag generater"
     }
   ],
   "pinData": {
@@ -1187,6 +1078,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-16T16:40:49.000Z",
-  "versionId": "0798c18e-c557-421c-8b58-edb2d9e1a766"
+  "updatedAt": "2025-04-16T18:12:59.000Z",
+  "versionId": "9c7f52cc-b515-49aa-82d6-56638aacf969"
 }
