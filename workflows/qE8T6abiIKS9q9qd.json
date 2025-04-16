@@ -22,6 +22,17 @@
           }
         ]
       ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-04T06:47:03.203Z",
@@ -175,6 +186,29 @@
           "name": "Gmail account"
         }
       }
+    },
+    {
+      "parameters": {
+        "sendTo": "davidnjihia536@gmail.com",
+        "subject": "Binary Craft Technologies",
+        "message": "=You have a new contact:  {{ $('Webhook').item.json.body.email }} by the name {{ $('Webhook').item.json.body.name }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        0
+      ],
+      "id": "4f22b2f8-cb47-4bc8-92e5-f2c6d23f2f03",
+      "name": "Gmail1",
+      "webhookId": "f6e53ef4-4f06-4cab-b68b-7641abb5515d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -229,6 +263,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-07T08:29:35.000Z",
-  "versionId": "f48f9042-de5b-422d-8bd3-c8edc1306573"
+  "updatedAt": "2025-04-16T16:45:55.000Z",
+  "versionId": "ab80e4ac-8da8-4f80-aeee-1b7ed968ebfc"
 }
