@@ -219,18 +219,7 @@
       "main": [
         [
           {
-            "node": "LinkedIn1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "LinkedIn1": {
-      "main": [
-        [
-          {
-            "node": "Update L Status1",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -242,6 +231,17 @@
         [
           {
             "node": "Push notification to my phone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Update L Status1",
             "type": "main",
             "index": 0
           }
@@ -936,27 +936,6 @@
     },
     {
       "parameters": {
-        "person": "EreOwHZxab",
-        "text": "={{ $json.LinkedIn }}",
-        "additionalFields": {}
-      },
-      "id": "2e1655e5-b0c7-4261-be09-5544861b55e7",
-      "name": "LinkedIn1",
-      "type": "n8n-nodes-base.linkedIn",
-      "position": [
-        1556,
-        720
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "linkedInOAuth2Api": {
-          "id": "ezy89fni1GDj7rwE",
-          "name": "bigaddict"
-        }
-      }
-    },
-    {
-      "parameters": {
         "operation": "update",
         "base": {
           "__rl": true,
@@ -1104,7 +1083,7 @@
       "name": "Update L Status1",
       "type": "n8n-nodes-base.airtable",
       "position": [
-        1776,
+        1996,
         720
       ],
       "typeVersion": 2.1,
@@ -1128,11 +1107,68 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1996,
+        2216,
         570
       ],
       "id": "11d83a3d-d4bd-4178-ac33-d02cd627cc4d",
       "name": "Push notification to my phone"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linkedin.com/rest/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {INSERT_TOKEN}"
+            },
+            {
+              "name": "X-Restli-Protocol-Version",
+              "value": "2.0.0"
+            },
+            {
+              "name": "LinkedIn-Version",
+              "value": "{version number in the format YYYYMM}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"author\": \"urn:li:organization:5515715\",\n  \"commentary\": \"Sample text Post\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"MAIN_FEED\",\n    \"targetEntities\": [],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": false\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1560,
+        720
+      ],
+      "id": "e85c2b62-eac9-440c-bf09-74207c248c7e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://api.linkedin.com/v2/me",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "linkedInOAuth2Api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1640,
+        1480
+      ],
+      "id": "3f01533b-c44c-4eef-9aa7-5913d595bdec",
+      "name": "HTTP Request1",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "ezy89fni1GDj7rwE",
+          "name": "bigaddict"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1142,17 +1178,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        20
+        22
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        20
+        22
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-16T20:07:37.000Z",
-  "versionId": "f8de1e4f-4302-4a7a-a7c3-013a257dfb3a"
+  "updatedAt": "2025-04-17T20:34:12.000Z",
+  "versionId": "6311f1d4-8190-4478-8271-c0b4ecaa1050"
 }
