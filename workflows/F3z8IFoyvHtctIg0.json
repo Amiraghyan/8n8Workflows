@@ -219,7 +219,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "LinkedIn1",
             "type": "main",
             "index": 0
           }
@@ -237,7 +237,7 @@
         ]
       ]
     },
-    "HTTP Request": {
+    "LinkedIn1": {
       "main": [
         [
           {
@@ -860,7 +860,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        598,
+        1100,
         720
       ],
       "id": "52bd8c9e-3b0f-4ac3-9584-2cdff432cd9f",
@@ -889,7 +889,7 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.1,
       "position": [
-        896,
+        1300,
         720
       ],
       "id": "b41164d0-f38d-4021-8d0c-6078e139ba99",
@@ -915,7 +915,7 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        1116,
+        1520,
         720
       ],
       "id": "61678821-1554-4d82-a256-8c73ce431cbd",
@@ -928,7 +928,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1336,
+        1740,
         720
       ],
       "id": "a39edd7d-5db3-4237-9e68-9994eb517ff3",
@@ -1083,7 +1083,7 @@
       "name": "Update L Status1",
       "type": "n8n-nodes-base.airtable",
       "position": [
-        1996,
+        2216,
         720
       ],
       "typeVersion": 2.1,
@@ -1107,7 +1107,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        2216,
+        2436,
         570
       ],
       "id": "11d83a3d-d4bd-4178-ac33-d02cd627cc4d",
@@ -1115,54 +1115,18 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://api.linkedin.com/rest/posts",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer {INSERT_TOKEN}"
-            },
-            {
-              "name": "X-Restli-Protocol-Version",
-              "value": "2.0.0"
-            },
-            {
-              "name": "LinkedIn-Version",
-              "value": "{version number in the format YYYYMM}"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\n  \"author\": \"urn:li:organization:5515715\",\n  \"commentary\": \"Sample text Post\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"MAIN_FEED\",\n    \"targetEntities\": [],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": false\n}",
-        "options": {}
+        "person": "OVBYEtaS6y",
+        "text": "={{ $json.LinkedIn }}",
+        "additionalFields": {}
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
       "position": [
-        1560,
+        1980,
         720
       ],
-      "id": "e85c2b62-eac9-440c-bf09-74207c248c7e",
-      "name": "HTTP Request"
-    },
-    {
-      "parameters": {
-        "url": "https://api.linkedin.com/v2/me",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "linkedInOAuth2Api",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        1640,
-        1480
-      ],
-      "id": "3f01533b-c44c-4eef-9aa7-5913d595bdec",
-      "name": "HTTP Request1",
+      "id": "72cf77d8-6933-4539-938b-d8549ef6a436",
+      "name": "LinkedIn1",
       "credentials": {
         "linkedInOAuth2Api": {
           "id": "ezy89fni1GDj7rwE",
@@ -1183,12 +1147,12 @@
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        22
+        0
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-17T20:34:12.000Z",
-  "versionId": "6311f1d4-8190-4478-8271-c0b4ecaa1050"
+  "updatedAt": "2025-04-19T21:58:47.000Z",
+  "versionId": "58cacd0c-ec86-4043-bd65-73307902c2f8"
 }
