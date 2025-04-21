@@ -1142,12 +1142,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        2
+        4
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        2
+        4
       ]
     }
   },
