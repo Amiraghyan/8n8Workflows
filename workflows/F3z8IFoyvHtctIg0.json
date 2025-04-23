@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Merge": {
       "main": [
@@ -1133,6 +1133,27 @@
           "name": "bigaddict"
         }
       }
+    },
+    {
+      "parameters": {
+        "person": "OVBYEtaS6y",
+        "text": "=This is a test post",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        20,
+        860
+      ],
+      "id": "e2f5a4c7-c730-43ca-a1b2-7f4a92f0abb7",
+      "name": "LinkedIn2",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "ezy89fni1GDj7rwE",
+          "name": "bigaddict"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1147,12 +1168,12 @@
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        18
+        20
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-19T21:58:47.000Z",
-  "versionId": "58cacd0c-ec86-4043-bd65-73307902c2f8"
+  "updatedAt": "2025-04-23T17:25:19.000Z",
+  "versionId": "d7ceb6bd-0c83-487d-9c62-fac4a804f0d8"
 }
