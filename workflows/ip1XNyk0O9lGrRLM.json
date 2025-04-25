@@ -1,48 +1,11 @@
 {
   "active": false,
-  "connections": {
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "Execute Command",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
+  "connections": {},
   "createdAt": "2025-04-25T12:50:50.596Z",
   "id": "ip1XNyk0O9lGrRLM",
   "meta": null,
-  "name": "My workflow",
-  "nodes": [
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -240,
-        -80
-      ],
-      "id": "d2239238-7ea4-44da-9b5e-68cf9246eb16",
-      "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "command": "pip install fpdf"
-      },
-      "type": "n8n-nodes-base.executeCommand",
-      "typeVersion": 1,
-      "position": [
-        -20,
-        -80
-      ],
-      "id": "d11dca51-4ff9-4cf8-8b92-f5de17770135",
-      "name": "Execute Command"
-    }
-  ],
+  "name": "Playground",
+  "nodes": [],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -50,6 +13,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-25T12:50:50.596Z",
-  "versionId": "54e60a92-1c09-43cb-bbf4-68b477905439"
+  "updatedAt": "2025-04-25T16:58:21.000Z",
+  "versionId": "afc953e6-cffa-4662-a887-2eab55b6c8d6"
 }
