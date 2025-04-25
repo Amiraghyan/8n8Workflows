@@ -5,29 +5,29 @@
       "main": [
         [
           {
-            "node": "Airtable",
+            "node": "Contact Sheets",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Airtable": {
+    "Contact Sheets": {
       "main": [
         [
           {
-            "node": "Gmail",
+            "node": "Acknowledge new contact",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Gmail": {
+    "Acknowledge new contact": {
       "main": [
         [
           {
-            "node": "Gmail1",
+            "node": "Nofity me of new contact",
             "type": "main",
             "index": 0
           }
@@ -60,26 +60,26 @@
     },
     {
       "parameters": {
-        "operation": "upsert",
-        "base": {
+        "operation": "appendOrUpdate",
+        "documentId": {
           "__rl": true,
-          "value": "appdctiTTeWBvL6bv",
+          "value": "1k_Tbj2iO1Yxb7sppZ4pMOcFHaZNWPCfPIsq1EwPws4E",
           "mode": "list",
-          "cachedResultName": "Trading",
-          "cachedResultUrl": "https://airtable.com/appdctiTTeWBvL6bv"
+          "cachedResultName": "Binary Craft Technologies Contacts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k_Tbj2iO1Yxb7sppZ4pMOcFHaZNWPCfPIsq1EwPws4E/edit?usp=drivesdk"
         },
-        "table": {
+        "sheetName": {
           "__rl": true,
-          "value": "tblFlRp47fteE2gxI",
+          "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Binary Craft Technologies",
-          "cachedResultUrl": "https://airtable.com/appdctiTTeWBvL6bv/tblFlRp47fteE2gxI"
+          "cachedResultName": "Contacts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1k_Tbj2iO1Yxb7sppZ4pMOcFHaZNWPCfPIsq1EwPws4E/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "Email": "={{ $json.body.email }}",
             "Name": "={{ $json.body.name }}",
+            "Email": "={{ $json.body.email }}",
             "Subject": "={{ $json.body.subject }}",
             "Message": "={{ $json.body.message }}"
           },
@@ -88,24 +88,13 @@
           ],
           "schema": [
             {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": true,
-              "removed": false
-            },
-            {
               "id": "Name",
               "displayName": "Name",
               "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true,
               "display": true,
               "type": "string",
-              "readOnly": false,
+              "canBeUsedToMatch": true,
               "removed": false
             },
             {
@@ -113,10 +102,9 @@
               "displayName": "Email",
               "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true,
               "display": true,
               "type": "string",
-              "readOnly": false,
+              "canBeUsedToMatch": true,
               "removed": false
             },
             {
@@ -124,10 +112,9 @@
               "displayName": "Subject",
               "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true,
               "display": true,
               "type": "string",
-              "readOnly": false,
+              "canBeUsedToMatch": true,
               "removed": false
             },
             {
@@ -135,10 +122,9 @@
               "displayName": "Message",
               "required": false,
               "defaultMatch": false,
-              "canBeUsedToMatch": true,
               "display": true,
               "type": "string",
-              "readOnly": false,
+              "canBeUsedToMatch": true,
               "removed": false
             }
           ],
@@ -147,26 +133,26 @@
         },
         "options": {}
       },
-      "type": "n8n-nodes-base.airtable",
-      "typeVersion": 2.1,
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
       "position": [
-        220,
+        340,
         0
       ],
-      "id": "2164347c-d05a-4a66-8780-adcfdb9cf95d",
-      "name": "Airtable",
+      "id": "91527289-577d-40c7-bf7a-e59180d22c9b",
+      "name": "Contact Sheets",
       "credentials": {
-        "airtableTokenApi": {
-          "id": "crJqrZz9qjbZ2Tu6",
-          "name": "Airtable Personal Access Token account"
+        "googleSheetsOAuth2Api": {
+          "id": "nxLHucxvh2gDb3FO",
+          "name": "Google Sheets account"
         }
       }
     },
     {
       "parameters": {
-        "sendTo": "={{ $('Airtable').item.json.fields.Email }}",
+        "sendTo": "={{ $json.Email }}",
         "subject": "Thank You for Contacting Binary Craft Technologies",
-        "message": "=<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>Thank You for Contacting Binary Craft Technologies</title>\n  </head>\n  <body style=\"margin:0; padding:0; background-color:#181818; font-family:Arial, sans-serif; color:#ffffff;\">\n    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" style=\"background-color:#222222; border-collapse:collapse; border-radius:10px; overflow:hidden;\">\n      <tr>\n        <td align=\"center\" style=\"padding: 20px; border-bottom: 2px solid #00aaff;\">\n          <h1 style=\"margin: 0; font-size: 24px; color: #00aaff;\">Binary Craft Technologies</h1>\n          <p style=\"margin: 5px 0; color: #ffffff;\">Innovating with Intelligence</p>\n        </td>\n      </tr>\n      <tr>\n        <td style=\"padding: 20px; color: #ffffff;\">\n          <p style=\"margin: 0 0 10px;\">Dear {{ $json.fields.Name }},</p>\n          <p style=\"margin: 0 0 10px;\">Thank you for reaching out to <strong>Binary Craft Technologies</strong>. We have received your inquiry and our team will get back to you shortly.</p>\n          <p style=\"margin: 0 0 10px;\">We specialize in:</p>\n          <ul style=\"padding-left: 20px; margin: 0 0 10px;\">\n            <li style=\"margin-bottom: 5px;\">AI-Powered Automation & Workflows</li>\n            <li style=\"margin-bottom: 5px;\">Custom Software Development (Web & Desktop)</li>\n            <li style=\"margin-bottom: 5px;\">Business Management Solutions</li>\n            <li style=\"margin-bottom: 5px;\">API & Plugin Development</li>\n            <li style=\"margin-bottom: 5px;\">Cloud Deployment & Domain Services</li>\n          </ul>\n          <p style=\"margin: 0 0 20px;\">If you have any urgent inquiries, feel free to contact us at <a href=\"mailto:davidnjihia536@gmail.com\" style=\"color: #00aaff; text-decoration: none;\">davidnjihia536@gmail.com</a>.</p>\n          <div style=\"text-align:center; margin: 30px 0;\">\n            <a href=\"https://bigaddict.shop\" style=\"background-color:#00aaff; color:#ffffff; text-decoration:none; padding:12px 20px; border-radius:5px; font-size:16px; display:inline-block;\">Explore Our Services</a>\n          </div>\n        </td>\n      </tr>\n      <tr>\n        <td align=\"center\" style=\"padding: 10px; font-size: 12px; color: #aaaaaa;\">\n          <p style=\"margin: 0;\">\n            Follow us on <a href=\"https://linkedin.com/in/bigaddict\" style=\"color:#00aaff; text-decoration:none;\">LinkedIn</a> |\n            <a href=\"https://github.com/BigAddict\" style=\"color:#00aaff; text-decoration:none;\">GitHub</a>\n          </p>\n          <p style=\"margin: 5px 0;\">©2025 Binary Craft Technologies. All rights reserved.</p>\n        </td>\n      </tr>\n    </table>\n  </body>\n</html>",
+        "message": "=<!DOCTYPE html>\n<html>\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>Thank You for Contacting Binary Craft Technologies</title>\n  </head>\n  <body style=\"margin:0; padding:0; background-color:#181818; font-family:Arial, sans-serif; color:#ffffff;\">\n    <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" style=\"background-color:#222222; border-collapse:collapse; border-radius:10px; overflow:hidden;\">\n      <tr>\n        <td align=\"center\" style=\"padding: 20px; border-bottom: 2px solid #00aaff;\">\n          <h1 style=\"margin: 0; font-size: 24px; color: #00aaff;\">Binary Craft Technologies</h1>\n          <p style=\"margin: 5px 0; color: #ffffff;\">Innovating with Intelligence</p>\n        </td>\n      </tr>\n      <tr>\n        <td style=\"padding: 20px; color: #ffffff;\">\n          <p style=\"margin: 0 0 10px;\">Dear {{ $('Webhook').item.json.body.name }},</p>\n          <p style=\"margin: 0 0 10px;\">Thank you for reaching out to <strong>Binary Craft Technologies</strong>. We have received your inquiry and our team will get back to you shortly.</p>\n          <p style=\"margin: 0 0 10px;\">We specialize in:</p>\n          <ul style=\"padding-left: 20px; margin: 0 0 10px;\">\n            <li style=\"margin-bottom: 5px;\">AI-Powered Automation & Workflows</li>\n            <li style=\"margin-bottom: 5px;\">Custom Software Development (Web & Desktop)</li>\n            <li style=\"margin-bottom: 5px;\">Business Management Solutions</li>\n            <li style=\"margin-bottom: 5px;\">API & Plugin Development</li>\n            <li style=\"margin-bottom: 5px;\">Cloud Deployment & Domain Services</li>\n          </ul>\n          <p style=\"margin: 0 0 20px;\">If you have any urgent inquiries, feel free to contact us at <a href=\"mailto:davidnjihia536@gmail.com\" style=\"color: #00aaff; text-decoration: none;\">davidnjihia536@gmail.com</a>.</p>\n          <div style=\"text-align:center; margin: 30px 0;\">\n            <a href=\"https://bigaddict.shop\" style=\"background-color:#00aaff; color:#ffffff; text-decoration:none; padding:12px 20px; border-radius:5px; font-size:16px; display:inline-block;\">Explore Our Services</a>\n          </div>\n        </td>\n      </tr>\n      <tr>\n        <td align=\"center\" style=\"padding: 10px; font-size: 12px; color: #aaaaaa;\">\n          <p style=\"margin: 0;\">\n            Follow us on <a href=\"https://linkedin.com/in/bigaddict\" style=\"color:#00aaff; text-decoration:none;\">LinkedIn</a> |\n            <a href=\"https://github.com/BigAddict\" style=\"color:#00aaff; text-decoration:none;\">GitHub</a>\n          </p>\n          <p style=\"margin: 5px 0;\">©2025 Binary Craft Technologies. All rights reserved.</p>\n        </td>\n      </tr>\n    </table>\n  </body>\n</html>",
         "options": {
           "appendAttribution": false
         }
@@ -174,11 +160,11 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        480,
+        700,
         0
       ],
       "id": "6cafe761-e526-4544-bd54-bf29b84cfe74",
-      "name": "Gmail",
+      "name": "Acknowledge new contact",
       "webhookId": "9ae19f5b-fc25-49ba-b9f8-c9ff38936ef3",
       "credentials": {
         "gmailOAuth2": {
@@ -197,11 +183,11 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        700,
+        920,
         0
       ],
       "id": "4f22b2f8-cb47-4bc8-92e5-f2c6d23f2f03",
-      "name": "Gmail1",
+      "name": "Nofity me of new contact",
       "webhookId": "f6e53ef4-4f06-4cab-b68b-7641abb5515d",
       "credentials": {
         "gmailOAuth2": {
@@ -217,23 +203,17 @@
         "json": {
           "headers": {
             "host": "n8n.bigaddict.shop",
-            "x-real-ip": "172.68.47.131",
-            "x-forwarded-for": "102.211.145.67, 172.68.47.131",
-            "x-forwarded-proto": "http",
+            "x-real-ip": "141.101.68.110",
+            "x-forwarded-for": "41.209.60.114, 141.101.68.110",
+            "x-forwarded-proto": "https",
             "connection": "upgrade",
-            "content-length": "123",
-            "cf-ray": "92c815ebdd5aacb0-NBO",
-            "cf-ipcountry": "KE",
-            "accept-encoding": "gzip, br",
-            "origin": "https://bigaddict.shop",
-            "priority": "u=1, i",
-            "referer": "https://bigaddict.shop/",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "sec-fetch-dest": "empty",
+            "content-length": "117",
             "sec-fetch-mode": "cors",
-            "cf-connecting-ip": "102.211.145.67",
-            "cdn-loop": "cloudflare; loops=1",
-            "sec-fetch-site": "same-site",
+            "sec-fetch-dest": "empty",
+            "priority": "u=1, i",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "935f48b1fac3f854-CDG",
+            "referer": "https://bigaddict.shop/",
             "sec-ch-ua-platform": "\"Windows\"",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
             "sec-ch-ua": "\"Brave\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
@@ -241,7 +221,13 @@
             "sec-ch-ua-mobile": "?0",
             "accept": "*/*",
             "sec-gpc": "1",
-            "accept-language": "en-US,en;q=0.9"
+            "accept-language": "en-US,en;q=0.6",
+            "origin": "https://bigaddict.shop",
+            "sec-fetch-site": "same-site",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "41.209.60.114",
+            "cf-ipcountry": "KE",
+            "cf-visitor": "{\"scheme\":\"https\"}"
           },
           "params": {},
           "query": {},
@@ -249,7 +235,7 @@
             "name": "David Njihia Maina",
             "email": "davidnjihia536@gmail.com",
             "subject": "Website Development",
-            "message": "this is a test"
+            "message": "fkucgcjl"
           },
           "webhookUrl": "https://n8n.bigaddict.shop/webhook/4ffa66af-3e15-49d1-b35d-4b0dc43724f5",
           "executionMode": "production"
@@ -263,6 +249,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-16T16:45:55.000Z",
-  "versionId": "ab80e4ac-8da8-4f80-aeee-1b7ed968ebfc"
+  "updatedAt": "2025-04-25T16:57:34.000Z",
+  "versionId": "b68b7ee4-9d87-4436-9565-22e317a54572"
 }
