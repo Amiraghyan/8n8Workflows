@@ -101,11 +101,6 @@
             "node": "Merge1",
             "type": "main",
             "index": 1
-          },
-          {
-            "node": "Tag generater",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -200,13 +195,7 @@
     },
     "OpenRouter Chat Model": {
       "ai_languageModel": [
-        [
-          {
-            "node": "Tag generater",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "OpenRouter Chat Model1": {
@@ -220,13 +209,18 @@
         ]
       ]
     },
-    "Tag generater": {
+    "Merge1": {
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "Insert new subreddits",
             "type": "main",
-            "index": 2
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -413,7 +407,7 @@
     {
       "parameters": {
         "operation": "search",
-        "location": "allReddit",
+        "subreddit": "smallbusiness",
         "keyword": "looking for a solution",
         "limit": 20,
         "additionalFields": {
@@ -636,7 +630,6 @@
       "parameters": {
         "mode": "combine",
         "combineBy": "combineByPosition",
-        "numberInputs": 3,
         "options": {}
       },
       "type": "n8n-nodes-base.merge",
@@ -849,7 +842,6 @@
       "parameters": {
         "mode": "combine",
         "combineBy": "combineByPosition",
-        "numberInputs": 3,
         "options": {}
       },
       "type": "n8n-nodes-base.merge",
@@ -860,23 +852,6 @@
       ],
       "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
       "name": "Merge1"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=<Post Title>\n{{ $json.selftext }}\n</Post Title>\n<Post Content>\n{{ $json.selftext }}\n</Post Content>",
-        "options": {
-          "systemMessage": "=<task>\nYou are a tag generation assistant helping categorize Reddit-style posts that identify real-world problems or business opportunities.\n\nYour goal is to return up to 5 short, relevant tags that describe the core topics, industries, or business themes mentioned or implied in the post.\n\nThese tags should help users quickly understand what the post is about and make it easy to group similar posts together.\n\nUse lowercase, kebab-case formatting (e.g., \"freelancing\", \"job-market\", \"ai-tools\").\n</task>\n\n<guidelines>\n- Be concise. Each tag should be a single compound word or phrase (e.g., \"remote-work\", not \"this is about remote work\").\n- Tags should reflect the content, not vague concepts.\n- Do not include hashtags or extra symbols.\n- Avoid repeating words across multiple tags (e.g., \"ai\" and \"ai-tools\" – pick the more descriptive one).\n</guidelines>\n\n<format>\nReturn only a JSON array of strings:\n[\"tag-one\", \"tag-two\", \"tag-three\"]\n</format>"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
-      "position": [
-        -1840,
-        940
-      ],
-      "id": "f802670a-c0dc-4385-b95c-b45ab23e20ac",
-      "name": "Tag generater"
     }
   ],
   "pinData": {
@@ -1078,6 +1053,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-16T18:12:59.000Z",
-  "versionId": "9c7f52cc-b515-49aa-82d6-56638aacf969"
+  "updatedAt": "2025-04-26T08:24:45.000Z",
+  "versionId": "8c43b6cb-914c-4717-b37d-2540d3fd343d"
 }
