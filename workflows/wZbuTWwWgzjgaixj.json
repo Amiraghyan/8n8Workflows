@@ -56,7 +56,7 @@
           {
             "node": "Combine Sumary, solution and posts.",
             "type": "main",
-            "index": 1
+            "index": 2
           }
         ]
       ]
@@ -78,18 +78,7 @@
           {
             "node": "Merge subreddit DB ID with reddit post",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Analysis Content  By AI",
-            "type": "ai_languageModel",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -143,7 +132,7 @@
           {
             "node": "Merge subreddit DB ID with reddit post",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -186,7 +175,7 @@
           {
             "node": "Combine Sumary, solution and posts.",
             "type": "main",
-            "index": 2
+            "index": 1
           }
         ]
       ]
@@ -213,6 +202,17 @@
           {
             "node": "Add or update solutions to posts",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -441,26 +441,6 @@
     },
     {
       "parameters": {
-        "model": "deepseek/deepseek-r1:free",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        -1652,
-        475
-      ],
-      "id": "120edab8-7ebc-4db6-9958-bf8d6604a151",
-      "name": "OpenRouter Chat Model1",
-      "credentials": {
-        "openRouterApi": {
-          "id": "ezQM9X7CutaxDzrH",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "modelName": "models/gemini-2.5-pro-exp-03-25",
         "options": {}
       },
@@ -520,11 +500,10 @@
             {
               "id": "490c5138-c488-498f-9ba2-e9ac70f76c31",
               "leftValue": "={{ $json.output }}",
-              "rightValue": "Yes",
+              "rightValue": "/\\byes\\b/i",
               "operator": {
                 "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
+                "operation": "regex"
               }
             }
           ],
@@ -535,8 +514,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1144,
-        430
+        -1140,
+        440
       ],
       "id": "824fc1b9-1ed9-400f-8b2b-906e9b747dfc",
       "name": "Filter business related posts"
@@ -632,6 +611,7 @@
     },
     {
       "parameters": {
+        "operation": "upsert",
         "schema": {
           "__rl": true,
           "mode": "list",
@@ -656,7 +636,7 @@
             "post_id": "={{ $json.id }}"
           },
           "matchingColumns": [
-            "id"
+            "post_id"
           ],
           "schema": [
             {
@@ -676,7 +656,8 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false,
+              "removed": false
             },
             {
               "id": "post_url",
@@ -694,7 +675,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "number",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false
             },
             {
               "id": "content",
@@ -703,7 +684,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false
             },
             {
               "id": "posted_at",
@@ -712,7 +693,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "dateTime",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false
             },
             {
               "id": "is_processed",
@@ -721,7 +702,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "boolean",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false
             },
             {
               "id": "subreddit_id",
@@ -730,7 +711,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "number",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": false
             },
             {
               "id": "post_id",
@@ -739,15 +720,14 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true
+              "canBeUsedToMatch": true,
+              "removed": false
             }
           ],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
         },
-        "options": {
-          "skipOnConflict": true
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
@@ -971,98 +951,35 @@
           "name": "AIVEN pain2profit"
         }
       }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1720,
+        480
+      ],
+      "id": "e4bddcc9-85a9-4236-b251-04d51f8ac98d",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
     }
   ],
-  "pinData": {
-    "Find Proper Solutions": [
-      {
-        "json": {
-          "text": "Based on the Reddit post, the core problem is small business owners (often skilled practitioners, not salespeople) overlooking simple, direct outreach to existing networks/clients in favor of overthinking complex marketing strategies when business is slow.\n\nHere is a concise business idea or service addressing this:\n\n**Business Idea: The \"Simple Business Catalyst\" Service**\n\n**Description:** This service helps small businesses and solopreneurs generate immediate work by identifying and implementing the *easiest, most direct* outreach methods, such as systematic re-engagement with past clients, leveraging existing warm contacts for referrals, and crafting simple, non-intimidating communication templates. It provides structure, accountability, and practical tools to turn \"low-hanging fruit\" opportunities into actual revenue without requiring complex marketing overhauls or overcoming deep-seated sales discomfort. It focuses on quickly executing the \"obvious\" steps often overlooked."
-        }
-      },
-      {
-        "json": {
-          "text": "Okay, based on the Reddit post highlighting the challenge of getting a niche product known and adopted *after* building it, the core problem is bridging the gap between having a good, problem-solving product and effectively marketing/positioning it to the target audience.\n\nHere's a business idea:\n\n**Specialized Product Marketing & Launch Service for Niche Solutions.**\nThis service assists founders and small teams who have built niche products based on solving specific problems but struggle with marketing and getting visibility. It provides tailored strategies for positioning, messaging, identifying the ideal target audience (beyond the founder's initial need), and executing initial launch and marketing efforts to gain traction and bridge the gap between building a good product and achieving market success."
-        }
-      },
-      {
-        "json": {
-          "text": "Based on the Reddit post, the core problem is finding a *paying* market for software solutions and validating ideas *effectively* without relying solely on cold outreach or hoping for referrals. The user has building skills but struggles with the market/sales side.\n\nHere is a business idea addressing this for multiple businesses:\n\n**Business Idea: Tech Opportunity Scoping & Validation Service**\n\n**Concise Description:**\n\nThis service partners with small to medium-sized businesses (or specific departments within larger ones) who suspect they have operational inefficiencies or data challenges but lack the in-house expertise to define the problem precisely or determine if a software solution is viable and valuable. Instead of building speculative software or relying on the business to articulate a technical need, the service provides a structured process to:\n\n1.  **Deeply understand** the client's current workflows and pain points.\n2.  **Clearly define** the root problem(s) from a business perspective.\n3.  **Research and propose** potential technology-based solutions (could be custom software, automation, data analysis, etc.).\n4.  **Validate** the proposed solution(s) directly with the client's stakeholders or target users through interviews, mockups, or small proof-of-concepts to gauge demand, usability, and willingness-to-pay *before* full development.\n\nThis service delivers to the client not just potential ideas, but a *validated problem definition* and a *scoped opportunity* ready for technical execution, effectively generating qualified, paying leads for custom software development (either by the service provider, if they build, or by external developers/agencies). It bypasses blind outreach by starting with businesses who *know* they have problems but need help defining and validating the tech solution, providing a pipeline of problems *worth solving* for a paying market."
-        }
-      },
-      {
-        "json": {
-          "text": "Okay, here is a business idea based on the Reddit post:\n\n**Business Idea: The \"Solo Finance Fix & Setup\" Service**\n\n**Description:** Offer a specialized service for solo entrepreneurs and small business owners (like single-member LLCs) who have mixed personal and business finances and lack a clear expense tracking system. This service would involve:\n\n1.  **Retrospective Cleanup:** Analyzing past bank/credit card statements (both personal and business) to identify and categorize business vs. personal expenses for a specific period (e.g., the last 12-18 months), creating a categorized summary.\n2.  **Financial Separation Guidance:** Providing clear, actionable steps and resources to immediately stop mingling funds and establish distinct personal and business financial behaviors (using dedicated accounts, proper owner draws/distributions).\n3.  **Simple System Setup:** Recommending and helping implement an easy-to-use, ongoing expense tracking system tailored for solos (e.g., setting up a free/low-cost bookkeeping software like Wave, or providing a simple, effective spreadsheet template and training).\n4.  **Basic Education:** Offering a quick overview of *why* this separation and tracking is crucial for taxes, profitability, and legal compliance (especially for LLCs), without overwhelming the client with complex accounting jargon.\n\nThis service provides a fixed-scope solution to clean up the past mess, correct the fundamental problem of commingling, and establish simple, sustainable habits for the future, specifically targeting the overwhelmed, non-finance-minded solo operator."
-        }
-      },
-      {
-        "json": {
-          "text": "Based on the Reddit post, a business idea addressing these challenges could be:\n\n**Managed Global Project Delivery Service**\n\n**Description:** This service acts as an intermediary agency providing end-to-end management for businesses looking to outsource projects globally. Instead of just connecting clients to offshore vendors, the service takes the client's detailed brief (including context and 'why'), selects and vets the *right* global team from their trusted network (ensuring quality over just cheapness), and then provides a dedicated project manager to handle all communication, cultural nuances, scope management, quality control, and timeline adherence with the offshore team on the client's behalf. This allows clients to leverage global talent effectively without becoming de facto project managers, ensuring the work gets done right the first time and truly freeing up their time."
-        }
-      },
-      {
-        "json": {
-          "text": "Based on the Reddit post, here is a business idea/service:\n\n**Business Idea/Service:** **\"IncomeFlow AI\" (or similar)**\n\n**Concise Description:**\n\nAn AI-driven subscription service providing automated financial intelligence for freelancers, contractors, and small businesses with unpredictable income. It securely connects to bank accounts to automatically track variable earnings, analyze income patterns, predict future cash flow (highlighting potential dips), and generate personalized savings recommendations for taxes, expenses, and slow periods, offering clear financial foresight without manual budgeting."
-        }
-      }
-    ],
-    "Find the Real Problem and It's cause": [
-      {
-        "json": {
-          "output": {
-            "problem": "The poster's business experienced a significant decline in client workload compared to the previous two years, causing them to question the business's direction.",
-            "cause": "Instead of focusing on direct client outreach and sales (which they hadn't needed previously and disliked due to potential rejection), the poster initially assumed a complex solution like further education or a business revamp was necessary, overlooking the simpler approach of directly asking for more work."
-          }
-        }
-      },
-      {
-        "json": {
-          "output": {
-            "problem": "The user is addressing the common entrepreneurial challenge of identifying a unique and potentially highly successful ('million dollar') product idea.",
-            "cause": "The post suggests this difficulty stems from entrepreneurs looking outward for inspiration (e.g., copying existing products) instead of focusing inward to solve a specific problem they have personally experienced and validated."
-          }
-        }
-      },
-      {
-        "json": {
-          "output": {
-            "problem": "The poster is struggling to identify a viable business niche and validate a specific software idea, failing to find a target market that both has a problem worth solving and the financial capacity/willingness to pay for a solution.",
-            "cause": "Current efforts focus on outreach to potential customers (mass cold emails, LinkedIn DMs) for idea validation, which have yielded almost no responses, indicating issues with the outreach strategy, targeting, or the perceived value of the proposed solution. Furthermore, the poster observes problems among people who lack the budget for solutions and expresses apprehension about the consistent outreach needed for client acquisition."
-          }
-        }
-      },
-      {
-        "json": {
-          "output": {
-            "problem": "The business owner has failed to track any business expenses over the past year and has mixed personal and business finances across separate bank accounts.",
-            "cause": "The owner admittedly did not perform any bookkeeping or expense tracking since starting the business. Furthermore, they commingled funds by paying for personal items from the business account and business items from the personal account, neglecting basic financial separation."
-          }
-        }
-      },
-      {
-        "json": {
-          "output": {
-            "problem": "The poster's initial attempt at outsourcing a project resulted in significant difficulties, poor quality deliverables, and unexpected project management workload, contrary to their expectation of a simple and cost-saving process.",
-            "cause": "The problems stemmed from the poster's naive assumptions: underestimating the crucial role of explicit communication (beyond written briefs), failing to anticipate the need for active project management despite outsourcing, and initially selecting the cheapest vendor which led to subpar work requiring costly rework."
-          }
-        }
-      },
-      {
-        "json": {
-          "output": {
-            "problem": "Freelancers struggle with managing finances, predicting cash flow, and saving appropriately for taxes and slow periods due to income instability.",
-            "cause": "The primary cause is the inherent unpredictability of freelance income. Additionally, existing generic financial apps are perceived as inadequate for freelance needs, and manual budgeting methods are considered a hassle."
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-26T10:59:15.000Z",
-  "versionId": "59140494-a20c-4f52-aa01-15158042dd58"
+  "updatedAt": "2025-04-26T11:38:24.000Z",
+  "versionId": "422fca45-a305-4c6b-8193-d8644fc6b942"
 }
