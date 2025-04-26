@@ -340,21 +340,22 @@
   "pinData": {},
   "settings": {
     "executionOrder": "v1",
-    "callerPolicy": "workflowsFromSameOwner"
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "vZZWpIysmyLOCCOh"
   },
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1745666083,
+        "lastTimeChecked": 1745685868,
         "possibleDuplicates": [
-          "1966e261b5518b9b",
-          "1966e15a2a86baf1"
+          "19672fc71395de56",
+          "19672f29f170956f"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-08T13:46:25.000Z",
-  "versionId": "f466e9dd-9bd2-4020-bcdc-e014689657c0"
+  "updatedAt": "2025-04-26T16:16:55.000Z",
+  "versionId": "22d341e2-6e51-4f7b-80ea-e794658757eb"
 }
