@@ -12,81 +12,15 @@
         ]
       ]
     },
-    "Merge Input": {
-      "main": [
-        [
-          {
-            "node": "Filter Posts By Content",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge 3 Inputs": {
-      "main": [
-        [
-          {
-            "node": "Supabase1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Post Summarization": {
-      "main": [
-        [
-          {
-            "node": "Merge 3 Inputs",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Analysis Content  By AI": {
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "Merge post with AI analytics",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "Filter Posts By Content": {
-      "main": [
-        [
-          {
-            "node": "Post Summarization",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge 3 Inputs",
-            "type": "main",
-            "index": 2
-          },
-          {
-            "node": "Post Sentiment Analysis",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Find Proper Solutions",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Post Sentiment Analysis": {
-      "main": [
-        [],
-        [],
-        []
       ]
     },
     "Filter Posts By Features": {
@@ -98,7 +32,7 @@
             "index": 0
           },
           {
-            "node": "Merge1",
+            "node": "Merge post with AI analytics",
             "type": "main",
             "index": 1
           }
@@ -120,31 +54,9 @@
       "main": [
         [
           {
-            "node": "Merge 3 Inputs",
+            "node": "Combine Sumary, solution and posts.",
             "type": "main",
             "index": 1
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Sentiment Analysis",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Sentiment Analysis": {
-      "main": [
-        [
-          {
-            "node": "Merge Input",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -160,42 +72,15 @@
         ]
       ]
     },
-    "Insert new subreddits": {
-      "main": [
-        [
-          {
-            "node": "Set subreddit database id",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Set subreddit database id": {
       "main": [
         [
           {
-            "node": "Merge",
+            "node": "Merge subreddit DB ID with reddit post",
             "type": "main",
             "index": 0
           }
         ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Chat Model": {
-      "ai_languageModel": [
-        []
       ]
     },
     "OpenRouter Chat Model1": {
@@ -209,18 +94,126 @@
         ]
       ]
     },
-    "Merge1": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find Proper Solutions",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Find the Real Problem and It's cause",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Find the Real Problem and It's cause",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge post with AI analytics": {
       "main": [
         [
           {
-            "node": "Insert new subreddits",
+            "node": "Filter business related posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter business related posts": {
+      "main": [
+        [
+          {
+            "node": "Insert or update Subreddits",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Merge",
+            "node": "Merge subreddit DB ID with reddit post",
             "type": "main",
             "index": 1
+          }
+        ]
+      ]
+    },
+    "Insert or update Subreddits": {
+      "main": [
+        [
+          {
+            "node": "Set subreddit database id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge subreddit DB ID with reddit post": {
+      "main": [
+        [
+          {
+            "node": "Insert Posts to Database.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Posts to Database.": {
+      "main": [
+        [
+          {
+            "node": "Find Proper Solutions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find the Real Problem and It's cause",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Combine Sumary, solution and posts.",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Find the Real Problem and It's cause": {
+      "main": [
+        [
+          {
+            "node": "Combine Sumary, solution and posts.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Sumary, solution and posts.": {
+      "main": [
+        [
+          {
+            "node": "Add or update post summaries",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Add or update solutions to posts",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -240,67 +233,9 @@
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
         -2620,
-        860
+        430
       ],
       "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "inputText": "={{ $json.postcontent }}",
-        "options": {}
-      },
-      "id": "83763b6a-99d0-44f5-ad6a-fa9dc08365bd",
-      "name": "Post Sentiment Analysis",
-      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
-      "position": [
-        680,
-        1120
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "53d84399-2dcf-4660-9f4b-28660d5d2dda",
-      "name": "Post Summarization",
-      "type": "@n8n/n8n-nodes-langchain.chainSummarization",
-      "position": [
-        700,
-        240
-      ],
-      "typeVersion": 2
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "combineBy": "combineByPosition",
-        "options": {}
-      },
-      "id": "22713541-0c25-4fab-8090-0bc63b6e8d63",
-      "name": "Merge Input",
-      "type": "n8n-nodes-base.merge",
-      "position": [
-        -360,
-        820
-      ],
-      "typeVersion": 3
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "combineBy": "combineByPosition",
-        "numberInputs": 3,
-        "options": {}
-      },
-      "id": "92706470-3bc7-47d8-99a6-3b9f4b0b5a15",
-      "name": "Merge 3 Inputs",
-      "type": "n8n-nodes-base.merge",
-      "position": [
-        1280,
-        480
-      ],
-      "typeVersion": 3
     },
     {
       "parameters": {
@@ -349,42 +284,8 @@
       "name": "Filter Posts By Features",
       "type": "n8n-nodes-base.if",
       "position": [
-        -2080,
-        860
-      ],
-      "typeVersion": 2.2
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "version": 2,
-            "leftValue": "",
-            "caseSensitive": true,
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "d5d38c01-3a88-4767-b488-d9c04145bb8f",
-              "operator": {
-                "name": "filter.operator.equals",
-                "type": "string",
-                "operation": "equals"
-              },
-              "leftValue": "={{ $json.sentimentAnalysis.category }}",
-              "rightValue": "Business related problem"
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "347917ea-d49a-430c-8ae7-156f2c859691",
-      "name": "Filter Posts By Content",
-      "type": "n8n-nodes-base.if",
-      "position": [
-        -100,
-        840
+        -1960,
+        430
       ],
       "typeVersion": 2.2
     },
@@ -399,15 +300,15 @@
       "name": "Analysis Content  By AI",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
-        -1840,
-        680
+        -1740,
+        255
       ],
       "typeVersion": 1.7
     },
     {
       "parameters": {
         "operation": "search",
-        "subreddit": "smallbusiness",
+        "subreddit": "Entrepreneur",
         "keyword": "looking for a solution",
         "limit": 20,
         "additionalFields": {
@@ -418,8 +319,8 @@
       "name": "Get Posts",
       "type": "n8n-nodes-base.reddit",
       "position": [
-        -2480,
-        860
+        -2400,
+        430
       ],
       "typeVersion": 1,
       "credentials": {
@@ -431,111 +332,24 @@
     },
     {
       "parameters": {
-        "content": "# Post Sentiment Analysis\n## ",
-        "height": 660,
-        "width": 1020
-      },
-      "id": "57f1328c-f84c-431a-ade4-e70442550d44",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -160,
-        900
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "content": "# Insight Generation And Output \n## Generates executive summaries of key opportunities\n## Consolidates findings in Google Sheets",
-        "height": 640,
-        "width": 1220,
-        "color": 6
-      },
-      "id": "82f344cf-95f8-49cb-9050-a91fa76940fb",
-      "name": "Sticky Note3",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -200,
-        40
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "promptType": "define",
-        "text": "=Based on the following Reddit post, suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nReddit post:  \"{{ $json.postcontent }}\"\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges.\n"
-      },
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.6,
-      "position": [
-        760,
-        440
-      ],
-      "id": "f9875ad0-6911-447b-8721-792a9180a724",
-      "name": "Find Proper Solutions"
-    },
-    {
-      "parameters": {
-        "tableId": "ideas",
-        "fieldsUi": {
-          "fieldValues": [
+        "text": "=<Reddit post>\n{{ $json.content }}\n</Reddit post>",
+        "messages": {
+          "messageValues": [
             {
-              "fieldId": "title"
+              "message": "Based on the following Reddit post, suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges."
             }
           ]
         }
       },
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
       "position": [
-        1740,
-        480
+        -44,
+        580
       ],
-      "id": "fb0ad8c7-b1b0-454d-9279-81d2416ca502",
-      "name": "Supabase1",
-      "credentials": {
-        "supabaseApi": {
-          "id": "S1BsqJ97qhS3sGQB",
-          "name": "Pain2Profit"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "inputText": "=<Post Title>\n{{ $json.title }}\n</Post Title>\n<Reddit Post>\n{{ $json.postcontent }}\n</Reddit Post>",
-        "options": {
-          "categories": "Business related problem, Non-Business Releted Problem",
-          "systemPromptTemplate": "=Decide whether this reddit post is describing a business-related problem or a need for a solution. The post should mention a specific challenge or requirement that a business is trying to address."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
-      "typeVersion": 1,
-      "position": [
-        -860,
-        1120
-      ],
-      "id": "a9440e70-3141-45b9-a014-9577cb131d6c",
-      "name": "Sentiment Analysis"
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        -880,
-        1280
-      ],
-      "id": "3475a5d7-63c5-4e7c-9fa0-201cdd885030",
-      "name": "Google Gemini Chat Model1",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "Lv8LqTGpfGzDWuiH",
-          "name": "Google Gemini(PaLM) Api account 2"
-        }
-      }
+      "id": "f9875ad0-6911-447b-8721-792a9180a724",
+      "name": "Find Proper Solutions"
     },
     {
       "parameters": {
@@ -596,50 +410,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -2300,
-        860
+        -2180,
+        430
       ],
       "id": "11b69e58-ccff-47af-9c41-6793706f04d9",
       "name": "Fetch only required fields"
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "-- PostgreSQL Node Configuration:\n-- Operation: Execute Query\n-- Query:\nWITH inserted_subreddit AS (\n    INSERT INTO posts_subreddit (name, subscriber_count)\n    VALUES ($1, $2)\n    ON CONFLICT (name) DO UPDATE \n    SET subscriber_count = EXCLUDED.subscriber_count\n    RETURNING id\n)\nSELECT id FROM inserted_subreddit",
-        "options": {
-          "queryReplacement": "={{ $json.subreddit }}, {{ $json.subreddit_subscribers }}",
-          "largeNumbersOutput": "numbers"
-        }
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.6,
-      "position": [
-        -1980,
-        420
-      ],
-      "id": "ea7bd5da-7582-439e-b97a-0a9632dbdff1",
-      "name": "Insert new subreddits",
-      "credentials": {
-        "postgres": {
-          "id": "STEiiGYKeUTcdagW",
-          "name": "AIVEN pain2profit"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "mode": "combine",
-        "combineBy": "combineByPosition",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3.1,
-      "position": [
-        -1240,
-        460
-      ],
-      "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
-      "name": "Merge"
     },
     {
       "parameters": {
@@ -658,11 +433,202 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1760,
-        420
+        -704,
+        505
       ],
       "id": "1ccdf18a-40eb-4799-9059-d31db811af37",
       "name": "Set subreddit database id"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1652,
+        475
+      ],
+      "id": "120edab8-7ebc-4db6-9958-bf8d6604a151",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ezQM9X7CutaxDzrH",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro-exp-03-25",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        300
+      ],
+      "id": "00c0edae-9ca4-4079-8b5e-f923812a986a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"problem\": \"The business owner experienced a major decline in client workload and revenue compared to previous successful years.\",\n    \"cause\": \"Instead of focusing on client outreach and direct sales, the owner diverted time and resources into acquiring new certifications and revamping the business model, assuming a complex solution was needed. Additionally, they had a reluctance toward direct sales activities.\"\n  }"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        104,
+        300
+      ],
+      "id": "b85bbc16-1a30-4a3f-9825-0fbc6f16649f",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -1364,
+        430
+      ],
+      "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
+      "name": "Merge post with AI analytics"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "490c5138-c488-498f-9ba2-e9ac70f76c31",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1144,
+        430
+      ],
+      "id": "824fc1b9-1ed9-400f-8b2b-906e9b747dfc",
+      "name": "Filter business related posts"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "posts_subreddit",
+          "mode": "list",
+          "cachedResultName": "posts_subreddit"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $json.subreddit }}",
+            "subscriber_count": "={{ $json.subreddit_subscribers }}"
+          },
+          "matchingColumns": [
+            "name"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subscriber_count",
+              "displayName": "subscriber_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -924,
+        505
+      ],
+      "id": "7865a5bc-fae1-4f7b-9bdf-975917ebeebb",
+      "name": "Insert or update Subreddits",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -484,
+        430
+      ],
+      "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
+      "name": "Merge subreddit DB ID with reddit post"
     },
     {
       "parameters": {
@@ -786,11 +752,11 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -940,
-        460
+        -264,
+        430
       ],
       "id": "53ec2970-2849-4717-a0a3-484f17604bd8",
-      "name": "Postgres",
+      "name": "Insert Posts to Database.",
       "credentials": {
         "postgres": {
           "id": "STEiiGYKeUTcdagW",
@@ -800,249 +766,293 @@
     },
     {
       "parameters": {
-        "model": "deepseek/deepseek-v3-base:free",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        -2000,
-        1040
-      ],
-      "id": "42bde69d-ec16-4939-8401-c88564e1049c",
-      "name": "OpenRouter Chat Model",
-      "credentials": {
-        "openRouterApi": {
-          "id": "ezQM9X7CutaxDzrH",
-          "name": "OpenRouter account"
+        "promptType": "define",
+        "text": "=<Reddit Post Title>\n{{ $json.title }}\n</Reddit Post Title>\n\n<Reddit post>\n{{ $json.content }}\n</Reddit post>",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "<task>\nYou are tasked with analyzing a Reddit post containing a business or personal problem.\n\nIdentify and extract two key pieces of information:\n1. The **core problem** the poster is experiencing. (Clearly and briefly stated)\n2. The **main cause(s)** that led to this problem. (Provide logical or stated reasons based on the post)\n\nWrite in a professional yet accessible tone. Do not invent information that is not mentioned or logically implied by the original post.\n\nYour response must ONLY output a JSON array containing one or more objects. Each object should have exactly two fields: \"problem\" and \"cause\".\n\nDo not include any additional commentary, greetings, or explanations outside the JSON output.\n\nKeep each field concise but informative (2-5 sentences each).\n</task>\n\n<Example Output>\n{\n    \"problem\": \"The business owner experienced a major decline in client workload and revenue compared to previous successful years.\",\n    \"cause\": \"Instead of focusing on client outreach and direct sales, the owner diverted time and resources into acquiring new certifications and revamping the business model, assuming a complex solution was needed. Additionally, they had a reluctance toward direct sales activities.\"\n  }\n</Example Output>"
+            }
+          ]
         }
-      }
-    },
-    {
-      "parameters": {
-        "model": "deepseek/deepseek-r1:free",
-        "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
       "position": [
-        -2100,
-        720
+        -44,
+        80
       ],
-      "id": "120edab8-7ebc-4db6-9958-bf8d6604a151",
-      "name": "OpenRouter Chat Model1",
-      "credentials": {
-        "openRouterApi": {
-          "id": "ezQM9X7CutaxDzrH",
-          "name": "OpenRouter account"
-        }
-      }
+      "id": "2cbb0a1d-373a-47a0-b8c7-63c8bbb574a8",
+      "name": "Find the Real Problem and It's cause"
     },
     {
       "parameters": {
         "mode": "combine",
         "combineBy": "combineByPosition",
+        "numberInputs": 3,
         "options": {}
       },
+      "id": "92706470-3bc7-47d8-99a6-3b9f4b0b5a15",
+      "name": "Combine Sumary, solution and posts.",
       "type": "n8n-nodes-base.merge",
-      "typeVersion": 3.1,
       "position": [
-        -1520,
-        780
+        332,
+        430
       ],
-      "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
-      "name": "Merge1"
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "solutions_postsummary",
+          "mode": "list",
+          "cachedResultName": "solutions_postsummary"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "post_id": "={{ $json.id }}",
+            "cause": "={{ $json.output.cause }}",
+            "problem": "={{ $json.output.problem }}"
+          },
+          "matchingColumns": [
+            "post_id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "cause",
+              "displayName": "cause",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "post_id",
+              "displayName": "post_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "problem",
+              "displayName": "problem",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        552,
+        305
+      ],
+      "id": "19c0d95b-2426-4c1a-9a62-3c4df44e734d",
+      "name": "Add or update post summaries",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "solutions_postsolution",
+          "mode": "list",
+          "cachedResultName": "solutions_postsolution"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "is_premium": true,
+            "post_id": "={{ $json.id }}",
+            "solution": "={{ $json.text }}"
+          },
+          "matchingColumns": [
+            "post_id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "solution",
+              "displayName": "solution",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "is_premium",
+              "displayName": "is_premium",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "post_id",
+              "displayName": "post_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        552,
+        505
+      ],
+      "id": "3304bd51-a0d8-4397-ac64-869251932dc5",
+      "name": "Add or update solutions to posts",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
     }
   ],
   "pinData": {
-    "Merge 3 Inputs": [
+    "Find Proper Solutions": [
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1iqletb/need_help_and_advice_for_a_business_name_idea/",
-          "date": "2025-02-16T13:42:12.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Name Generation and Branding Consulting Service**\n\n**Description:**\n\nCreate a consulting service specializing in business name generation and branding strategies for startups and small businesses, particularly in regulated industries like accounting, finance, and legal services. The service would utilize a combination of creative brainstorming sessions, market research, and trademark checks to ensure potential business names are not only unique and relevant but also resonate with target audiences.\n\nThe service can offer tiered packages, including:\n\n1. **Name Generation**: A dedicated session where clients brainstorm multiple name ideas, with a focus on industry relevance and ease of pronunciation.\n   \n2. **Market Research**: Analyze competitors and market trends to help clients select names that stand out.\n\n3. **Trademark and Domain Availability Check**: A comprehensive report on the availability of suggested names for trademarks and associated domain names to ensure legal compliance and digital presence.\n\n4. **Brand Strategy Development**: Optional services where you assist clients in developing a full branding strategy, including logo design, color palettes, and marketing messaging based on their selected name.\n\nBy offering this service, you can address the common challenge of finding a suitable and unique business name, while also providing valuable insights into branding that will grow as the client's business evolves, ensuring they don't face the same issue in the future.",
-            "refusal": null
-          },
-          "upvotes": "4",
-          "logprobs": null,
-          "response": {
-            "text": "A couple is starting an accounting business focused on tax services and plans to expand into wealth management and capital advising. They initially considered the name \"Global Solutions,\" but it's already taken. They seek unique, professional, and easy-to-pronounce name suggestions that are similar to \"Global Solutions\" to avoid future name changes. They appreciate any help and plan to discuss the suggestions together."
-          },
-          "postcontent": "Hello guys,\n\nMy partner and I are planning to open an accounting business that will focus on tax services such as filling taxes and tax advisor and we have plan for future to add wealth management and capital advising. Initially, we were thinking of using the name \"Global Solutions,\" but we found out that another company already has it, so we can’t use it.\n\nWe’re looking for a professional name that’s easy to pronounce and somewhat similar to \"Global Solutions.\" Also, unique enough that we won’t want to change it in the future. Any ideas or suggestions would be greatly appreciated! We would love to list all name suggestions to share with my partner so we can pick the best one.\n\nThanks in advance for your help! Appreciate it! ",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Based on the Reddit post, the core problem is small business owners (often skilled practitioners, not salespeople) overlooking simple, direct outreach to existing networks/clients in favor of overthinking complex marketing strategies when business is slow.\n\nHere is a concise business idea or service addressing this:\n\n**Business Idea: The \"Simple Business Catalyst\" Service**\n\n**Description:** This service helps small businesses and solopreneurs generate immediate work by identifying and implementing the *easiest, most direct* outreach methods, such as systematic re-engagement with past clients, leveraging existing warm contacts for referrals, and crafting simple, non-intimidating communication templates. It provides structure, accountability, and practical tools to turn \"low-hanging fruit\" opportunities into actual revenue without requiring complex marketing overhauls or overcoming deep-seated sales discomfort. It focuses on quickly executing the \"obvious\" steps often overlooked."
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1iob5ez/business_acquisition_loan_what_are_my_odds_what/",
-          "date": "2025-02-13T12:34:29.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Financial Advisory and Structuring Service for Business Acquisitions**\n\n**Description:**\n\nCreate a financial advisory firm specializing in helping aspiring entrepreneurs and prospective buyers navigate the complexities of purchasing existing businesses, particularly those with seller financing options. This service would focus on individuals who may not have traditional funding routes available due to factors like low equity or limited industry experience.\n\n**Key Offerings:**\n\n1. **Loan Application Assistance:**\n   - Guide clients through the SBA 7(a) loan application process, including the nuances of seller financing and the potential for using standby notes.\n   - Help develop customized financing strategies tailored to each client’s unique situation.\n\n2. **Financial Structuring:**\n   - Assist in structuring financing deals that maximize seller financing and minimize upfront equity injections.\n   - Provide creative solutions for negotiating terms with sellers to facilitate smoother transactions.\n\n3. **Business Valuation and Due Diligence Support:**\n   - Offer expertise in conducting business valuations to ensure clients understand the worth of the business they are purchasing.\n   - Help perform due diligence to uncover any potential risks or hidden costs in the acquisition.\n\n4. **Training and Support for Transitioning Owners:**\n   - Provide training resources and integration plans for new owners into the business to ensure smooth day-to-day operations post-acquisition.\n   - Connect clients with mentorship programs or industry networks for ongoing support.\n\n5. **Additional Funding Solutions:**\n   - Explore non-traditional funding sources, including microloans, community funding initiatives, or partnership arrangements that suit clients' needs for startup costs.\n\n6. **Community and Networking Events:**\n   - Organize workshops and networking events that connect buyers, sellers, and financing institutions to foster community support and share experiences.\n\nBy addressing these specific needs, your service could significantly reduce the barriers to business acquisition for aspiring entrepreneurs, allowing more people to realize their dreams of ownership, as well as helping existing business owners find trustworthy successors. This not only benefits the buyers but also strengthens local economies by ensuring businesses remain operational and thriving.",
-            "refusal": null
-          },
-          "upvotes": "3",
-          "logprobs": null,
-          "response": {
-            "text": "A long-time friend is offering to sell their local business, which has been profitable for 12 years (grossing $950k last year with a $325k Seller's Discretionary Earnings). The business is priced at $650k, and the seller is open to financing up to 61.5% of the purchase price. The buyer has good credit and equity in their home but limited cash for a down payment (only 5% available, preferring 0%). They lack direct industry experience but have management experience and training will be provided by the seller. They are exploring loan options, including the potential for an SBA 7(a) loan and the possibility of seller financing for a portion of the purchase. The buyer is open to various financing solutions due to their trust in the sellers and the appealing nature of the business opportunity."
-          },
-          "postcontent": "Hello!  \nLongtime friends have offered to sell my their local biz.    \n12 years running, last year did 950k gross, 325K SDE.  \nYOY growth has been good.  \n650k price.  \nThey have offered to seller finance up to 61.5% of the purchase price so far.  \nThey might go even higher on the seller financing if I ask.\n\n**The good (about me):**  \n  \n\\- I have good credit, probably 720+.  \n\\- I do have \\~200k equity in my home, I'm willing to collateralize.  \n  \n**The ugly (about me):**  \n  \n\\- I have only 5% down possible for equity injection, but would prefer 0%  \nI read that with a SBA 7(a) loan the seller can do 5% of my equity injection with a standby note (deferred payment until SBA loan is paid off).  I'm not sure if that could be done in tandem with another (much larger) note that would be payable (in payments) at closing.  \n  \n\\- I've had no / negative income the last couple of years.  I took some time off from my 20+ year profession, lived off of savings and some credit while I explored other career paths because I needed a change.  I did learn a couple of high value trades, and did incur some expenses in that process.\n\n\\- No direct industry experience.  I do have much professional experience I bring to the table, but not in this industry.  I have managed people on my team... but not employees.  \n\n**The rest:**  \n  \nThey are willing to hire me as store manager now, if that helps.    \nThey will be providing complete training and ongoing support.  \nIt is a simple business, really.  \nThey obviously believe in their business, given the willingness to seller finance so much of it.  \n  \nWhat are the odds I could get a SBA 7(a) loan with 5% down?  \nAre there any loans with 0% down?  \n  \nI would like to get an extra 50k or so for startup costs - it is an acquisition however I'm going to have startup expenses like first and last months lease payments, jurisdictional inspections, electricity deposit, liability insurance / workman's comp, that sort of stuff.\n\nI realize the scenario is not ideal, however it seems to me there should be SOME option out there given that all I have to do is not mess up the business!  It's a great business, well loved in the community.  \nThere is good room in the revenue for me to make accelerated loan repayments, establish business savings, grow the business, and even pay myself enough to cover my living expenses.  That is one heck of a deal, I have to find some way to pull this off!\n\nI'm willing to look at less fantastic loan offers with higher rates.    \nIt really seems to me that some entity would be willing to lend based on the cashflow / success / stability of the existing business.\n\nOne idea I had - if sellers would be willing to carry 100% for 12-24 months, would I then likely have an easier time qualifying for a SBA 7(a) loan to pay off their note, or part of it (depending on what they want)?\n\nAnother idea - store manager -&gt; partner -&gt; partner buyout  \nI do need to find out their maximum timeline for getting out.  \n  \nHad I known a couple of years ago this was going to come up, I would have made different decisions!  \nI really don't want to sell my house and rent something in order to do this, but I'm considering that as a last resort.  \nIf these weren't my longtime friends whom I trust with my life, I wouldn't consider this.  I'd be too chicken.  This is like winning the lottery to me, frankly... I'm not the perfect buyer on paper but they really want me to have it.  They know it will be my baby, as it has been theirs.\n\nGrateful for any solutions / ideas, thank you in advance!  =D\n\n",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Okay, based on the Reddit post highlighting the challenge of getting a niche product known and adopted *after* building it, the core problem is bridging the gap between having a good, problem-solving product and effectively marketing/positioning it to the target audience.\n\nHere's a business idea:\n\n**Specialized Product Marketing & Launch Service for Niche Solutions.**\nThis service assists founders and small teams who have built niche products based on solving specific problems but struggle with marketing and getting visibility. It provides tailored strategies for positioning, messaging, identifying the ideal target audience (beyond the founder's initial need), and executing initial launch and marketing efforts to gain traction and bridge the gap between building a good product and achieving market success."
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1ikcdi5/seeking_a_reliable_alternative_to_stripe_for/",
-          "date": "2025-02-08T10:09:44.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Payment Assurance & Dispute Resolution Service**\n\n**Description:**\n\nCreate a specialized payment processing platform designed specifically for service-based businesses that suffer from frequent disputes and account deactivations with traditional processors like Stripe and Square. The platform would focus on three key areas:\n\n1. **Dedicated Payment Processing**: Offer a secure and user-friendly interface for handling monthly recurring payments and invoicing. This could include features like automated invoicing, direct card entry, and easy integration with existing business systems.\n\n2. **Dispute Management Module**: Implement an innovative dispute resolution system that leverages AI and machine learning to analyze and document service delivery. This system would guide businesses in gathering comprehensive proof of service and recommend best practices to minimize chargebacks. Additionally, the platform could offer access to a team of dispute resolution specialists who can intervene on behalf of the businesses in case of disputes.\n\n3. **Client Risk Assessment and Education**: Incorporate a risk assessment feature that evaluates customer profiles for potential chargeback risks before onboarding them. This could involve verifying the legitimacy of the customer's payment method and prior transaction history. Moreover, provide educational resources on managing customer relationships, expectations, and payment disputes effectively.\n\nBy addressing the common pain points in payment processing and dispute resolution, this service would not only provide a reliable payment alternative but also empower service-based businesses to manage their payments and disputes with confidence, ultimately improving their cash flow and reducing anxiety related to chargebacks and fund holds.",
-            "refusal": null
-          },
-          "upvotes": "3",
-          "logprobs": null,
-          "response": {
-            "text": "A service-based business owner is seeking reliable alternatives to Stripe for handling monthly recurring credit card payments. They've faced issues with Stripe's chargeback process and had their Square account deactivated after processing only two invoices. The ideal solution should allow for invoicing and auto-charges, minimize disputes, and avoid unnecessary fund holds or account shutdowns. They are open to various payment processing options, including traditional and innovative solutions."
-          },
-          "postcontent": "Hi everyone,\n\nI'm looking for advice on the **best alternative to Stripe** for my service-based business. Here’s the situation:\n\n* I handle **monthly recurring payments** from customers who prefer paying by **credit card**.\n* My customers provide me with their credit card information, and I need a solution to **send invoices** or **auto-charge their cards monthly** without issues.\n\n# Problems I’ve Faced:\n\n1. **Stripe**: I’ve lost countless disputes despite providing proof of service, and I’m fed up with their **chargeback process**.\n2. **Square**: I processed just **two paid invoices totaling $180**, and they **deactivated my account**, holding my money for **90 days**!\n\nI’m desperate to find a platform that:\n\n* Allows **invoicing** and **recurring auto-charges**.\n* Has **minimal chargebacks or disputes**, or at least a fair dispute resolution process. or **BEST: no disputes at all**\n* Doesn’t hold funds unnecessarily or shut down accounts without notice.\n\nI’m open to hearing about **any reliable options**, whether they are traditional payment processors, blockchain-based platforms, or other innovative solutions.\n\n**Please help!** Any advice would mean the world to me right now.\n\nThank you in advance for your suggestions!",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Based on the Reddit post, the core problem is finding a *paying* market for software solutions and validating ideas *effectively* without relying solely on cold outreach or hoping for referrals. The user has building skills but struggles with the market/sales side.\n\nHere is a business idea addressing this for multiple businesses:\n\n**Business Idea: Tech Opportunity Scoping & Validation Service**\n\n**Concise Description:**\n\nThis service partners with small to medium-sized businesses (or specific departments within larger ones) who suspect they have operational inefficiencies or data challenges but lack the in-house expertise to define the problem precisely or determine if a software solution is viable and valuable. Instead of building speculative software or relying on the business to articulate a technical need, the service provides a structured process to:\n\n1.  **Deeply understand** the client's current workflows and pain points.\n2.  **Clearly define** the root problem(s) from a business perspective.\n3.  **Research and propose** potential technology-based solutions (could be custom software, automation, data analysis, etc.).\n4.  **Validate** the proposed solution(s) directly with the client's stakeholders or target users through interviews, mockups, or small proof-of-concepts to gauge demand, usability, and willingness-to-pay *before* full development.\n\nThis service delivers to the client not just potential ideas, but a *validated problem definition* and a *scoped opportunity* ready for technical execution, effectively generating qualified, paying leads for custom software development (either by the service provider, if they build, or by external developers/agencies). It bypasses blind outreach by starting with businesses who *know* they have problems but need help defining and validating the tech solution, providing a pipeline of problems *worth solving* for a paying market."
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1ibkmzd/business_number_being_used_to_spam_call_people/",
-          "date": "2025-01-28T05:28:30.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Caller ID Protection and Reputation Management Service**\n\n**Description:** Create a comprehensive service that helps businesses protect their caller ID and manage their reputation against spoofing and spam calls. This service would offer the following features:\n\n1. **Caller ID Verification Tool:** Implement a system that allows businesses to register their numbers with a trusted network, improving their chances of being recognized as legitimate by consumers' phone carriers and reducing the chance of spoofing.\n\n2. **Monitoring and Alerts:** Offer real-time monitoring of calls made from the business’s number. Whenever a spoofed call is detected, the business is notified immediately, allowing them to take preventive action (like notifying clients or issuing public statements).\n\n3. **Reputation Management:** Provide a platform that allows businesses to respond to negative reviews or comments regarding spam calls. This can include automated responses to FAQs about spam calls, educating callers on what to do if they receive a call from a spoofed number.\n\n4. **Customer Education Campaigns:** Develop educational materials and campaigns that businesses can share with their customers. This includes tips on identifying spoofed calls and reassurances that their actual business numbers are legitimate and safe to call.\n\n5. **Legal Support:** Offer guidance or access to legal support for businesses that are facing significant issues due to spoofing, helping them take action against malicious actors.\n\nThis service would not only alleviate the stress faced by businesses dealing with spoofing but also help improve their brand reputation and customer trust.",
-            "refusal": null
-          },
-          "upvotes": "7",
-          "logprobs": null,
-          "response": {
-            "text": "The author expresses frustration over receiving multiple angry calls from people who are being spammed by scammers using their business phone number. They worry about potential negative reviews and have not found effective solutions to the issue. The author seeks input from others who may experience similar problems with their business numbers."
-          },
-          "postcontent": "So I just got off the phone with the umpteenth person who has gotten a spam call from someone spoofing with our business number, and I’m just waiting for the day that we start getting negative reviews based on this.\n\nWe’ve gotten angry calls from people for a number of scams, and apparently it’s repeated calls to them.\n\nI feel bad, cos those calls make me mad too, but I get tired of getting cussed out several times a week, and having to explain what spam calls are. I haven’t found any solutions online that look like they’d actually solve the problem.\n\nDoes anyone else get this with their business numbers?",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Okay, here is a business idea based on the Reddit post:\n\n**Business Idea: The \"Solo Finance Fix & Setup\" Service**\n\n**Description:** Offer a specialized service for solo entrepreneurs and small business owners (like single-member LLCs) who have mixed personal and business finances and lack a clear expense tracking system. This service would involve:\n\n1.  **Retrospective Cleanup:** Analyzing past bank/credit card statements (both personal and business) to identify and categorize business vs. personal expenses for a specific period (e.g., the last 12-18 months), creating a categorized summary.\n2.  **Financial Separation Guidance:** Providing clear, actionable steps and resources to immediately stop mingling funds and establish distinct personal and business financial behaviors (using dedicated accounts, proper owner draws/distributions).\n3.  **Simple System Setup:** Recommending and helping implement an easy-to-use, ongoing expense tracking system tailored for solos (e.g., setting up a free/low-cost bookkeeping software like Wave, or providing a simple, effective spreadsheet template and training).\n4.  **Basic Education:** Offering a quick overview of *why* this separation and tracking is crucial for taxes, profitability, and legal compliance (especially for LLCs), without overwhelming the client with complex accounting jargon.\n\nThis service provides a fixed-scope solution to clean up the past mess, correct the fundamental problem of commingling, and establish simple, sustainable habits for the future, specifically targeting the overwhelmed, non-finance-minded solo operator."
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1i43orw/im_a_small_business_owner_which_software_should_i/",
-          "date": "2025-01-18T17:06:49.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Simplified Invoicing and Payment Management SaaS**\n\n**Description**: Develop a cloud-based invoicing and payment management software tailored for small businesses generating modest annual revenues (e.g., under $500k). The platform would enable users to create, send, and manage invoices seamlessly, integrating payment processing to facilitate immediate payments. Key features would include:\n\n1. **Template-Based Invoicing**: User-friendly templates to create professional invoices without the complexity of spreadsheets.\n  \n2. **Integrated Payment Solutions**: Collaboration with payment processing providers to offer various payment methods (credit/debit cards, bank transfers) with transparent fee structures, ensuring users understand costs per transaction.\n\n3. **Automated Reminders**: Send automatic reminders for overdue invoices, reducing the need for follow-up communication.\n\n4. **Reporting Dashboard**: Real-time analytics to track income, outstanding invoices, and payment histories, helping users manage cash flow effectively.\n\n5. **Affordable Pricing Model**: A tiered subscription model with a low monthly fee, avoiding a pay-per-transaction fee structure, which would make managing costs easier for users.\n\nBy focusing on small businesses that currently rely on Excel or less efficient methods for invoicing, this service would cater to their need for efficiency, clarity in payment processing, and ultimately help improve their cash flow management.",
-            "refusal": null
-          },
-          "upvotes": "38",
-          "logprobs": null,
-          "response": {
-            "text": "The user generates approximately $100,000 in annual revenue without payroll and currently uses Excel for invoicing. They seek recommendations for more efficient invoicing and payment solutions and inquire about potential fees associated with receiving payments of varying amounts."
-          },
-          "postcontent": "I generate about $100k in annual revenue and don’t have payroll. What software would you recommend, and why? Currently, I create invoices using Excel, but I’m looking for a more efficient solution to send invoices and receive payments seamlessly.\n\nAlso, is there a fee every time I receive a payment? For example, if I receive $20k, $10k, $30k, or $40k?",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Based on the Reddit post, a business idea addressing these challenges could be:\n\n**Managed Global Project Delivery Service**\n\n**Description:** This service acts as an intermediary agency providing end-to-end management for businesses looking to outsource projects globally. Instead of just connecting clients to offshore vendors, the service takes the client's detailed brief (including context and 'why'), selects and vets the *right* global team from their trusted network (ensuring quality over just cheapness), and then provides a dedicated project manager to handle all communication, cultural nuances, scope management, quality control, and timeline adherence with the offshore team on the client's behalf. This allows clients to leverage global talent effectively without becoming de facto project managers, ensuring the work gets done right the first time and truly freeing up their time."
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1i1euah/small_business_automation_can_someone_help_me/",
-          "date": "2025-01-15T03:54:19.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Comprehensive Virtual Receptionist and Automation Service**\n\n**Description:**\n\nCreate a subscription-based service that offers businesses a fully customizable virtual receptionist and automations platform tailored to their specific needs. This service would integrate an intelligent chatbot capable of handling customer inquiries, booking appointments, and providing information about products and services. \n\n**Key Features:**\n\n1. **Custom Chatbots:** Develop AI-driven chatbots that can be tailored to individual business needs, trained on specific FAQs, and able to engage with clients when human agents are unavailable.\n\n2. **Call Handling Automation:** Implement an automated call routing system that ensures every incoming call is answered or redirected efficiently, minimizing missed opportunities.\n\n3. **Booking and Scheduling Integration:** Provide integrated booking calendars that allow customers to book appointments directly through chat or voice interactions, synchronizing with the business owner's calendar to prevent double bookings.\n\n4. **Lead Capture and Follow-Up:** Automate lead capture through various channels and set up follow-up sequences, ensuring that potential customers are nurtured and converting effectively.\n\n5. **Testing and Feedback Loop:** Offer a beta version for a limited number of businesses to test the service and provide feedback, continuously refining and enhancing the platform based on user experiences.\n\n6. **Analytics Dashboard:** Provide users with insights into customer interactions, response rates, and booking conversions to help them optimize their communication strategies.\n\nThis service would not only help businesses avoid missed opportunities but also streamline their operations, allowing owners to focus on delivering services rather than managing communication.",
-            "refusal": null
-          },
-          "upvotes": "3",
-          "logprobs": null,
-          "response": {
-            "text": "The author is seeking to enhance their business through automation by developing a smart chatbot and a virtual receptionist for their website, which helps manage missed calls and improve customer conversion. They mention that these tools allow for better communication and efficiency while they are busy. Additionally, they are looking for business owners to test and provide feedback on a new role-playing chatbot designed to further refine its capabilities. Interested testers can reach out at the provided phone number."
-          },
-          "postcontent": "So I am looking for ways to bring some automations to my business by leveraging the technology available and I started with programing a smart chat bot for my website that literally is an agent who knows everything about my company which is nice when I am not around.  Then I took it further and thought that I could make automated virtual receptionist for my company which I did which makes life better because when I am on a job I miss probably a few calls a day and then when I try to reach them back, they usually have already started to talk to other competitors and then it gets challenging from there.  So this has been my solution and now I never miss a call and started building automations to even sell for me on my products and services that I offer and now even can send a booking link to them by text and email and this has allowed me to convert better and not miss an opportunity that comes my way.  I say all this because I created another on that is used strictly to role play with and I need testers to help me refine and debug it.  Essentially I just need other business owners to role play with my agent and provide any feedback that would make it better or enhance it.  \n\nIf you're willing to help me test it just call 1-855-449-7005.  Thanks in advance to anyone who tries it out!            ",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "text": "Based on the Reddit post, here is a business idea/service:\n\n**Business Idea/Service:** **\"IncomeFlow AI\" (or similar)**\n\n**Concise Description:**\n\nAn AI-driven subscription service providing automated financial intelligence for freelancers, contractors, and small businesses with unpredictable income. It securely connects to bank accounts to automatically track variable earnings, analyze income patterns, predict future cash flow (highlighting potential dips), and generate personalized savings recommendations for taxes, expenses, and slow periods, offering clear financial foresight without manual budgeting."
+        }
+      }
+    ],
+    "Find the Real Problem and It's cause": [
+      {
+        "json": {
+          "output": {
+            "problem": "The poster's business experienced a significant decline in client workload compared to the previous two years, causing them to question the business's direction.",
+            "cause": "Instead of focusing on direct client outreach and sales (which they hadn't needed previously and disliked due to potential rejection), the poster initially assumed a complex solution like further education or a business revamp was necessary, overlooking the simpler approach of directly asking for more work."
+          }
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1hzlhcg/customer_emailcommunication_tracker/",
-          "date": "2025-01-12T20:17:33.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Unified Customer Communication Dashboard**\n\n**Description:**\nCreate a cloud-based customer communication platform specifically designed for small to medium retail businesses. The Unified Customer Communication Dashboard would streamline all inquiries from various channels (email, social media, website chat, etc.) into a single, user-friendly interface. Key features would include:\n\n1. **Centralized Inboxes**: Consolidate all customer messages into one inbox for associates to manage, reducing the need for a generic email.\n\n2. **Conversation Tracking**: Automatically log all customer interactions and categorize them based on status (new, in-progress, completed) to ensure no inquiry goes unanswered.\n\n3. **Task Management**: Include a simple task assignment feature where messages can be assigned to specific associates, allowing for better accountability and follow-up.\n\n4. **Response Templates**: Provide customizable templates for common inquiries, making response times faster while ensuring consistency in communication.\n\n5. **Analytics Dashboard**: Offer insights and reporting tools on response times, common inquiries, and associate performance to help businesses improve their customer service strategies.\n\n6. **Affordable Subscription Model**: Implement a tiered subscription pricing model to suit different budgets, allowing businesses to pay only for what they need.\n\nThis service would not only address the current issues faced by the Reddit user but also attract other similar businesses looking for a more efficient way to manage customer communications.",
-            "refusal": null
-          },
-          "upvotes": "3",
-          "logprobs": null,
-          "response": {
-            "text": "A retail store owner seeks recommendations for a more effective customer communication system, currently using a generic email for inquiries. The existing method via Mozilla Thunderbird is inefficient, with associates struggling to organize completed conversations. Although the owner is frugal, they are open to investing in a solution to better track inquiries and enhance customer experience."
-          },
-          "postcontent": "What system do you use for customer communication?\n\nLooking for recommendations on CSR communication. I have a retail store with one full time retail manager and a handful of seasonal and part time associates. \n\nWebsite inquiries for retail are routed to a generic email of which all associates can respond. The goal was that with a generic email (accessed from one terminal plus an iPad) customers would get responded to quickly but Mozilla Thunderbird’s interface is clunky and associates never remember to “file” completed conversations. \n\nI am frugal (hence one email address) but am willing to invest in a solution that can better track inquiries (only a handful a week) to provide a better experience. Just curious what you might use that works well. ",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "output": {
+            "problem": "The user is addressing the common entrepreneurial challenge of identifying a unique and potentially highly successful ('million dollar') product idea.",
+            "cause": "The post suggests this difficulty stems from entrepreneurs looking outward for inspiration (e.g., copying existing products) instead of focusing inward to solve a specific problem they have personally experienced and validated."
+          }
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1hyzgts/had_a_customer_fire_themselves_and_it_felt_good/",
-          "date": "2025-01-12T00:24:35.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: Client Relationship Management Consultancy**\n\n**Description:** Launch a consultancy that specializes in helping businesses improve their client relationship management and communication strategies. The focus would be on educating companies about the importance of establishing clear expectations, setting boundaries, and understanding when it's time to disengage from unproductive client relationships.\n\n**Services Offered:**\n\n1. **Workshops and Training:** Conduct workshops on effective communication, negotiation skills, and identifying red flags in client relationships. Provide role-playing scenarios to help businesses practice handling difficult situations.\n\n2. **Client Assessment Tools:** Develop a proprietary assessment tool that helps companies evaluate potential clients before entering into contracts. This tool would analyze factors like payment history, communication style, and past reviews.\n\n3. **Consulting Services:** Offer one-on-one consulting to help businesses create client engagement strategies tailored to their specific needs. This would include establishing protocols for responding to problematic clients and deciding when to walk away.\n\n4. **Client Relationship Coaching:** Provide coaching sessions for business owners and their teams to build their confidence in managing difficult clients and to share strategies for fostering better client relationships.\n\n5. **Networking Systems:** Create a network for businesses to share experiences and insights about their clients, enabling collective intelligence on which clients may pose challenges.\n\nThis service would empower businesses to recognize the value of their time and resources and encourage them to focus on building relationships with clients that respect and appreciate their work.",
-            "refusal": null
-          },
-          "upvotes": "57",
-          "logprobs": null,
-          "response": {
-            "text": "The author had a negative experience with a new customer who previously worked with a competitor. Despite providing solutions, the customer blamed the author for their problems and consistently paid late. After a lackluster interaction at a trade show, the author stopped pursuing the customer. Later, the customer sought a price discount for new work but cited their long-term relationship with the competitor, who offered lower prices. The author felt satisfaction in the customer's frustration and is content to focus on better-paying clients."
-          },
-          "postcontent": "My work had a newer customer that we were happy to have because we knew they were working with our competition. We did some work for them and they would blame us for their problems. We would offer solutions and never hear back and to top it off they paid late. I also met the owner at a trade show and he treated me like I wasn't even there when I went to say thank you. He just looked at me blankly and ignored me. So we stopped calling.\n\nThen a half year later they send some work in. I quoted it extremely high. They asked for a price discount so they could get the job for their customer. I went down 10% knowing it was still high. Then the owner emailed back about his 25 year relationship with our competitor and how they would do it at half the price. \n\nI felt happy wasting their time and money. Also, if our competitor is so great, why did they start sending us work? \n\nI'm glad we won't hear from them. I have many other customers that are fantastic to work with and pay on time. ",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "output": {
+            "problem": "The poster is struggling to identify a viable business niche and validate a specific software idea, failing to find a target market that both has a problem worth solving and the financial capacity/willingness to pay for a solution.",
+            "cause": "Current efforts focus on outreach to potential customers (mass cold emails, LinkedIn DMs) for idea validation, which have yielded almost no responses, indicating issues with the outreach strategy, targeting, or the perceived value of the proposed solution. Furthermore, the poster observes problems among people who lack the budget for solutions and expresses apprehension about the consistent outreach needed for client acquisition."
+          }
         }
       },
       {
         "json": {
-          "url": "https://www.reddit.com/r/smallbusiness/comments/1hnqv0q/attention_business_owners_using_benchco/",
-          "date": "2024-12-28T06:31:18.000+08:00",
-          "index": 0,
-          "output": "yes",
-          "message": {
-            "role": "assistant",
-            "content": "**Business Idea: \"BookKeeper Connect\" - A Personalized Bookkeeping Transition Service**\n\n**Description:**\n\nBookKeeper Connect is a service designed to assist businesses, particularly those affected by the closure of Bench.co, in seamlessly transitioning to new bookkeeping services. This platform would serve as a one-stop-shop for businesses in need of alternative bookkeeping solutions while addressing their specific needs.\n\n**Key Features:**\n\n1. **Transition Consultation**: Personalized consultations to assess client needs, preferences, and pain points. This will help businesses understand what they should look for in a new bookkeeping service.\n\n2. **Curated Provider Directory**: A vetted list of smaller firms and individual remote bookkeepers that offer personalized services. Businesses can browse profiles, rates, and client reviews to find the best fit for them.\n\n3. **Data Migration Support**: Assistance with securely exporting and migrating financial data from Bench.co to the new provider, ensuring that no vital information is lost in the transition.\n\n4. **Training and Onboarding**: Educational resources and onboarding support for business owners and new bookkeepers, helping them to establish effective workflows and communication channels.\n\n5. **Ongoing Support**: A subscription service for ongoing support, where businesses can get expert advice or a second opinion on their new bookkeeping practices.\n\n6. **Sustainability Focus**: Promote smaller bookkeeping firms that prioritize eco-friendly practices, catering to businesses interested in sustainability.\n\n**Target Market:**\n\n- Small to medium-sized businesses, startups, and freelancers looking for reliable and personalized bookkeeping solutions after the Bench.co closure.\n\nBy addressing the immediate pain points of transitioning to new bookkeeping services, BookKeeper Connect would not only solve the frustration and uncertainty faced by these businesses but also foster long-term relationships with quality bookkeeping providers.",
-            "refusal": null
-          },
-          "upvotes": "8",
-          "logprobs": null,
-          "response": {
-            "text": "Bench.co is closing its bookkeeping services, giving clients until March 7, 2025, to download their financial data. Business owners are encouraged to act quickly to secure their data and explore alternative bookkeeping solutions, such as smaller firms or individual remote bookkeepers that may offer more personalized services. The author is willing to provide advice to those feeling overwhelmed by the transition. Additionally, a discussion is prompted about current bookkeeping solutions and desired improvements."
-          },
-          "postcontent": "You may have seen in your email that [Bench.co](http://Bench.co) is closing its doors for bookkeeping services. They are giving business owners until **March 7th, 2025**, at **5 PM** ET to download their financial data.\n\nDon't wait until the last minute! This is absolutely critical - your financial data is too important to risk losing. The timing couldn't be worse in the middle of the holidays and so close to year-end... and the lack of advance warning is frustrating.\n\nI know this situation will leave many business owners scrambling for a new bookkeeping solution. But don’t stress—there are excellent alternatives out there that can serve you even better!\n\nI primarily wanted to make this post to alert people of the closure (in case you missed the email) and encourage everyone to secure their data ASAP. If you're looking for a reliable path forward, I'd recommend exploring smaller firms or individual remote bookkeepers. Many offer highly personalized services at a wide range of prices - with services often far better quality than Bench.\n\nI'm not here to promote my business, but if you're feeling overwhelmed or don't know where to start, I'm happy to chat and share advice based on my experience running a remote bookkeeping and accounting firm. At the end of the day, I hope all Bench clients find a bookkeeping service that's a better fit: personalized, reliable, and capable of supporting your business long-term.\n\n  \nTo add a question and make sure I'm following the sub rules: \n\nWhat are you currently doing for your bookkeeping and accounting? How did you find that solution and what do you wish was different about it?",
-          "finish_reason": "stop",
-          "subreddit_subscribers": 1944498
+          "output": {
+            "problem": "The business owner has failed to track any business expenses over the past year and has mixed personal and business finances across separate bank accounts.",
+            "cause": "The owner admittedly did not perform any bookkeeping or expense tracking since starting the business. Furthermore, they commingled funds by paying for personal items from the business account and business items from the personal account, neglecting basic financial separation."
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "problem": "The poster's initial attempt at outsourcing a project resulted in significant difficulties, poor quality deliverables, and unexpected project management workload, contrary to their expectation of a simple and cost-saving process.",
+            "cause": "The problems stemmed from the poster's naive assumptions: underestimating the crucial role of explicit communication (beyond written briefs), failing to anticipate the need for active project management despite outsourcing, and initially selecting the cheapest vendor which led to subpar work requiring costly rework."
+          }
+        }
+      },
+      {
+        "json": {
+          "output": {
+            "problem": "Freelancers struggle with managing finances, predicting cash flow, and saving appropriately for taxes and slow periods due to income instability.",
+            "cause": "The primary cause is the inherent unpredictability of freelance income. Additionally, existing generic financial apps are perceived as inadequate for freelance needs, and manual budgeting methods are considered a hassle."
+          }
         }
       }
     ]
@@ -1053,6 +1063,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-26T08:24:45.000Z",
-  "versionId": "8c43b6cb-914c-4717-b37d-2540d3fd343d"
+  "updatedAt": "2025-04-26T10:59:15.000Z",
+  "versionId": "59140494-a20c-4f52-aa01-15158042dd58"
 }
