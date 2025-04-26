@@ -643,17 +643,19 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "vZZWpIysmyLOCCOh"
   },
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        18
+        20
       ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-03T17:36:43.000Z",
-  "versionId": "079b9d48-2fa0-4f05-9acf-fe3106c6f339"
+  "updatedAt": "2025-04-26T16:17:16.000Z",
+  "versionId": "47a8c4cb-0bd4-4089-9540-80c49e5e6abf"
 }
