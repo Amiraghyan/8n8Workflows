@@ -163,11 +163,6 @@
       "main": [
         [
           {
-            "node": "Find Proper Solutions",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Find the Real Problem and It's cause",
             "type": "main",
             "index": 0
@@ -185,6 +180,11 @@
         [
           {
             "node": "Combine Sumary, solution and posts.",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find Proper Solutions",
             "type": "main",
             "index": 0
           }
@@ -233,7 +233,7 @@
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
         -2620,
-        430
+        205
       ],
       "typeVersion": 1
     },
@@ -285,7 +285,7 @@
       "type": "n8n-nodes-base.if",
       "position": [
         -1960,
-        430
+        205
       ],
       "typeVersion": 2.2
     },
@@ -301,7 +301,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
         -1740,
-        255
+        80
       ],
       "typeVersion": 1.7
     },
@@ -320,7 +320,7 @@
       "type": "n8n-nodes-base.reddit",
       "position": [
         -2400,
-        430
+        205
       ],
       "typeVersion": 1,
       "credentials": {
@@ -333,11 +333,11 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=<Reddit post>\n{{ $json.content }}\n</Reddit post>",
+        "text": "=<Reddit Post Title>\n{{ $('Insert Posts to Database.').item.json.title }}\n</Reddit Post Title>\n<Reddit post>\n{{ $('Insert Posts to Database.').item.json.content }}\n</Reddit post>\n<Indentified Problem>\n{{ $json.output.problem }}\n</indentified Problem>\n<Indentified Cause>\n{{ $json.output.cause }}\n</indentified Cause>",
         "messages": {
           "messageValues": [
             {
-              "message": "Based on the following Reddit post, suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges."
+              "message": "You are provided with reddit post with it's title. We have also tried to find the problem at hand and the cause. The aim is to come up with the most effective and feasible solution for the businesses., suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges."
             }
           ]
         }
@@ -345,8 +345,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        -44,
-        580
+        340,
+        160
       ],
       "id": "f9875ad0-6911-447b-8721-792a9180a724",
       "name": "Find Proper Solutions"
@@ -411,7 +411,7 @@
       "typeVersion": 3.4,
       "position": [
         -2180,
-        430
+        205
       ],
       "id": "11b69e58-ccff-47af-9c41-6793706f04d9",
       "name": "Fetch only required fields"
@@ -434,7 +434,7 @@
       "typeVersion": 3.4,
       "position": [
         -704,
-        505
+        280
       ],
       "id": "1ccdf18a-40eb-4799-9059-d31db811af37",
       "name": "Set subreddit database id"
@@ -482,7 +482,7 @@
       "typeVersion": 3.1,
       "position": [
         -1364,
-        430
+        205
       ],
       "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
       "name": "Merge post with AI analytics"
@@ -514,8 +514,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1140,
-        440
+        -1144,
+        205
       ],
       "id": "824fc1b9-1ed9-400f-8b2b-906e9b747dfc",
       "name": "Filter business related posts"
@@ -583,7 +583,7 @@
       "typeVersion": 2.6,
       "position": [
         -924,
-        505
+        280
       ],
       "id": "7865a5bc-fae1-4f7b-9bdf-975917ebeebb",
       "name": "Insert or update Subreddits",
@@ -604,7 +604,7 @@
       "typeVersion": 3.1,
       "position": [
         -484,
-        430
+        205
       ],
       "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
       "name": "Merge subreddit DB ID with reddit post"
@@ -733,7 +733,7 @@
       "typeVersion": 2.6,
       "position": [
         -264,
-        430
+        205
       ],
       "id": "53ec2970-2849-4717-a0a3-484f17604bd8",
       "name": "Insert Posts to Database.",
@@ -777,8 +777,8 @@
       "name": "Combine Sumary, solution and posts.",
       "type": "n8n-nodes-base.merge",
       "position": [
-        332,
-        430
+        700,
+        160
       ],
       "typeVersion": 3
     },
@@ -856,8 +856,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        552,
-        305
+        928,
+        105
       ],
       "id": "19c0d95b-2426-4c1a-9a62-3c4df44e734d",
       "name": "Add or update post summaries",
@@ -940,8 +940,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        552,
-        505
+        928,
+        305
       ],
       "id": "3304bd51-a0d8-4397-ac64-869251932dc5",
       "name": "Add or update solutions to posts",
@@ -960,8 +960,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1720,
-        480
+        -1652,
+        300
       ],
       "id": "e4bddcc9-85a9-4236-b251-04d51f8ac98d",
       "name": "Google Gemini Chat Model1",
@@ -980,6 +980,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-26T11:38:24.000Z",
-  "versionId": "422fca45-a305-4c6b-8193-d8644fc6b942"
+  "updatedAt": "2025-04-27T20:39:25.000Z",
+  "versionId": "996ae4ee-31e4-4208-8e0b-61fbff25a7f9"
 }
