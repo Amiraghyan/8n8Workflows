@@ -90,11 +90,6 @@
             "node": "Find Proper Solutions",
             "type": "ai_languageModel",
             "index": 0
-          },
-          {
-            "node": "Find the Real Problem and It's cause",
-            "type": "ai_languageModel",
-            "index": 0
           }
         ]
       ]
@@ -217,6 +212,17 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find the Real Problem and It's cause",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-14T08:22:55.050Z",
@@ -308,7 +314,7 @@
     {
       "parameters": {
         "operation": "search",
-        "subreddit": "Entrepreneur",
+        "subreddit": "smallbusiness",
         "keyword": "looking for a solution",
         "limit": 20,
         "additionalFields": {
@@ -320,7 +326,7 @@
       "type": "n8n-nodes-base.reddit",
       "position": [
         -2400,
-        205
+        200
       ],
       "typeVersion": 1,
       "credentials": {
@@ -441,14 +447,14 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.5-pro-exp-03-25",
+        "modelName": "models/gemini-2.0-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -16,
-        300
+        400,
+        380
       ],
       "id": "00c0edae-9ca4-4079-8b5e-f923812a986a",
       "name": "Google Gemini Chat Model",
@@ -940,8 +946,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        928,
-        305
+        920,
+        300
       ],
       "id": "3304bd51-a0d8-4397-ac64-869251932dc5",
       "name": "Add or update solutions to posts",
@@ -971,6 +977,26 @@
           "name": "Google Gemini(PaLM) Api account 3"
         }
       }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-pro-exp-03-25",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        300
+      ],
+      "id": "dd453305-0ec4-47e3-b9c2-c395854f84ab",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -980,6 +1006,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-27T20:39:25.000Z",
-  "versionId": "996ae4ee-31e4-4208-8e0b-61fbff25a7f9"
+  "updatedAt": "2025-04-27T22:44:39.000Z",
+  "versionId": "1f8c0722-bf45-4a1b-9845-d40adc5d2606"
 }
