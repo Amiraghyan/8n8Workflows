@@ -346,16 +346,17 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1745923051,
+        "lastTimeChecked": 1745930319,
         "possibleDuplicates": [
-          "196811f8e4e1a57a",
-          "196811c13e9b1758"
+          "196819892f01cff9",
+          "19681930a765a09f",
+          "196818e785f36f98"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-26T16:16:55.000Z",
+  "updatedAt": "2025-04-29T11:55:06.000Z",
   "versionId": "22d341e2-6e51-4f7b-80ea-e794658757eb"
 }
