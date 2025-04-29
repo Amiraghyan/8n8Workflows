@@ -1076,17 +1076,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        12
+        14
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        12
+        14
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-28T14:53:16.000Z",
+  "updatedAt": "2025-04-29T11:54:23.000Z",
   "versionId": "abb4aa78-f6bf-4139-a06c-2ba9ea0e8aa0"
 }
