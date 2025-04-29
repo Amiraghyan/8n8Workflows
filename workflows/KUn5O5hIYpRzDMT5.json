@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "Filter Unposted Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "LinkedIn": {
       "main": [
         [
@@ -34,29 +23,13 @@
         ]
       ]
     },
-    "Search Item": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Extract Meta": {
       "main": [
         [
           {
-            "node": "Search Item",
+            "node": "Filter Unposted Items",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -553,51 +526,6 @@
     },
     {
       "parameters": {
-        "operation": "search",
-        "base": {
-          "__rl": true,
-          "value": "appM6oNGs4Ya0Skzb",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Automator",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb"
-        },
-        "table": {
-          "__rl": true,
-          "value": "tblCpPSrPlpAvUaKN",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Post",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb/tblCpPSrPlpAvUaKN"
-        },
-        "filterByFormula": "={{ $json.Post }}",
-        "options": {
-          "fields": [
-            "Title",
-            "Url",
-            "Post",
-            "Date",
-            "LDone"
-          ]
-        }
-      },
-      "id": "0cbb7631-49f4-47ce-8303-ce18b424d7aa",
-      "name": "Search Item",
-      "type": "n8n-nodes-base.airtable",
-      "position": [
-        -1100,
-        25
-      ],
-      "typeVersion": 2.1,
-      "alwaysOutputData": true,
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "OMqkkCQonnsFxZRZ",
-          "name": "Airtable Personal Access Token account 2"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
         "operation": "create",
         "base": {
           "__rl": true,
@@ -778,18 +706,6 @@
         100
       ],
       "typeVersion": 1.2
-    },
-    {
-      "parameters": {},
-      "id": "c02ae82a-eee6-4ea8-b7fb-549df434ff4a",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "position": [
-        -880,
-        100
-      ],
-      "typeVersion": 3,
-      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -1134,6 +1050,35 @@
       ],
       "id": "45947809-2b8a-46b8-92eb-9378d27745bc",
       "name": "Push notification to my phone"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -400,
+        -580
+      ],
+      "id": "d6e2b818-17b1-4217-849f-5d785ed3d4e7",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1154,6 +1099,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-25T16:57:49.000Z",
-  "versionId": "b4c68216-e5e7-4598-bcae-a94fe10c9165"
+  "updatedAt": "2025-04-29T19:07:53.000Z",
+  "versionId": "d302bdc7-99f2-4fcb-b4c4-2c2654c680e7"
 }
