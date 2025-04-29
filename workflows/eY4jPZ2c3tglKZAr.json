@@ -650,12 +650,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        14
+        16
       ]
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-26T16:17:16.000Z",
+  "updatedAt": "2025-04-29T11:56:04.000Z",
   "versionId": "47a8c4cb-0bd4-4089-9540-80c49e5e6abf"
 }
