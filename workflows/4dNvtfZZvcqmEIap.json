@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "AI Agent": {
       "main": [
         [
@@ -55,6 +44,28 @@
           }
         ]
       ]
+    },
+    "Authentication Endpoint": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Endpoint": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-29T12:07:53.152Z",
@@ -66,24 +77,8 @@
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "chat",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        0,
-        0
-      ],
-      "id": "1c833e16-040d-4945-a59f-2021ff597406",
-      "name": "Webhook",
-      "webhookId": "30f6e0f2-0841-445d-9f8c-385a17c73865"
-    },
-    {
-      "parameters": {
         "promptType": "define",
+        "text": "dfg",
         "options": {
           "systemMessage": "You are a helpful assistant"
         }
@@ -91,7 +86,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.9,
       "position": [
-        220,
+        252,
         0
       ],
       "id": "48ae8238-9f15-4799-8825-67fb44a830b2",
@@ -105,8 +100,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.2,
       "position": [
-        580,
-        0
+        660,
+        100
       ],
       "id": "d6f3cb15-9d38-4bfe-a094-741a711d5fea",
       "name": "Respond to Webhook"
@@ -116,8 +111,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        240,
-        200
+        340,
+        220
       ],
       "id": "01dd0838-f341-4b0e-a32c-7fdd760f7643",
       "name": "Simple Memory"
@@ -130,8 +125,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        100,
-        200
+        220,
+        220
       ],
       "id": "175646f8-0134-4c19-b616-d46ef14398a1",
       "name": "Brain",
@@ -147,11 +142,83 @@
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1,
       "position": [
-        400,
-        200
+        460,
+        220
       ],
       "id": "48147351-9164-4d9e-8a74-e41535f340fe",
       "name": "Think"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "2f6db7c3-0eab-4029-b511-d97a123e74da"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        460
+      ],
+      "id": "534191d8-1216-4d4a-9721-0fe836b07332",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "multi-agent/auth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        460
+      ],
+      "id": "1b7b1ab8-bf28-45dd-801a-e554dd56bc43",
+      "name": "Authentication Endpoint",
+      "webhookId": "15a881a1-7a49-4cf2-a1f9-0aae0afa5c4f"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        100
+      ],
+      "id": "1c833e16-040d-4945-a59f-2021ff597406",
+      "name": "Chat Endpoint",
+      "webhookId": "30f6e0f2-0841-445d-9f8c-385a17c73865"
     }
   ],
   "pinData": {},
@@ -161,6 +228,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-29T12:09:17.000Z",
-  "versionId": "d5d0ec79-1a42-464e-a3d8-7bc3469f4b58"
+  "updatedAt": "2025-04-29T14:57:50.000Z",
+  "versionId": "2e10b86e-1cb1-4008-9ae3-2f1bd5e9eab0"
 }
