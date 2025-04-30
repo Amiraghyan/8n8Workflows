@@ -73,7 +73,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "AddictMultiAgentSoftware",
   "nodes": [
     {
       "parameters": {
@@ -228,6 +228,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-29T14:57:50.000Z",
-  "versionId": "2e10b86e-1cb1-4008-9ae3-2f1bd5e9eab0"
+  "updatedAt": "2025-04-30T07:28:51.000Z",
+  "versionId": "596e72ec-faf0-4129-96d0-d5397aa3e2e1"
 }
