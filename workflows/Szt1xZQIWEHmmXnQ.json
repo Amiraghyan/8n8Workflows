@@ -34,17 +34,6 @@
         ]
       ]
     },
-    "find_video_data1": {
-      "main": [
-        [
-          {
-            "node": "if_longer_than_3_",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "loop_over_items1": {
       "main": [
         [
@@ -56,7 +45,7 @@
         ],
         [
           {
-            "node": "find_video_data1",
+            "node": "find_video_data",
             "type": "main",
             "index": 0
           }
@@ -141,6 +130,17 @@
         [
           {
             "node": "get_videos1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "find_video_data": {
+      "main": [
+        [
+          {
+            "node": "if_longer_than_3_",
             "type": "main",
             "index": 0
           }
@@ -231,37 +231,6 @@
         -80
       ],
       "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "url": "https://www.googleapis.com/youtube/v3/videos?",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "key",
-              "value": "={{ $env[\"GOOGLE_API_KEY\"] }}"
-            },
-            {
-              "name": "id",
-              "value": "={{ $json.id.videoId }}"
-            },
-            {
-              "name": "part",
-              "value": "contentDetails, snippet, statistics"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "d8f13162-2481-4824-a594-9bd309c8d6d6",
-      "name": "find_video_data1",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        940,
-        640
-      ],
-      "typeVersion": 4.2
     },
     {
       "parameters": {
@@ -402,7 +371,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const workflowStaticData = $getWorkflowStaticData('global');\n\nconst lastExecution = workflowStaticData.lastExecution;\n\nreturn lastExecution;"
+        "jsCode": "const workflowStaticData = $getWorkflowStaticData('global');\n\nconst lastExecution = workflowStaticData.lastExecution;\n\nconsole.log(\"Last Execution\" + lastExecution)\nreturn lastExecution;"
       },
       "id": "f73795b2-eeb0-4185-9c35-a59cfb74e03d",
       "name": "retrieve_data_from_memory1",
@@ -509,15 +478,58 @@
       ],
       "id": "f96db246-7808-45cb-9433-ea45ae1d3ec4",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/videos?",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "youTubeOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $json.id.videoId }}"
+            },
+            {
+              "name": "part",
+              "value": "contentDetails, snippet, statistics"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "49257189-dfbf-4732-ae3f-d5540ecd684e",
+      "name": "find_video_data",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        940,
+        640
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "youTubeOAuth2Api": {
+          "id": "2xaDwzk3U2ocGJRb",
+          "name": "YouTube account"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "search_term": null
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-30T15:38:44.000Z",
-  "versionId": "5ea408e0-ca79-4bee-b0fa-09f725374da5"
+  "updatedAt": "2025-04-30T18:26:10.000Z",
+  "versionId": "5a60ce9e-efa1-4696-bd57-1e98f90b4e7f"
 }
