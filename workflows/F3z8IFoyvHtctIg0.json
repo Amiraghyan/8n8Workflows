@@ -1076,12 +1076,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        10
+        14
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        10
+        12
       ]
     }
   },
