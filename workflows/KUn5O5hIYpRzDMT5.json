@@ -1,39 +1,6 @@
 {
   "active": false,
   "connections": {
-    "LinkedIn": {
-      "main": [
-        [
-          {
-            "node": "Update L Status",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Create Item": {
-      "main": [
-        [
-          {
-            "node": "LinkedIn",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Extract Meta": {
-      "main": [
-        [
-          {
-            "node": "Filter Unposted Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Crawl HN Home": {
       "main": [
         [
@@ -45,44 +12,16 @@
         ]
       ]
     },
-    "Visit GH Page": {
+    "Extract Meta": {
       "main": [
         [
           {
-            "node": "Convert HTML To Markdown",
+            "node": "Fetch all posts",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Filter Errored": {
-      "main": [
-        [
+          },
           {
-            "node": "Create Item",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Update L Status": {
-      "main": [
-        [
-          {
-            "node": "Push notification to my phone",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "Crawl HN Home",
+            "node": "Filter Unposted Items",
             "type": "main",
             "index": 0
           }
@@ -100,11 +39,44 @@
         ]
       ]
     },
+    "Visit GH Page": {
+      "main": [
+        [
+          {
+            "node": "Convert HTML To Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Convert HTML To Markdown": {
       "main": [
         [
           {
             "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Errored": {
+      "main": [
+        [
+          {
+            "node": "Log post to sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn": {
+      "main": [
+        [
+          {
+            "node": "Update status",
             "type": "main",
             "index": 0
           }
@@ -122,23 +94,23 @@
         ]
       ]
     },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Crawl HN Home",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Google Gemini Chat Model": {
       "ai_languageModel": [
         [
           {
             "node": "Basic LLM Chain",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Structured Output Parser": {
-      "ai_outputParser": [
-        [
-          {
-            "node": "Basic LLM Chain",
-            "type": "ai_outputParser",
             "index": 0
           }
         ]
@@ -155,22 +127,22 @@
         ]
       ]
     },
-    "Check for unposted posts": {
-      "main": [
+    "Structured Output Parser": {
+      "ai_outputParser": [
         [
           {
-            "node": "Airtable",
-            "type": "main",
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
             "index": 0
           }
         ]
       ]
     },
-    "Airtable": {
+    "Check for unposted posts": {
       "main": [
         [
           {
-            "node": "Sort",
+            "node": "Fetch unposted posts",
             "type": "main",
             "index": 0
           }
@@ -203,14 +175,58 @@
       "main": [
         [
           {
-            "node": "Update L Status1",
+            "node": "Update status1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Update L Status1": {
+    "Update status": {
+      "main": [
+        [
+          {
+            "node": "Push notification to my phone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log post to sheets": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch all posts": {
+      "main": [
+        [
+          {
+            "node": "Filter Unposted Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch unposted posts": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update status1": {
       "main": [
         [
           {
@@ -241,12 +257,12 @@
           }
         }
       },
-      "id": "e18c13a1-f9ab-4bc2-97ff-6bfdc5b35641",
+      "id": "7a5d624b-ecbc-4a19-810f-ae95fecad9fd",
       "name": "Crawl HN Home",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -1540,
-        100
+        -2260,
+        320
       ],
       "executeOnce": true,
       "typeVersion": 4.2,
@@ -257,12 +273,12 @@
         "language": "python",
         "pythonCode": "# Import necessary modules\nimport asyncio\nimport micropip\n\n# Define an asynchronous function to install packages\nasync def install_packages():\n    await micropip.install(\"beautifulsoup4\")\n    await micropip.install(\"simplejson\")\n\n# Run the asynchronous package installation\nasyncio.get_event_loop().run_until_complete(install_packages())\n\n# Now, import the installed packages\nimport simplejson as json\nfrom bs4 import BeautifulSoup\n\n# Retrieve the HTML content from the first item in the input\n# Assuming n8n passes data as a list of items, each with a 'json' key\nhtml_content = items[0].get('json', {}).get('data', '')\n\n# Initialize BeautifulSoup with the HTML content\nsoup = BeautifulSoup(html_content, 'html.parser')\n\n# Initialize a list to store metadata of GitHub posts\ngithub_posts = []\n\n# Find all 'tr' elements with class 'athing submission'\nposts = soup.find_all('tr', class_='athing submission')\n\nfor post in posts:\n    post_id = post.get('id')\n    title_line = post.find('span', class_='titleline')\n    if not title_line:\n        continue  # Skip if titleline is not found\n\n    # Extract the title and URL\n    title_tag = title_line.find('a')\n    if not title_tag:\n        continue  # Skip if title tag is not found\n\n    title = title_tag.get_text(strip=True)\n    url = title_tag.get('href', '')\n\n    # Check if the URL is a GitHub link\n    if 'github.com' not in url.lower():\n        continue  # Skip if not a GitHub link\n\n    # Extract the site domain (e.g., github.com/username/repo)\n    site_bit = title_line.find('span', class_='sitebit comhead')\n    site = site_bit.find('span', class_='sitestr').get_text(strip=True) if site_bit else ''\n\n    # The subtext is in the next 'tr' element\n    subtext_tr = post.find_next_sibling('tr')\n    if not subtext_tr:\n        continue  # Skip if subtext row is not found\n\n    subtext_td = subtext_tr.find('td', class_='subtext')\n    if not subtext_td:\n        continue  # Skip if subtext td is not found\n\n    # Extract score\n    score_span = subtext_td.find('span', class_='score')\n    score = score_span.get_text(strip=True) if score_span else '0 points'\n\n    # Extract author\n    author_a = subtext_td.find('a', class_='hnuser')\n    author = author_a.get_text(strip=True) if author_a else 'unknown'\n\n    # Extract age\n    age_span = subtext_td.find('span', class_='age')\n    age_a = age_span.find('a') if age_span else None\n    age = age_a.get_text(strip=True) if age_a else 'unknown'\n\n    # Extract comments\n    comments_a = subtext_td.find_all('a')[-1] if subtext_td.find_all('a') else None\n    comments_text = comments_a.get_text(strip=True) if comments_a else '0 comments'\n\n    # Construct the Hacker News URL\n    hn_url = f\"https://news.ycombinator.com/item?id={post_id}\"\n\n    # Compile the metadata\n    post_metadata = {\n        'Post': post_id,\n        'title': title,\n        'url': url,\n        'site': site,\n        'score': score,\n        'author': author,\n        'age': age,\n        'comments': comments_text,\n        'hn_url': hn_url\n    }\n\n    # Append to the list of GitHub posts\n    github_posts.append(post_metadata)\n\n# Prepare the output for n8n\noutput = [{'json': post} for post in github_posts]\n\n# Return the output\nreturn output\n"
       },
-      "id": "c50b5dd0-1b88-4411-9334-e31ad5e135fe",
+      "id": "fbf1556f-9893-4ca8-8d2c-4489ccf54c24",
       "name": "Extract Meta",
       "type": "n8n-nodes-base.code",
       "position": [
-        -1320,
-        100
+        -2040,
+        320
       ],
       "executeOnce": true,
       "typeVersion": 2,
@@ -270,14 +286,14 @@
     },
     {
       "parameters": {
-        "jsCode": "const items = [];\n\n// Step 1: Collect all Post IDs from input1 items (those with 'id')\nconst processedPosts = new Set(\n  $input.all()\n    .filter(item => item.json.id)\n    .map(item => item.json.Post)\n);\n\n// Step 2: Iterate over all items and filter out duplicates\nfor (const item of $input.all()) {\n  \n  // Only process items without 'id' (input2 items)\n  if(!item.json.id){\n    \n    // Check if the Post ID is already processed\n    if(!processedPosts.has(item.json.Post) && item.json.Post!=undefined){\n      items.push(item);\n    }\n  }\n}\n\nreturn items;\n"
+        "jsCode": "// Get all processed IDs from Google Sheets\nconst sheetData = $('Fetch all posts').all();\nconst processedIds = sheetData.map(item => {\n  // Check both common column name variations\n  return String(item.json?.Post || item.json?.post_id || item.json?.id || \"\");\n}).filter(id => id); // Remove empty strings\n\n// Get all HN posts\nconst hnPosts = $('Extract Meta').all();\n\n// Filter to only new posts\nconst newPosts = hnPosts.filter(post => {\n  const postId = String(post.json.Post); // HN post ID is in json.Post\n  return !processedIds.includes(postId);\n});\n\n// Debug output\nconsole.log(\"Processed IDs from Sheet:\", processedIds);\nconsole.log(\"New posts to process:\", newPosts.map(p => p.json.Post));\n\nreturn newPosts;"
       },
-      "id": "5b78c6ea-6d9c-4108-86d7-38b02538270c",
+      "id": "dae9600e-cb05-4c71-bcec-5f1f3e9b5e19",
       "name": "Filter Unposted Items",
       "type": "n8n-nodes-base.code",
       "position": [
-        -660,
-        100
+        -1600,
+        320
       ],
       "typeVersion": 2
     },
@@ -286,12 +302,12 @@
         "url": "={{ $json.url }}",
         "options": {}
       },
-      "id": "5aea1fba-6801-4a7d-915f-697bc784aa9f",
+      "id": "94c19cdc-f474-4556-a8d4-253191fd62ac",
       "name": "Visit GH Page",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -440,
-        100
+        -1380,
+        320
       ],
       "typeVersion": 4.2
     },
@@ -300,12 +316,12 @@
         "html": "={{ $json.data }}",
         "options": {}
       },
-      "id": "0c0ea81d-48eb-417f-8f55-4b6b3d5b03f8",
+      "id": "d7290d68-9f59-4aa3-84b3-55398e303202",
       "name": "Convert HTML To Markdown",
       "type": "n8n-nodes-base.markdown",
       "position": [
-        -220,
-        100
+        -1160,
+        320
       ],
       "typeVersion": 1,
       "alwaysOutputData": true
@@ -335,354 +351,41 @@
         },
         "options": {}
       },
-      "id": "75cc5625-c8ac-4c50-b543-3ec75db4673f",
+      "id": "2188a6c4-2f60-4854-8de4-1a10d4970e7b",
       "name": "Filter Errored",
       "type": "n8n-nodes-base.filter",
       "position": [
-        596,
-        100
+        -344,
+        320
       ],
       "typeVersion": 2.2
     },
     {
       "parameters": {
-        "person": "OVBYEtaS6y",
+        "person": "EreOwHZxab",
         "text": "={{ $('Filter Errored').item.json.output.linkedin }}",
         "additionalFields": {}
       },
-      "id": "90bbc22e-efd6-48c1-bb81-da9e50b65274",
+      "id": "ea0f74c1-a34b-4de0-8311-deb51c0135d4",
       "name": "LinkedIn",
       "type": "n8n-nodes-base.linkedIn",
       "position": [
-        1036,
-        100
+        96,
+        320
       ],
-      "typeVersion": 1,
-      "credentials": {
-        "linkedInOAuth2Api": {
-          "id": "wiIxZs2GFT83ujv8",
-          "name": "LinkedIn account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "base": {
-          "__rl": true,
-          "value": "appM6oNGs4Ya0Skzb",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Automator",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb"
-        },
-        "table": {
-          "__rl": true,
-          "value": "tblCpPSrPlpAvUaKN",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Post",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb/tblCpPSrPlpAvUaKN"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "id": "={{ $('Create Item').item.json.id }}",
-            "LDone": true
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": true,
-              "removed": false
-            },
-            {
-              "id": "Title",
-              "displayName": "Title",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Post",
-              "displayName": "Post",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Url",
-              "displayName": "Url",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Tweet",
-              "displayName": "Tweet",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "LinkedIn",
-              "displayName": "LinkedIn",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Date",
-              "displayName": "Date",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "dateTime",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "LDone",
-              "displayName": "LDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "TDone",
-              "displayName": "TDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "status",
-              "displayName": "status",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {
-          "typecast": true
-        }
-      },
-      "id": "1ac61a1b-79e8-4b68-b652-7ac136ed39dd",
-      "name": "Update L Status",
-      "type": "n8n-nodes-base.airtable",
-      "position": [
-        1256,
-        100
-      ],
-      "typeVersion": 2.1,
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "OMqkkCQonnsFxZRZ",
-          "name": "Airtable Personal Access Token account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "create",
-        "base": {
-          "__rl": true,
-          "value": "appM6oNGs4Ya0Skzb",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Automator",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb"
-        },
-        "table": {
-          "__rl": true,
-          "value": "tblCpPSrPlpAvUaKN",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Post",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb/tblCpPSrPlpAvUaKN"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "Post": "={{ $('Filter Unposted Items').item.json.Post }}",
-            "Title": "={{ $('Filter Unposted Items').item.json.title }}",
-            "Url": "={{ $('Filter Unposted Items').item.json.url }}",
-            "Tweet": "={{ $json.output.twitter }}",
-            "LinkedIn": "={{ $json.output.linkedin }}"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "Title",
-              "displayName": "Title",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "Post",
-              "displayName": "Post",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "Url",
-              "displayName": "Url",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "Tweet",
-              "displayName": "Tweet",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "LinkedIn",
-              "displayName": "LinkedIn",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "Date",
-              "displayName": "Date",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "dateTime",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "LDone",
-              "displayName": "LDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "TDone",
-              "displayName": "TDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "status",
-              "displayName": "status",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "id": "e48c212d-21a4-4f4a-9e82-43477344470e",
-      "name": "Create Item",
-      "type": "n8n-nodes-base.airtable",
-      "position": [
-        816,
-        100
-      ],
-      "typeVersion": 2.1,
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "OMqkkCQonnsFxZRZ",
-          "name": "Airtable Personal Access Token account 2"
-        }
-      }
+      "typeVersion": 1
     },
     {
       "parameters": {
         "mode": "runOnceForEachItem",
         "jsCode": "if ($json.output.linkedin) {\n  \n  return $json;\n} else {\n\n  const parsedContent = JSON.parse($json.message.content);\n  if ($json.message.content.linkedin) {\n    return parsedContent;\n  }\n\n  console.log(\"Invalid formatting\")\n  return {}\n}"
       },
-      "id": "4cc44a85-e02b-49d9-8549-8745111b9104",
+      "id": "9fc7a5a5-a1d4-4273-a450-94d3a43927a6",
       "name": "Validate Generate Content",
       "type": "n8n-nodes-base.code",
       "position": [
-        376,
-        100
+        -564,
+        320
       ],
       "typeVersion": 2,
       "onError": "continueRegularOutput"
@@ -698,34 +401,28 @@
           ]
         }
       },
-      "id": "51bd709a-c836-4dc0-bc8e-aa6189bcac1a",
+      "id": "ac20badf-70ae-44e0-9161-31e7d735072c",
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        -1760,
-        100
+        -2480,
+        320
       ],
       "typeVersion": 1.2
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.0-flash",
+        "modelName": "models/gemini-2.0-flash-001",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        28,
-        220
+        -912,
+        440
       ],
-      "id": "78731021-45ad-4298-a7ca-78d774f9af3c",
-      "name": "Google Gemini Chat Model",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "Lv8LqTGpfGzDWuiH",
-          "name": "Google Gemini(PaLM) Api account 2"
-        }
-      }
+      "id": "55c41bce-c9af-4534-ad21-cccb49c8e75b",
+      "name": "Google Gemini Chat Model"
     },
     {
       "parameters": {
@@ -743,10 +440,10 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.5,
       "position": [
-        0,
-        0
+        -940,
+        220
       ],
-      "id": "158265d4-4938-4633-a898-c9873dec89b0",
+      "id": "acf0045d-149a-4b5c-8326-93c23005d8be",
       "name": "Basic LLM Chain"
     },
     {
@@ -756,10 +453,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        148,
-        220
+        -792,
+        440
       ],
-      "id": "521b9d48-cbd2-4ada-9b29-70d1c0086faa",
+      "id": "e5d139f8-84e1-402c-bba8-33cdc8d0d97f",
       "name": "Structured Output Parser"
     },
     {
@@ -777,53 +474,18 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        78,
-        400
+        -862,
+        620
       ],
-      "id": "95c97d97-be96-4f58-a7e7-0c1f7061412f",
+      "id": "73260deb-765b-4725-bc19-e50b34c5cc12",
       "name": "Check for unposted posts"
-    },
-    {
-      "parameters": {
-        "operation": "search",
-        "base": {
-          "__rl": true,
-          "value": "appM6oNGs4Ya0Skzb",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Automator",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb"
-        },
-        "table": {
-          "__rl": true,
-          "value": "tblCpPSrPlpAvUaKN",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Post",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb/tblCpPSrPlpAvUaKN"
-        },
-        "filterByFormula": "NOT({LDone} = 1)",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.airtable",
-      "typeVersion": 2.1,
-      "position": [
-        376,
-        400
-      ],
-      "id": "eeaf8d13-8b4f-4073-811f-c8e46bb6cc01",
-      "name": "Airtable",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "OMqkkCQonnsFxZRZ",
-          "name": "Airtable Personal Access Token account 2"
-        }
-      }
     },
     {
       "parameters": {
         "sortFieldsUi": {
           "sortField": [
             {
-              "fieldName": "createdTime"
+              "fieldName": "Date"
             }
           ]
         },
@@ -832,10 +494,10 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        596,
-        400
+        -344,
+        620
       ],
-      "id": "70b406ad-afd7-4541-b76c-901307bb3da3",
+      "id": "745b3c6e-f60e-4342-9b75-7c6d62188af6",
       "name": "Sort"
     },
     {
@@ -845,192 +507,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        816,
-        400
+        -124,
+        620
       ],
-      "id": "5213dc9e-7cf8-49a2-81f6-6317902a9cef",
+      "id": "9e6e8417-23d1-4bd1-9b2c-ef487d1a1746",
       "name": "Code"
-    },
-    {
-      "parameters": {
-        "person": "EreOwHZxab",
-        "text": "={{ $json.LinkedIn }}",
-        "additionalFields": {}
-      },
-      "id": "db493b28-67d8-40d0-a966-ddc5e95d50cf",
-      "name": "LinkedIn1",
-      "type": "n8n-nodes-base.linkedIn",
-      "position": [
-        1036,
-        400
-      ],
-      "typeVersion": 1,
-      "credentials": {
-        "linkedInOAuth2Api": {
-          "id": "wiIxZs2GFT83ujv8",
-          "name": "LinkedIn account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "base": {
-          "__rl": true,
-          "value": "appM6oNGs4Ya0Skzb",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Automator",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb"
-        },
-        "table": {
-          "__rl": true,
-          "value": "tblCpPSrPlpAvUaKN",
-          "mode": "list",
-          "cachedResultName": "LinkedIn Post",
-          "cachedResultUrl": "https://airtable.com/appM6oNGs4Ya0Skzb/tblCpPSrPlpAvUaKN"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "id": "={{ $('Code').item.json.id }}",
-            "LDone": true,
-            "status": true
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": true,
-              "removed": false
-            },
-            {
-              "id": "Title",
-              "displayName": "Title",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Post",
-              "displayName": "Post",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Url",
-              "displayName": "Url",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Tweet",
-              "displayName": "Tweet",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "LinkedIn",
-              "displayName": "LinkedIn",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "string",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "Date",
-              "displayName": "Date",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "dateTime",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "LDone",
-              "displayName": "LDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": false
-            },
-            {
-              "id": "TDone",
-              "displayName": "TDone",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": true
-            },
-            {
-              "id": "status",
-              "displayName": "status",
-              "required": false,
-              "defaultMatch": false,
-              "canBeUsedToMatch": true,
-              "display": true,
-              "type": "boolean",
-              "readOnly": false,
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {
-          "typecast": true
-        }
-      },
-      "id": "d03ba46e-e929-4171-96f7-03f5304b63bf",
-      "name": "Update L Status1",
-      "type": "n8n-nodes-base.airtable",
-      "position": [
-        1256,
-        400
-      ],
-      "typeVersion": 2.1,
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "OMqkkCQonnsFxZRZ",
-          "name": "Airtable Personal Access Token account 2"
-        }
-      }
     },
     {
       "parameters": {
@@ -1045,40 +526,499 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1476,
-        250
+        536,
+        470
       ],
-      "id": "45947809-2b8a-46b8-92eb-9378d27745bc",
+      "id": "a36347a1-cd9a-421c-87b6-476b8852ac00",
       "name": "Push notification to my phone"
+    },
+    {
+      "parameters": {
+        "person": "EreOwHZxab",
+        "text": "={{ $json.LinkedIn }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        96,
+        620
+      ],
+      "id": "0990a667-2a3e-4f9c-a4ee-386c9f90ccf0",
+      "name": "LinkedIn1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "mode": "list",
+          "cachedResultName": "LinkedIn posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Post": "={{ $('Log post to sheets').item.json.Post }}",
+            "LDone": "checked",
+            "status": "={{ $('Log post to sheets').item.json.LDone }}"
+          },
+          "matchingColumns": [
+            "Post"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Url",
+              "displayName": "Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tweet",
+              "displayName": "Tweet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LinkedIn",
+              "displayName": "LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LDone",
+              "displayName": "LDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TDone",
+              "displayName": "TDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        316,
+        320
+      ],
+      "id": "01a3add7-dbad-4b01-ada4-fe8013ca5a7d",
+      "name": "Update status"
     },
     {
       "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
+          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
           "mode": "list",
-          "value": ""
+          "cachedResultName": "LinkedIn posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
+          "value": "gid=0",
           "mode": "list",
-          "value": ""
-        }
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $('Filter Unposted Items').item.json.title }}",
+            "Post": "={{ $('Filter Unposted Items').item.json.Post }}",
+            "Url": "={{ $('Filter Unposted Items').item.json.url }}",
+            "LinkedIn": "={{ $json.output.linkedin }}",
+            "Date": "={{ $now.toLocaleString() }}",
+            "LDone": "checked"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Url",
+              "displayName": "Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tweet",
+              "displayName": "Tweet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LinkedIn",
+              "displayName": "LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "LDone",
+              "displayName": "LDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TDone",
+              "displayName": "TDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
       },
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -400,
-        -580
+        -124,
+        320
       ],
-      "id": "d6e2b818-17b1-4217-849f-5d785ed3d4e7",
-      "name": "Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "eXGPCUO1lJiKoduH",
-          "name": "wen"
-        }
-      }
+      "id": "9cf0e4ca-08db-4913-8839-0efde80f70d8",
+      "name": "Log post to sheets"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "mode": "list",
+          "cachedResultName": "LinkedIn posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1820,
+        245
+      ],
+      "id": "e4bcc29a-273b-4335-ba35-34fbad571bd0",
+      "name": "Fetch all posts"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "mode": "list",
+          "cachedResultName": "LinkedIn posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "LDone"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -564,
+        620
+      ],
+      "id": "391d7cc2-227f-42ac-9001-9ade1c24a6aa",
+      "name": "Fetch unposted posts"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "mode": "list",
+          "cachedResultName": "LinkedIn posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Code').item.json.row_number }}",
+            "LDone": "checked",
+            "status": "checked"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Post",
+              "displayName": "Post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Url",
+              "displayName": "Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tweet",
+              "displayName": "Tweet",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LinkedIn",
+              "displayName": "LinkedIn",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "LDone",
+              "displayName": "LDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "TDone",
+              "displayName": "TDone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        316,
+        620
+      ],
+      "id": "ca234f17-055f-44cb-b9ef-615f8227883c",
+      "name": "Update status1"
     }
   ],
   "pinData": {},
@@ -1099,6 +1039,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-29T19:07:53.000Z",
-  "versionId": "d302bdc7-99f2-4fcb-b4c4-2c2654c680e7"
+  "updatedAt": "2025-04-30T09:55:39.000Z",
+  "versionId": "a6fbc292-65b0-43d5-aa59-c620d2c20201"
 }
