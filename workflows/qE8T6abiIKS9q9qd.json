@@ -40,7 +40,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Bigaddict.shop contact form",
+  "name": "bigaddict.shop contact form",
   "nodes": [
     {
       "parameters": {
@@ -203,39 +203,35 @@
         "json": {
           "headers": {
             "host": "n8n.bigaddict.shop",
-            "x-real-ip": "141.101.68.110",
-            "x-forwarded-for": "41.209.60.114, 141.101.68.110",
+            "x-real-ip": "172.68.47.135",
+            "x-forwarded-for": "102.211.145.67, 172.68.47.135",
             "x-forwarded-proto": "https",
             "connection": "upgrade",
-            "content-length": "117",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "priority": "u=1, i",
+            "content-length": "105",
+            "cf-ray": "93aa4b2a598bacaf-NBO",
+            "accept-language": "en-GB,en;q=0.9",
             "accept-encoding": "gzip, br",
-            "cf-ray": "935f48b1fac3f854-CDG",
-            "referer": "https://bigaddict.shop/",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
-            "sec-ch-ua": "\"Brave\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
-            "content-type": "application/json",
-            "sec-ch-ua-mobile": "?0",
-            "accept": "*/*",
-            "sec-gpc": "1",
-            "accept-language": "en-US,en;q=0.6",
-            "origin": "https://bigaddict.shop",
-            "sec-fetch-site": "same-site",
             "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "41.209.60.114",
+            "sec-fetch-dest": "empty",
+            "referer": "https://bigaddict.shop/",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15",
+            "origin": "https://bigaddict.shop",
+            "cf-connecting-ip": "102.211.145.67",
             "cf-ipcountry": "KE",
-            "cf-visitor": "{\"scheme\":\"https\"}"
+            "sec-fetch-mode": "cors",
+            "content-type": "application/json",
+            "accept": "*/*",
+            "sec-fetch-site": "same-site",
+            "priority": "u=3, i"
           },
           "params": {},
           "query": {},
           "body": {
-            "name": "David Njihia Maina",
-            "email": "davidnjihia536@gmail.com",
-            "subject": "Website Development",
-            "message": "fkucgcjl"
+            "name": "Owen Thiongo",
+            "email": "owenthiongo744@gmail.com",
+            "subject": "How are you?",
+            "message": "i'M GREAT"
           },
           "webhookUrl": "https://n8n.bigaddict.shop/webhook/4ffa66af-3e15-49d1-b35d-4b0dc43724f5",
           "executionMode": "production"
@@ -251,6 +247,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-29T11:55:19.000Z",
-  "versionId": "8cac0001-094b-4027-8ba3-e9f49ca6920f"
+  "updatedAt": "2025-05-04T19:16:42.000Z",
+  "versionId": "ea464a31-4841-49f8-84b1-7517eed57237"
 }
