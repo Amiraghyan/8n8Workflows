@@ -1,0 +1,58 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-04T10:24:46.108Z",
+  "id": "C87UfMQOJzpaceAT",
+  "meta": null,
+  "name": "Sheria Link",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f88f459f-d553-4fb8-bb9a-49f46eff7424",
+      "name": "When chat message received",
+      "webhookId": "7bdba7f3-47d0-4147-af1c-e4f93e925b8f"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        220,
+        0
+      ],
+      "id": "915d7d5b-c7df-444e-9e86-5374f454e17d",
+      "name": "AI Agent"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-04T10:24:46.108Z",
+  "versionId": "fb48ee85-4980-4419-9aa9-0a6006b3f2ee"
+}
