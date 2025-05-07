@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Crawl HN Home": {
       "main": [
@@ -362,7 +362,7 @@
     },
     {
       "parameters": {
-        "person": "EreOwHZxab",
+        "person": "OVBYEtaS6y",
         "text": "={{ $('Filter Errored').item.json.output.linkedin }}",
         "additionalFields": {}
       },
@@ -373,7 +373,13 @@
         96,
         320
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "wiIxZs2GFT83ujv8",
+          "name": "LinkedIn account"
+        }
+      }
     },
     {
       "parameters": {
@@ -422,7 +428,13 @@
         440
       ],
       "id": "55c41bce-c9af-4534-ad21-cccb49c8e75b",
-      "name": "Google Gemini Chat Model"
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
     },
     {
       "parameters": {
@@ -534,7 +546,7 @@
     },
     {
       "parameters": {
-        "person": "EreOwHZxab",
+        "person": "OVBYEtaS6y",
         "text": "={{ $json.LinkedIn }}",
         "additionalFields": {}
       },
@@ -545,24 +557,30 @@
         620
       ],
       "id": "0990a667-2a3e-4f9c-a4ee-386c9f90ccf0",
-      "name": "LinkedIn1"
+      "name": "LinkedIn1",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "wiIxZs2GFT83ujv8",
+          "name": "LinkedIn account"
+        }
+      }
     },
     {
       "parameters": {
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "value": "1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng",
           "mode": "list",
-          "cachedResultName": "LinkedIn posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -687,24 +705,30 @@
         320
       ],
       "id": "01a3add7-dbad-4b01-ada4-fe8013ca5a7d",
-      "name": "Update status"
+      "name": "Update status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen254"
+        }
+      }
     },
     {
       "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "value": "1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng",
           "mode": "list",
-          "cachedResultName": "LinkedIn posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -815,23 +839,29 @@
         320
       ],
       "id": "9cf0e4ca-08db-4913-8839-0efde80f70d8",
-      "name": "Log post to sheets"
+      "name": "Log post to sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen254"
+        }
+      }
     },
     {
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "value": "1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng",
           "mode": "list",
-          "cachedResultName": "LinkedIn posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit#gid=0"
         },
         "options": {}
       },
@@ -842,23 +872,29 @@
         245
       ],
       "id": "e4bcc29a-273b-4335-ba35-34fbad571bd0",
-      "name": "Fetch all posts"
+      "name": "Fetch all posts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen254"
+        }
+      }
     },
     {
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "value": "1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng",
           "mode": "list",
-          "cachedResultName": "LinkedIn posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit#gid=0"
         },
         "filtersUI": {
           "values": [
@@ -876,24 +912,30 @@
         620
       ],
       "id": "391d7cc2-227f-42ac-9001-9ade1c24a6aa",
-      "name": "Fetch unposted posts"
+      "name": "Fetch unposted posts",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen254"
+        }
+      }
     },
     {
       "parameters": {
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI",
+          "value": "1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng",
           "mode": "list",
-          "cachedResultName": "LinkedIn posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit?usp=drivesdk"
+          "cachedResultName": "LinkedIn Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Posts",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oG1N0MxO15SvRdtqKvBNfRJpBlf_AzRvy5KwwDDLRzI/edit#gid=0"
+          "cachedResultName": "posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vGMRXHUXxUo4LNC7xXoCkd8xqDrOhDb2w_9f_CJz7ng/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1018,7 +1060,13 @@
         620
       ],
       "id": "ca234f17-055f-44cb-b9ef-615f8227883c",
-      "name": "Update status1"
+      "name": "Update status1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "eXGPCUO1lJiKoduH",
+          "name": "wen254"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1028,7 +1076,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        18
+        20
       ]
     },
     "node:Check for unposted posts": {
@@ -1039,6 +1087,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-30T09:55:39.000Z",
-  "versionId": "a6fbc292-65b0-43d5-aa59-c620d2c20201"
+  "updatedAt": "2025-05-07T15:15:45.000Z",
+  "versionId": "40098b91-7cd6-4c84-8884-965a6cf093a3"
 }
