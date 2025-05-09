@@ -1081,7 +1081,7 @@
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        8
+        10
       ]
     }
   },
