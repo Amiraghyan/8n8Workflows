@@ -1,0 +1,417 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Posts By Features": {
+      "main": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge post with AI analytics",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Analysis Content  By AI": {
+      "main": [
+        [
+          {
+            "node": "Merge post with AI analytics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Posts": {
+      "main": [
+        [
+          {
+            "node": "Fetch only required fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Proper Solutions": {
+      "main": [
+        []
+      ]
+    },
+    "Fetch only required fields": {
+      "main": [
+        [
+          {
+            "node": "Filter Posts By Features",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find Proper Solutions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge post with AI analytics": {
+      "main": [
+        [
+          {
+            "node": "Filter business related posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter business related posts": {
+      "main": [
+        [
+          {
+            "node": "Merge subreddit DB ID with reddit post",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Combine Sumary, solution and posts.",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find Proper Solutions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-12T20:42:53.232Z",
+  "id": "3Hf5dCahTmRMty9L",
+  "meta": null,
+  "name": "LinkedIn page",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "092da9df-a0d1-47bb-9d02-bd2ae37050bc",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -860,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "0823d10a-ad54-4d82-bcea-9dd236e97857",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              },
+              "leftValue": "={{ $json.ups }}",
+              "rightValue": 2
+            },
+            {
+              "id": "bb8187aa-f0f1-4999-8d4b-bdc9abba0618",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.selftext }}",
+              "rightValue": ""
+            },
+            {
+              "id": "539f0f5c-025a-4f82-9b3a-2ef1ad3a2d96",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              },
+              "leftValue": "={{ $json.created }}",
+              "rightValue": "={{ $today.minus(180,'days').toISO() }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2d46e8e6-1d88-47e4-856c-63d8d45c74b3",
+      "name": "Filter Posts By Features",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -200,
+        240
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Decide whether this reddit post is describing a business-related problem or a need for a solution. The post should mention a specific challenge \n or requirement that a business is trying to address.\nReddit post:  {{ $json.selftext }}\nIs this post about a business problem or need for a solution ? Output only yes or no",
+        "options": {}
+      },
+      "id": "af777e80-26e8-46a5-8dc3-b43510051b73",
+      "name": "Analysis Content  By AI",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        20,
+        100
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "subreddit": "smallbusiness",
+        "keyword": "looking for a solution",
+        "returnAll": true,
+        "additionalFields": {
+          "sort": "hot"
+        }
+      },
+      "id": "719ff131-4136-4edc-867e-358ce8a0c8c0",
+      "name": "Get Posts",
+      "type": "n8n-nodes-base.reddit",
+      "position": [
+        -640,
+        220
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "redditOAuth2Api": {
+          "id": "6fhhT8MLnJpBPbPW",
+          "name": "Reddit account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<Reddit Post Title>\n{{ $('Insert Posts to Database.').item.json.title }}\n</Reddit Post Title>\n<Reddit post>\n{{ $('Insert Posts to Database.').item.json.content }}\n</Reddit post>\n<Indentified Problem>\n{{ $json.output.problem }}\n</indentified Problem>\n<Indentified Cause>\n{{ $json.output.cause }}\n</indentified Cause>",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are provided with reddit post with it's title. We have also tried to find the problem at hand and the cause. The aim is to come up with the most effective and feasible solution for the businesses., suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        920,
+        180
+      ],
+      "id": "3be39d2c-81fe-449d-9b9b-faeb9407710c",
+      "name": "Find Proper Solutions"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "329717f1-6293-4fd2-93f0-51dce182c2dc",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "70c20334-16f2-4dab-8da8-b8a6539191ba",
+              "name": "subreddit",
+              "value": "={{ $json.subreddit }}",
+              "type": "string"
+            },
+            {
+              "id": "b558fb2f-7341-4086-8280-ccd3aa3ff201",
+              "name": "subreddit_subscribers",
+              "value": "={{ $json.subreddit_subscribers.toString() }}",
+              "type": "string"
+            },
+            {
+              "id": "131800e4-36e7-4bcb-96dd-05380deb0e9b",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "f5a47e4a-6f1f-4fcf-95b4-b07e76c4e282",
+              "name": "url",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "422c0ebd-e08c-4e4b-b97a-9fe3e76df56f",
+              "name": "ups",
+              "value": "={{ $json.ups }}",
+              "type": "number"
+            },
+            {
+              "id": "3219b1b0-ce80-4532-b443-0a4962a62d36",
+              "name": "selftext",
+              "value": "={{ $json.selftext }}",
+              "type": "string"
+            },
+            {
+              "id": "bb25ff8c-d3e2-41f1-b7b3-75168fac1e4f",
+              "name": "created",
+              "value": "={{ DateTime.fromSeconds($json.created).toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -420,
+        240
+      ],
+      "id": "5368bb9c-5682-4371-bd48-a81df7a95236",
+      "name": "Fetch only required fields"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        920,
+        340
+      ],
+      "id": "dd5b6cd2-ebdd-4708-86d7-0eb847d1bfee",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        400,
+        240
+      ],
+      "id": "af296b8e-4308-4ea0-aa02-57d6adc7dc65",
+      "name": "Merge post with AI analytics"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "490c5138-c488-498f-9ba2-e9ac70f76c31",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "/\\byes\\b/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        620,
+        240
+      ],
+      "id": "1523d8f8-abdf-4584-a551-8930372a4c26",
+      "name": "Filter business related posts"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        120,
+        320
+      ],
+      "id": "cd91e6b5-e2ec-4e3d-bb02-49130af79338",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-12T20:52:32.000Z",
+  "versionId": "d6572471-b8ed-46cc-8989-c4f2862367f0"
+}
