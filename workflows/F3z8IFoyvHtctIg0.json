@@ -532,7 +532,7 @@
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "text/html",
-        "body": "={{ $if(($json.fields.LinkedIn.toBoolean() === true ), $json.fields.LinkedIn), $json.fields.LinkedIn }}",
+        "body": "={{ $('Log post to sheets').item.json.LinkedIn }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -1076,17 +1076,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        10
+        22
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        10
+        22
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-04-29T11:54:23.000Z",
-  "versionId": "abb4aa78-f6bf-4139-a06c-2ba9ea0e8aa0"
+  "updatedAt": "2025-05-12T20:36:12.000Z",
+  "versionId": "fdc8fef5-a175-4e98-8faa-34993f0d62e1"
 }
