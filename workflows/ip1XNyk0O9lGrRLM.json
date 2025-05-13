@@ -3,13 +3,7 @@
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -30,30 +24,6 @@
       ],
       "id": "8aac7248-76df-46e1-b92c-59c4847341a1",
       "name": "When clicking ‘Test workflow’"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://c8df-41-209-60-114.ngrok-free.app/webhook",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "test",
-              "value": "Hope thisone hit home"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        220,
-        0
-      ],
-      "id": "c89c783c-a3da-4c81-bd08-819d50f98355",
-      "name": "HTTP Request"
     }
   ],
   "pinData": {},
@@ -63,6 +33,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-05-11T13:07:19.000Z",
-  "versionId": "7e683e52-0cbc-444b-884a-e7569a9d606a"
+  "updatedAt": "2025-05-13T16:16:20.000Z",
+  "versionId": "902bb8ef-f5bb-4fe0-b0bf-b3039eeb3a9b"
 }
