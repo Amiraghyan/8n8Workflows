@@ -1,0 +1,518 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Reddit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reddit": {
+      "main": [
+        [
+          {
+            "node": "Fetch only required fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Posts By Features": {
+      "main": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Analysis Content  By AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch only required fields": {
+      "main": [
+        [
+          {
+            "node": "Filter Posts By Features",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analysis Content  By AI": {
+      "main": [
+        [
+          {
+            "node": "Filter business related posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find Proper Solutions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter business related posts": {
+      "main": [
+        [
+          {
+            "node": "Find Proper Solutions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Proper Solutions": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-13T16:19:20.026Z",
+  "id": "zp8lx3khKs58Cm3a",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Page Posting Engine",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -180
+      ],
+      "id": "c2b39a20-d795-4cd8-abb3-0b56d5090702",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "subreddit": "smallbusiness",
+        "limit": 10,
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.reddit",
+      "typeVersion": 1,
+      "position": [
+        220,
+        -180
+      ],
+      "id": "6b91e0fa-b464-4982-a602-d84c40d9eaf5",
+      "name": "Reddit",
+      "credentials": {
+        "redditOAuth2Api": {
+          "id": "6fhhT8MLnJpBPbPW",
+          "name": "Reddit account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "329717f1-6293-4fd2-93f0-51dce182c2dc",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "70c20334-16f2-4dab-8da8-b8a6539191ba",
+              "name": "subreddit",
+              "value": "={{ $json.subreddit }}",
+              "type": "string"
+            },
+            {
+              "id": "b558fb2f-7341-4086-8280-ccd3aa3ff201",
+              "name": "subreddit_subscribers",
+              "value": "={{ $json.subreddit_subscribers.toString() }}",
+              "type": "string"
+            },
+            {
+              "id": "131800e4-36e7-4bcb-96dd-05380deb0e9b",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "f5a47e4a-6f1f-4fcf-95b4-b07e76c4e282",
+              "name": "url",
+              "value": "={{ $json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "422c0ebd-e08c-4e4b-b97a-9fe3e76df56f",
+              "name": "ups",
+              "value": "={{ $json.ups }}",
+              "type": "number"
+            },
+            {
+              "id": "3219b1b0-ce80-4532-b443-0a4962a62d36",
+              "name": "selftext",
+              "value": "={{ $json.selftext }}",
+              "type": "string"
+            },
+            {
+              "id": "bb25ff8c-d3e2-41f1-b7b3-75168fac1e4f",
+              "name": "created",
+              "value": "={{ DateTime.fromSeconds($json.created).toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        -180
+      ],
+      "id": "e6ba8bbf-3451-4797-a4d6-23f6fe8706cb",
+      "name": "Fetch only required fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "0823d10a-ad54-4d82-bcea-9dd236e97857",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              },
+              "leftValue": "={{ $json.ups }}",
+              "rightValue": 2
+            },
+            {
+              "id": "bb8187aa-f0f1-4999-8d4b-bdc9abba0618",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.selftext }}",
+              "rightValue": ""
+            },
+            {
+              "id": "539f0f5c-025a-4f82-9b3a-2ef1ad3a2d96",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              },
+              "leftValue": "={{ $json.created }}",
+              "rightValue": "={{ $today.minus(180,'days').toISO() }}"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "dd91f7cb-9b46-476b-83d8-870eb9991c98",
+      "name": "Filter Posts By Features",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        660,
+        -180
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Decide whether this reddit post is describing a business-related problem or a need for a solution. The post should mention a specific challenge \n or requirement that a business is trying to address.\nReddit post:  {{ $json.selftext }}\nIs this post about a business problem or need for a solution ? Output only yes or no",
+        "options": {}
+      },
+      "id": "1e64fc70-f258-40cb-a1f2-3fa4dfa20e0f",
+      "name": "Analysis Content  By AI",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        880,
+        -180
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        968,
+        40
+      ],
+      "id": "98714b96-1897-435a-ac39-6b3f8b68ed47",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "490c5138-c488-498f-9ba2-e9ac70f76c31",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "/\\byes\\b/i",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1256,
+        -180
+      ],
+      "id": "d8bb9b4c-4125-4988-b92e-05b8d1217949",
+      "name": "Filter business related posts"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<Reddit Post Title>\n{{ $('Filter Posts By Features').item.json.title }}\n</Reddit Post Title>\n<Reddit post>\n{{ $('Filter Posts By Features').item.json.selftext }}\n</Reddit post>",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are provided with reddit post with it's title. We have also tried to find the problem at hand and the cause. The aim is to come up with the most effective and feasible solution for the businesses., suggest a business idea or service that I could create to help this problem for this business and other with similar needs.\n\nProvide a concise description of a business idea or service that would adress this issue effectively for mutiple businesses facing similar challenges."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        1476,
+        -180
+      ],
+      "id": "c8983359-3fdd-43d9-b30e-bac3723c17f3",
+      "name": "Find Proper Solutions"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1564,
+        40
+      ],
+      "id": "ea4795ee-a000-418e-a1c8-614918f8e94d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "source_posts",
+          "mode": "list",
+          "cachedResultName": "source_posts"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "post_id",
+        "valueToMatchOn": "={{ $json.id }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "subreddit",
+              "value": "={{ $json.subreddit }}"
+            },
+            {
+              "column": "subreddit_subscribers",
+              "value": "={{ $json.subreddit_subscribers }}"
+            },
+            {
+              "column": "title",
+              "value": "={{ $json.title }}"
+            },
+            {
+              "column": "url",
+              "value": "={{ $json.url }}"
+            },
+            {
+              "column": "upvotes",
+              "value": "={{ $json.ups }}"
+            },
+            {
+              "column": "post_content",
+              "value": "={{ $json.selftext }}"
+            },
+            {
+              "column": "solution",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2072,
+        -180
+      ],
+      "id": "f55f8c63-8916-4c33-92ad-b3d64925c3d4",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7ccf919-826c-480f-9879-42f5fabde21e",
+              "name": "id",
+              "value": "={{ $('Filter Posts By Features').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "252653a6-0bc5-4864-a759-f92456715d04",
+              "name": "subreddit",
+              "value": "={{ $('Filter Posts By Features').item.json.subreddit }}",
+              "type": "string"
+            },
+            {
+              "id": "c2f565c3-1ac7-4b2f-9435-1f5405a19884",
+              "name": "subreddit_subscribers",
+              "value": "={{ $('Filter Posts By Features').item.json.subreddit_subscribers }}",
+              "type": "string"
+            },
+            {
+              "id": "9b1ec1ff-facf-4643-a249-81a2347df8e2",
+              "name": "title",
+              "value": "={{ $('Filter Posts By Features').item.json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "f4cb2da1-ce24-4925-a053-4e421f290b13",
+              "name": "url",
+              "value": "={{ $('Filter Posts By Features').item.json.url }}",
+              "type": "string"
+            },
+            {
+              "id": "4f7b956b-109f-460d-b1dd-62c534bb4c2a",
+              "name": "ups",
+              "value": "={{ $('Filter Posts By Features').item.json.ups }}",
+              "type": "number"
+            },
+            {
+              "id": "9a563cdd-4d9b-42bc-a64f-06dd2717cd57",
+              "name": "selftext",
+              "value": "={{ $('Filter Posts By Features').item.json.selftext }}",
+              "type": "string"
+            },
+            {
+              "id": "74d03abb-da81-47b5-8b46-59134cc07525",
+              "name": "text",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1852,
+        -180
+      ],
+      "id": "11e0f21b-3eae-4d25-920a-d2ffc380edb8",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-13T17:25:13.000Z",
+  "versionId": "4f4fac39-8e48-492b-9025-19a633766c99"
+}
