@@ -326,7 +326,7 @@
       "type": "n8n-nodes-base.reddit",
       "position": [
         -2400,
-        200
+        205
       ],
       "typeVersion": 1,
       "credentials": {
@@ -352,7 +352,7 @@
       "typeVersion": 1.6,
       "position": [
         340,
-        160
+        200
       ],
       "id": "f9875ad0-6911-447b-8721-792a9180a724",
       "name": "Find Proper Solutions"
@@ -453,8 +453,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        400,
-        380
+        420,
+        425
       ],
       "id": "00c0edae-9ca4-4079-8b5e-f923812a986a",
       "name": "Google Gemini Chat Model",
@@ -783,8 +783,8 @@
       "name": "Combine Sumary, solution and posts.",
       "type": "n8n-nodes-base.merge",
       "position": [
-        700,
-        160
+        708,
+        205
       ],
       "typeVersion": 3
     },
@@ -946,8 +946,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        920,
-        300
+        928,
+        305
       ],
       "id": "3304bd51-a0d8-4397-ac64-869251932dc5",
       "name": "Add or update solutions to posts",
@@ -980,13 +980,13 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.5-pro-exp-03-25",
+        "modelName": "models/gemini-1.5-flash-001",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -60,
+        -16,
         300
       ],
       "id": "dd453305-0ec4-47e3-b9c2-c395854f84ab",
@@ -1006,6 +1006,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-29T11:55:00.000Z",
-  "versionId": "1f8c0722-bf45-4a1b-9845-d40adc5d2606"
+  "updatedAt": "2025-05-13T23:25:58.000Z",
+  "versionId": "e9b2ea47-1476-45e5-ae7b-32cabd4a6b0e"
 }
