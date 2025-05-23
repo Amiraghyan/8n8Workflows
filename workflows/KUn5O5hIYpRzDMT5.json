@@ -240,6 +240,7 @@
   },
   "createdAt": "2025-04-09T11:31:11.710Z",
   "id": "KUn5O5hIYpRzDMT5",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -1076,12 +1077,12 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        10
+        0
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        10
+        22
       ]
     }
   },
