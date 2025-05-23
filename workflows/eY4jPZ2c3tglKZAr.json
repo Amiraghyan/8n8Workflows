@@ -229,6 +229,7 @@
   },
   "createdAt": "2025-04-03T17:28:36.024Z",
   "id": "eY4jPZ2c3tglKZAr",
+  "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -653,7 +654,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        12
+        0
       ]
     }
   },
