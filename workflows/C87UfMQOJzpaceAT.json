@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Gemini(Brain)": {
       "ai_languageModel": [
@@ -569,6 +569,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-05-04T12:42:31.000Z",
+  "updatedAt": "2025-05-26T20:29:30.000Z",
   "versionId": "afd4ad5d-6927-42c1-9c20-b935b708cf56"
 }
