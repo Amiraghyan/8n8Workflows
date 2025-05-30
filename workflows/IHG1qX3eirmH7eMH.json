@@ -1,0 +1,1576 @@
+{
+  "active": true,
+  "connections": {
+    "Get required data": {
+      "main": [
+        [
+          {
+            "node": "Add new user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add new user": {
+      "main": [
+        [
+          {
+            "node": "Set registration status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set registration status": {
+      "main": [
+        [
+          {
+            "node": "Verification Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verification Code": {
+      "main": [
+        [
+          {
+            "node": "Send Verification Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Verification Email": {
+      "main": [
+        [
+          {
+            "node": "Save verification code to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save verification code to Database": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Register Webhook": {
+      "main": [
+        [
+          {
+            "node": "encrypt_password_registration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Verification Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Code": {
+      "main": [
+        [
+          {
+            "node": "Fetch user by Verification Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch user by Verification Code": {
+      "main": [
+        [
+          {
+            "node": "Check if code is valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if code is valid": {
+      "main": [
+        [
+          {
+            "node": "Activate account",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Success Response1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error response1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Activate account": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "encrypt_password": {
+      "main": [
+        [
+          {
+            "node": "Fetch login details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "encrypt_password_registration": {
+      "main": [
+        [
+          {
+            "node": "Get required data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Login Webhook": {
+      "main": [
+        [
+          {
+            "node": "encrypt_password",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch login details": {
+      "main": [
+        [
+          {
+            "node": "Fetch User with email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch User with email": {
+      "main": [
+        [
+          {
+            "node": "If user is activated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If user is activated": {
+      "main": [
+        [
+          {
+            "node": "If password match",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Success Response4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If password match": {
+      "main": [
+        [
+          {
+            "node": "set password status true",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "set password status false",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Success Response2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Success Response3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set password status true": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set password status false": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add course Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch course and details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch course and details": {
+      "main": [
+        [
+          {
+            "node": "Fetch user details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch user details": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-30T10:51:07.667Z",
+  "id": "IHG1qX3eirmH7eMH",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SmartLearning",
+  "nodes": [
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "full_name",
+              "value": "={{ $json.full_name }}"
+            },
+            {
+              "column": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "column": "password",
+              "value": "={{ $json.password }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        540,
+        20
+      ],
+      "id": "0d7b22f9-8297-4a1a-bd44-1dd25cfce5e8",
+      "name": "Add new user",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d4aef2a-e8dc-492c-8d4d-1f2502977786",
+              "name": "full_name",
+              "value": "={{ $json.body.full_name }}",
+              "type": "string"
+            },
+            {
+              "id": "e0ff3ed0-4ec1-4433-9291-3109026af304",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "cc792aaf-ee25-4551-b130-2689c457e1c0",
+              "name": "password",
+              "value": "={{ $json.password }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        20
+      ],
+      "id": "73977afc-0c36-4423-a6ae-9ede9ddbebaa",
+      "name": "Get required data"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e74d1e13-7eba-4d2e-a7c7-2d8464ea1610",
+              "name": "registered",
+              "value": "={{ $json.success }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        760,
+        -55
+      ],
+      "id": "5423eaab-14b4-4eff-aab3-8002a89d0ac0",
+      "name": "Set registration status"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get required data').item.json.email }}",
+        "subject": "Smart Learners  Email Verification",
+        "message": "=<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Smart Learners - Email Verification</title>\n    <style>\n        body {\n            font-family: 'Arial', sans-serif;\n            line-height: 1.6;\n            color: #333333;\n            margin: 0;\n            padding: 0;\n            background-color: #f7f9fc;\n        }\n        .container {\n            max-width: 600px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n        .header {\n            text-align: center;\n            padding: 20px 0;\n        }\n        .logo {\n            max-width: 180px;\n            height: auto;\n        }\n        .content {\n            background-color: #ffffff;\n            padding: 30px;\n            border-radius: 8px;\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);\n        }\n        h1 {\n            color: #2c3e50;\n            font-size: 24px;\n            margin-top: 0;\n        }\n        .verification-code {\n            background-color: #f0f4f8;\n            padding: 15px;\n            text-align: center;\n            font-size: 28px;\n            font-weight: bold;\n            letter-spacing: 5px;\n            color: #3498db;\n            margin: 20px 0;\n            border-radius: 4px;\n        }\n        .footer {\n            text-align: center;\n            padding: 20px;\n            font-size: 12px;\n            color: #7f8c8d;\n        }\n        .note {\n            font-size: 14px;\n            color: #7f8c8d;\n            margin-top: 25px;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <img src=\"https://smartlearners.com/logo.png\" alt=\"Smart Learners Logo\" class=\"logo\">\n        </div>\n        \n        <div class=\"content\">\n            <h1>Verify Your Email Address</h1>\n            \n            <p>Hello There,</p>\n            \n            <p>Thank you for signing up with Smart Learners! To complete your registration, please verify your email address by entering the following 6-digit verification code in your account settings:</p>\n            \n            <div class=\"verification-code\">\n                {{ $json.code }}\n            </div>\n            \n            <p>This code will expire in 30 minutes. For security reasons, please do not share this code with anyone.</p>\n            \n            <p class=\"note\">If you didn't request this code, you can safely ignore this email or contact our support team at support@smartlearners.com.</p>\n        </div>\n        \n        <div class=\"footer\">\n            <p>&copy; 2023 Smart Learners. All rights reserved.</p>\n            <p>123 Education Street, Learning City, LC 10101</p>\n            <p>\n                <a href=\"https://smartlearners.com/privacy\" style=\"color: #7f8c8d; text-decoration: underline;\">Privacy Policy</a> | \n                <a href=\"https://smartlearners.com/terms\" style=\"color: #7f8c8d; text-decoration: underline;\">Terms of Service</a>\n            </p>\n        </div>\n    </div>\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        -55
+      ],
+      "id": "be71c0b6-5710-4f75-930d-445443ad6e9a",
+      "name": "Send Verification Email",
+      "webhookId": "18135327-217c-42b9-9530-6f1fdaedd780",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "function generateVerificationCode() {\n    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n    let code = '';\n    \n    for (let i = 0; i < 6; i++) {\n        const randomIndex = Math.floor(Math.random() * characters.length);\n        code += characters[randomIndex];\n    }\n    \n    return {\n        code: code,\n        expiresAt: new Date(Date.now() + 30 * 60 * 1000) // Expires in 30 minutes\n    };\n}\n\n// Example usage:\nconst verificationCode = generateVerificationCode();\nreturn verificationCode"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        -55
+      ],
+      "id": "d0409fb9-59f6-4fc0-bbaf-7d75c8fe43d0",
+      "name": "Verification Code"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "email",
+        "valueToMatchOn": "={{ $('Get required data').item.json.email }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "code",
+              "value": "={{ $('Verification Code').item.json.code }}"
+            },
+            {
+              "column": "is_activated",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1420,
+        -55
+      ],
+      "id": "5513a67b-8604-405b-85b9-33d4e7d6872b",
+      "name": "Save verification code to Database",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.success }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "8c77dfcd-4bd9-422d-aeba-cb2d895857c9"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5055737e-f4d5-4ef6-8af2-e696b9a59d47",
+                    "leftValue": "={{ $json.message }}",
+                    "rightValue": "Duplicate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1640,
+        20
+      ],
+      "id": "29647df0-c3ac-436a-a98b-1dcc8b6d6dc0",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"error\": \"The email is being used by another account!\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1860,
+        120
+      ],
+      "id": "a34f3952-261f-4b84-b140-02c410ff42b2",
+      "name": "Error response"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"registered\": true\n}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1860,
+        -80
+      ],
+      "id": "e04ed025-0174-48e5-b35d-5ecd29e4783b",
+      "name": "Success Response"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Smart-Learn/auth/register",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        20
+      ],
+      "id": "5b2cb605-343f-4e20-96fd-6fb84381ebaf",
+      "name": "Register Webhook",
+      "webhookId": "020785cb-bb95-41ce-87b6-98570814d8dd"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Smart-Learn/auth/verification",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        480
+      ],
+      "id": "a264c4ae-ddfb-4215-9aad-35087ed2e2a7",
+      "name": "Email Verification Webhook",
+      "webhookId": "ea13279f-08d2-4cf1-a608-c1d7045db42a"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "ALTER TABLE courses\nADD COLUMN user_id INT NOT NULL,\nADD CONSTRAINT fk_courses_user\n    FOREIGN KEY (user_id) REFERENCES users(id)\n    ON DELETE CASCADE\n    ON UPDATE CASCADE;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -120,
+        -340
+      ],
+      "id": "16022643-7396-4c53-b5d1-1af6b52472fd",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "654e073a-62cf-4661-9a43-fff7d2280be9",
+              "name": "verification_code",
+              "value": "={{ $json.body.code }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        480
+      ],
+      "id": "f98d3ca6-9a79-4314-98a9-ae456ba6de8a",
+      "name": "Fetch Code"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "code",
+              "value": "={{ $json.verification_code }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        320,
+        480
+      ],
+      "id": "e9b6d87e-2c6a-4563-b1ce-3cad4d7ca1a9",
+      "name": "Fetch user by Verification Code",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "82cacd35-acdf-4603-b1c9-fa6a813ce8cf",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        540,
+        480
+      ],
+      "id": "7a8515fd-925c-460d-96ef-cb6e9f9d3d4d",
+      "name": "Check if code is valid"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "id",
+        "valueToMatchOn": "={{ $json.id }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "is_activated",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        760,
+        405
+      ],
+      "id": "0e21ebd7-8fe5-40ab-a42e-094da4d540ec",
+      "name": "Activate account",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.success }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "8c77dfcd-4bd9-422d-aeba-cb2d895857c9"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5055737e-f4d5-4ef6-8af2-e696b9a59d47",
+                    "leftValue": "={{ $json.message }}",
+                    "rightValue": "Duplicate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        980,
+        480
+      ],
+      "id": "a590f8a3-edf1-40b1-9590-3ef54873b18a",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"error\": \"Invalid verification code!\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1200,
+        580
+      ],
+      "id": "c3c1383e-fced-448f-bf25-94067b421bb3",
+      "name": "Error response1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"activated\": true\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1200,
+        380
+      ],
+      "id": "3a067820-5eef-4d8e-8f9a-6c0f3dd91d23",
+      "name": "Success Response1"
+    },
+    {
+      "parameters": {
+        "type": "SHA256",
+        "value": "={{ $json.body.password }}",
+        "dataPropertyName": "password",
+        "encoding": "base64"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        100,
+        940
+      ],
+      "id": "6a67975d-f62c-4bfb-a4ae-068fd0128ba8",
+      "name": "encrypt_password"
+    },
+    {
+      "parameters": {
+        "type": "SHA256",
+        "value": "={{ $json.body.password }}",
+        "dataPropertyName": "password",
+        "encoding": "base64"
+      },
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        100,
+        20
+      ],
+      "id": "ae47b789-37f5-4068-b4dd-bc0cfc26aa7b",
+      "name": "encrypt_password_registration"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Smart-Learn/auth/login",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        940
+      ],
+      "id": "1ec553d4-229c-41c9-8bb0-dd65d91bfdf3",
+      "name": "Login Webhook",
+      "webhookId": "ea13279f-08d2-4cf1-a608-c1d7045db42a"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "78d36fd9-0b2b-409c-81f1-20435cd703e5",
+              "name": "body.email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "4ade3a2c-e335-491a-95f7-19f98ebd8cd5",
+              "name": "password",
+              "value": "={{ $json.password }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        940
+      ],
+      "id": "ecf63e62-803a-428c-a237-04deddc9d6d6",
+      "name": "Fetch login details"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "email",
+              "value": "={{ $json.body.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        540,
+        940
+      ],
+      "id": "941e1bc8-4841-4a95-aab9-4b48901fcbec",
+      "name": "Fetch User with email",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "79d09f95-2a8a-47c5-8c42-38be1c7f9fc7",
+              "leftValue": "={{ $json.is_activated }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        760,
+        940
+      ],
+      "id": "2a9e70f3-2251-43b9-ae86-2f7c97b326f9",
+      "name": "If user is activated"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b0a659b6-624b-4aec-a7c9-4f5de7fdc51d",
+              "leftValue": "={{ $('Fetch login details').item.json.password }}",
+              "rightValue": "={{ $('Fetch User with email').item.json.password }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        980,
+        940
+      ],
+      "id": "3e15bf2c-9a24-4751-8ae4-eac4d94ac3ea",
+      "name": "If password match"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.authorized }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "710f85b3-6d50-4aff-bec1-b1311966e8e9"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3ca108be-8114-48d5-8836-f5a5a944c8ee",
+                    "leftValue": "={{ $json.authorized }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1420,
+        940
+      ],
+      "id": "42c91609-eee9-438f-a9d3-48c0b59519dc",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "respondWith": "jwt",
+        "payload": "={\n  \"email\": \"{{ $('Fetch User with email').item.json.email }}\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1640,
+        840
+      ],
+      "id": "699571c3-18b4-4ac9-9ae6-65b7585a1eb8",
+      "name": "Success Response2",
+      "credentials": {
+        "jwtAuth": {
+          "id": "ZxCiZNHc8pul7xQb",
+          "name": "JWT Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10cc7002-56de-4083-a37a-094c4f036eef",
+              "name": "authorized",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        840
+      ],
+      "id": "5361036b-bec1-44cf-abd4-1cc32cce3417",
+      "name": "set password status true"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "368028e9-cce1-4a9e-bb3e-6acc950a06cc",
+              "name": "authorized",
+              "value": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        1040
+      ],
+      "id": "65657656-c23a-4947-af46-a0e5c2d8864e",
+      "name": "set password status false"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"authorized\": false,\n  \"errorMessage\": \"Incorrect Password!\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1640,
+        1040
+      ],
+      "id": "23eae9bd-29c4-40e3-bff7-30169f04bb38",
+      "name": "Success Response3"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"authorized\": false,\n  \"errorMessage\": \"Register or activate your account\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1020,
+        1240
+      ],
+      "id": "eb84bf89-682b-4ca2-9404-4f4e02ed16ef",
+      "name": "Success Response4"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Smart-Learn/course/add",
+        "authentication": "jwtAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        20,
+        1360
+      ],
+      "id": "506c1959-1055-4cf1-bbd1-02629997e61d",
+      "name": "Add course Webhook",
+      "webhookId": "a236d8f7-1085-4294-bf40-e5e6686b06f7",
+      "credentials": {
+        "jwtAuth": {
+          "id": "ZxCiZNHc8pul7xQb",
+          "name": "JWT Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "874de6a2-be58-46c5-a678-e593a081bba6",
+              "name": "name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "16f9b9d9-b1ef-4e26-abe5-dfa56491847c",
+              "name": "description",
+              "value": "={{ $json.body.description }}",
+              "type": "string"
+            },
+            {
+              "id": "59420688-088f-40e7-8bce-441ce8ecc164",
+              "name": "user_email",
+              "value": "={{ $json.jwtPayload.email }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        1360
+      ],
+      "id": "62067df3-982b-4f94-8c21-678938d9a9dc",
+      "name": "Fetch course and details"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "email",
+              "value": "={{ $json.user_email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        460,
+        1360
+      ],
+      "id": "814cb058-25d7-43af-bd80-6f61445fe8c1",
+      "name": "Fetch user details",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<course name>\n {{ $('Fetch course and details').item.json.name }}\n</course name>\n<course description>\n{{ $('Fetch course and details').item.json.description }}\n</course description>",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        640,
+        1360
+      ],
+      "id": "fd789fd0-d730-4797-b82d-76953d14a7db",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-preview-04-17",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        680,
+        1580
+      ],
+      "id": "a9154cfa-9f5b-4951-855d-01e92367bd0e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        820,
+        1620
+      ],
+      "id": "55927145-2c4e-4eeb-bd15-6ca4f5bde8bf",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "url": "https://learn.microsoft.com/api/catalog",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "modules"
+            },
+            {
+              "name": "product",
+              "value": "azure"
+            },
+            {
+              "name": "level",
+              "value": "beginner"
+            },
+            {
+              "name": "locale",
+              "value": "en-us"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        -531.7875328858694
+      ],
+      "id": "76c0bff5-85bc-4a2f-b27b-2038ee5511a7",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://learn.microsoft.com/api/catalog",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "modules"
+            },
+            {
+              "name": "product",
+              "value": "azure"
+            },
+            {
+              "name": "level",
+              "value": "beginner"
+            },
+            {
+              "name": "locale",
+              "value": "en-us"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        1580
+      ],
+      "id": "4e864a53-df98-4bee-9b32-6f6ede462b47",
+      "name": "HTTP Request1"
+    }
+  ],
+  "pinData": {
+    "Add course Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "172.68.42.12",
+            "x-forwarded-for": "41.209.60.114, 172.68.42.12",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "141",
+            "accept-encoding": "gzip, br",
+            "user-agent": "Thunder Client (https://www.thunderclient.com)",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhdmlkbmppaGlhNTM2QGdtYWlsLmNvbSIsImlhdCI6MTc0ODYxMzc1Mn0.1chZgSIw5pHbAdR42KCljFhz8XKICUlXfTq-SVdE0dM",
+            "content-type": "application/x-www-form-urlencoded",
+            "cf-ray": "947ece00e9c393d1-JNB",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "accept": "*/*",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "41.209.60.114",
+            "cf-ipcountry": "KE"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "Introduction to React",
+            "description": "A react cause that will give me the basics and systax for react and being able to build small web apps"
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook-test/Smart-Learn/course/add",
+          "executionMode": "test",
+          "jwtPayload": {
+            "email": "davidnjihia536@gmail.com",
+            "iat": 1748613752
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 4,
+  "updatedAt": "2025-05-30T15:10:27.000Z",
+  "versionId": "65178b2a-70e7-455f-ae2a-695cfff5f7ea"
+}
