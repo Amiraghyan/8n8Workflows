@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Get required data": {
       "main": [
@@ -1571,6 +1571,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 4,
-  "updatedAt": "2025-05-30T15:10:27.000Z",
+  "updatedAt": "2025-06-07T07:23:07.000Z",
   "versionId": "65178b2a-70e7-455f-ae2a-695cfff5f7ea"
 }
