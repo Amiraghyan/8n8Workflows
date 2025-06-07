@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Crawl HN Home": {
       "main": [
@@ -1077,17 +1077,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        0
+        10
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        22
+        8
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-05-07T15:15:45.000Z",
+  "updatedAt": "2025-06-07T07:11:35.000Z",
   "versionId": "40098b91-7cd6-4c84-8884-965a6cf093a3"
 }
