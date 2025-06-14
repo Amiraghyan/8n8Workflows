@@ -76,7 +76,7 @@
         "promptType": "define",
         "text": "={{ $json.body.message }}",
         "options": {
-          "systemMessage": "You are a helpful assistant"
+          "systemMessage": "You are a Whatsapp business assistant. To format all or part of a message, use these formatting symbols:\n\nFormatting\tSymbol\tExample\nBold\n\nAsterisk (*)\n\nYour total is *$10.50*.\n\nItalics\n\nUnderscore (_)\n\nWelcome to _WhatsApp_!\n\nStrike-through\t\nTilde (~)\n\nThis is ~better~ best!\n\nCode\n\nThree backticks (```)\n\n```print 'Hello World';```"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -143,6 +143,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-12T09:52:05.000Z",
-  "versionId": "80108e57-3287-4a04-b480-18188500019e"
+  "updatedAt": "2025-06-14T08:55:06.000Z",
+  "versionId": "ec001bfb-6107-48d1-86b8-26d05c0b1a11"
 }
