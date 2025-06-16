@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "Set response data",
             "type": "main",
             "index": 0
           }
@@ -36,7 +36,20 @@
     },
     "Postgres PGVector Store": {
       "main": [
-        []
+        [
+          {
+            "node": "Document Upload Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Embeddings Google Gemini": {
@@ -123,6 +136,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -131,6 +151,13 @@
         [
           {
             "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
             "type": "main",
             "index": 0
           }
@@ -145,6 +172,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -156,6 +190,13 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     },
@@ -164,6 +205,13 @@
         [
           {
             "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Document Upload Error Response",
             "type": "main",
             "index": 0
           }
@@ -202,6 +250,17 @@
           }
         ]
       ]
+    },
+    "Set response data": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-06-12T07:43:08.041Z",
@@ -210,7 +269,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Whatsapp Automation",
+  "name": "Whatsapp Automation System",
   "nodes": [
     {
       "parameters": {
@@ -223,7 +282,7 @@
       "typeVersion": 2,
       "position": [
         -540,
-        200
+        0
       ],
       "id": "caab8046-3991-4224-9f3f-8071570bb0e6",
       "name": "Webhook",
@@ -249,7 +308,7 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "memory"
+        "sessionKey": "={{ $('Webhook').item.json.body.customer_number }}"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
@@ -267,8 +326,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        296,
-        200
+        516,
+        0
       ],
       "id": "ca37ef0c-227e-460c-9447-d958882f8aa6",
       "name": "Respond to Webhook"
@@ -282,7 +341,7 @@
       "typeVersion": 1.2,
       "position": [
         356,
-        960
+        660
       ],
       "id": "2c978a6e-2aeb-47e1-b22e-df57868f6ef9",
       "name": "Postgres PGVector Store",
@@ -291,7 +350,8 @@
           "id": "AEzErPKvBs7vtBPl",
           "name": "Aiven Postgres"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -301,7 +361,7 @@
       "typeVersion": 1,
       "position": [
         340,
-        1180
+        880
       ],
       "id": "0f3c6c43-32df-4ef9-b238-180bbff0de33",
       "name": "Embeddings Google Gemini",
@@ -329,7 +389,7 @@
       "typeVersion": 1,
       "position": [
         460,
-        1182.5
+        882.5
       ],
       "id": "8015f233-3c09-4f09-8086-78d0000dacdf",
       "name": "Default Data Loader"
@@ -342,7 +402,7 @@
       "typeVersion": 1,
       "position": [
         548,
-        1380
+        1080
       ],
       "id": "9d520562-a90a-432c-b7a2-8dfd5594611b",
       "name": "Recursive Character Text Splitter"
@@ -351,6 +411,7 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "whatsapp/document-upload",
+        "responseMode": "responseNode",
         "options": {
           "binaryPropertyName": "data"
         }
@@ -359,7 +420,7 @@
       "typeVersion": 2,
       "position": [
         -540,
-        960
+        1385
       ],
       "id": "0c23dc08-1cf0-486d-a2d4-c198ffaf2a0d",
       "name": "Document Upload",
@@ -476,7 +537,7 @@
       "typeVersion": 3.2,
       "position": [
         -320,
-        939
+        1364
       ],
       "id": "b2fdc61a-08f5-4065-b92e-5ae3a680d859",
       "name": "Switch"
@@ -491,10 +552,11 @@
       "typeVersion": 1,
       "position": [
         -100,
-        660
+        1085
       ],
       "id": "aa17c891-5d8d-43f3-9166-f0558d5533cd",
-      "name": "Extract from PDF"
+      "name": "Extract from PDF",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -505,10 +567,11 @@
       "typeVersion": 1,
       "position": [
         -100,
-        860
+        1285
       ],
       "id": "eac62bfc-487c-47c0-8797-b7d24836fa06",
-      "name": "Extract from CSV"
+      "name": "Extract from CSV",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -520,10 +583,11 @@
       "typeVersion": 1,
       "position": [
         -100,
-        1060
+        1485
       ],
       "id": "9828d256-3123-44b0-9a88-9282d162f5ca",
-      "name": "Extract from Excel"
+      "name": "Extract from Excel",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -535,10 +599,11 @@
       "typeVersion": 1,
       "position": [
         -100,
-        1260
+        1685
       ],
       "id": "fbc4770d-aeab-493f-8cb2-9dc6761a740b",
-      "name": "Extract from txt"
+      "name": "Extract from txt",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -555,6 +620,12 @@
               "name": "business_id",
               "value": "={{ $('Document Upload').item.json.body.business_id }}",
               "type": "string"
+            },
+            {
+              "id": "8a703c01-7055-4890-ad71-7f74c244c5de",
+              "name": "execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
             }
           ]
         },
@@ -564,10 +635,11 @@
       "typeVersion": 3.4,
       "position": [
         120,
-        960
+        835
       ],
       "id": "d55377f3-6e94-4e0f-abdd-d1e6dbe2314d",
-      "name": "Edit Fields"
+      "name": "Edit Fields",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -581,7 +653,7 @@
             "metadataValues": [
               {
                 "name": "business_id",
-                "value": "1"
+                "value": "={{ $('Webhook').item.json.body.business_id }}"
               }
             ]
           }
@@ -640,6 +712,65 @@
           "name": "Google Gemini(PaLM) Api account 3"
         }
       }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "635b33a6-4bec-434d-ae28-a2aac42956ca",
+              "name": "response_text",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "90ad47b1-c1c6-4e8b-a308-cb5d0075f35b",
+              "name": "$execution.id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        296,
+        0
+      ],
+      "id": "07fbe8c1-3a9a-4c5e-9c4c-49515a824af5",
+      "name": "Set response data"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"execution_id\": {{ $execution.id }},\n  \"success\": true,\n  \"message\": \"Processing has started successfully.\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        836,
+        610
+      ],
+      "id": "8ca05154-49fe-4bae-b6e7-1b9635392144",
+      "name": "Document Upload Response"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"execution_id\": {{ $execution.id }},\n  \"success\": false,\n  \"message\": \"Processing your document failed. Node: {{ $prevNode.name }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        836,
+        1235
+      ],
+      "id": "91710a24-fc35-4879-ad90-d8f8580640dc",
+      "name": "Document Upload Error Response"
     }
   ],
   "pinData": {},
@@ -649,6 +780,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-06-15T22:11:29.000Z",
-  "versionId": "4a52934b-5525-42f5-a3f1-476f00512c71"
+  "updatedAt": "2025-06-16T14:54:54.000Z",
+  "versionId": "59b24322-0ce6-4baf-987c-c413fddd2282"
 }
