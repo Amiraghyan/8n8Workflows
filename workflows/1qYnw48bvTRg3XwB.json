@@ -1,0 +1,21 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-06-16T10:40:08.444Z",
+  "id": "1qYnw48bvTRg3XwB",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "AI_Token usage Tracking",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-16T11:12:37.000Z",
+  "versionId": "b5986556-1822-435c-a47d-a8983886eddc"
+}
