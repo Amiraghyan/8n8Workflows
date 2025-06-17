@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Simple Memory": {
       "ai_memory": [
         [
@@ -28,6 +17,13 @@
         [
           {
             "node": "Set response data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set response data1",
             "type": "main",
             "index": 0
           }
@@ -255,7 +251,29 @@
       "main": [
         [
           {
-            "node": "Respond to Webhook",
+            "node": "AI response(success)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set response data1": {
+      "main": [
+        [
+          {
+            "node": "AI Response(failed)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Conversation": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
             "type": "main",
             "index": 0
           }
@@ -273,23 +291,6 @@
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "whatsapp/conversation",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -540,
-        0
-      ],
-      "id": "caab8046-3991-4224-9f3f-8071570bb0e6",
-      "name": "Webhook",
-      "webhookId": "46e09f3d-4f17-40b8-b5db-93688fffc053"
-    },
-    {
-      "parameters": {
         "promptType": "define",
         "text": "={{ $json.body.message }}",
         "options": {
@@ -299,38 +300,26 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        -288,
-        0
+        -468,
+        100
       ],
       "id": "fa76dd1f-40fa-4cda-b432-42b006550662",
-      "name": "AI Agent"
+      "name": "AI Agent",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $('Webhook').item.json.body.customer_number }}"
+        "sessionKey": "={{ $('AI Conversation').item.json.body.customer_number }}"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -200,
-        220
+        -380,
+        320
       ],
       "id": "e3cd1216-5e8a-4e9b-91d1-4007e3bcb306",
       "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        516,
-        0
-      ],
-      "id": "ca37ef0c-227e-460c-9447-d958882f8aa6",
-      "name": "Respond to Webhook"
     },
     {
       "parameters": {
@@ -340,8 +329,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.2,
       "position": [
-        356,
-        660
+        176,
+        760
       ],
       "id": "2c978a6e-2aeb-47e1-b22e-df57868f6ef9",
       "name": "Postgres PGVector Store",
@@ -360,8 +349,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        340,
-        880
+        160,
+        980
       ],
       "id": "0f3c6c43-32df-4ef9-b238-180bbff0de33",
       "name": "Embeddings Google Gemini",
@@ -388,8 +377,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
       "position": [
-        460,
-        882.5
+        280,
+        982.5
       ],
       "id": "8015f233-3c09-4f09-8086-78d0000dacdf",
       "name": "Default Data Loader"
@@ -401,8 +390,8 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        548,
-        1080
+        368,
+        1180
       ],
       "id": "9d520562-a90a-432c-b7a2-8dfd5594611b",
       "name": "Recursive Character Text Splitter"
@@ -419,8 +408,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -540,
-        1385
+        -720,
+        1485
       ],
       "id": "0c23dc08-1cf0-486d-a2d4-c198ffaf2a0d",
       "name": "Document Upload",
@@ -536,8 +525,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -320,
-        1364
+        -500,
+        1464
       ],
       "id": "b2fdc61a-08f5-4065-b92e-5ae3a680d859",
       "name": "Switch"
@@ -551,8 +540,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        -100,
-        1085
+        -280,
+        1185
       ],
       "id": "aa17c891-5d8d-43f3-9166-f0558d5533cd",
       "name": "Extract from PDF",
@@ -566,8 +555,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        -100,
-        1285
+        -280,
+        1385
       ],
       "id": "eac62bfc-487c-47c0-8797-b7d24836fa06",
       "name": "Extract from CSV",
@@ -582,8 +571,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        -100,
-        1485
+        -280,
+        1585
       ],
       "id": "9828d256-3123-44b0-9a88-9282d162f5ca",
       "name": "Extract from Excel",
@@ -598,8 +587,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        -100,
-        1685
+        -280,
+        1785
       ],
       "id": "fbc4770d-aeab-493f-8cb2-9dc6761a740b",
       "name": "Extract from txt",
@@ -634,8 +623,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        120,
-        835
+        -60,
+        935
       ],
       "id": "d55377f3-6e94-4e0f-abdd-d1e6dbe2314d",
       "name": "Edit Fields",
@@ -653,7 +642,7 @@
             "metadataValues": [
               {
                 "name": "business_id",
-                "value": "={{ $('Webhook').item.json.body.business_id }}"
+                "value": "={{ $('AI Conversation').item.json.body.business_id }}"
               }
             ]
           }
@@ -662,8 +651,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.2,
       "position": [
-        -80,
-        222.5
+        -260,
+        322.5
       ],
       "id": "0fa812b4-096e-4c79-91ab-6a1fc08605b3",
       "name": "Postgres PGVector Store1",
@@ -681,8 +670,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        8,
-        420
+        -172,
+        520
       ],
       "id": "6a276b0a-51f4-4fe4-b9d4-bb20ca173325",
       "name": "Embeddings Google Gemini1",
@@ -701,8 +690,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -320,
-        220
+        -500,
+        320
       ],
       "id": "04626bc4-5930-41a7-acef-8ee2d8b9f618",
       "name": "Google Gemini Chat Model",
@@ -725,8 +714,14 @@
             },
             {
               "id": "90ad47b1-c1c6-4e8b-a308-cb5d0075f35b",
-              "name": "$execution.id",
+              "name": "execution_id",
               "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a23f2429-4a79-493a-bc0f-7afaa35c267b",
+              "name": "status",
+              "value": "success",
               "type": "string"
             }
           ]
@@ -736,7 +731,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        296,
+        116,
         0
       ],
       "id": "07fbe8c1-3a9a-4c5e-9c4c-49515a824af5",
@@ -751,8 +746,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        836,
-        610
+        656,
+        710
       ],
       "id": "8ca05154-49fe-4bae-b6e7-1b9635392144",
       "name": "Document Upload Response"
@@ -766,11 +761,91 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        836,
-        1235
+        656,
+        1335
       ],
       "id": "91710a24-fc35-4879-ad90-d8f8580640dc",
       "name": "Document Upload Error Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "635b33a6-4bec-434d-ae28-a2aac42956ca",
+              "name": "response_text",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "90ad47b1-c1c6-4e8b-a308-cb5d0075f35b",
+              "name": "execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a23f2429-4a79-493a-bc0f-7afaa35c267b",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        116,
+        200
+      ],
+      "id": "62c5456c-f15d-43e1-82ce-91c85e8384dd",
+      "name": "Set response data1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp/conversation",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        100
+      ],
+      "id": "caab8046-3991-4224-9f3f-8071570bb0e6",
+      "name": "AI Conversation",
+      "webhookId": "46e09f3d-4f17-40b8-b5db-93688fffc053"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        0
+      ],
+      "id": "ca37ef0c-227e-460c-9447-d958882f8aa6",
+      "name": "AI response(success)"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        336,
+        200
+      ],
+      "id": "148226b6-a7c6-47a6-ab83-745ef883b410",
+      "name": "AI Response(failed)"
     }
   ],
   "pinData": {},
@@ -780,6 +855,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-06-16T14:54:54.000Z",
-  "versionId": "59b24322-0ce6-4baf-987c-c413fddd2282"
+  "updatedAt": "2025-06-17T11:02:11.000Z",
+  "versionId": "5311aec6-ace1-43f0-9d89-c72db7c4e41d"
 }
