@@ -292,7 +292,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.body.message }}",
+        "text": "=sent message: {{ $json.body.message }}\n\nis reply message: {{ $json.body.is_reply_message }}\n\nis forwarded: {{ $json.body.is_forwaded }}\n\nproduct id(available if a product was replied to): {{ $json.body.product_id }}",
         "options": {
           "systemMessage": "You are a Whatsapp business assistant. To format all or part of a message, use these formatting symbols:\n\nFormatting\tSymbol\tExample\nBold\n\nAsterisk (*)\n\nYour total is *$10.50*.\n\nItalics\n\nUnderscore (_)\n\nWelcome to _WhatsApp_!\n\nStrike-through\t\nTilde (~)\n\nThis is ~better~ best!\n\nCode\n\nThree backticks (```)\n\n```print 'Hello World';```"
         }
@@ -855,6 +855,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-06-17T11:02:11.000Z",
-  "versionId": "5311aec6-ace1-43f0-9d89-c72db7c4e41d"
+  "updatedAt": "2025-06-19T08:51:10.000Z",
+  "versionId": "b9b9c001-ce02-474a-955c-00e3db0bc2db"
 }
