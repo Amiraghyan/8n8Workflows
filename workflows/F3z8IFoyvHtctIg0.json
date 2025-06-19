@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "LinkedIn": {
       "main": [
@@ -1077,7 +1077,7 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        10
+        12
       ]
     },
     "node:Check for unposted posts": {
@@ -1088,6 +1088,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-05-12T20:36:12.000Z",
+  "updatedAt": "2025-06-19T09:02:51.000Z",
   "versionId": "fdc8fef5-a175-4e98-8faa-34993f0d62e1"
 }
