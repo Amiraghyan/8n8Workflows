@@ -33,6 +33,149 @@
           }
         ]
       ]
+    },
+    "Chatbot conversation": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-04T06:47:03.203Z",
@@ -137,7 +280,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        340,
+        220,
         0
       ],
       "id": "91527289-577d-40c7-bf7a-e59180d22c9b",
@@ -161,7 +304,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        700,
+        440,
         0
       ],
       "id": "6cafe761-e526-4544-bd54-bf29b84cfe74",
@@ -184,7 +327,7 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        920,
+        660,
         0
       ],
       "id": "4f22b2f8-cb47-4bc8-92e5-f2c6d23f2f03",
@@ -194,6 +337,340 @@
         "gmailOAuth2": {
           "id": "8ThqC1trQqFGaMfX",
           "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "website/chatbot",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        460
+      ],
+      "id": "e66878db-b21e-4f1b-8ca0-c1009ab8a32d",
+      "name": "Chatbot conversation",
+      "webhookId": "2f8a9f53-3989-4af5-9fef-2325cf65368c"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "=You are a smart, context-aware customer care Assistant that helps Binary Craft Technologies interact with customers intelligently and drive in sales or consultation meetings.\n\nYou are connected to:\n- A vector store containing business knowledge.\n- A tool to send emails, create calender events and check availability.\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content\n- Business context retrieved (via vector store)\nAnd most importantly, drive in sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (message pattern).\n3. Use available tools (like email and calender) if it would enhance support\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n5. If if the conversation drives in a sale, send the details to the company head via davidnjihia536@gmail.com including the customers contact details.\n\nALWAYS aim to be clear, supportive, and accurate."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        492,
+        260
+      ],
+      "id": "10331656-6f9d-4d5e-a991-8bed83df3921",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        220,
+        480
+      ],
+      "id": "80393317-0c71-4388-99ea-c62dc58203bf",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.memory_id }}",
+        "tableName": "BinaryCraftTechnologies",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        340,
+        480
+      ],
+      "id": "f2f6c7a5-49a5-4d66-9f83-85c059f0b404",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Aiven Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        460,
+        480
+      ],
+      "id": "695e6a9c-0ea6-42db-a608-d53e4014b39d",
+      "name": "Gmail",
+      "webhookId": "896651c2-6528-42d7-88dd-2005a9dfdb6b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        580,
+        480
+      ],
+      "id": "08d7da06-48fe-4273-b8c1-2400d3031f7b",
+      "name": "Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "CGIj1KNyAeYnnfFO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "davidnjihia536@gmail.com",
+          "mode": "list",
+          "cachedResultName": "davidnjihia536@gmail.com"
+        },
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Time', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Time', ``, 'string') }}",
+        "options": {
+          "timezone": {
+            "mode": "list",
+            "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Timezone', ``, 'string') }}"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        700,
+        480
+      ],
+      "id": "f14af647-3661-4fe0-b8fd-54d3a7154636",
+      "name": "Google Calendar1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "CGIj1KNyAeYnnfFO",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "formTitle": "Binary Craft Technologies Knowledge Upload",
+        "formDescription": "Upload documents to grow Binary Craft Technologies website.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Upload your document here",
+              "fieldType": "file",
+              "acceptFileTypes": ".pdf, .txt",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        1020
+      ],
+      "id": "94cdef0a-75b0-4db3-979b-4455061ff883",
+      "name": "On form submission",
+      "webhookId": "1cc5162e-4d21-4a3d-8e48-4983f0702df4",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "cmP1XhK7VJlEdrX8",
+          "name": "Default001"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/text-embedding-004"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        248,
+        1240
+      ],
+      "id": "7e61e8ff-00a1-4c5d-b3e7-ec0e8c0f660b",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/text-embedding-004"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        908,
+        680
+      ],
+      "id": "84a36a21-14a2-4116-9610-e99e7d8c5b62",
+      "name": "Embeddings Google Gemini1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Lv8LqTGpfGzDWuiH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1300,
+        260
+      ],
+      "id": "4f9cbc9b-d885-4bf0-88b0-832fa5627328",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "209c5382-6ef8-49b8-9ec5-578f181b62e4",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "7c655bda-a8a1-46fe-9a66-8b0d7443b81f",
+              "name": "memory_id",
+              "value": "={{ $('Chatbot conversation').item.json.body.memory_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        260
+      ],
+      "id": "d781e61d-6a75-4b7d-a313-688fc22ec872",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "BinaryCraftTechnologies",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        220,
+        1020
+      ],
+      "id": "3d7dc100-edab-413b-a089-8726c28f5558",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        1240
+      ],
+      "id": "86a6d4be-d0f8-484b-9bae-4a10591b886a",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Binary Craft Technologies Knowledge base",
+        "tableName": "BinaryCraftTechnologies",
+        "topK": 8,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        800,
+        480
+      ],
+      "id": "e6515c3a-85b2-437f-898c-3e4447d9c8ac",
+      "name": "Postgres PGVector Store1",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
         }
       }
     }
@@ -238,6 +715,48 @@
           "executionMode": "production"
         }
       }
+    ],
+    "Chatbot conversation": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "172.68.42.176",
+            "x-forwarded-for": "41.209.60.114, 172.68.42.176",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "93",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "priority": "u=1, i",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "952bea8968d44eb7-JNB",
+            "referer": "https://d7fa350c-58ca-49ad-8b30-c79eccb8980d.lovableproject.com/",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Brave\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "sec-gpc": "1",
+            "accept-language": "en-US,en;q=0.5",
+            "origin": "https://d7fa350c-58ca-49ad-8b30-c79eccb8980d.lovableproject.com",
+            "sec-fetch-site": "cross-site",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "41.209.60.114",
+            "cf-ipcountry": "KE",
+            "cf-visitor": "{\"scheme\":\"https\"}"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "I need help in my business. I need a website",
+            "memory_id": "jsop86jdssnxwt6ifxsb"
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook/website/chatbot",
+          "executionMode": "production"
+        }
+      }
     ]
   },
   "settings": {
@@ -247,7 +766,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-05-04T19:16:42.000Z",
-  "versionId": "ea464a31-4841-49f8-84b1-7517eed57237"
+  "triggerCount": 3,
+  "updatedAt": "2025-06-20T15:11:52.000Z",
+  "versionId": "53434c85-dbeb-4f26-a3bc-38c0f178572f"
 }
