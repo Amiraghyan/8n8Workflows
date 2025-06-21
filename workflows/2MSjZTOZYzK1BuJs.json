@@ -1003,10 +1003,28 @@
         "assignments": {
           "assignments": [
             {
-              "id": "a5bc0598-63f3-4bed-bb4a-b8c47024f101",
-              "name": "tokenEstimates",
-              "value": "={{ $json.data.resultData.runData['Google Gemini Chat Model'][0].data.ai_languageModel[0][0].json.tokenUsageEstimate }}",
-              "type": "object"
+              "id": "44b9bf9e-d0c8-4468-af36-05e5521752fa",
+              "name": "completionTokens",
+              "value": "={{ $json.data.resultData.runData['Google Gemini Chat Model'][1].data.ai_languageModel[0][0].json.tokenUsageEstimate.completionTokens }}",
+              "type": "number"
+            },
+            {
+              "id": "8aa9386f-2e09-4064-aadf-85bf9e238f29",
+              "name": "promptTokens",
+              "value": "={{ $json.data.resultData.runData['Google Gemini Chat Model'][1].data.ai_languageModel[0][0].json.tokenUsageEstimate.promptTokens }}",
+              "type": "number"
+            },
+            {
+              "id": "1b6df0cb-413d-4f5f-a519-e1f2cc79ccb6",
+              "name": "totalTokens",
+              "value": "={{ $json.data.resultData.runData['Google Gemini Chat Model'][1].data.ai_languageModel[0][0].json.tokenUsageEstimate.totalTokens }}",
+              "type": "number"
+            },
+            {
+              "id": "c620100b-4e39-4670-9f1f-82a6d5773b6a",
+              "name": "execution_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
             }
           ]
         },
@@ -1084,13 +1102,44 @@
       "name": "Fetch reply message from database"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Get AI metrics for an Execution": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "172.68.42.176",
+            "x-forwarded-for": "41.209.60.114, 172.68.42.176",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "22",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "user-agent": "python-httpx/0.28.1",
+            "cf-ray": "952f2b1a0e9573d4-JNB",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "41.209.60.114",
+            "cf-ipcountry": "KE"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "execution_id": 13218
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook/whatsapp/metrics",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-06-19T15:17:01.000Z",
-  "versionId": "6a3ceaef-a4c1-4a94-8996-d03a490040fe"
+  "updatedAt": "2025-06-21T05:05:18.000Z",
+  "versionId": "8a19f55a-bfe1-4065-a13a-e9b5b11fa5f8"
 }
