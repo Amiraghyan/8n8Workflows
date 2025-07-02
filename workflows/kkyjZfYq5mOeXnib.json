@@ -85,13 +85,7 @@
             "index": 0
           }
         ],
-        [
-          {
-            "node": "Split out the email's category",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Split out the email's category": {
@@ -160,8 +154,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        528,
-        575
+        240,
+        660
       ],
       "id": "d7465c9d-f4d5-414f-977b-e2773fc8c316",
       "name": "Google Gemini Chat Model1",
@@ -186,8 +180,8 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.2,
       "position": [
-        0,
-        355
+        -280,
+        240
       ],
       "id": "c34fda2d-0d02-42d8-b616-abd630e1711d",
       "name": "Gmail Trigger",
@@ -228,8 +222,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        220,
-        355
+        -60,
+        240
       ],
       "id": "ada404c9-91d2-4b2a-a23c-c3cf8c61a054",
       "name": "Read the gmail",
@@ -245,15 +239,15 @@
       "parameters": {
         "inputText": "=<EmailSubject>\n{{ $json.Subject }}\n</EmailSubject>\n<TextFormat>\n{{ $json.text }}\n</TextFormat>\n<HTMLFormat>\n{{ $json.html }}\n</HTMLFormat>",
         "options": {
-          "categories": "SPAM, Job Alert, Newsletters, Advertisement, OTP Code, Social media, Sent from Individual, Alerts & Reminders",
+          "categories": "Job Alert, Newsletters, Advertisement, OTP Code, Social media, Sent from Individual, Alerts & Reminders",
           "systemPromptTemplate": "You are highly intelligent and accurate email category analyzer. Analyze the category of the provided email which is in text format and HTML format. Categorize it into one of the following: {categories}. Use the provided formatting instructions. Only output the JSON."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
       "typeVersion": 1,
       "position": [
-        440,
-        355
+        160,
+        240
       ],
       "id": "1b226f3f-a1fa-4b61-ae88-68d01dd9207f",
       "name": "Decide the email category"
@@ -347,16 +341,16 @@
   "staticData": {
     "node:Gmail Trigger": {
       "Gmail Trigger": {
-        "lastTimeChecked": 1751360478,
+        "lastTimeChecked": 1751487331,
         "possibleDuplicates": [
-          "197acc5c47e33200",
-          "197acbdad5f99094"
+          "197ccc7be44a8261",
+          "197cc9ea1897e656"
         ]
       }
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-06-25T05:42:34.000Z",
-  "versionId": "d07ad3af-3a2c-4bbc-977e-c235b1f94ba8"
+  "updatedAt": "2025-07-02T17:05:04.000Z",
+  "versionId": "7f218f60-5a0a-4d34-8316-86a32d67c151"
 }
