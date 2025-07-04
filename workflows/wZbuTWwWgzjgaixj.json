@@ -315,7 +315,7 @@
     {
       "parameters": {
         "operation": "search",
-        "subreddit": "smallbusiness",
+        "subreddit": "Business_Ideas",
         "keyword": "looking for a solution",
         "limit": 20,
         "additionalFields": {
@@ -352,8 +352,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        340,
-        200
+        300,
+        205
       ],
       "id": "f9875ad0-6911-447b-8721-792a9180a724",
       "name": "Find Proper Solutions"
@@ -440,7 +440,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -704,
+        -720,
         280
       ],
       "id": "1ccdf18a-40eb-4799-9059-d31db811af37",
@@ -454,7 +454,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        420,
+        380,
         425
       ],
       "id": "00c0edae-9ca4-4079-8b5e-f923812a986a",
@@ -473,7 +473,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        104,
+        80,
         300
       ],
       "id": "b85bbc16-1a30-4a3f-9825-0fbc6f16649f",
@@ -488,7 +488,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        -1364,
+        -1380,
         205
       ],
       "id": "df15698e-980a-4bf8-bb85-e5d4355e7a30",
@@ -521,7 +521,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1144,
+        -1160,
         205
       ],
       "id": "824fc1b9-1ed9-400f-8b2b-906e9b747dfc",
@@ -589,7 +589,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -924,
+        -940,
         280
       ],
       "id": "7865a5bc-fae1-4f7b-9bdf-975917ebeebb",
@@ -610,7 +610,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.1,
       "position": [
-        -484,
+        -500,
         205
       ],
       "id": "ca36a940-4dad-4bc4-9372-1ecbd85f6285",
@@ -739,7 +739,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -264,
+        -280,
         205
       ],
       "id": "53ec2970-2849-4717-a0a3-484f17604bd8",
@@ -767,7 +767,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.6,
       "position": [
-        -44,
+        -60,
         80
       ],
       "id": "2cbb0a1d-373a-47a0-b8c7-63c8bbb574a8",
@@ -784,7 +784,7 @@
       "name": "Combine Sumary, solution and posts.",
       "type": "n8n-nodes-base.merge",
       "position": [
-        708,
+        660,
         205
       ],
       "typeVersion": 3
@@ -863,7 +863,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        928,
+        880,
         105
       ],
       "id": "19c0d95b-2426-4c1a-9a62-3c4df44e734d",
@@ -947,7 +947,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        928,
+        880,
         305
       ],
       "id": "3304bd51-a0d8-4397-ac64-869251932dc5",
@@ -967,7 +967,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1652,
+        -1660,
         300
       ],
       "id": "e4bddcc9-85a9-4236-b251-04d51f8ac98d",
@@ -981,13 +981,13 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-1.5-flash-001",
+        "modelName": "models/gemini-2.0-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -16,
+        -40,
         300
       ],
       "id": "dd453305-0ec4-47e3-b9c2-c395854f84ab",
@@ -1007,6 +1007,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-05-13T23:25:58.000Z",
-  "versionId": "e9b2ea47-1476-45e5-ae7b-32cabd4a6b0e"
+  "updatedAt": "2025-07-04T11:06:47.000Z",
+  "versionId": "03ece673-81d7-4c64-a84a-821a56d312ef"
 }
