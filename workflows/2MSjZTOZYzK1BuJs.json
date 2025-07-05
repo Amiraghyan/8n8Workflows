@@ -395,9 +395,7 @@
       "onError": "continueErrorOutput"
     },
     {
-      "parameters": {
-        "modelName": "models/text-embedding-004"
-      },
+      "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
@@ -716,9 +714,7 @@
       }
     },
     {
-      "parameters": {
-        "modelName": "models/text-embedding-004"
-      },
+      "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
@@ -1140,6 +1136,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-06-21T05:05:18.000Z",
-  "versionId": "8a19f55a-bfe1-4065-a13a-e9b5b11fa5f8"
+  "updatedAt": "2025-07-05T17:10:01.000Z",
+  "versionId": "86cd1102-0c6c-4b98-bdea-76b29038ec6b"
 }
