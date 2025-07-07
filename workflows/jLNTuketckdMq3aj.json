@@ -1,9 +1,97 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "browse_tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pywa Documentation Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pywa Documentation Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pywa Documentation Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
       "main": [
-        []
+        [
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "save_to_knowledge_base": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pywa Documentation Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "Pywa Documentation Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -13,18 +101,215 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "Pywa Documentation Assistant",
   "nodes": [
     {
+      "parameters": {
+        "toolDescription": "Use this tool to retrieve and crawl official `pywa` documentation. Start URL: https://pywa.readthedocs.io/en/latest/",
+        "url": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('URL', ``, 'string') }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {},
+        "optimizeResponse": true,
+        "responseType": "html",
+        "cssSelector": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Selector__CSS_', ``, 'string') }}",
+        "onlyContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_Only_Content', ``, 'boolean') }}",
+        "elementsToOmit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Elements_To_Omit', ``, 'string') }}",
+        "truncateResponse": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Truncate_Response', ``, 'boolean') }}"
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        500
+      ],
+      "id": "80ae3bfe-3dfc-4287-8670-b0dd01ea557a",
+      "name": "browse_tool"
+    },
+    {
       "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1,
       "position": [
-        0,
-        0
+        -40,
+        500
       ],
-      "id": "733780f4-bed9-4d5a-a9da-29f584b2fdfa",
-      "name": "When clicking ‘Execute workflow’"
+      "id": "f8093aed-a44c-41ab-aac0-37e6492d43f6",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Work with the knowledge base",
+        "tableName": "knowledge_mcp_pywa",
+        "topK": 10,
+        "includeDocumentMetadata": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        502.5
+      ],
+      "id": "af6bf7d3-a029-41f6-9bfa-8fcdceacb846",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        700,
+        200
+      ],
+      "id": "b66a1657-27b5-4866-b42e-389718b1dd4f",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "data",
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        150,
+        -20
+      ],
+      "id": "828a2576-ff8c-447a-af58-159a02e56fab",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "knowledge_mcp_pywa",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        680,
+        -20
+      ],
+      "id": "a055822e-fb39-4c2c-9721-0cc629c5f23e",
+      "name": "Postgres PGVector Store1",
+      "credentials": {
+        "postgres": {
+          "id": "STEiiGYKeUTcdagW",
+          "name": "AIVEN pain2profit"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        200
+      ],
+      "id": "67af838e-f828-441b-8d0f-470a18f16ec7",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "description": "Call this tool to save data to the knowledge base.",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{$workflow.id}}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "data": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('data', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        360,
+        500
+      ],
+      "id": "094488f8-a258-4e0e-ba12-8db256a5b483",
+      "name": "save_to_knowledge_base"
+    },
+    {
+      "parameters": {
+        "path": "pywa-docs-assistant"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        80,
+        280
+      ],
+      "id": "8a56e69e-7544-4c8d-a214-eaf0dad012df",
+      "name": "Pywa Documentation Assistant",
+      "webhookId": "1577c1f9-b847-42cd-8d38-e5c7e55ade9a"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        500
+      ],
+      "id": "64dba40e-f21b-4f4a-93fe-3ab4429a223f",
+      "name": "Send a message in Gmail",
+      "webhookId": "ea217c7c-f867-49f8-a575-5e2e3f3dfb29",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -33,7 +318,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-07-03T14:13:02.000Z",
-  "versionId": "204c3d24-4cdc-44f3-992d-138a184d1abb"
+  "triggerCount": 1,
+  "updatedAt": "2025-07-07T15:57:34.000Z",
+  "versionId": "6bd3e8fc-efba-4e05-afba-3dde803a5f27"
 }
