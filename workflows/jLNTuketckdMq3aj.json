@@ -101,7 +101,7 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "Pywa Documentation Assistant",
+  "name": "MCP_SERVER",
   "nodes": [
     {
       "parameters": {
@@ -319,6 +319,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-07-07T15:57:34.000Z",
-  "versionId": "6bd3e8fc-efba-4e05-afba-3dde803a5f27"
+  "updatedAt": "2025-07-07T21:23:08.000Z",
+  "versionId": "8097a8e1-2077-49a2-b0aa-75ff8ec408e3"
 }
