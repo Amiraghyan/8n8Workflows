@@ -225,17 +225,6 @@
         ]
       ]
     },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Set response data": {
       "main": [
         [
@@ -345,6 +334,17 @@
           }
         ]
       ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-06-12T07:43:08.041Z",
@@ -381,7 +381,7 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.2,
       "position": [
-        56,
+        60,
         860
       ],
       "id": "2c978a6e-2aeb-47e1-b22e-df57868f6ef9",
@@ -389,7 +389,7 @@
       "credentials": {
         "postgres": {
           "id": "AEzErPKvBs7vtBPl",
-          "name": "Aiven Postgres"
+          "name": "Taskacer Postgres"
         }
       },
       "onError": "continueErrorOutput"
@@ -440,7 +440,7 @@
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
       "position": [
-        248,
+        240,
         1280
       ],
       "id": "9d520562-a90a-432c-b7a2-8dfd5594611b",
@@ -576,7 +576,7 @@
       "typeVersion": 3.2,
       "position": [
         -620,
-        1564
+        1565
       ],
       "id": "b2fdc61a-08f5-4065-b92e-5ae3a680d859",
       "name": "Switch"
@@ -709,7 +709,7 @@
       "credentials": {
         "postgres": {
           "id": "AEzErPKvBs7vtBPl",
-          "name": "Aiven Postgres"
+          "name": "Taskacer Postgres"
         }
       }
     },
@@ -718,31 +718,11 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -292,
+        -300,
         420
       ],
       "id": "6a276b0a-51f4-4fe4-b9d4-bb20ca173325",
       "name": "Embeddings Google Gemini1",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "ZBtkKEVmgRcWvWO5",
-          "name": "Google Gemini(PaLM) Api account 3"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "modelName": "models/gemini-2.0-flash",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        -620,
-        220
-      ],
-      "id": "04626bc4-5930-41a7-acef-8ee2d8b9f618",
-      "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
           "id": "ZBtkKEVmgRcWvWO5",
@@ -779,7 +759,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        236,
+        220,
         100
       ],
       "id": "07fbe8c1-3a9a-4c5e-9c4c-49515a824af5",
@@ -794,7 +774,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        536,
+        520,
         810
       ],
       "id": "8ca05154-49fe-4bae-b6e7-1b9635392144",
@@ -809,7 +789,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        536,
+        520,
         1435
       ],
       "id": "91710a24-fc35-4879-ad90-d8f8580640dc",
@@ -822,7 +802,7 @@
             {
               "id": "635b33a6-4bec-434d-ae28-a2aac42956ca",
               "name": "response_text",
-              "value": "={{ $json.output }}",
+              "value": "A technical error occured, We'll get back to you soon.",
               "type": "string"
             },
             {
@@ -834,7 +814,7 @@
             {
               "id": "a23f2429-4a79-493a-bc0f-7afaa35c267b",
               "name": "status",
-              "value": "failed",
+              "value": "success",
               "type": "string"
             }
           ]
@@ -844,7 +824,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        236,
+        220,
         300
       ],
       "id": "62c5456c-f15d-43e1-82ce-91c85e8384dd",
@@ -874,7 +854,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        456,
+        440,
         100
       ],
       "id": "ca37ef0c-227e-460c-9447-d958882f8aa6",
@@ -882,14 +862,12 @@
     },
     {
       "parameters": {
-        "options": {
-          "responseCode": 400
-        }
+        "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        456,
+        440,
         300
       ],
       "id": "148226b6-a7c6-47a6-ab83-745ef883b410",
@@ -912,7 +890,7 @@
       "credentials": {
         "postgres": {
           "id": "AEzErPKvBs7vtBPl",
-          "name": "Aiven Postgres"
+          "name": "Taskacer Postgres"
         }
       }
     },
@@ -1047,8 +1025,8 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -120,
-        240
+        -100,
+        220
       ],
       "id": "76279578-8a29-46c6-96ef-7d439076684f",
       "name": "Gmail",
@@ -1091,11 +1069,35 @@
       "type": "n8n-nodes-base.httpRequestTool",
       "typeVersion": 4.2,
       "position": [
-        36,
+        20,
         220
       ],
       "id": "79fe32ca-e049-40c5-acbc-133654c935a5",
       "name": "Fetch reply message from database"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -620,
+        220
+      ],
+      "id": "8e845273-625a-4749-a517-43efd71a28d1",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "CBhmsxFnGfPZD6YU",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -1136,6 +1138,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2025-07-05T17:10:01.000Z",
-  "versionId": "86cd1102-0c6c-4b98-bdea-76b29038ec6b"
+  "updatedAt": "2025-07-08T17:47:09.000Z",
+  "versionId": "ed33c4f4-3753-47a1-9d34-885a71a1cae6"
 }
