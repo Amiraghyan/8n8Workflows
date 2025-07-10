@@ -892,7 +892,6 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "is_premium": true,
             "post_id": "={{ $json.id }}",
             "solution": "={{ $json.text }}"
           },
@@ -920,15 +919,6 @@
               "canBeUsedToMatch": false
             },
             {
-              "id": "is_premium",
-              "displayName": "is_premium",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "boolean",
-              "canBeUsedToMatch": false
-            },
-            {
               "id": "post_id",
               "displayName": "post_id",
               "required": true,
@@ -936,6 +926,26 @@
               "display": true,
               "type": "number",
               "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
               "removed": false
             }
           ],
@@ -994,8 +1004,8 @@
       "name": "Google Gemini Chat Model2",
       "credentials": {
         "googlePalmApi": {
-          "id": "ZBtkKEVmgRcWvWO5",
-          "name": "Google Gemini(PaLM) Api account 3"
+          "id": "kSDjT64QAeHAQtTi",
+          "name": "Google Gemini(PaLM) Api account"
         }
       }
     }
@@ -1007,6 +1017,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-04T11:06:47.000Z",
-  "versionId": "03ece673-81d7-4c64-a84a-821a56d312ef"
+  "updatedAt": "2025-07-10T13:15:17.000Z",
+  "versionId": "b662281d-6c67-439b-b555-5836c3684133"
 }
