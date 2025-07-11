@@ -12,27 +12,11 @@
         ]
       ]
     },
-    "Extract Meta": {
-      "main": [
-        [
-          {
-            "node": "Fetch all posts",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Filter Unposted Items",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Crawl HN Home": {
       "main": [
         [
           {
-            "node": "Extract Meta",
+            "node": "Extract Metadata",
             "type": "main",
             "index": 0
           }
@@ -236,6 +220,27 @@
           }
         ]
       ]
+    },
+    "Push notification to my phone": {
+      "main": [
+        []
+      ]
+    },
+    "Extract Metadata": {
+      "main": [
+        [
+          {
+            "node": "Fetch all posts",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter Unposted Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-03T20:50:44.991Z",
@@ -262,8 +267,8 @@
       "name": "Crawl HN Home",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -1020,
-        400
+        -1024,
+        416
       ],
       "executeOnce": true,
       "typeVersion": 4.2,
@@ -271,30 +276,14 @@
     },
     {
       "parameters": {
-        "language": "python",
-        "pythonCode": "# Import necessary modules\nimport asyncio\nimport micropip\n\n# Define an asynchronous function to install packages\nasync def install_packages():\n    await micropip.install(\"beautifulsoup4\")\n    await micropip.install(\"simplejson\")\n\n# Run the asynchronous package installation\nasyncio.get_event_loop().run_until_complete(install_packages())\n\n# Now, import the installed packages\nimport simplejson as json\nfrom bs4 import BeautifulSoup\n\n# Retrieve the HTML content from the first item in the input\n# Assuming n8n passes data as a list of items, each with a 'json' key\nhtml_content = items[0].get('json', {}).get('data', '')\n\n# Initialize BeautifulSoup with the HTML content\nsoup = BeautifulSoup(html_content, 'html.parser')\n\n# Initialize a list to store metadata of GitHub posts\ngithub_posts = []\n\n# Find all 'tr' elements with class 'athing submission'\nposts = soup.find_all('tr', class_='athing submission')\n\nfor post in posts:\n    post_id = post.get('id')\n    title_line = post.find('span', class_='titleline')\n    if not title_line:\n        continue  # Skip if titleline is not found\n\n    # Extract the title and URL\n    title_tag = title_line.find('a')\n    if not title_tag:\n        continue  # Skip if title tag is not found\n\n    title = title_tag.get_text(strip=True)\n    url = title_tag.get('href', '')\n\n    # Check if the URL is a GitHub link\n    if 'github.com' not in url.lower():\n        continue  # Skip if not a GitHub link\n\n    # Extract the site domain (e.g., github.com/username/repo)\n    site_bit = title_line.find('span', class_='sitebit comhead')\n    site = site_bit.find('span', class_='sitestr').get_text(strip=True) if site_bit else ''\n\n    # The subtext is in the next 'tr' element\n    subtext_tr = post.find_next_sibling('tr')\n    if not subtext_tr:\n        continue  # Skip if subtext row is not found\n\n    subtext_td = subtext_tr.find('td', class_='subtext')\n    if not subtext_td:\n        continue  # Skip if subtext td is not found\n\n    # Extract score\n    score_span = subtext_td.find('span', class_='score')\n    score = score_span.get_text(strip=True) if score_span else '0 points'\n\n    # Extract author\n    author_a = subtext_td.find('a', class_='hnuser')\n    author = author_a.get_text(strip=True) if author_a else 'unknown'\n\n    # Extract age\n    age_span = subtext_td.find('span', class_='age')\n    age_a = age_span.find('a') if age_span else None\n    age = age_a.get_text(strip=True) if age_a else 'unknown'\n\n    # Extract comments\n    comments_a = subtext_td.find_all('a')[-1] if subtext_td.find_all('a') else None\n    comments_text = comments_a.get_text(strip=True) if comments_a else '0 comments'\n\n    # Construct the Hacker News URL\n    hn_url = f\"https://news.ycombinator.com/item?id={post_id}\"\n\n    # Compile the metadata\n    post_metadata = {\n        'Post': post_id,\n        'title': title,\n        'url': url,\n        'site': site,\n        'score': score,\n        'author': author,\n        'age': age,\n        'comments': comments_text,\n        'hn_url': hn_url\n    }\n\n    # Append to the list of GitHub posts\n    github_posts.append(post_metadata)\n\n# Prepare the output for n8n\noutput = [{'json': post} for post in github_posts]\n\n# Return the output\nreturn output\n"
-      },
-      "id": "eebb7415-6574-4793-aee7-44873b6c5330",
-      "name": "Extract Meta",
-      "type": "n8n-nodes-base.code",
-      "position": [
-        -800,
-        400
-      ],
-      "executeOnce": true,
-      "typeVersion": 2,
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "jsCode": "// Get all processed IDs from Google Sheets\nconst sheetData = $('Fetch all posts').all();\nconst processedIds = sheetData.map(item => {\n  // Check both common column name variations\n  return String(item.json?.Post || item.json?.post_id || item.json?.id || \"\");\n}).filter(id => id); // Remove empty strings\n\n// Get all HN posts\nconst hnPosts = $('Extract Meta').all();\n\n// Filter to only new posts\nconst newPosts = hnPosts.filter(post => {\n  const postId = String(post.json.Post); // HN post ID is in json.Post\n  return !processedIds.includes(postId);\n});\n\n// Debug output\nconsole.log(\"Processed IDs from Sheet:\", processedIds);\nconsole.log(\"New posts to process:\", newPosts.map(p => p.json.Post));\n\nreturn newPosts;"
+        "jsCode": "// Get all processed IDs from Google Sheets\nconst sheetData = $('Fetch all posts').all();\nconst processedIds = sheetData.map(item => {\n  // Check both common column name variations\n  return String(item.json?.Post || item.json?.post_id || item.json?.id || \"\");\n}).filter(id => id); // Remove empty strings\n\n// Get all HN posts\nconst hnPosts = $(\"Extract Metadata\").all();\n\n// Filter to only new posts\nconst newPosts = hnPosts.filter(post => {\n  const postId = String(post.json.Post); // HN post ID is in json.Post\n  return !processedIds.includes(postId);\n});\n\n// Debug output\nconsole.log(\"Processed IDs from Sheet:\", processedIds);\nconsole.log(\"New posts to process:\", newPosts.map(p => p.json.Post));\n\nreturn newPosts;"
       },
       "id": "6139d6f0-8d9d-4000-9a26-becf9b2a8930",
       "name": "Filter Unposted Items",
       "type": "n8n-nodes-base.code",
       "position": [
-        -360,
-        400
+        -352,
+        416
       ],
       "typeVersion": 2
     },
@@ -307,8 +296,8 @@
       "name": "Visit GH Page",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -140,
-        400
+        -128,
+        416
       ],
       "typeVersion": 4.2
     },
@@ -321,8 +310,8 @@
       "name": "Convert HTML To Markdown",
       "type": "n8n-nodes-base.markdown",
       "position": [
-        80,
-        400
+        96,
+        416
       ],
       "typeVersion": 1,
       "alwaysOutputData": true
@@ -356,8 +345,8 @@
       "name": "Filter Errored",
       "type": "n8n-nodes-base.filter",
       "position": [
-        896,
-        400
+        944,
+        416
       ],
       "typeVersion": 2.2
     },
@@ -371,8 +360,8 @@
       "name": "LinkedIn",
       "type": "n8n-nodes-base.linkedIn",
       "position": [
-        1336,
-        400
+        1392,
+        416
       ],
       "typeVersion": 1,
       "credentials": {
@@ -391,8 +380,8 @@
       "name": "Validate Generate Content",
       "type": "n8n-nodes-base.code",
       "position": [
-        676,
-        400
+        720,
+        416
       ],
       "typeVersion": 2,
       "onError": "continueRegularOutput"
@@ -412,8 +401,8 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        -1240,
-        400
+        -1248,
+        416
       ],
       "typeVersion": 1.2
     },
@@ -425,8 +414,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        328,
-        520
+        352,
+        528
       ],
       "id": "faa4e800-6c7f-4409-9866-5f1fcd86f094",
       "name": "Google Gemini Chat Model",
@@ -453,8 +442,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.5,
       "position": [
-        300,
-        300
+        320,
+        304
       ],
       "id": "52e9a669-e621-4c5d-a17d-ac059445c6cc",
       "name": "Basic LLM Chain"
@@ -466,8 +455,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        448,
-        520
+        480,
+        528
       ],
       "id": "55fd8d57-ab77-4ab3-b058-8e5943306442",
       "name": "Structured Output Parser"
@@ -487,8 +476,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        378,
-        700
+        416,
+        704
       ],
       "id": "52bd8c9e-3b0f-4ac3-9584-2cdff432cd9f",
       "name": "Check for unposted posts"
@@ -507,8 +496,8 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        896,
-        700
+        944,
+        704
       ],
       "id": "61678821-1554-4d82-a256-8c73ce431cbd",
       "name": "Sort"
@@ -520,8 +509,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1116,
-        700
+        1168,
+        704
       ],
       "id": "a39edd7d-5db3-4237-9e68-9994eb517ff3",
       "name": "Code"
@@ -539,8 +528,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1776,
-        550
+        1840,
+        560
       ],
       "id": "11d83a3d-d4bd-4178-ac33-d02cd627cc4d",
       "name": "Push notification to my phone"
@@ -554,8 +543,8 @@
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
       "position": [
-        1336,
-        700
+        1392,
+        704
       ],
       "id": "72cf77d8-6933-4539-938b-d8549ef6a436",
       "name": "LinkedIn1",
@@ -702,8 +691,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1556,
-        400
+        1616,
+        416
       ],
       "id": "a99a7c40-73f3-4851-a579-75b2da1171b8",
       "name": "Update status",
@@ -836,8 +825,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1116,
-        400
+        1168,
+        416
       ],
       "id": "de3a169a-a47b-4b75-b110-466bb1408f5c",
       "name": "Log post to sheets",
@@ -869,8 +858,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -580,
-        325
+        -576,
+        336
       ],
       "id": "0b91c377-0155-4781-bc8f-ec780256ab55",
       "name": "Fetch all posts",
@@ -909,8 +898,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        676,
-        700
+        720,
+        704
       ],
       "id": "5603a70f-c372-406c-93a8-6617f19505b6",
       "name": "Fetch unposted posts",
@@ -1057,8 +1046,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1556,
-        700
+        1616,
+        704
       ],
       "id": "6b3ce202-7cf9-4d70-91a5-9f17a90fe392",
       "name": "Update status1",
@@ -1068,6 +1057,30 @@
           "name": "Google Sheets account"
         }
       }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://172.31.83.110:8081/parse",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "html",
+              "value": "={{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -800,
+        416
+      ],
+      "id": "6e4956b0-c9cd-445f-93bf-0302012fbdb4",
+      "name": "Extract Metadata"
     }
   ],
   "pinData": {},
@@ -1088,6 +1101,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-06-19T09:02:51.000Z",
-  "versionId": "fdc8fef5-a175-4e98-8faa-34993f0d62e1"
+  "updatedAt": "2025-07-11T20:55:09.000Z",
+  "versionId": "c4a54f5b-42b9-4b48-8cd0-c7c46109c46e"
 }
