@@ -315,7 +315,7 @@
     {
       "parameters": {
         "operation": "search",
-        "subreddit": "Business_Ideas",
+        "subreddit": "smallbusiness",
         "keyword": "looking for a solution",
         "limit": 20,
         "additionalFields": {
@@ -893,7 +893,9 @@
           "mappingMode": "defineBelow",
           "value": {
             "post_id": "={{ $json.id }}",
-            "solution": "={{ $json.text }}"
+            "solution": "={{ $json.text }}",
+            "created_at": "={{ $now }}",
+            "updated_at": "={{ $now }}"
           },
           "matchingColumns": [
             "post_id"
@@ -1017,6 +1019,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-10T13:15:17.000Z",
-  "versionId": "b662281d-6c67-439b-b555-5836c3684133"
+  "updatedAt": "2025-07-11T08:20:33.000Z",
+  "versionId": "6fbe1920-ba14-4b98-9d8e-b2637bf71ac9"
 }
