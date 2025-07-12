@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "LinkedIn": {
       "main": [
@@ -267,8 +267,8 @@
       "name": "Crawl HN Home",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -1024,
-        416
+        -1028,
+        404
       ],
       "executeOnce": true,
       "typeVersion": 4.2,
@@ -276,14 +276,14 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get all processed IDs from Google Sheets\nconst sheetData = $('Fetch all posts').all();\nconst processedIds = sheetData.map(item => {\n  // Check both common column name variations\n  return String(item.json?.Post || item.json?.post_id || item.json?.id || \"\");\n}).filter(id => id); // Remove empty strings\n\n// Get all HN posts\nconst hnPosts = $(\"Extract Metadata\").all();\n\n// Filter to only new posts\nconst newPosts = hnPosts.filter(post => {\n  const postId = String(post.json.Post); // HN post ID is in json.Post\n  return !processedIds.includes(postId);\n});\n\n// Debug output\nconsole.log(\"Processed IDs from Sheet:\", processedIds);\nconsole.log(\"New posts to process:\", newPosts.map(p => p.json.Post));\n\nreturn newPosts;"
+        "jsCode": "// Get all processed IDs from Google Sheets\nconst sheetData = $('Fetch all posts').all();\nconst processedIds = sheetData.map(item =>\n  String(item.json?.Post || item.json?.post_id || item.json?.id || \"\")\n).filter(id => id);\n\n// Get all HN posts\nconst hnPosts = $(\"Extract Metadata\").all();\n\n// Filter only new posts\nconst newPosts = hnPosts.filter(post => {\n  const postId = String(post.json?.id || post.json?.Post || post.json?.post_id || \"\");\n  return postId && !processedIds.includes(postId);\n});\n\n// Debug logs\nconsole.log(\"Processed IDs from Sheet:\", processedIds);\nconsole.log(\"New posts to process:\", newPosts.map(p => p.json?.id || p.json?.Post));\n\nreturn newPosts;\n"
       },
       "id": "6139d6f0-8d9d-4000-9a26-becf9b2a8930",
       "name": "Filter Unposted Items",
       "type": "n8n-nodes-base.code",
       "position": [
-        -352,
-        416
+        -368,
+        404
       ],
       "typeVersion": 2
     },
@@ -296,8 +296,8 @@
       "name": "Visit GH Page",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -128,
-        416
+        -148,
+        404
       ],
       "typeVersion": 4.2
     },
@@ -310,8 +310,8 @@
       "name": "Convert HTML To Markdown",
       "type": "n8n-nodes-base.markdown",
       "position": [
-        96,
-        416
+        72,
+        404
       ],
       "typeVersion": 1,
       "alwaysOutputData": true
@@ -345,8 +345,8 @@
       "name": "Filter Errored",
       "type": "n8n-nodes-base.filter",
       "position": [
-        944,
-        416
+        872,
+        404
       ],
       "typeVersion": 2.2
     },
@@ -360,8 +360,8 @@
       "name": "LinkedIn",
       "type": "n8n-nodes-base.linkedIn",
       "position": [
-        1392,
-        416
+        1312,
+        404
       ],
       "typeVersion": 1,
       "credentials": {
@@ -380,8 +380,8 @@
       "name": "Validate Generate Content",
       "type": "n8n-nodes-base.code",
       "position": [
-        720,
-        416
+        652,
+        404
       ],
       "typeVersion": 2,
       "onError": "continueRegularOutput"
@@ -402,7 +402,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
         -1248,
-        416
+        404
       ],
       "typeVersion": 1.2
     },
@@ -414,8 +414,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        352,
-        528
+        312,
+        524
       ],
       "id": "faa4e800-6c7f-4409-9866-5f1fcd86f094",
       "name": "Google Gemini Chat Model",
@@ -442,7 +442,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.5,
       "position": [
-        320,
+        292,
         304
       ],
       "id": "52e9a669-e621-4c5d-a17d-ac059445c6cc",
@@ -455,8 +455,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        480,
-        528
+        432,
+        524
       ],
       "id": "55fd8d57-ab77-4ab3-b058-8e5943306442",
       "name": "Structured Output Parser"
@@ -476,7 +476,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        416,
+        362,
         704
       ],
       "id": "52bd8c9e-3b0f-4ac3-9584-2cdff432cd9f",
@@ -496,7 +496,7 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        944,
+        872,
         704
       ],
       "id": "61678821-1554-4d82-a256-8c73ce431cbd",
@@ -509,7 +509,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1168,
+        1092,
         704
       ],
       "id": "a39edd7d-5db3-4237-9e68-9994eb517ff3",
@@ -528,8 +528,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1840,
-        560
+        1752,
+        554
       ],
       "id": "11d83a3d-d4bd-4178-ac33-d02cd627cc4d",
       "name": "Push notification to my phone"
@@ -543,7 +543,7 @@
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
       "position": [
-        1392,
+        1312,
         704
       ],
       "id": "72cf77d8-6933-4539-938b-d8549ef6a436",
@@ -691,8 +691,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1616,
-        416
+        1532,
+        404
       ],
       "id": "a99a7c40-73f3-4851-a579-75b2da1171b8",
       "name": "Update status",
@@ -825,8 +825,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1168,
-        416
+        1092,
+        404
       ],
       "id": "de3a169a-a47b-4b75-b110-466bb1408f5c",
       "name": "Log post to sheets",
@@ -858,8 +858,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -576,
-        336
+        -588,
+        329
       ],
       "id": "0b91c377-0155-4781-bc8f-ec780256ab55",
       "name": "Fetch all posts",
@@ -898,7 +898,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        720,
+        652,
         704
       ],
       "id": "5603a70f-c372-406c-93a8-6617f19505b6",
@@ -1046,7 +1046,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1616,
+        1532,
         704
       ],
       "id": "6b3ce202-7cf9-4d70-91a5-9f17a90fe392",
@@ -1076,8 +1076,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -800,
-        416
+        -808,
+        404
       ],
       "id": "6e4956b0-c9cd-445f-93bf-0302012fbdb4",
       "name": "Extract Metadata"
@@ -1101,6 +1101,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-11T20:55:09.000Z",
-  "versionId": "c4a54f5b-42b9-4b48-8cd0-c7c46109c46e"
+  "updatedAt": "2025-07-11T22:01:34.000Z",
+  "versionId": "44720fc2-b1d9-4c03-9cf9-0790bfee1ee9"
 }
