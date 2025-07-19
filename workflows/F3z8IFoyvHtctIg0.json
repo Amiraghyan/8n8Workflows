@@ -60,7 +60,7 @@
       "main": [
         [
           {
-            "node": "Visit GH Page",
+            "node": "Remove Duplicates",
             "type": "main",
             "index": 0
           }
@@ -241,6 +241,17 @@
           }
         ]
       ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Visit GH Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-04-03T20:50:44.991Z",
@@ -267,8 +278,8 @@
       "name": "Crawl HN Home",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -1028,
-        404
+        -1024,
+        408
       ],
       "executeOnce": true,
       "typeVersion": 4.2,
@@ -282,8 +293,8 @@
       "name": "Filter Unposted Items",
       "type": "n8n-nodes-base.code",
       "position": [
-        -368,
-        404
+        -352,
+        408
       ],
       "typeVersion": 2
     },
@@ -296,8 +307,8 @@
       "name": "Visit GH Page",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        -148,
-        404
+        96,
+        408
       ],
       "typeVersion": 4.2
     },
@@ -310,8 +321,8 @@
       "name": "Convert HTML To Markdown",
       "type": "n8n-nodes-base.markdown",
       "position": [
-        72,
-        404
+        320,
+        408
       ],
       "typeVersion": 1,
       "alwaysOutputData": true
@@ -345,8 +356,8 @@
       "name": "Filter Errored",
       "type": "n8n-nodes-base.filter",
       "position": [
-        872,
-        404
+        1168,
+        408
       ],
       "typeVersion": 2.2
     },
@@ -360,8 +371,8 @@
       "name": "LinkedIn",
       "type": "n8n-nodes-base.linkedIn",
       "position": [
-        1312,
-        404
+        1616,
+        408
       ],
       "typeVersion": 1,
       "credentials": {
@@ -380,8 +391,8 @@
       "name": "Validate Generate Content",
       "type": "n8n-nodes-base.code",
       "position": [
-        652,
-        404
+        944,
+        408
       ],
       "typeVersion": 2,
       "onError": "continueRegularOutput"
@@ -402,7 +413,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
         -1248,
-        404
+        408
       ],
       "typeVersion": 1.2
     },
@@ -414,8 +425,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        312,
-        524
+        576,
+        528
       ],
       "id": "faa4e800-6c7f-4409-9866-5f1fcd86f094",
       "name": "Google Gemini Chat Model",
@@ -442,7 +453,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.5,
       "position": [
-        292,
+        544,
         304
       ],
       "id": "52e9a669-e621-4c5d-a17d-ac059445c6cc",
@@ -455,8 +466,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        432,
-        524
+        704,
+        528
       ],
       "id": "55fd8d57-ab77-4ab3-b058-8e5943306442",
       "name": "Structured Output Parser"
@@ -476,7 +487,7 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        362,
+        632,
         704
       ],
       "id": "52bd8c9e-3b0f-4ac3-9584-2cdff432cd9f",
@@ -496,7 +507,7 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        872,
+        1168,
         704
       ],
       "id": "61678821-1554-4d82-a256-8c73ce431cbd",
@@ -509,7 +520,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1092,
+        1392,
         704
       ],
       "id": "a39edd7d-5db3-4237-9e68-9994eb517ff3",
@@ -528,8 +539,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1752,
-        554
+        2064,
+        556
       ],
       "id": "11d83a3d-d4bd-4178-ac33-d02cd627cc4d",
       "name": "Push notification to my phone"
@@ -543,7 +554,7 @@
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
       "position": [
-        1312,
+        1616,
         704
       ],
       "id": "72cf77d8-6933-4539-938b-d8549ef6a436",
@@ -691,8 +702,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1532,
-        404
+        1840,
+        408
       ],
       "id": "a99a7c40-73f3-4851-a579-75b2da1171b8",
       "name": "Update status",
@@ -825,8 +836,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1092,
-        404
+        1392,
+        408
       ],
       "id": "de3a169a-a47b-4b75-b110-466bb1408f5c",
       "name": "Log post to sheets",
@@ -858,8 +869,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -588,
-        329
+        -576,
+        336
       ],
       "id": "0b91c377-0155-4781-bc8f-ec780256ab55",
       "name": "Fetch all posts",
@@ -898,7 +909,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        652,
+        944,
         704
       ],
       "id": "5603a70f-c372-406c-93a8-6617f19505b6",
@@ -1046,7 +1057,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1532,
+        1840,
         704
       ],
       "id": "6b3ce202-7cf9-4d70-91a5-9f17a90fe392",
@@ -1076,11 +1087,24 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -808,
-        404
+        -800,
+        408
       ],
       "id": "6e4956b0-c9cd-445f-93bf-0302012fbdb4",
       "name": "Extract Metadata"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        408
+      ],
+      "id": "f747e5bf-3055-47ac-89c3-568c527f0fd2",
+      "name": "Remove Duplicates"
     }
   ],
   "pinData": {},
@@ -1090,17 +1114,17 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": [
-        12
+        0
       ]
     },
     "node:Check for unposted posts": {
       "recurrenceRules": [
-        10
+        22
       ]
     }
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-11T22:01:34.000Z",
-  "versionId": "44720fc2-b1d9-4c03-9cf9-0790bfee1ee9"
+  "updatedAt": "2025-07-19T18:57:16.000Z",
+  "versionId": "f6ee73af-5f8a-4098-afe4-356941dcdcdc"
 }
