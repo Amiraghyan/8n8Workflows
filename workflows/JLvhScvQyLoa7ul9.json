@@ -1,0 +1,685 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch required details from webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Find out if it a transaction and it's direction",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply for not transactions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch required details from webhook": {
+      "main": [
+        [
+          {
+            "node": "Find out if it a transaction and it's direction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find out if it a transaction and it's direction": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format the final data": {
+      "main": [
+        [
+          {
+            "node": "Reply with formatted data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find out if it a transaction and it's direction",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract transaction details",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract transaction details": {
+      "main": [
+        [
+          {
+            "node": "Format the final data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract transaction details",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract transaction details1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format the final data1": {
+      "main": [
+        [
+          {
+            "node": "Reply with formatted data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract transaction details1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract transaction details1": {
+      "main": [
+        [
+          {
+            "node": "Format the final data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-20T19:22:00.998Z",
+  "id": "JLvhScvQyLoa7ul9",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "transaction parsing davie",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sms/finance",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1296,
+        400
+      ],
+      "id": "c04280ab-3720-4b7c-8814-e28b84623885",
+      "name": "Webhook",
+      "webhookId": "abd8a4f8-1a98-4fec-ac19-07390739ce36"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"istransaction\": \"True\",\n  \"direction\": \"sent\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -688,
+        624
+      ],
+      "id": "0efdc03e-6543-4b38-850c-367d7a51d99a",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0ed39814-b7f1-4cae-81db-85f8e756537c",
+              "leftValue": "={{ $json.output.istransaction }}",
+              "rightValue": "True",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -448,
+        400
+      ],
+      "id": "9baa3874-4f77-47c3-af7c-742da677dc2a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "51b15928-8e0e-49cd-b05a-3a72d64230b4",
+              "name": "body.user_id",
+              "value": "={{ $json.body.user_id }}",
+              "type": "number"
+            },
+            {
+              "id": "9331481b-b073-4081-b506-fe1611d6f841",
+              "name": "body.message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "53b9b00a-472f-41f6-b5b1-d1c194a1d28b",
+              "name": "body.from",
+              "value": "={{ $json.body.from }}",
+              "type": "string"
+            },
+            {
+              "id": "033f51ec-4790-46ff-b722-e35093c49202",
+              "name": "body.time",
+              "value": "={{ $json.body.time }}",
+              "type": "string"
+            },
+            {
+              "id": "851df70c-21ed-4df7-b4c0-a1fb6706db45",
+              "name": "body.formatted_message",
+              "value": "={{ $json.body.formatted_message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1072,
+        400
+      ],
+      "id": "819567de-c8a4-465d-b9f8-ed3dca9bd82d",
+      "name": "Fetch required details from webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a Decision making assistant. You are provided with an sms content and your task is to decide whether the sms is a money transaction or not. If it's a transation you find out if the money was sent or recieved.\n\nHere is an example of the output required.\nExample 1:\n{\n  \"istransaction\": \"True\",\n  \"direction\": \"money in\"\n}\nExample 2:\n{\n  \"istransaction\": \"True\",\n  \"direction\": \"money out\"\n}\nExample 3:\n{\n  \"istransaction\": \"False\",\n  \"direction\": \"\"\n}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -848,
+        400
+      ],
+      "id": "d8f6315f-920b-4b12-9b62-9788c78bb8a4",
+      "name": "Find out if it a transaction and it's direction"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3603e184-1781-42f3-9bc7-c9b42ef9b11e",
+              "name": "user_id",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.user_id }}",
+              "type": "number"
+            },
+            {
+              "id": "938b2618-c1dd-4946-a9da-0aacd9bae156",
+              "name": "from",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.from }}",
+              "type": "string"
+            },
+            {
+              "id": "e3a57638-8e9e-40b5-83c5-5adb2dbad32d",
+              "name": "time",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.time }}",
+              "type": "string"
+            },
+            {
+              "id": "62d7306f-c903-4032-8c0a-e4da650e7a2c",
+              "name": "direction",
+              "value": "={{ $('Find out if it a transaction and it\\'s direction').item.json.output.direction }}",
+              "type": "string"
+            },
+            {
+              "id": "06a963a7-a49a-4a72-88fe-fc3eead12ede",
+              "name": "amount",
+              "value": "={{ $json.output.amount }}",
+              "type": "number"
+            },
+            {
+              "id": "bc36ab40-2b89-4c26-a7d9-3e933795dd3c",
+              "name": "balance",
+              "value": "={{ $json.output.balance }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        112
+      ],
+      "id": "607d7782-1b23-40bc-a7b5-09ad75355f42",
+      "name": "Format the final data"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        624,
+        112
+      ],
+      "id": "c5a6d0eb-125e-4931-a9bd-2f53bfabca4d",
+      "name": "Reply with formatted data"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Not a Transaction",
+        "options": {
+          "responseCode": 422
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -224,
+        496
+      ],
+      "id": "5d7c8e01-9a5b-46eb-ad83-af1716847275",
+      "name": "Reply for not transactions"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -816,
+        624
+      ],
+      "id": "ec3449df-07d7-4459-aa1f-3e9e6f686b7a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "CjVxk6S1xu0mmUti",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        224
+      ],
+      "id": "ef629177-097f-4e28-b662-3dde8f582d47",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "CjVxk6S1xu0mmUti",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Fetch required details from webhook').item.json.body.message }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "amount",
+              "type": "number",
+              "description": "The amount sent or spent.",
+              "required": true
+            },
+            {
+              "name": "balance",
+              "type": "number",
+              "description": "The new balance is indicated, if not default to -1",
+              "required": true
+            },
+            {
+              "name": "description",
+              "description": "Describe the cash out from the account",
+              "required": true
+            },
+            {
+              "name": "fee",
+              "description": "Transaction cost or transaction fee",
+              "required": true
+            },
+            {
+              "name": "account",
+              "description": "The account used. If not provided use `Not provided` as default",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "10d294d9-2f04-4d0e-833e-5620c227a494",
+      "name": "Extract transaction details"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.output.direction }}",
+                    "rightValue": "money out",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0bd74ddd-cc6c-42d6-b217-00fb1ed10dd4"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "money out"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6fa3d122-2717-411f-8623-1de274c970a2",
+                    "leftValue": "={{ $json.output.direction }}",
+                    "rightValue": "money in",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "money in"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -224,
+        304
+      ],
+      "id": "7238c1d8-5ab7-4453-97a2-b970ca086c41",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3603e184-1781-42f3-9bc7-c9b42ef9b11e",
+              "name": "user_id",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.user_id }}",
+              "type": "number"
+            },
+            {
+              "id": "938b2618-c1dd-4946-a9da-0aacd9bae156",
+              "name": "from",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.from }}",
+              "type": "string"
+            },
+            {
+              "id": "e3a57638-8e9e-40b5-83c5-5adb2dbad32d",
+              "name": "time",
+              "value": "={{ $('Fetch required details from webhook').item.json.body.time }}",
+              "type": "string"
+            },
+            {
+              "id": "62d7306f-c903-4032-8c0a-e4da650e7a2c",
+              "name": "direction",
+              "value": "={{ $('Find out if it a transaction and it\\'s direction').item.json.output.direction }}",
+              "type": "string"
+            },
+            {
+              "id": "06a963a7-a49a-4a72-88fe-fc3eead12ede",
+              "name": "amount",
+              "value": "={{ $json.output.amount }}",
+              "type": "number"
+            },
+            {
+              "id": "bc36ab40-2b89-4c26-a7d9-3e933795dd3c",
+              "name": "balance",
+              "value": "={{ $json.output.balance }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        512
+      ],
+      "id": "f25e0fae-0fc8-4443-a798-b53d5086fcbb",
+      "name": "Format the final data1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        624,
+        512
+      ],
+      "id": "9fc36de5-d71e-47cf-9a79-cabda578b508",
+      "name": "Reply with formatted data1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        736
+      ],
+      "id": "a76d0686-ed85-4ed4-b8cb-e2b518a413c9",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "CjVxk6S1xu0mmUti",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Fetch required details from webhook').item.json.body.message }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "amount",
+              "type": "number",
+              "description": "The amount recieved.",
+              "required": true
+            },
+            {
+              "name": "balance",
+              "type": "number",
+              "description": "The new balance is indicated, if not default to -1",
+              "required": true
+            },
+            {
+              "name": "description",
+              "description": "Describe the cash in to the account",
+              "required": true
+            },
+            {
+              "name": "account",
+              "description": "The account used. If not provided use `Not provided` as default",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        512
+      ],
+      "id": "305111b6-b95a-428b-a4ee-ad3cd37992e9",
+      "name": "Extract transaction details1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-20T19:22:00.998Z",
+  "versionId": "5e859a5f-65ce-41eb-8337-c1c30b9c17b2"
+}
