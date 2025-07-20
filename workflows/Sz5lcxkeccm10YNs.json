@@ -1,0 +1,118 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-20T07:50:34.273Z",
+  "id": "Sz5lcxkeccm10YNs",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Dynamic Form UI generator",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8785cabe-6b06-4a56-a670-b65496c62873",
+      "name": "When chat message received",
+      "webhookId": "21caadbe-d7c4-4134-952b-87bc29d49bff"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a JSON UI form generator for a web application.\n\nYour job is to:\n- Return only valid JSON.\n- Do not include explanations or markdown.\n- Always return a \"title\" and a \"fields\" array.\n- Each field should include:\n  - type (text, number, select, checkbox, etc.)\n  - name (snake_case)\n  - label (a question to the user)\n  - placeholder (optional)\n  - required (true or false)\n  - options (for select/radio)\n  - conditions (optional logic based on previous inputs)\n\nOn submission, return either:\n- A new JSON form (if more data is needed)\n- An action directive (e.g., {\"navigate_to\": \"dashboard\"})\n\nRespond only in JSON.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7fb80f3b-fc46-4e6a-97e7-6827930035ae",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        64,
+        208
+      ],
+      "id": "238794df-4cdf-4275-87cf-79a9d302fd88",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"title\": \"Developer Profile\",\n  \"fields\": [\n    {\n      \"type\": \"select\",\n      \"name\": \"preferred_language\",\n      \"label\": \"What is your preferred programming language?\",\n      \"options\": [\"Python\", \"JavaScript\", \"Java\", \"Go\"],\n      \"required\": true\n    },\n    {\n      \"type\": \"number\",\n      \"name\": \"years_experience\",\n      \"label\": \"How many years of experience do you have?\",\n      \"required\": true\n    },\n    {\n      \"type\": \"radio\",\n      \"name\": \"full_time_availability\",\n      \"label\": \"Are you available for full-time projects?\",\n      \"options\": [\"Yes\", \"No\"],\n      \"required\": true\n    }\n  ],\n  \"on_submit\": {\n    \"ai_action\": \"follow_up_questions\"\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        208
+      ],
+      "id": "53ba2f1d-1973-4fd9-8dba-22719ee250f5",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-20T07:58:12.000Z",
+  "versionId": "ff6f9adf-7743-4401-b557-bc450086dc3e"
+}
