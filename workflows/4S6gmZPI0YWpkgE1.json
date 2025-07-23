@@ -1,0 +1,51 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-23T17:30:54.494Z",
+  "id": "4S6gmZPI0YWpkgE1",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "whatsapp",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "eb1a691f-7726-4ed0-944d-7e797df6d9dc",
+      "name": "Webhook",
+      "webhookId": "6ad6d102-359d-4150-b9d7-b27b29fdf527"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        176
+      ],
+      "id": "1fb898f8-7e40-4a1a-8a4b-09b715a119e9",
+      "name": "Webhook1",
+      "webhookId": "6ad6d102-359d-4150-b9d7-b27b29fdf527"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-23T17:30:54.494Z",
+  "versionId": "7cd56e28-b143-430b-9570-f2f31958e91b"
+}
