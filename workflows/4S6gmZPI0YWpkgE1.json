@@ -218,7 +218,7 @@
       "typeVersion": 2,
       "position": [
         -640,
-        432
+        424
       ],
       "id": "67d863e6-265e-490a-a9c2-31967dde9b99",
       "name": "Slack Slash Commands",
@@ -237,7 +237,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        768,
+        832,
         96
       ],
       "id": "29b524a5-4331-4bc1-8473-ec6d6b270e1f",
@@ -261,7 +261,7 @@
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        736,
+        864,
         320
       ],
       "id": "219b4510-4c90-4159-88e8-47dec3f70022",
@@ -286,8 +286,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        576,
-        352
+        480,
+        320
       ],
       "id": "cf0eb40a-a163-42e1-a981-cda2f8e7a118",
       "name": "OpenAI Chat Model",
@@ -438,7 +438,7 @@
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        864,
+        992,
         320
       ],
       "id": "6328048d-a589-4ed4-bc35-baf4dfae89a5",
@@ -520,7 +520,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        480,
+        608,
         320
       ],
       "id": "83ea4831-b92f-48da-9568-29f2c00b446c",
@@ -697,7 +697,7 @@
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        992,
+        1376,
         320
       ],
       "id": "b9e30065-7b34-44e2-a5c3-aee84925a6f1",
@@ -718,8 +718,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        960,
-        448
+        736,
+        320
       ],
       "id": "4621273a-6202-4892-9858-6f0136735cfc",
       "name": "Simple Memory"
@@ -816,6 +816,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-27T00:40:00.000Z",
-  "versionId": "08ce450e-f9d7-4b25-b672-ca9e0c2086d8"
+  "updatedAt": "2025-07-27T11:53:44.000Z",
+  "versionId": "eb11614b-7d39-4baf-9ff2-bef26de56d7a"
 }
