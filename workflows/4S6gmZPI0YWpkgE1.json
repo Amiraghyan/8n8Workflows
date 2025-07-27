@@ -29,7 +29,7 @@
           {
             "node": "AI Agent",
             "type": "ai_languageModel",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -64,17 +64,6 @@
       ]
     },
     "Get the history of a channel in Slack": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send a message in Slack1": {
       "ai_tool": [
         [
           {
@@ -124,6 +113,61 @@
           {
             "node": "AI Agent",
             "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Filter out bot messages": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Prompt1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a reply message": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
             "index": 0
           }
         ]
@@ -143,12 +187,7 @@
         "trigger": [
           "any_event"
         ],
-        "channelId": {
-          "__rl": true,
-          "value": "C08FGKV089E",
-          "mode": "list",
-          "cachedResultName": "social"
-        },
+        "watchWorkspace": true,
         "options": {
           "resolveIds": true
         }
@@ -179,7 +218,7 @@
       "typeVersion": 2,
       "position": [
         -640,
-        416
+        432
       ],
       "id": "67d863e6-265e-490a-a9c2-31967dde9b99",
       "name": "Slack Slash Commands",
@@ -198,8 +237,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.1,
       "position": [
-        544,
-        0
+        768,
+        96
       ],
       "id": "29b524a5-4331-4bc1-8473-ec6d6b270e1f",
       "name": "AI Agent"
@@ -216,20 +255,14 @@
         "blocksUi": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Blocks', ``, 'string') }}",
         "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Text', ``, 'string') }}",
         "otherOptions": {
-          "thread_ts": {
-            "replyValues": {
-              "thread_ts": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Timestamp_to_Reply_To', ``, 'number') }}",
-              "reply_broadcast": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Reply_to_Thread', ``, 'boolean') }}"
-            }
-          },
           "mrkdwn": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Markdown_', ``, 'boolean') }}"
         }
       },
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        512,
-        224
+        736,
+        320
       ],
       "id": "219b4510-4c90-4159-88e8-47dec3f70022",
       "name": "Send a message in Slack",
@@ -253,8 +286,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        384,
-        224
+        576,
+        352
       ],
       "id": "cf0eb40a-a163-42e1-a981-cda2f8e7a118",
       "name": "OpenAI Chat Model",
@@ -384,7 +417,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -192,
+        32,
         0
       ],
       "id": "a82ffca0-1429-41b0-a76b-098ba494a5b2",
@@ -405,48 +438,12 @@
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        640,
-        224
+        864,
+        320
       ],
       "id": "6328048d-a589-4ed4-bc35-baf4dfae89a5",
       "name": "Get the history of a channel in Slack",
       "webhookId": "b275fb28-8fd0-4117-b4ef-a388ab61d2ee",
-      "credentials": {
-        "slackApi": {
-          "id": "ALW1wxvPQTx7yW4c",
-          "name": "Binary Craft Technologies"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "select": "channel",
-        "channelId": {
-          "__rl": true,
-          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Channel', ``, 'string') }}",
-          "mode": "id"
-        },
-        "messageType": "block",
-        "blocksUi": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Blocks', ``, 'string') }}",
-        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notification_Text', ``, 'string') }}",
-        "otherOptions": {
-          "thread_ts": {
-            "replyValues": {
-              "thread_ts": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Timestamp_to_Reply_To', ``, 'number') }}",
-              "reply_broadcast": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Reply_to_Thread', ``, 'boolean') }}"
-            }
-          }
-        }
-      },
-      "type": "n8n-nodes-base.slackTool",
-      "typeVersion": 2.3,
-      "position": [
-        768,
-        224
-      ],
-      "id": "b9e30065-7b34-44e2-a5c3-aee84925a6f1",
-      "name": "Send a message in Slack1",
-      "webhookId": "3f83190d-5b1b-4ef5-8145-da2829b45300",
       "credentials": {
         "slackApi": {
           "id": "ALW1wxvPQTx7yW4c",
@@ -469,8 +466,8 @@
       "type": "n8n-nodes-base.slackTool",
       "typeVersion": 2.3,
       "position": [
-        896,
-        224
+        1120,
+        320
       ],
       "id": "c7cd3d22-42f6-4b8c-ada7-72c410dd3bc8",
       "name": "Add a reaction in Slack",
@@ -489,7 +486,7 @@
             {
               "id": "e132287e-310f-4460-85b6-ae7f49a37718",
               "name": "prompt",
-              "value": "=ALWAYS USE THE MESSAGE TOOLS TO REPLY OR SEND MESSAGE\n\nYou got mentioned by {{ $json.user_resolved }} in the channel #{{ $json.channel_resolved }}. \nTheir current message is:\n\n{{ $json.text }}\n\nHere is some more info:\n- Recent messages : use the tool provided\n- blocks included in request: {{ $json.blocks }}\n- User ID: {{ $json.user }}\n- Channel ID: {{ $json.channel }}\n- client message id: {{ $json.client_msg_id }}\n\nYour job is to respond in a way that is clear, helpful, and human-like. \nAsk clarifying questions if their message is vague. \nChallenge surface-level ideas with smart follow-ups.\nIf they present an idea, highlight trade-offs, suggest refinements, or provide next steps.\n\nRespond conversationally and in Slack style (brief, clear, slightly witty if appropriate). \nUse markdown formatting (`*bold*`, `> blockquotes`, lists) to improve readability.\n\nOnly reply to their **latest message**, but use the rest as context.\n",
+              "value": "=ALWAYS USE THE MESSAGE TOOLS TO REPLY OR SEND MESSAGE SINCE THEY ARE THE ONLY WAY TO REPLY. IF TOOLS FAIL TO RUN MAKE ADJUSTMENTS ACCORDING TO ERROR MESSAGE THEN TRY AGAIN\n\nYou got mentioned by {{ $json.user_resolved }} in the channel #{{ $json.channel_resolved }}. \nTheir current message is:\n\n{{ $json.text }}\n\nHere is some more info:\n- Recent messages : use the tool provided\n- blocks included in request: {{ $json.blocks.toJsonString() }}\n- User ID: {{ $json.user }}\n- Channel ID: {{ $json.channel }}\n- client message id: {{ $json.client_msg_id }}\n\nYour job is to respond in a way that is clear, helpful, and human-like. \nAsk clarifying questions if their message is vague. \nChallenge surface-level ideas with smart follow-ups.\nIf they present an idea, highlight trade-offs, suggest refinements, or provide next steps.\n\nRespond conversationally and in Slack style (brief, clear, slightly witty if appropriate). \nUse markdown formatting (`*bold*`, `> blockquotes`, lists) to improve readability.\n\nOnly reply to their **latest message**, but use the rest as context.\n",
               "type": "string"
             }
           ]
@@ -499,7 +496,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        32,
+        256,
         0
       ],
       "id": "99ca5b98-faee-4382-99a8-bec685421321",
@@ -510,8 +507,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1,
       "position": [
-        1024,
-        224
+        1248,
+        320
       ],
       "id": "d656d45d-3d9a-4fac-a745-f2947d6578dc",
       "name": "Think"
@@ -523,8 +520,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        256,
-        224
+        480,
+        320
       ],
       "id": "83ea4831-b92f-48da-9568-29f2c00b446c",
       "name": "Google Gemini Chat Model",
@@ -554,6 +551,26 @@
                 "operation": "notExists",
                 "singleValue": true
               }
+            },
+            {
+              "id": "94875948-7943-4e0a-ae25-0c8b6fa57bc9",
+              "leftValue": "={{ $json.bot_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "dd86a601-ecd4-46b1-98df-d35529135114",
+              "leftValue": "={{ $json.app_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
             }
           ],
           "combinator": "and"
@@ -568,6 +585,144 @@
       ],
       "id": "cd7e6c43-60ca-42b7-8c89-34c8d2193199",
       "name": "Filter out bot messages"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bd643590-fe39-41a9-8763-6705ddca08a9",
+              "name": "client_msg_id",
+              "value": "={{ $json.client_msg_id }}",
+              "type": "string"
+            },
+            {
+              "id": "a2d80aae-92e9-4a27-a3cb-e556da7c20ff",
+              "name": "text",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "9840fc0e-9bf0-45b0-94cb-79b5105881d3",
+              "name": "team",
+              "value": "={{ $json.team }}",
+              "type": "string"
+            },
+            {
+              "id": "4026e482-9274-43cd-ac72-d16a652b3894",
+              "name": "blocks",
+              "value": "={{ $json.blocks }}",
+              "type": "array"
+            },
+            {
+              "id": "d4fe0dc5-5d6d-4d42-be6f-251bbba3c401",
+              "name": "channel",
+              "value": "={{ $json.channel }}",
+              "type": "string"
+            },
+            {
+              "id": "091537e8-5b2d-400f-9ca1-4135c52ebead",
+              "name": "user_resolved",
+              "value": "={{ $json.user_resolved }}",
+              "type": "string"
+            },
+            {
+              "id": "15d00965-99f6-4423-a410-a2285efb1ab7",
+              "name": "channel_resolved",
+              "value": "={{ $json.channel_resolved }}",
+              "type": "string"
+            },
+            {
+              "id": "546cc3ce-f72b-4864-b5cb-24d2e34b4fd6",
+              "name": "user",
+              "value": "={{ $json.user }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        192
+      ],
+      "id": "8b7dccfb-3334-4806-a6c1-51f328b91a06",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e132287e-310f-4460-85b6-ae7f49a37718",
+              "name": "prompt",
+              "value": "=ALWAYS USE THE MESSAGE TOOLS TO REPLY OR SEND MESSAGE SINCE THEY ARE THE ONLY WAY TO REPLY. IF TOOLS FAIL TO RUN MAKE ADJUSTMENTS ACCORDING TO ERROR MESSAGE THEN TRY AGAIN\n\nThis is a new message by {{ $json.user_resolved }} in the channel #{{ $json.channel_resolved }}. This message might not be intended for you and it's not a must you relpy is there's no need.\n\nTheir current message is:\n\n{{ $json.text }}\n\nHere is some more info:\n- Recent messages : use the tool provided\n- blocks included in request: {{ $json.blocks.toJsonString() }}\n- User ID: {{ $json.user }}\n- Channel ID: {{ $json.channel }}\n- client message id: {{ $json.client_msg_id }}\n\nYour job is to respond in a way that is clear, helpful, and human-like. \nAsk clarifying questions if their message is vague. \nChallenge surface-level ideas with smart follow-ups.\nIf they present an idea, highlight trade-offs, suggest refinements, or provide next steps.\n\nRespond conversationally and in Slack style (brief, clear, slightly witty if appropriate). \nUse markdown formatting (`*bold*`, `> blockquotes`, lists) to improve readability.\n\nOnly reply to their **latest message**, but use the rest as context.\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        192
+      ],
+      "id": "fc1325d7-e6ff-430a-9f58-00b71842a4d0",
+      "name": "Prompt1"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Channel', ``, 'string') }}",
+          "mode": "id"
+        },
+        "messageType": "block",
+        "blocksUi": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Blocks', ``, 'string') }}",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notification_Text', ``, 'string') }}",
+        "otherOptions": {
+          "thread_ts": {
+            "replyValues": {
+              "thread_ts": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Timestamp_to_Reply_To', ``, 'number') }}",
+              "reply_broadcast": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Reply_to_Thread', ``, 'boolean') }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.slackTool",
+      "typeVersion": 2.3,
+      "position": [
+        992,
+        320
+      ],
+      "id": "b9e30065-7b34-44e2-a5c3-aee84925a6f1",
+      "name": "Send a reply message",
+      "webhookId": "3f83190d-5b1b-4ef5-8145-da2829b45300",
+      "credentials": {
+        "slackApi": {
+          "id": "ALW1wxvPQTx7yW4c",
+          "name": "Binary Craft Technologies"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Slack Trigger').item.json.channel }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        448
+      ],
+      "id": "4621273a-6202-4892-9858-6f0136735cfc",
+      "name": "Simple Memory"
     }
   ],
   "pinData": {
@@ -620,143 +775,37 @@
     "Slack Trigger": [
       {
         "json": {
-          "user": "U097GD4RUE7",
-          "type": "message",
-          "ts": "1753560225.591669",
-          "bot_id": "B097GD4RH7V",
-          "app_id": "A097JCMUVBQ",
-          "text": "Hey <@U097GD4RUE7>! :wave: That's a great question. Slack is pretty awesome for team communication and collaboration. Here are some of the biggest perks:\n\n*   *Real-time Communication:* Less waiting, more doing! You can get quick answers and keep projects moving.\n*   *Organized Conversations:* Channels help you keep discussions focused on specific topics, projects, or teams. No more endless email chains!\n*   *Reduced Email Clutter:* Say goodbye to a messy inbox. Many internal communications can shift to Slack.\n*   *Powerful Search:* Easily find past conversations, files, and decisions. It's like a searchable memory for your team.\n*   *Integrations Galore:* Connect with hundreds of other tools you already use (like Google Drive, Zoom, Asana, GitHub) to centralize your workflow.\n*   *Flexibility for Hybrid/Remote Teams:* It bridges the gap for teams working from different locations and time zones.\n*   *File Sharing:* Quickly share documents, images, and videos right in your conversations.\n\nBasically, it's designed to make work communication smoother, faster, and more transparent. What aspects of team communication are you most interested in improving?",
+          "user": "U08FGKUEXJL",
+          "type": "app_mention",
+          "ts": "1753575980.616359",
+          "client_msg_id": "b6fdd066-e7dd-4d5c-8be2-d4b8f529b206",
+          "text": "<@U097GD4RUE7> Suggest several saas applications that would solve real world problems in Kenya or EastAfrica as a whole",
           "team": "T08FGKUCQ3A",
-          "bot_profile": {
-            "id": "B097GD4RH7V",
-            "deleted": false,
-            "name": "n8n",
-            "updated": 1753552412,
-            "app_id": "A097JCMUVBQ",
-            "user_id": "U097GD4RUE7",
-            "icons": {
-              "image_36": "https://a.slack-edge.com/80588/img/plugins/app/bot_36.png",
-              "image_48": "https://a.slack-edge.com/80588/img/plugins/app/bot_48.png",
-              "image_72": "https://a.slack-edge.com/80588/img/plugins/app/service_72.png"
-            },
-            "team_id": "T08FGKUCQ3A"
-          },
           "blocks": [
             {
               "type": "rich_text",
-              "block_id": "CpMN",
+              "block_id": "YWkt6",
               "elements": [
                 {
                   "type": "rich_text_section",
                   "elements": [
-                    {
-                      "type": "text",
-                      "text": "Hey "
-                    },
                     {
                       "type": "user",
                       "user_id": "U097GD4RUE7"
                     },
                     {
                       "type": "text",
-                      "text": "! "
-                    },
-                    {
-                      "type": "emoji",
-                      "name": "wave",
-                      "unicode": "1f44b"
-                    },
-                    {
-                      "type": "text",
-                      "text": " That's a great question. Slack is pretty awesome for team communication and collaboration. Here are some of the biggest perks:\n\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Real-time Communication:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Less waiting, more doing! You can get quick answers and keep projects moving.\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Organized Conversations:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Channels help you keep discussions focused on specific topics, projects, or teams. No more endless email chains!\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Reduced Email Clutter:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Say goodbye to a messy inbox. Many internal communications can shift to Slack.\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Powerful Search:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Easily find past conversations, files, and decisions. It's like a searchable memory for your team.\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Integrations Galore:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Connect with hundreds of other tools you already use (like Google Drive, Zoom, Asana, GitHub) to centralize your workflow.\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "Flexibility for Hybrid/Remote Teams:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " It bridges the gap for teams working from different locations and time zones.\n*   "
-                    },
-                    {
-                      "type": "text",
-                      "text": "File Sharing:",
-                      "style": {
-                        "bold": true
-                      }
-                    },
-                    {
-                      "type": "text",
-                      "text": " Quickly share documents, images, and videos right in your conversations.\n\nBasically, it's designed to make work communication smoother, faster, and more transparent. What aspects of team communication are you most interested in improving?"
+                      "text": " Suggest several saas applications that would solve real world problems in Kenya or EastAfrica as a whole"
                     }
                   ]
                 }
               ]
             }
           ],
-          "channel": "C08FGKV089E",
-          "event_ts": "1753560225.591669",
-          "channel_type": "channel",
-          "user_resolved": "n8n",
-          "channel_resolved": "social"
+          "channel": "C098A40HUBA",
+          "event_ts": "1753575980.616359",
+          "user_resolved": "davidnjihia536",
+          "channel_resolved": "proj-brainstorm-section"
         }
       }
     ]
@@ -767,6 +816,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-26T20:53:28.000Z",
-  "versionId": "4748f8a8-9998-4730-8d96-02190929479e"
+  "updatedAt": "2025-07-27T00:40:00.000Z",
+  "versionId": "08ce450e-f9d7-4b25-b672-ca9e0c2086d8"
 }
