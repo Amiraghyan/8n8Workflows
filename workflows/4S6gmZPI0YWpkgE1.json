@@ -218,7 +218,7 @@
       "typeVersion": 2,
       "position": [
         -640,
-        424
+        432
       ],
       "id": "67d863e6-265e-490a-a9c2-31967dde9b99",
       "name": "Slack Slash Commands",
@@ -816,6 +816,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-07-27T11:53:44.000Z",
-  "versionId": "eb11614b-7d39-4baf-9ff2-bef26de56d7a"
+  "updatedAt": "2025-08-02T08:22:46.000Z",
+  "versionId": "da893267-c04f-4662-a315-72778c6de9df"
 }
