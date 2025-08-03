@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "On form submission": {
-      "main": [
-        [
-          {
-            "node": "Fetch uploaded file details",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Fetch uploaded file details": {
       "main": [
         [
@@ -27,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Upload file",
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
@@ -51,6 +40,28 @@
           }
         ]
       ]
+    },
+    "Upload posts": {
+      "main": [
+        [
+          {
+            "node": "Fetch uploaded file details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-08-02T11:57:15.935Z",
@@ -63,37 +74,6 @@
   "nodes": [
     {
       "parameters": {
-        "formTitle": "Post Scheduler",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "Caption"
-            },
-            {
-              "fieldLabel": "You image or video post",
-              "fieldType": "file",
-              "requiredField": true
-            }
-          ]
-        },
-        "options": {
-          "appendAttribution": false,
-          "path": "post_scheduler"
-        }
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.2,
-      "position": [
-        0,
-        80
-      ],
-      "id": "4528da5f-4371-469e-a710-1fb922ccd5d9",
-      "name": "On form submission",
-      "webhookId": "a6cbd9b3-c392-4593-aca2-0863422741ea",
-      "notes": " "
-    },
-    {
-      "parameters": {
         "updates": [
           "messages"
         ],
@@ -102,7 +82,7 @@
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
-        0,
+        -144,
         -240
       ],
       "id": "f52467c1-7dd5-4207-a1df-675cb7d3a1cd",
@@ -120,28 +100,40 @@
         "assignments": {
           "assignments": [
             {
-              "id": "2f783717-1982-4b5e-b95f-8d31b08cb797",
-              "name": "Caption",
-              "value": "={{ $json.Caption }}",
+              "id": "6a87e77d-8ab9-4b96-9feb-153f092148ea",
+              "name": "caption",
+              "value": "={{ $json.body.caption }}",
               "type": "string"
             },
             {
-              "id": "3676b68a-6c39-4453-93fd-275e57646599",
+              "id": "d90aa8ac-9ee5-476c-9e91-89346c4803a7",
+              "name": "scheduled_on",
+              "value": "={{ $json.body.scheduled_on }}",
+              "type": "string"
+            },
+            {
+              "id": "a001f848-2c4a-4c0c-8344-da44c06c0133",
               "name": "filename",
-              "value": "={{ $json['You image or video post'][0].filename }}",
+              "value": "={{$('Upload posts').item.binary.media.fileName}}",
               "type": "string"
             },
             {
-              "id": "765cd3da-c0cf-487e-9fc1-a61f71eeafbe",
-              "name": "mimetype",
-              "value": "={{ $json['You image or video post'][0].mimetype }}",
+              "id": "e287dcc9-1701-448a-9bcc-408a93a44c70",
+              "name": "filetype",
+              "value": "={{$('Upload posts').item.binary.media.fileType}}",
               "type": "string"
             },
             {
-              "id": "cd73233c-7cac-4c8f-b61e-b84a1c3400b6",
-              "name": "size",
-              "value": "={{ $json['You image or video post'][0].size }}",
+              "id": "e0ff7cef-29ca-47ec-9295-80389a06aadd",
+              "name": "filesize",
+              "value": "={{$('Upload posts').item.binary.media.fileSize.split(\" \")[0]}}",
               "type": "number"
+            },
+            {
+              "id": "05fbb9e8-3a24-41c0-8fa4-454cf727245b",
+              "name": "data",
+              "value": "={{ $('Upload posts').item.binary.media['data']}}",
+              "type": "string"
             }
           ]
         },
@@ -150,7 +142,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        224,
+        80,
         80
       ],
       "id": "521312dc-0871-4f3a-a467-f0ef13cfe515",
@@ -169,7 +161,7 @@
           "values": [
             {
               "column": "caption",
-              "value": "={{ $json.Caption }}"
+              "value": "={{ $json.caption }}"
             },
             {
               "column": "filename",
@@ -177,11 +169,15 @@
             },
             {
               "column": "filetype",
-              "value": "={{ $json.mimetype }}"
+              "value": "={{ $json.filetype }}"
             },
             {
               "column": "size",
-              "value": "={{ $json.size }}"
+              "value": "={{ $json.filesize }}"
+            },
+            {
+              "column": "scheduled_on",
+              "value": "={{ $json.scheduled_on.toDateTime().toLocal() }}"
             }
           ]
         },
@@ -193,7 +189,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        448,
+        304,
         80
       ],
       "id": "e1143795-9cd6-4f8f-be3b-277d04755ec0",
@@ -207,6 +203,7 @@
     },
     {
       "parameters": {
+        "inputDataFieldName": "=media",
         "driveId": {
           "__rl": true,
           "mode": "list",
@@ -224,7 +221,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        672,
+        736,
         80
       ],
       "id": "dd0aa425-4719-412f-b0ad-57a6f87c9f36",
@@ -261,7 +258,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        896,
+        960,
         -16
       ],
       "id": "f0499ccd-8280-4294-b1aa-8cfe19934e9d",
@@ -297,7 +294,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        896,
+        960,
         176
       ],
       "id": "49168b9f-0008-4c9f-aefa-2a59505c00bc",
@@ -311,18 +308,35 @@
     },
     {
       "parameters": {
-        "operation": "select",
+        "httpMethod": "POST",
+        "path": "post-scheduler/upload",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -144,
+        80
+      ],
+      "id": "119407b5-d77b-470a-9098-4c82aa5fd0fb",
+      "name": "Upload posts",
+      "webhookId": "cec4ffe5-5471-4eb5-bbe3-7c70a2adddd9"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
         "table": {
           "__rl": true,
           "value": "files",
           "mode": "list",
           "cachedResultName": "files"
         },
+        "deleteCommand": "delete",
         "where": {
           "values": [
             {
               "column": "id",
-              "value": "1"
+              "value": "3"
             }
           ]
         },
@@ -331,17 +345,32 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        0,
+        -144,
         400
       ],
-      "id": "24ba3399-20fb-403a-bce8-5e28cd1c8b52",
-      "name": "Select rows from a table",
+      "id": "0d423f0c-1523-4556-bac1-237b5d79d234",
+      "name": "Delete table or rows",
       "credentials": {
         "mySql": {
           "id": "uztzNdOX2CeWA7Z3",
           "name": "Aiven n8n MySql"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "={{ $('Fetch uploaded file details').item.json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        80
+      ],
+      "id": "99f52732-099f-4aea-92a2-0150b549c9ba",
+      "name": "Convert to File"
     }
   ],
   "pinData": {},
@@ -358,6 +387,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-02T22:55:23.000Z",
-  "versionId": "587736d6-3451-4655-a5d4-fdf1e94af389"
+  "updatedAt": "2025-08-03T20:23:09.000Z",
+  "versionId": "f562e2d9-d0c6-40f9-97b8-fd153a2f0fb8"
 }
