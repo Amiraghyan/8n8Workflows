@@ -221,7 +221,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        736,
+        752,
         80
       ],
       "id": "dd0aa425-4719-412f-b0ad-57a6f87c9f36",
@@ -258,7 +258,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        960,
+        976,
         -16
       ],
       "id": "f0499ccd-8280-4294-b1aa-8cfe19934e9d",
@@ -294,7 +294,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        960,
+        976,
         176
       ],
       "id": "49168b9f-0008-4c9f-aefa-2a59505c00bc",
@@ -366,11 +366,52 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        512,
+        528,
         80
       ],
       "id": "99f52732-099f-4aea-92a2-0150b549c9ba",
       "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v22.0/733184296540252/register",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAOMtBepKZCUBPPKveAMIkZCvE0iK9M4hM6DVVe7pmsBapkOQlGd7azHpfhM2gXzlhkywfuLLSR1SwXjRVRLqE5ZBtwr9mRBoK3t3XZA4DHsXLVDvDvYaJ31HTXCgqCxouS8H959na3NMv03B01BqyzZCDBoFuOIZBMZCqvIqw3PUJVLbqNZBQZBhETZAwGzZCjT1KxQMN2ZBi9aTdTPlP4EUSByytZBr0uv9Sa3heASy8ZBJC2R7ZAhEImgUVaBNemLfvW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "pin",
+              "value": "000000"
+            },
+            {
+              "name": "tier",
+              "value": "test"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        352
+      ],
+      "id": "76b1ec53-3803-4593-8720-01e92ab6f1f5",
+      "name": "HTTP Request"
     }
   ],
   "pinData": {},
@@ -387,6 +428,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-03T20:23:09.000Z",
-  "versionId": "f562e2d9-d0c6-40f9-97b8-fd153a2f0fb8"
+  "updatedAt": "2025-08-04T08:17:24.000Z",
+  "versionId": "c66ba110-2d30-4f36-9635-1a5ccbb87eda"
 }
