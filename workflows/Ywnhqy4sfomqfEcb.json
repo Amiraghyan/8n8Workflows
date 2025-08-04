@@ -27,14 +27,14 @@
       "main": [
         [
           {
-            "node": "Update file upload success",
+            "node": "Fetch uploaded file details",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Update file upload failed",
+            "node": "Fetch uploaded file details1",
             "type": "main",
             "index": 0
           }
@@ -45,7 +45,7 @@
       "main": [
         [
           {
-            "node": "Fetch uploaded file details",
+            "node": "Upload file",
             "type": "main",
             "index": 0
           }
@@ -54,9 +54,47 @@
     },
     "Convert to File": {
       "main": [
+        []
+      ]
+    },
+    "Get posts": {
+      "main": [
         [
           {
-            "node": "Upload file",
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Select rows from a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch uploaded file details1": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
             "type": "main",
             "index": 0
           }
@@ -82,7 +120,7 @@
       "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
-        -144,
+        -160,
         -240
       ],
       "id": "f52467c1-7dd5-4207-a1df-675cb7d3a1cd",
@@ -102,13 +140,13 @@
             {
               "id": "6a87e77d-8ab9-4b96-9feb-153f092148ea",
               "name": "caption",
-              "value": "={{ $json.body.caption }}",
+              "value": "={{ $('Upload posts').item.json.body.caption }}",
               "type": "string"
             },
             {
               "id": "d90aa8ac-9ee5-476c-9e91-89346c4803a7",
               "name": "scheduled_on",
-              "value": "={{ $json.body.scheduled_on }}",
+              "value": "={{ $('Upload posts').item.json.body.scheduled_on }}",
               "type": "string"
             },
             {
@@ -130,9 +168,15 @@
               "type": "number"
             },
             {
-              "id": "05fbb9e8-3a24-41c0-8fa4-454cf727245b",
-              "name": "data",
-              "value": "={{ $('Upload posts').item.binary.media['data']}}",
+              "id": "58cacdc2-742d-4c80-b7c5-7c6dea81c920",
+              "name": "mimeTpye",
+              "value": "={{ $('Upload posts').item.binary.media.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "c86ec582-edf0-4a94-a1ec-892d1e39c113",
+              "name": "google_drive_status",
+              "value": "uploaded",
               "type": "string"
             }
           ]
@@ -142,8 +186,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        80,
-        80
+        288,
+        -16
       ],
       "id": "521312dc-0871-4f3a-a467-f0ef13cfe515",
       "name": "Fetch uploaded file details"
@@ -178,6 +222,10 @@
             {
               "column": "scheduled_on",
               "value": "={{ $json.scheduled_on.toDateTime().toLocal() }}"
+            },
+            {
+              "column": "drive_status",
+              "value": "={{ $json.google_drive_status.toUpperCase() }}"
             }
           ]
         },
@@ -189,7 +237,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        304,
+        512,
         80
       ],
       "id": "e1143795-9cd6-4f8f-be3b-277d04755ec0",
@@ -221,7 +269,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        752,
+        64,
         80
       ],
       "id": "dd0aa425-4719-412f-b0ad-57a6f87c9f36",
@@ -236,78 +284,6 @@
     },
     {
       "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "files",
-          "mode": "list",
-          "cachedResultName": "files"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "id",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "drive_status",
-              "value": "uploaded"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        976,
-        -16
-      ],
-      "id": "f0499ccd-8280-4294-b1aa-8cfe19934e9d",
-      "name": "Update file upload success",
-      "credentials": {
-        "mySql": {
-          "id": "uztzNdOX2CeWA7Z3",
-          "name": "Aiven n8n MySql"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "table": {
-          "__rl": true,
-          "value": "files",
-          "mode": "list",
-          "cachedResultName": "files"
-        },
-        "dataMode": "defineBelow",
-        "columnToMatchOn": "id",
-        "valuesToSend": {
-          "values": [
-            {
-              "column": "drive_status",
-              "value": "failed"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        976,
-        176
-      ],
-      "id": "49168b9f-0008-4c9f-aefa-2a59505c00bc",
-      "name": "Update file upload failed",
-      "credentials": {
-        "mySql": {
-          "id": "uztzNdOX2CeWA7Z3",
-          "name": "Aiven n8n MySql"
-        }
-      }
-    },
-    {
-      "parameters": {
         "httpMethod": "POST",
         "path": "post-scheduler/upload",
         "options": {}
@@ -315,7 +291,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -144,
+        -160,
         80
       ],
       "id": "119407b5-d77b-470a-9098-4c82aa5fd0fb",
@@ -324,49 +300,17 @@
     },
     {
       "parameters": {
-        "operation": "deleteTable",
-        "table": {
-          "__rl": true,
-          "value": "files",
-          "mode": "list",
-          "cachedResultName": "files"
-        },
-        "deleteCommand": "delete",
-        "where": {
-          "values": [
-            {
-              "column": "id",
-              "value": "3"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.4,
-      "position": [
-        -144,
-        400
-      ],
-      "id": "0d423f0c-1523-4556-bac1-237b5d79d234",
-      "name": "Delete table or rows",
-      "credentials": {
-        "mySql": {
-          "id": "uztzNdOX2CeWA7Z3",
-          "name": "Aiven n8n MySql"
-        }
-      }
-    },
-    {
-      "parameters": {
         "operation": "toBinary",
-        "sourceProperty": "={{ $('Fetch uploaded file details').item.json.data }}",
-        "options": {}
+        "sourceProperty": "data",
+        "binaryPropertyName": "media",
+        "options": {
+          "mimeType": "={{ $('Fetch uploaded file details').item.json.mimeTpye }}"
+        }
       },
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        528,
+        736,
         80
       ],
       "id": "99f52732-099f-4aea-92a2-0150b549c9ba",
@@ -407,11 +351,169 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        240,
-        352
+        -160,
+        624
       ],
       "id": "76b1ec53-3803-4593-8720-01e92ab6f1f5",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "path": "post-scheduler/posts",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        400
+      ],
+      "id": "b77019c8-9e85-4bdb-bd56-0613b9f9ed4a",
+      "name": "Get posts",
+      "webhookId": "779b80c1-b675-47cf-96bd-5cb515183e19"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6fc9b7c5-58cb-4cfe-af8a-5e03de94415b",
+              "name": "query.limit",
+              "value": "={{ $json.query.limit }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        64,
+        400
+      ],
+      "id": "68e0875a-a546-4693-bcff-e5d4428b2b2c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "files",
+          "mode": "list",
+          "cachedResultName": "files"
+        },
+        "limit": "={{ $json.query.limit.toNumber() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        288,
+        400
+      ],
+      "id": "8c17f8a6-320c-4cea-a29e-05dc05855a9f",
+      "name": "Select rows from a table",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        512,
+        400
+      ],
+      "id": "3af3390f-7397-400c-9812-aa8e965ac844",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6a87e77d-8ab9-4b96-9feb-153f092148ea",
+              "name": "caption",
+              "value": "={{ $('Upload posts').item.json.body.caption }}",
+              "type": "string"
+            },
+            {
+              "id": "d90aa8ac-9ee5-476c-9e91-89346c4803a7",
+              "name": "scheduled_on",
+              "value": "={{ $('Upload posts').item.json.body.scheduled_on }}",
+              "type": "string"
+            },
+            {
+              "id": "a001f848-2c4a-4c0c-8344-da44c06c0133",
+              "name": "filename",
+              "value": "={{$('Upload posts').item.binary.media.fileName}}",
+              "type": "string"
+            },
+            {
+              "id": "e287dcc9-1701-448a-9bcc-408a93a44c70",
+              "name": "filetype",
+              "value": "={{$('Upload posts').item.binary.media.fileType}}",
+              "type": "string"
+            },
+            {
+              "id": "e0ff7cef-29ca-47ec-9295-80389a06aadd",
+              "name": "filesize",
+              "value": "={{$('Upload posts').item.binary.media.fileSize.split(\" \")[0]}}",
+              "type": "number"
+            },
+            {
+              "id": "58cacdc2-742d-4c80-b7c5-7c6dea81c920",
+              "name": "mimeTpye",
+              "value": "={{ $('Upload posts').item.binary.media.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "0ea595f4-e16c-4f0e-b6f3-f62db40209e8",
+              "name": "google_drive_status",
+              "value": "failed",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        288,
+        176
+      ],
+      "id": "66a96768-810e-465b-9057-12a1ebf0abf6",
+      "name": "Fetch uploaded file details1"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -160,
+        848
+      ],
+      "id": "0d423f0c-1523-4556-bac1-237b5d79d234",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "mySql": {
+          "id": "uztzNdOX2CeWA7Z3",
+          "name": "Aiven n8n MySql"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -428,6 +530,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-04T08:17:24.000Z",
-  "versionId": "c66ba110-2d30-4f36-9635-1a5ccbb87eda"
+  "updatedAt": "2025-08-04T19:10:50.000Z",
+  "versionId": "f3877776-1281-444c-b930-ed8825b324ea"
 }
