@@ -14,13 +14,7 @@
     },
     "Insert rows in a table": {
       "main": [
-        [
-          {
-            "node": "Convert to File",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Upload file": {
@@ -50,11 +44,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Convert to File": {
-      "main": [
-        []
       ]
     },
     "Get posts": {
@@ -300,24 +289,6 @@
     },
     {
       "parameters": {
-        "operation": "toBinary",
-        "sourceProperty": "data",
-        "binaryPropertyName": "media",
-        "options": {
-          "mimeType": "={{ $('Fetch uploaded file details').item.json.mimeTpye }}"
-        }
-      },
-      "type": "n8n-nodes-base.convertToFile",
-      "typeVersion": 1.1,
-      "position": [
-        736,
-        80
-      ],
-      "id": "99f52732-099f-4aea-92a2-0150b549c9ba",
-      "name": "Convert to File"
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "https://graph.facebook.com/v22.0/733184296540252/register",
         "sendHeaders": true,
@@ -530,6 +501,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-04T19:10:50.000Z",
-  "versionId": "f3877776-1281-444c-b930-ed8825b324ea"
+  "updatedAt": "2025-08-06T08:39:13.000Z",
+  "versionId": "0ebb0f96-6865-49f9-abac-224336220031"
 }
