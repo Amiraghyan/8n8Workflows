@@ -1,0 +1,592 @@
+{
+  "active": false,
+  "connections": {
+    "Chat Message Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate Search Queries using LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse and Chunk JSON Data": {
+      "main": [
+        [
+          {
+            "node": "Split Data for SerpAPI Batching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Wikipedia Information": {
+      "ai_tool": [
+        [
+          {
+            "node": "Generate Comprehensive Research Report",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format SerpAPI Organic Results": {
+      "main": [
+        [
+          {
+            "node": "Split Data for Jina AI Batching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perform SerpAPI Search Request": {
+      "main": [
+        [
+          {
+            "node": "Split Data for SerpAPI Batching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Data for Jina AI Batching": {
+      "main": [
+        [
+          {
+            "node": "Extract Relevant Context via LLM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Perform Jina AI Analysis Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Data for SerpAPI Batching": {
+      "main": [
+        [
+          {
+            "node": "Format SerpAPI Organic Results",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Perform SerpAPI Search Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Relevant Context via LLM": {
+      "main": [
+        [
+          {
+            "node": "Generate Comprehensive Research Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perform Jina AI Analysis Request": {
+      "main": [
+        [
+          {
+            "node": "Split Data for Jina AI Batching",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Search Queries using LLM": {
+      "main": [
+        [
+          {
+            "node": "Parse and Chunk JSON Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Memory Buffer (Input Context)": {
+      "ai_memory": [
+        [
+          {
+            "node": "Extract Relevant Context via LLM",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Memory Buffer (Report Context)": {
+      "ai_memory": [
+        [
+          {
+            "node": "Generate Comprehensive Research Report",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Search Queries using LLM",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Extract Relevant Context via LLM",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Generate Comprehensive Research Report",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Comprehensive Research Report": {
+      "main": [
+        [
+          {
+            "node": "Merge outputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge outputs": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-06T12:34:55.462Z",
+  "id": "Ng3e9fl2IpXqbAtL",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Research Agents",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "50a71492-27a3-4842-9865-587a40335f40",
+      "name": "Chat Message Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -1616,
+        276
+      ],
+      "webhookId": "cb0b9dbe-1f35-441a-b062-29624b0ebc6a",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User Query: {{ $('Chat Message Trigger').item.json.chatInput }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are an expert research assistant. Given a user's query, generate up to four distinct, precise search queries that would help gather comprehensive information on the topic. Return only a JSON list of strings, for example: ['query1', 'query2', 'query3']."
+            }
+          ]
+        }
+      },
+      "id": "77071081-4273-4da5-b340-2a0136a339c6",
+      "name": "Generate Search Queries using LLM",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "position": [
+        -1392,
+        276
+      ],
+      "typeVersion": 1.5
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the input JSON string and split it into four chunks\nconst rawText = $json.text;\n\n// Remove Markdown JSON code blocks if present\nconst cleanedText = rawText.replace(/```json|```/g, '').trim();\n\ntry {\n    const jsonArray = JSON.parse(cleanedText);\n    if (!Array.isArray(jsonArray)) {\n        throw new Error('The JSON is not an array.');\n    }\n    const chunkSize = Math.ceil(jsonArray.length / 4);\n    const chunks = [];\n    for (let i = 0; i < jsonArray.length; i += chunkSize) {\n        chunks.push(jsonArray.slice(i, i + chunkSize));\n    }\n    return chunks.map(chunk => ({ json: { chunk } }));\n} catch (error) {\n    return [{ json: { error: error.message } }];\n}\n"
+      },
+      "id": "d476080a-bd08-4cf0-a6b0-68557e0b582c",
+      "name": "Parse and Chunk JSON Data",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -1040,
+        276
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "url": "https://serpapi.com/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "serpApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $('Parse and Chunk JSON Data').item.json.chunk }}"
+            },
+            {
+              "name": "engine",
+              "value": "google"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "22833c4c-a15b-42d1-b5b4-c94d3802e825",
+      "name": "Perform SerpAPI Search Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -592,
+        324
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "serpApi": {
+          "id": "Nb514TrEHwwIOJYy",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://r.jina.ai/{{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "dd27338b-0a73-4399-b536-3dc0c1a3c84b",
+      "name": "Perform Jina AI Analysis Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -80,
+        32
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "do9th7lD72BPYwhB",
+          "name": "Jina Ai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format the organic search results from SerpAPI\nconst results = $input.first().json.organic_results;\nif (results.length === 0) {\n  return [{ json: { error: 'No search results found.' } }];\n}\nconst formattedResults = results.map(result => ({\n  title: result.title || 'No title available',\n  url: result.link || 'No link available',\n  source: result.source || result.displayed_link || 'Unknown source'\n}));\nreturn formattedResults.map(result => ({ json: result }));\n"
+      },
+      "id": "f16ff505-394f-4ecc-b0c6-51660ab6850a",
+      "name": "Format SerpAPI Organic Results",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -592,
+        132
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User Queries: {{ $('Parse and Chunk JSON Data').all().map(item => item.json.chunk[0]).join(', ') }}\nWebpage Contents: \n\"\"\"\n{{ $json.data }}\n\"\"\"",
+        "options": {
+          "systemMessage": "=You are an expert information extractor. Given the user's query, the search query that led to this page, and the webpage content, extract all relevant pieces of information that are useful to answer the query. Return only the relevant context as plain text without any additional commentary."
+        }
+      },
+      "id": "f7a3b2eb-d640-4440-9456-6f0a79af241d",
+      "name": "Extract Relevant Context via LLM",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -144,
+        328
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extracted Contexts (Merged):\n\"\"\"\n{{ $json.output }}\n\"\"\"",
+        "options": {
+          "systemMessage": "You are an expert researcher and report writer. Based on the gathered contexts and the original user query, generate a comprehensive, well-structured report. Include all relevant insights and conclusions without unnecessary commentary.\n\nFormat the report in Markdown with clear headings. For example:\n\n# Research Report: [User Query]\n\n## Key Findings\n- Point 1\n- Point 2\n\n## Detailed Analysis\n### Aspect 1\nSummary of findings.\n_Source:_ [Source Name](URL)\n\n### Aspect 2\nSummary of findings.\n_Source:_ [Another Source](URL)\n\nNow, generate the complete report."
+        }
+      },
+      "id": "81f4f08a-0dea-4b78-a5b3-54eca53934f6",
+      "name": "Generate Comprehensive Research Report",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        208,
+        328
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "7104ba6d-b3e9-45cd-9986-fcba06eb9574",
+      "name": "Split Data for SerpAPI Batching",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        -816,
+        276
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "49aaaf82-9a8f-42e0-a008-fcbf54f0a243",
+      "name": "Split Data for Jina AI Batching",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        -368,
+        132
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "my_test_session",
+        "contextWindowLength": 20
+      },
+      "id": "eb763f0f-5144-496a-b315-95b5a27ffecf",
+      "name": "LLM Memory Buffer (Input Context)",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        -72,
+        552
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "my_test_session",
+        "contextWindowLength": 20
+      },
+      "id": "1265c5fa-d9d0-4d19-af61-7955942001fb",
+      "name": "LLM Memory Buffer (Report Context)",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        216,
+        552
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {},
+      "id": "c5358775-33b3-4aa9-bf1f-0b4bdf15cbc8",
+      "name": "Fetch Wikipedia Information",
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "position": [
+        344,
+        552
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## SerpAPI Setup Instructions\n1. Obtain your API key from https://serpapi.com/manage-api-key.\n2. Save your API key securely in n8n credentials (do not use plain text).",
+        "height": 140,
+        "width": 420,
+        "color": 7
+      },
+      "id": "acfa3b70-da9d-479b-a56d-99717cd39876",
+      "name": "Sticky Note: SerpAPI Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -608,
+        -144
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Jina AI Setup Instructions\n1. Obtain your API key from https://jina.ai/api-dashboard/key-manager.\n2. Configure your Jina AI credential in n8n to ensure secure API access.",
+        "height": 140,
+        "width": 420,
+        "color": 7
+      },
+      "id": "c50a17f8-13fc-42ba-8c19-ddb091589876",
+      "name": "Sticky Note: Jina AI Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        272,
+        -160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        500
+      ],
+      "id": "9320774a-9f78-4016-9aed-f1b9fdcc40cd",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Research Report from various sources:\n{{ $json.research.toJsonString() }}\n",
+        "options": {
+          "systemMessage": "=### **OBJECTIVE**  \nYour primary role is to generate well-written and structured blog posts based on research findings provided by another agent. The blog should be engaging, informative, and aligned with best practices for blog writing.\n\n---\n\n### **CONTEXT**  \n- You do **not** receive blog topics directly from the user. Instead, another agent provides research findings related to the given topic.  \n- You have access to a **vector store** containing a **blog_writing_guide** and **Wikipedia** as tools.  \n- You do not format the final output. Instead, another agent converts your response into a defined JSON structure.  \n- The **research findings** you receive are meant to **provide relevant information**, not dictate the exact content or structure of the blog. You must synthesize the information into a coherent article rather than summarizing the research reports directly.\n\n---\n\n### **INSTRUCTIONS**  \n#### **1. Processing Input Data**  \n- Extract **relevant insights** from the provided research findings.  \n- Identify key themes and trends related to the blog topic.  \n- Do **not** structure the blog as a direct summary of the findings. Instead, use them as supporting evidence.  \n- If the research findings indicate **\"No report can be generated\"**, proceed without referencing that particular source.  \n\n#### **2. Utilizing the Blog Writing Guide**  \n- Follow the best practices outlined in the **vector-stored blog writing guide** to ensure clarity, engagement, and readability.  \n- Use Wikipedia for additional context where necessary, but avoid direct plagiarism.  \n\n#### **3. Content Structuring**  \n- **Headline**: Create a compelling, SEO-friendly title.  \n- **Introduction**: Hook the reader with an engaging opening that introduces the topic and its relevance.  \n- **Main Body**:  \n  - Organize the content logically with headings and subheadings.  \n  - Integrate information from the research findings where appropriate, ensuring smooth transitions.  \n  - Include real-world examples, expert opinions, or statistics if applicable.  \n- **Conclusion**: Summarize key points and offer a closing statement, call-to-action, or thought-provoking insight.  \n\n#### **4. Writing Style & Clarity**  \n- Maintain a **conversational yet informative tone** suitable for blog readers.  \n- Use **simple, clear, and engaging language** while avoiding overly technical jargon.  \n- Ensure the text is **grammatically correct and free of spelling errors**.  \n\n#### **5. Quality Checks**  \n- Verify that the blog post **does not read like a research summary**.  \n- Ensure **logical flow and coherence** between sections.  \n- Maintain originality—**do not copy-paste research findings verbatim**.  \n\n---\n\n### **OUTPUT REQUIREMENTS**  \n- A **fully structured and engaging blog post**, formatted as a text output.  \n- The blog should be self-contained and **not rely on bullet points or raw data from the research findings**.  \n- The final output should be clear, **reader-friendly**, and suitable for publication on a blog.  \n\n---\n\n### **EXAMPLES**  \n#### **Incorrect Approach (What to Avoid)**  \n🚫 Writing a blog that **directly summarizes** the research findings, like:  \n*\"A study by Camchong et al. (2017) found that adolescent cannabis users had decreased functional connectivity in the frontal brain regions...\"*  \n\n#### **Correct Approach (What to Follow)**  \n✅ Writing a blog that **integrates** findings into a broader discussion, like:  \n*\"Adolescence is a crucial time for brain development, yet many young individuals are experimenting with cannabis. While some argue that marijuana has minimal long-term effects, recent research suggests otherwise. Studies indicate that frequent cannabis use during adolescence may affect cognitive functions such as memory and decision-making. For example, one study found that...\"*"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        784,
+        328
+      ],
+      "id": "f0b9cd30-ac23-4f2e-b848-08b4fb5c2ddc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "my_session"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        920,
+        552
+      ],
+      "id": "630e3e55-010f-443c-a42f-f504a6ed8389",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Initialize an empty array to store all item data\nlet mergedData = [];\n\n// Loop through each item and collect its JSON content\n$input.all().forEach(item => {\n    mergedData.push(item.json);\n});\n\n// Return a single item with all merged data inside \"research\"\nreturn [{ json: { research: mergedData } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        328
+      ],
+      "id": "e3ad1018-3ec3-4845-896d-f8bcad61b1b1",
+      "name": "Merge outputs"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        792,
+        552
+      ],
+      "id": "ca9f472e-d4a8-4c57-aabc-d60199ecbacf",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -826.0034305317325,
+        432
+      ],
+      "id": "660f0bc7-11a9-4f12-874b-2cb316fae439",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-06T13:16:56.000Z",
+  "versionId": "57969642-d8a9-4e6a-bd85-c9e7cd07753d"
+}
