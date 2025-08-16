@@ -1,18 +1,6 @@
 {
   "active": false,
-  "connections": {
-    "WhatsApp Trigger": {
-      "main": [
-        [
-          {
-            "node": "Send message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
+  "connections": {},
   "createdAt": "2025-08-15T17:55:36.720Z",
   "id": "6MZMxJEmrYII9mL3",
   "isArchived": false,
@@ -20,46 +8,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 2",
-  "nodes": [
-    {
-      "parameters": {
-        "updates": [
-          "messages"
-        ],
-        "options": {}
-      },
-      "type": "n8n-nodes-base.whatsAppTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ],
-      "id": "3a37a35a-7afb-45bd-ba1f-c87e8077885f",
-      "name": "WhatsApp Trigger",
-      "webhookId": "b930a3e2-6cdb-4a1e-845e-77241560b513",
-      "credentials": {
-        "whatsAppTriggerApi": {
-          "id": "uaDeBauS79nEWSIK",
-          "name": "WhatsApp OAuth account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "send",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        208,
-        0
-      ],
-      "id": "78376fe8-4341-459a-ada3-231911161883",
-      "name": "Send message",
-      "webhookId": "36e237cc-0a58-4a13-a5a4-0b205eb0389e"
-    }
-  ],
+  "nodes": [],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -67,6 +16,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-15T17:55:36.720Z",
-  "versionId": "a3140fb1-f7f7-4e36-8592-472d7bf6be6d"
+  "updatedAt": "2025-08-16T05:30:10.000Z",
+  "versionId": "8a419025-55bb-4f27-a482-6ac15585ff40"
 }
