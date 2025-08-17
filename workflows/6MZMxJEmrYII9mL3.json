@@ -1,6 +1,18 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-08-15T17:55:36.720Z",
   "id": "6MZMxJEmrYII9mL3",
   "isArchived": false,
@@ -8,7 +20,54 @@
     "templateCredsSetupCompleted": true
   },
   "name": "My workflow 2",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9014bfd5-9e0b-48ce-a7a7-cabc5f6e3017",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://neat-dog-pleasantly.ngrok-free.app/api/v1/video-processing/settings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpCustomAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-API-Key",
+              "value": "jqxOgdTNZf8SZJKIrqfCHdS7bIaHTZP6tT4PO-S5W7k"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "fb44c00b-efc9-4eca-aafb-1be54ce714df",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "qbUhJkQVDd7Ws1vO",
+          "name": "Shutter Stock"
+        },
+        "httpCustomAuth": {
+          "id": "WcCPNbMSIwhBxtO3",
+          "name": "Local"
+        }
+      }
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -16,6 +75,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-16T05:30:10.000Z",
-  "versionId": "8a419025-55bb-4f27-a482-6ac15585ff40"
+  "updatedAt": "2025-08-17T20:30:23.000Z",
+  "versionId": "8c8190f4-66fd-4f26-a7dc-25f4f763efa5"
 }
