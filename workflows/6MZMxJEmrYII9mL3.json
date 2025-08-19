@@ -35,14 +35,11 @@
     {
       "parameters": {
         "url": "https://neat-dog-pleasantly.ngrok-free.app/api/v1/video-processing/settings",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpCustomAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
-              "name": "X-API-Key",
-              "value": "jqxOgdTNZf8SZJKIrqfCHdS7bIaHTZP6tT4PO-S5W7k"
+              "name": "X-API-Key"
             }
           ]
         },
@@ -55,17 +52,7 @@
         0
       ],
       "id": "fb44c00b-efc9-4eca-aafb-1be54ce714df",
-      "name": "HTTP Request",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "qbUhJkQVDd7Ws1vO",
-          "name": "Shutter Stock"
-        },
-        "httpCustomAuth": {
-          "id": "WcCPNbMSIwhBxtO3",
-          "name": "Local"
-        }
-      }
+      "name": "HTTP Request"
     }
   ],
   "pinData": {},
@@ -75,6 +62,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-17T20:30:23.000Z",
-  "versionId": "8c8190f4-66fd-4f26-a7dc-25f4f763efa5"
+  "updatedAt": "2025-08-18T09:18:52.000Z",
+  "versionId": "1f56067d-e84d-4615-9561-123a824c9ae2"
 }
