@@ -3,13 +3,7 @@
   "connections": {
     "WhatsApp Trigger": {
       "main": [
-        [
-          {
-            "node": "Send message",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -46,8 +40,9 @@
     },
     {
       "parameters": {
-        "operation": "send",
-        "additionalFields": {}
+        "phoneNumberId": "648289155032630",
+        "recipientPhoneNumber": "+254750602445",
+        "template": "onboarding_signoff|en"
       },
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
@@ -56,8 +51,14 @@
         0
       ],
       "id": "be8c15f2-f06a-4217-a65d-1ba075e91351",
-      "name": "Send message",
-      "webhookId": "675e0e2f-d049-4fda-8b6d-9176e6aee314"
+      "name": "Send template",
+      "webhookId": "675e0e2f-d049-4fda-8b6d-9176e6aee314",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "o3hgKGkcHV881SYr",
+          "name": "WhatsApp account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -76,6 +77,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-25T08:04:44.000Z",
-  "versionId": "9030e5cd-21f0-48bd-ac36-48efa05e42b1"
+  "updatedAt": "2025-08-25T10:37:49.000Z",
+  "versionId": "6842ec0e-79a6-44c1-ac14-f37c8cd00352"
 }
