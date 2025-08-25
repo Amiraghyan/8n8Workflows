@@ -1,11 +1,11 @@
 {
   "active": false,
   "connections": {
-    "When clicking ‘Execute workflow’": {
+    "WhatsApp Trigger": {
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Send message",
             "type": "main",
             "index": 0
           }
@@ -22,37 +22,42 @@
   "name": "My workflow 2",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
       "typeVersion": 1,
       "position": [
         0,
         0
       ],
-      "id": "9014bfd5-9e0b-48ce-a7a7-cabc5f6e3017",
-      "name": "When clicking ‘Execute workflow’"
+      "id": "8e712887-8d11-4b6b-b3fb-13e42ca35d9f",
+      "name": "WhatsApp Trigger",
+      "webhookId": "ae87f3a3-49ce-45b5-ad97-f6eb138b017f",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "WxHxfS7pQTVr64qt",
+          "name": "Mr. Alex"
+        }
+      }
     },
     {
       "parameters": {
-        "url": "https://neat-dog-pleasantly.ngrok-free.app/api/v1/video-processing/settings",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "X-API-Key"
-            }
-          ]
-        },
-        "options": {}
+        "operation": "send",
+        "additionalFields": {}
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
       "position": [
         208,
         0
       ],
-      "id": "fb44c00b-efc9-4eca-aafb-1be54ce714df",
-      "name": "HTTP Request"
+      "id": "be8c15f2-f06a-4217-a65d-1ba075e91351",
+      "name": "Send message",
+      "webhookId": "675e0e2f-d049-4fda-8b6d-9176e6aee314"
     }
   ],
   "pinData": {},
@@ -71,6 +76,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-18T09:18:52.000Z",
-  "versionId": "1f56067d-e84d-4615-9561-123a824c9ae2"
+  "updatedAt": "2025-08-25T08:04:44.000Z",
+  "versionId": "9030e5cd-21f0-48bd-ac36-48efa05e42b1"
 }
