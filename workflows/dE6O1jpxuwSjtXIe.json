@@ -1,0 +1,168 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Telegram File Path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Telegram File Path": {
+      "main": [
+        [
+          {
+            "node": "Download Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image": {
+      "main": [
+        [
+          {
+            "node": "HuggingFace Generate Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HuggingFace Generate Video": {
+      "main": [
+        [
+          {
+            "node": "Send Video to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-26T20:38:23.743Z",
+  "id": "dE6O1jpxuwSjtXIe",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "2a528e6a-562a-450d-91e8-357e183b53d2",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "3e12aed6-beb2-46a0-91a1-3914d507e8a6",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "retryOnFail": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "valBgOIJPecw9h0I",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.telegram.org/bot7324014531:AAEeBExmDMDK21M9vMXUIeoKb62I6Hxy-SA/getFile?file_id={{$json[\"message\"][\"photo\"][0][\"file_id\"]}}",
+        "options": {}
+      },
+      "id": "0b81262f-1ddd-45e3-be5e-b7f546a3f8e2",
+      "name": "Get Telegram File Path",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.telegram.org/file/bot7324014531:AAEeBExmDMDK21M9vMXUIeoKb62I6Hxy-SA/{{$json[\"result\"][\"file_path\"]}}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "id": "63b07685-8d23-4157-8da5-7ea6b6f14295",
+      "name": "Download Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api-inference.huggingface.co/models/stabilityai/stable-video-diffusion-img2vid",
+        "options": {}
+      },
+      "id": "9540b0db-ec15-44c4-8135-7fabad1a0323",
+      "name": "HuggingFace Generate Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        608,
+        0
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{$json[\"message\"][\"chat\"][\"id\"]}}",
+        "additionalFields": {}
+      },
+      "id": "856b3a3c-bf38-4122-9673-36a7a24f9dfa",
+      "name": "Send Video to Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "webhookId": "f7f3f0df-3ae1-4c65-b694-ed12ccfe6885",
+      "credentials": {
+        "telegramApi": {
+          "id": "Rdx7IdTtiqMKjIkN",
+          "name": "Telegram account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-26T20:38:23.750Z",
+      "updatedAt": "2025-08-26T20:38:23.750Z",
+      "role": "workflow:owner",
+      "workflowId": "dE6O1jpxuwSjtXIe",
+      "projectId": "F7w5vVZmf5NTjEXh"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-26T20:52:10.000Z",
+  "versionId": "0e05ef03-f124-4085-9ffd-ed50fc072327"
+}
