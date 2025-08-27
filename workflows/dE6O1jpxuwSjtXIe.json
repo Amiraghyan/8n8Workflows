@@ -128,6 +128,7 @@
     {
       "parameters": {
         "chatId": "={{$json[\"message\"][\"chat\"][\"id\"]}}",
+        "text": "hi",
         "additionalFields": {}
       },
       "id": "856b3a3c-bf38-4122-9673-36a7a24f9dfa",
@@ -163,6 +164,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-26T20:52:10.000Z",
-  "versionId": "0e05ef03-f124-4085-9ffd-ed50fc072327"
+  "updatedAt": "2025-08-27T08:16:23.000Z",
+  "versionId": "b1d1f84d-217b-41eb-ac0b-a596228d79bd"
 }
