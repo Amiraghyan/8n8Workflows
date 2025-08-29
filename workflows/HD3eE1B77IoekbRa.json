@@ -309,7 +309,13 @@
         1472
       ],
       "webhookId": "d3978cae-2aca-4553-8ac7-ab89068deabc",
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "FQ5Hmy55FsfP3Ofj",
+          "name": "Whatsapp Davie"
+        }
+      }
     },
     {
       "parameters": {
@@ -366,7 +372,13 @@
         2672,
         1200
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "jm5vP2WXYOw53HaP",
+          "name": "Shuuter Stock"
+        }
+      }
     },
     {
       "parameters": {
@@ -381,7 +393,13 @@
         2912,
         1200
       ],
-      "typeVersion": 1.8
+      "typeVersion": 1.8,
+      "credentials": {
+        "openAiApi": {
+          "id": "CjVxk6S1xu0mmUti",
+          "name": "OpenAi account 2"
+        }
+      }
     },
     {
       "parameters": {
@@ -676,7 +694,7 @@
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "470271332838881",
+        "phoneNumberId": "683434934851942",
         "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
         "textBody": "=You can only send text messages, images, audio files and PDF documents.",
         "additionalFields": {}
@@ -689,7 +707,13 @@
         1744
       ],
       "webhookId": "23834751-5066-48ba-8e19-549680df2b27",
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "NhSr5TryA5jxHu5W",
+          "name": "WhatsApp Davie2"
+        }
+      }
     },
     {
       "parameters": {
@@ -721,7 +745,13 @@
         1200
       ],
       "webhookId": "87caa300-7204-47b5-959a-94f4a8fbf8cf",
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "NhSr5TryA5jxHu5W",
+          "name": "WhatsApp Davie2"
+        }
+      }
     },
     {
       "parameters": {
@@ -1001,6 +1031,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-27T14:36:51.173Z",
-  "versionId": "59fab1b7-57b6-4ced-8a0e-1a28f2e76d6d"
+  "updatedAt": "2025-08-29T19:58:07.000Z",
+  "versionId": "fe29eb93-afd3-4343-aa76-fc5bcda2c187"
 }
