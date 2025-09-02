@@ -14,13 +14,7 @@
     },
     "AI Agent": {
       "main": [
-        [
-          {
-            "node": "Send message",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Google Gemini Chat Model": {
@@ -91,9 +85,9 @@
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "683434934851942",
+        "phoneNumberId": "=648289155032630",
         "recipientPhoneNumber": "+254799389806",
-        "textBody": "={{ $json.output }}",
+        "textBody": "=google",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.whatsApp",
@@ -107,8 +101,8 @@
       "webhookId": "675e0e2f-d049-4fda-8b6d-9176e6aee314",
       "credentials": {
         "whatsAppApi": {
-          "id": "NhSr5TryA5jxHu5W",
-          "name": "WhatsApp Davie2"
+          "id": "o3hgKGkcHV881SYr",
+          "name": "WhatsApp account"
         }
       }
     },
@@ -202,6 +196,46 @@
       ],
       "id": "390582be-e735-4d8b-867a-3ecbc885dc81",
       "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v20.0/648289155032630/register",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "pin",
+              "value": "000000"
+            },
+            {
+              "name": "tier",
+              "value": "prod"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        448
+      ],
+      "id": "09c0d866-ae11-4ef0-9ba0-d1984fc8d428",
+      "name": "HTTP Request",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "o3hgKGkcHV881SYr",
+          "name": "WhatsApp account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -220,6 +254,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-08-30T08:50:47.000Z",
-  "versionId": "9f95e896-0f92-4f1f-9672-080d511367ba"
+  "updatedAt": "2025-09-02T19:46:25.000Z",
+  "versionId": "b6435320-05cc-4e92-a28e-9c4d3f2dc556"
 }
