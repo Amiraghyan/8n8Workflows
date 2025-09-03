@@ -573,8 +573,8 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -826.0034305317325,
-        432
+        -1616,
+        656
       ],
       "id": "660f0bc7-11a9-4f12-874b-2cb316fae439",
       "name": "Schedule Trigger"
@@ -596,6 +596,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-06T13:16:56.000Z",
-  "versionId": "57969642-d8a9-4e6a-bd85-c9e7cd07753d"
+  "updatedAt": "2025-09-03T20:03:10.000Z",
+  "versionId": "d0cd4b0e-6e7f-4320-8022-bcab6db483c8"
 }
