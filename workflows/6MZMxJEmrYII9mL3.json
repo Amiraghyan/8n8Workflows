@@ -85,7 +85,7 @@
     {
       "parameters": {
         "operation": "send",
-        "phoneNumberId": "=648289155032630",
+        "phoneNumberId": "648289155032630",
         "recipientPhoneNumber": "+254799389806",
         "textBody": "=google",
         "additionalFields": {}
@@ -254,6 +254,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-02T19:46:25.000Z",
-  "versionId": "b6435320-05cc-4e92-a28e-9c4d3f2dc556"
+  "updatedAt": "2025-09-03T08:52:24.000Z",
+  "versionId": "83e09da2-7c29-46c5-9e5f-68f9c4d26427"
 }
