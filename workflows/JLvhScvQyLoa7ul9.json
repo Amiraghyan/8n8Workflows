@@ -191,7 +191,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -688,
+        -712,
         624
       ],
       "id": "0efdc03e-6543-4b38-850c-367d7a51d99a",
@@ -224,7 +224,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -448,
+        -496,
         400
       ],
       "id": "9baa3874-4f77-47c3-af7c-742da677dc2a",
@@ -347,8 +347,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        400,
-        112
+        304,
+        104
       ],
       "id": "607d7782-1b23-40bc-a7b5-09ad75355f42",
       "name": "Format the final data"
@@ -360,8 +360,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        624,
-        112
+        528,
+        104
       ],
       "id": "c5a6d0eb-125e-4931-a9bd-2f53bfabca4d",
       "name": "Reply with formatted data"
@@ -377,7 +377,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        -224,
+        -272,
         496
       ],
       "id": "5d7c8e01-9a5b-46eb-ad83-af1716847275",
@@ -395,7 +395,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -816,
+        -840,
         624
       ],
       "id": "ec3449df-07d7-4459-aa1f-3e9e6f686b7a",
@@ -419,7 +419,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        96,
+        24,
         224
       ],
       "id": "ef629177-097f-4e28-b662-3dde8f582d47",
@@ -470,7 +470,7 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        0,
+        -48,
         0
       ],
       "id": "10d294d9-2f04-4d0e-833e-5620c227a494",
@@ -536,7 +536,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -224,
+        -272,
         304
       ],
       "id": "7238c1d8-5ab7-4453-97a2-b970ca086c41",
@@ -589,8 +589,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        400,
-        512
+        304,
+        504
       ],
       "id": "f25e0fae-0fc8-4443-a798-b53d5086fcbb",
       "name": "Format the final data1"
@@ -602,8 +602,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        624,
-        512
+        528,
+        504
       ],
       "id": "9fc36de5-d71e-47cf-9a79-cabda578b508",
       "name": "Reply with formatted data1"
@@ -620,8 +620,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        96,
-        736
+        24,
+        728
       ],
       "id": "a76d0686-ed85-4ed4-b8cb-e2b518a413c9",
       "name": "OpenAI Chat Model2",
@@ -666,8 +666,8 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        0,
-        512
+        -48,
+        504
       ],
       "id": "305111b6-b95a-428b-a4ee-ad3cd37992e9",
       "name": "Extract transaction details1"
@@ -689,6 +689,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-07-20T19:22:00.998Z",
-  "versionId": "5e859a5f-65ce-41eb-8337-c1c30b9c17b2"
+  "updatedAt": "2025-09-10T10:15:21.000Z",
+  "versionId": "ba857c37-6c1a-41a0-b360-351e3069cea1"
 }
