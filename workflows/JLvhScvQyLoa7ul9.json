@@ -48,6 +48,11 @@
             "node": "Find out if it a transaction and it's direction",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Raw SMS Data",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -67,30 +72,8 @@
       "main": [
         [
           {
-            "node": "Reply with formatted data",
+            "node": "Processed SMS Data",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Find out if it a transaction and it's direction",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Extract transaction details",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -129,19 +112,8 @@
       "main": [
         [
           {
-            "node": "Reply with formatted data1",
+            "node": "Processed SMS Data",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Extract transaction details1",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -153,6 +125,33 @@
           {
             "node": "Format the final data1",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Find out if it a transaction and it's direction",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract transaction details",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Extract transaction details1",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -178,7 +177,7 @@
       "typeVersion": 2,
       "position": [
         -1296,
-        400
+        496
       ],
       "id": "c04280ab-3720-4b7c-8814-e28b84623885",
       "name": "Webhook",
@@ -192,7 +191,7 @@
       "typeVersion": 1.3,
       "position": [
         -712,
-        624
+        468
       ],
       "id": "0efdc03e-6543-4b38-850c-367d7a51d99a",
       "name": "Structured Output Parser"
@@ -225,7 +224,7 @@
       "typeVersion": 2.2,
       "position": [
         -496,
-        400
+        348
       ],
       "id": "9baa3874-4f77-47c3-af7c-742da677dc2a",
       "name": "If"
@@ -272,7 +271,7 @@
       "typeVersion": 3.4,
       "position": [
         -1072,
-        400
+        496
       ],
       "id": "819567de-c8a4-465d-b9f8-ed3dca9bd82d",
       "name": "Fetch required details from webhook"
@@ -295,7 +294,7 @@
       "typeVersion": 1.7,
       "position": [
         -848,
-        400
+        244
       ],
       "id": "d8f6315f-920b-4b12-9b62-9788c78bb8a4",
       "name": "Find out if it a transaction and it's direction"
@@ -355,19 +354,6 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        528,
-        104
-      ],
-      "id": "c5a6d0eb-125e-4931-a9bd-2f53bfabca4d",
-      "name": "Reply with formatted data"
-    },
-    {
-      "parameters": {
         "respondWith": "text",
         "responseBody": "Not a Transaction",
         "options": {
@@ -378,58 +364,10 @@
       "typeVersion": 1.4,
       "position": [
         -272,
-        496
+        444
       ],
       "id": "5d7c8e01-9a5b-46eb-ad83-af1716847275",
       "name": "Reply for not transactions"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4.1-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -840,
-        624
-      ],
-      "id": "ec3449df-07d7-4459-aa1f-3e9e6f686b7a",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "CjVxk6S1xu0mmUti",
-          "name": "OpenAi account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4.1-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        24,
-        224
-      ],
-      "id": "ef629177-097f-4e28-b662-3dde8f582d47",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "CjVxk6S1xu0mmUti",
-          "name": "OpenAi account 2"
-        }
-      }
     },
     {
       "parameters": {
@@ -537,7 +475,7 @@
       "typeVersion": 3.2,
       "position": [
         -272,
-        304
+        252
       ],
       "id": "7238c1d8-5ab7-4453-97a2-b970ca086c41",
       "name": "Switch"
@@ -590,47 +528,10 @@
       "typeVersion": 3.4,
       "position": [
         304,
-        504
+        400
       ],
       "id": "f25e0fae-0fc8-4443-a798-b53d5086fcbb",
       "name": "Format the final data1"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.4,
-      "position": [
-        528,
-        504
-      ],
-      "id": "9fc36de5-d71e-47cf-9a79-cabda578b508",
-      "name": "Reply with formatted data1"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4.1-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        24,
-        728
-      ],
-      "id": "a76d0686-ed85-4ed4-b8cb-e2b518a413c9",
-      "name": "OpenAI Chat Model2",
-      "credentials": {
-        "openAiApi": {
-          "id": "CjVxk6S1xu0mmUti",
-          "name": "OpenAi account 2"
-        }
-      }
     },
     {
       "parameters": {
@@ -667,13 +568,159 @@
       "typeVersion": 1.2,
       "position": [
         -48,
-        504
+        400
       ],
       "id": "305111b6-b95a-428b-a4ee-ad3cd37992e9",
       "name": "Extract transaction details1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ywkwtwffsnqlrhmshbxe.supabase.co/functions/v1/receive-processed-transaction",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_id"
+            },
+            {
+              "name": "from"
+            },
+            {
+              "name": "time"
+            },
+            {
+              "name": "direction"
+            },
+            {
+              "name": "amount"
+            },
+            {
+              "name": "balance"
+            },
+            {
+              "name": "desciptioon"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        528,
+        252
+      ],
+      "id": "cfd57668-b5dd-448c-9ac1-6c3722f88717",
+      "name": "Processed SMS Data"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ywkwtwffsnqlrhmshbxe.supabase.co/functions/v1/receive-raw-sms",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_id"
+            },
+            {
+              "name": "message"
+            },
+            {
+              "name": "from"
+            },
+            {
+              "name": "time"
+            },
+            {
+              "name": "formatted_message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -784,
+        644
+      ],
+      "id": "c147f61c-2c03-4dc5-83e8-e41f9fabe017",
+      "name": "Raw SMS Data"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        468
+      ],
+      "id": "a8ae2be3-3fbf-435e-ba04-2f82db0c3ef6",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Y8dnvHhwRpo38rop",
+          "name": "Finance Quest"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        24,
+        224
+      ],
+      "id": "e1b720e2-f585-42d6-8a6f-c73883599e79",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Y8dnvHhwRpo38rop",
+          "name": "Finance Quest"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "162.158.40.143",
+            "x-forwarded-for": "102.215.77.62, 162.158.40.143",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "221",
+            "content-type": "application/json; charset=utf-8",
+            "user-agent": "okhttp/4.12.0",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "97e5f73108f1feef-MBA",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "102.215.77.62",
+            "cf-ipcountry": "KE",
+            "cf-visitor": "{\"scheme\":\"https\"}"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "text": "From: MPESA \nTIA889E7LE confirmed. Ksh15.00 sent to AIRTEL MONEY  for account 254750602445 on 10/9/25 at 9:06 AM New M-PESA balance is Ksh4.76. Transaction cost, Ksh0.00. \nReceived At: 09/13/2025, 7:35 AM "
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook-test/sms/finance",
+          "executionMode": "test"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -689,6 +736,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-10T10:15:21.000Z",
-  "versionId": "ba857c37-6c1a-41a0-b360-351e3069cea1"
+  "updatedAt": "2025-09-13T07:43:24.000Z",
+  "versionId": "3171e63d-dce0-482b-9f8e-ae408f2f18dd"
 }
