@@ -156,6 +156,28 @@
           }
         ]
       ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Fetch required details from webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch required details from webhook1": {
+      "main": [
+        [
+          {
+            "node": "Fetch required details from webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-07-19T07:27:15.428Z",
@@ -175,8 +197,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -2816,
-        64
+        -2864,
+        60
       ],
       "id": "4e9440ec-1416-4a1a-9065-6816e23329b4",
       "name": "Webhook",
@@ -189,8 +211,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -2016,
-        288
+        -2056,
+        188
       ],
       "id": "884344ee-2403-4618-a34d-22ef638a6aa8",
       "name": "Structured Output Parser"
@@ -222,8 +244,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1792,
-        64
+        -1840,
+        -36
       ],
       "id": "93bc720c-eca9-4d02-bf63-865790f729cf",
       "name": "If"
@@ -269,8 +291,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -2592,
-        64
+        -2640,
+        -36
       ],
       "id": "97847298-b22f-4262-ab21-5b135c150551",
       "name": "Fetch required details from webhook"
@@ -292,8 +314,8 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        -2144,
-        64
+        -2192,
+        -36
       ],
       "id": "1ecabcb6-e942-4a43-9567-180940507b64",
       "name": "Find out if it a transaction and it's direction"
@@ -357,8 +379,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -992,
-        -192
+        -1040,
+        -184
       ],
       "id": "f8589978-1d6c-481b-8e4f-310d8b33ef5d",
       "name": "Format the final data"
@@ -402,7 +424,7 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        -1344,
+        -1392,
         -288
       ],
       "id": "a281f537-d1fc-4576-b2c1-f3b6ebd82267",
@@ -468,8 +490,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -1568,
-        -32
+        -1616,
+        -36
       ],
       "id": "df688dca-8c01-4646-bb1a-7d7dbe8c7b77",
       "name": "Switch"
@@ -539,7 +561,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -992,
+        -1040,
         112
       ],
       "id": "9867262c-558e-4c57-90d7-072b173091c1",
@@ -579,7 +601,7 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        -1344,
+        -1392,
         112
       ],
       "id": "6ffd35cb-771f-4ce3-9b57-725dbfe50686",
@@ -631,8 +653,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -768,
-        -32
+        -816,
+        -36
       ],
       "id": "f8d7a485-8eba-451b-a709-384e5e4aee5b",
       "name": "Processed SMS Data"
@@ -671,41 +693,39 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -2368,
-        64
+        -2416,
+        -36
       ],
       "id": "72674d84-b71c-4731-b5e7-378db660aee9",
       "name": "Raw SMS Data"
     },
     {
       "parameters": {
-        "modelName": "models/gemini-1.5-pro",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -2144,
-        288
+        -2184,
+        188
       ],
       "id": "bcbfaa28-d390-4306-aea4-d8b47e03f795",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "kSDjT64QAeHAQtTi",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "hJGJTS0pValX9LMT",
+          "name": "BigAddict HB"
         }
       }
     },
     {
       "parameters": {
-        "modelName": "models/gemini-1.5-pro",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1280,
+        -1320,
         -64
       ],
       "id": "aace905b-ea81-418a-95d7-46754ff7a349",
@@ -746,48 +766,77 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -2816,
+        -3088,
         -512
       ],
       "id": "24025a83-cbce-4845-bcb2-11576f467618",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sms/finance2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -3088,
+        -132
+      ],
+      "id": "f0d737bf-d527-4937-b713-a116a269c830",
+      "name": "Webhook1",
+      "webhookId": "abd8a4f8-1a98-4fec-ac19-07390739ce36"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "51b15928-8e0e-49cd-b05a-3a72d64230b4",
+              "name": "body.user_id",
+              "value": "={{ $json.body.user_id }}",
+              "type": "string"
+            },
+            {
+              "id": "9331481b-b073-4081-b506-fe1611d6f841",
+              "name": "body.message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "53b9b00a-472f-41f6-b5b1-d1c194a1d28b",
+              "name": "body.from",
+              "value": "={{ $json.body.from }}",
+              "type": "string"
+            },
+            {
+              "id": "033f51ec-4790-46ff-b722-e35093c49202",
+              "name": "body.time",
+              "value": "={{ $json.body.time.toDateTime('ms') }}",
+              "type": "string"
+            },
+            {
+              "id": "851df70c-21ed-4df7-b4c0-a1fb6706db45",
+              "name": "body.formatted_message",
+              "value": "={{ $json.body.formatted_message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2864,
+        -132
+      ],
+      "id": "2e2c9b46-9697-49fe-a188-e1dcaab45b9d",
+      "name": "Fetch required details from webhook1"
     }
   ],
-  "pinData": {
-    "Webhook": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.bigaddict.shop",
-            "x-real-ip": "172.69.46.149",
-            "x-forwarded-for": "102.215.77.62, 172.69.46.149",
-            "x-forwarded-proto": "https",
-            "connection": "upgrade",
-            "content-length": "565",
-            "content-type": "application/json; charset=utf-8",
-            "user-agent": "okhttp/4.12.0",
-            "accept-encoding": "gzip, br",
-            "cf-ray": "97e7e8a238127930-DAR",
-            "cdn-loop": "cloudflare; loops=1",
-            "cf-connecting-ip": "102.215.77.62",
-            "cf-ipcountry": "KE",
-            "cf-visitor": "{\"scheme\":\"https\"}"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "user_id": "b841877f-6cf0-4487-b209-9edab38cc0b2",
-            "message": "TIA284QFFO Confirmed.You have received Ksh100.00 from PETER  NJEHIA 0723594670 on 10/9/25 at 8:35 AM  New M-PESA balance is Ksh119.76. Earn interest daily on Ziidi MMF,Dial *334#",
-            "from": "MPESA",
-            "time": "2025-09-13T13:14:37.785012Z",
-            "formatted_message": "From: MPESA \nTIA284QFFO Confirmed.You have received Ksh100.00 from PETER  NJEHIA 0723594670 on 10/9/25 at 8:35 AM  New M-PESA balance is Ksh119.76. Earn interest daily on Ziidi MMF,Dial *334# \nReceived At: 09/13/2025, 1:14 PM "
-          },
-          "webhookUrl": "https://n8n.bigaddict.shop/webhook/sms/finance",
-          "executionMode": "production"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -802,7 +851,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-09-13T21:43:09.000Z",
-  "versionId": "fa33ec0b-e57f-42ba-82e0-ce70a14860cb"
+  "triggerCount": 2,
+  "updatedAt": "2025-09-14T18:39:32.000Z",
+  "versionId": "c64350c8-ce36-45ce-9692-7e11a780fb73"
 }
