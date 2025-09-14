@@ -679,7 +679,7 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-1.5-flash",
+        "modelName": "models/gemini-1.5-pro",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
@@ -692,14 +692,14 @@
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "ZBtkKEVmgRcWvWO5",
-          "name": "Google Gemini(PaLM) Api account 3"
+          "id": "kSDjT64QAeHAQtTi",
+          "name": "Google Gemini(PaLM) Api account"
         }
       }
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.0-flash",
+        "modelName": "models/gemini-1.5-pro",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
@@ -712,8 +712,8 @@
       "name": "Google Gemini Chat Model1",
       "credentials": {
         "googlePalmApi": {
-          "id": "ZBtkKEVmgRcWvWO5",
-          "name": "Google Gemini(PaLM) Api account 3"
+          "id": "kSDjT64QAeHAQtTi",
+          "name": "Google Gemini(PaLM) Api account"
         }
       }
     },
@@ -803,6 +803,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-09-13T20:32:23.000Z",
-  "versionId": "5754eb78-c9e6-43a1-97a7-629d181872fb"
+  "updatedAt": "2025-09-13T21:43:09.000Z",
+  "versionId": "fa33ec0b-e57f-42ba-82e0-ce70a14860cb"
 }
