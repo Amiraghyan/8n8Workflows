@@ -198,7 +198,7 @@
       "typeVersion": 2,
       "position": [
         -2864,
-        60
+        64
       ],
       "id": "4e9440ec-1416-4a1a-9065-6816e23329b4",
       "name": "Webhook",
@@ -211,8 +211,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        -2056,
-        188
+        -2064,
+        192
       ],
       "id": "884344ee-2403-4618-a34d-22ef638a6aa8",
       "name": "Structured Output Parser"
@@ -245,7 +245,7 @@
       "typeVersion": 2.2,
       "position": [
         -1840,
-        -36
+        -32
       ],
       "id": "93bc720c-eca9-4d02-bf63-865790f729cf",
       "name": "If"
@@ -292,7 +292,7 @@
       "typeVersion": 3.4,
       "position": [
         -2640,
-        -36
+        -32
       ],
       "id": "97847298-b22f-4262-ab21-5b135c150551",
       "name": "Fetch required details from webhook"
@@ -315,7 +315,7 @@
       "typeVersion": 1.7,
       "position": [
         -2192,
-        -36
+        -32
       ],
       "id": "1ecabcb6-e942-4a43-9567-180940507b64",
       "name": "Find out if it a transaction and it's direction"
@@ -380,7 +380,7 @@
       "typeVersion": 3.4,
       "position": [
         -1040,
-        -184
+        -192
       ],
       "id": "f8589978-1d6c-481b-8e4f-310d8b33ef5d",
       "name": "Format the final data"
@@ -491,7 +491,7 @@
       "typeVersion": 3.2,
       "position": [
         -1616,
-        -36
+        -32
       ],
       "id": "df688dca-8c01-4646-bb1a-7d7dbe8c7b77",
       "name": "Switch"
@@ -639,7 +639,7 @@
               "value": "={{ $json.balance }}"
             },
             {
-              "name": "desciptioon",
+              "name": "description",
               "value": "={{ $json.description }}"
             },
             {
@@ -654,7 +654,7 @@
       "typeVersion": 4.2,
       "position": [
         -816,
-        -36
+        -32
       ],
       "id": "f8d7a485-8eba-451b-a709-384e5e4aee5b",
       "name": "Processed SMS Data"
@@ -694,27 +694,28 @@
       "typeVersion": 4.2,
       "position": [
         -2416,
-        -36
+        -32
       ],
       "id": "72674d84-b71c-4731-b5e7-378db660aee9",
       "name": "Raw SMS Data"
     },
     {
       "parameters": {
+        "modelName": "models/gemini-2.0-flash",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -2184,
-        188
+        -2192,
+        192
       ],
       "id": "bcbfaa28-d390-4306-aea4-d8b47e03f795",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
-          "id": "hJGJTS0pValX9LMT",
-          "name": "BigAddict HB"
+          "id": "kSDjT64QAeHAQtTi",
+          "name": "Google Gemini(PaLM) Api account"
         }
       }
     },
@@ -725,15 +726,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -1320,
+        -1328,
         -64
       ],
       "id": "aace905b-ea81-418a-95d7-46754ff7a349",
       "name": "Google Gemini Chat Model1",
       "credentials": {
         "googlePalmApi": {
-          "id": "kSDjT64QAeHAQtTi",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
         }
       }
     },
@@ -782,7 +783,7 @@
       "typeVersion": 2,
       "position": [
         -3088,
-        -132
+        -128
       ],
       "id": "f0d737bf-d527-4937-b713-a116a269c830",
       "name": "Webhook1",
@@ -830,7 +831,7 @@
       "typeVersion": 3.4,
       "position": [
         -2864,
-        -132
+        -128
       ],
       "id": "2e2c9b46-9697-49fe-a188-e1dcaab45b9d",
       "name": "Fetch required details from webhook1"
@@ -852,6 +853,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-14T18:39:32.000Z",
-  "versionId": "c64350c8-ce36-45ce-9692-7e11a780fb73"
+  "updatedAt": "2025-09-17T14:50:03.000Z",
+  "versionId": "f124510e-3bf8-43b8-a8ee-ad1ea7fca10a"
 }
