@@ -66,6 +66,154 @@
           }
         ]
       ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Date & Time": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "team dispatch",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail1": {
+      "ai_tool": [
+        [
+          {
+            "node": "team dispatch",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "team dispatch": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-19T20:08:06.621Z",
@@ -85,7 +233,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        0,
+        -336,
         0
       ],
       "id": "f5cdd9c2-79f4-414a-970f-e802a73607f6",
@@ -157,7 +305,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
+        -112,
         0
       ],
       "id": "c9a4e908-dd63-40de-8b96-779b8d9c4d5b",
@@ -167,12 +315,14 @@
       "parameters": {
         "promptType": "define",
         "text": "={{ $json.message }}",
-        "options": {}
+        "options": {
+          "systemMessage": "=You are a WhatsApp auto-reply AI for alfones communications ltd. \nAlways reply in short, clear, and friendly WhatsApp-style messages (2–4 sentences max). \nYour tone is professional but with a Kenyan friendly vibe — mix simple English with a touch of Kenyanese (e.g., “sawa,” “hapo sawa,” “no worries”) where natural. \nAlways base answers on the knowledge base provided. \nIf unsure, acknowledge politely and offer next steps. \nKeep replies human, helpful, and never robotic. \nWhere relevant, add a soft call-to-action to guide the customer to the next step. \nNever send long paragraphs, keep it WhatsApp-friendly.\n\nYou are a smart, context-aware WhatsApp Assistant that helps alfones communications ltd attend to customers intelligently and drive in sales.\n\nYou are connected to:\n- A vector store containing business-specific knowledge included by the business owner.\n- A tool to send emails (incquire the email from the user when needed).\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content.\n- Associated product (if provided)\n- Business context retrieved from metadata (via vector store).\nAnd most importantly drive sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (detectable via metadata or message pattern).\n3. Use available tools (like email) if it would enhance support.\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n\nWhatsApp allows you to format text inside your messages. \nItalic\nTo italicize your message, place an underscore on both sides of the text:\n_text_\nBold\nTo bold your message, place an asterisk on both sides of the text:\n*text*\nStrikethrough\nTo strikethrough your message, place a tilde on both sides of the text:\n~text~\nMonospace\nTo monospace your message, place three backticks on both sides of the text:\n```text```\nBulleted list\nTo add a bulleted list to your message, place an asterisk or hyphen and a space before each word or sentence:\n* text\n* text\nOr\n- text\n- text\nNumbered list\nTo add a numbered list to your message, place a number, period, and space before each line of text:\n1. text\n2. text\nQuote\nTo add a quote to your message, place an angle bracket and space before the text:\n> text\nInline code\nTo add inline code to your message, place a backtick on both sides of the message:\n`text`"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        416,
+        648,
         0
       ],
       "id": "6a56be88-38e5-4b3f-b108-4c7660373f68",
@@ -185,8 +335,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        288,
-        208
+        112,
+        224
       ],
       "id": "6f2f24b5-857c-404d-ad5b-b0f0c45ada41",
       "name": "Google Gemini Chat Model",
@@ -200,13 +350,13 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.sender }}"
+        "sessionKey": "={{ $json.sender }}5"
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        432,
-        208
+        240,
+        224
       ],
       "id": "40323ddb-43e8-4d4e-8c55-ac0a355cf5b3",
       "name": "Simple Memory"
@@ -222,7 +372,7 @@
       "type": "n8n-nodes-evolution-api-en.evolutionApi",
       "typeVersion": 1,
       "position": [
-        976,
+        1760,
         0
       ],
       "id": "c3a578c1-8175-4e13-aee2-b2e2192b08eb",
@@ -263,14 +413,473 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        768,
+        1536,
         0
       ],
       "id": "17e59a1f-a269-446f-8b83-d665ccb22ef6",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "formTitle": "Update",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Document to upload.",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -336,
+        744
+      ],
+      "id": "b0ae5b14-14e8-4ac8-82f0-817ec0f9fe72",
+      "name": "On form submission",
+      "webhookId": "b7b9ae6d-15a5-465e-89d7-15d8d2d4c0ad"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Document_to_upload_",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        744
+      ],
+      "id": "6dac2642-272e-46e9-9257-ada7a9287252",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "earlykey",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        112,
+        744
+      ],
+      "id": "0b18afb4-64b5-4775-b8c0-bc9fdc93932a",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Taskacer Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        120,
+        968
+      ],
+      "id": "a76e668e-98a5-49a1-84b0-10a598ca3abb",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        248,
+        968
+      ],
+      "id": "5deaf3ba-ebf3-4931-b866-4e9bea05a090",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Work with alfones communication solution knowledge base.",
+        "tableName": "earlykey",
+        "topK": 8,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        368,
+        224
+      ],
+      "id": "e5eae158-c8b2-4662-9e5f-6fc42bbb7b19",
+      "name": "Postgres PGVector Store1",
+      "credentials": {
+        "postgres": {
+          "id": "AEzErPKvBs7vtBPl",
+          "name": "Taskacer Postgres"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        448,
+        432
+      ],
+      "id": "7577d650-136e-42ba-a057-e2600c55ea2a",
+      "name": "Embeddings Google Gemini1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ZBtkKEVmgRcWvWO5",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "route"
+            },
+            {
+              "name": "data",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -336,
+        1072
+      ],
+      "id": "0b69cff1-ecdd-4872-acc2-a59db58fb5b8",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "description": "Call this tool to send audio as response.",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $workflow.id }}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "route": "audio"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "route",
+              "displayName": "route",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "object",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        -336,
+        432
+      ],
+      "id": "d9b3b81c-b800-4ee9-b71b-4f7d246b6516",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "timezone": "Africa/Nairobi"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        656,
+        224
+      ],
+      "id": "ff22b68a-c4c7-4d66-b146-057e3f719065",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "operation": "getTimeBetweenDates",
+        "startDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Date', ``, 'string') }}",
+        "endDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Date', ``, 'string') }}",
+        "units": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Units', ``, 'string') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "isoString": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_as_ISO_String', ``, 'boolean') }}"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        784,
+        224
+      ],
+      "id": "3dcdaa8d-e454-4f0c-8aa9-b0c75ad46f51",
+      "name": "Date & Time1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        912,
+        224
+      ],
+      "id": "d649d1a7-0962-46e1-8862-2e1e4b9403e2",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1040,
+        224
+      ],
+      "id": "cbc9d4aa-b92e-4eca-bd98-b36ee9044b7a",
+      "name": "Send a message in Gmail",
+      "webhookId": "bd096c3c-f576-4c3e-a8fd-24c1fb562891",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        912,
+        432
+      ],
+      "id": "6c086977-1dc9-40e7-9856-c519d0f0fdb8",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "hJGJTS0pValX9LMT",
+          "name": "BigAddict HB"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1312,
+        432
+      ],
+      "id": "c838d6a2-7fe0-468d-b3ca-260cff4f8be7",
+      "name": "Send a message in Gmail1",
+      "webhookId": "8f52c165-872b-4e54-bdfc-3c3b2a251f1d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "8ThqC1trQqFGaMfX",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Only engage this AI Agent if you want to send an email to alfones communications ltd team",
+        "text": "={{ $fromAI('content', `This is the infromation to be conveyed to one of the relevant team emails`, 'string') }}",
+        "options": {
+          "systemMessage": "You are an email dispatcher for alfones communications ltd. The teams emails are accounts@alfonesltd.com and amundia@alfonesltd.com. That's where you always send your messages."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        224
+      ],
+      "id": "dc8a00e0-78e1-44da-8444-8663c563bff1",
+      "name": "team dispatch"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "162.158.40.143",
+            "x-forwarded-for": "102.215.77.62, 162.158.40.143",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "1359",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, br",
+            "user-agent": "axios/1.12.2",
+            "cf-ray": "9820098bad4065ea-MBA",
+            "content-type": "application/json",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "102.215.77.62",
+            "cf-ipcountry": "KE",
+            "cf-visitor": "{\"scheme\":\"https\"}"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "Binary Craft Technologies",
+            "data": {
+              "key": {
+                "remoteJid": "254722899646@s.whatsapp.net",
+                "remoteJidAlt": "123755204456551@lid",
+                "fromMe": false,
+                "id": "A50F5CEAE75DE12D1902119C52EBE881"
+              },
+              "pushName": "Alexander Paul",
+              "status": "DELIVERY_ACK",
+              "message": {
+                "conversation": "Do you know Alfones Communications Solutions ltd?",
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "senderKeyIndexes": [],
+                    "recipientKeyIndexes": [],
+                    "senderKeyHash": {
+                      "0": 254,
+                      "1": 177,
+                      "2": 7,
+                      "3": 7,
+                      "4": 13,
+                      "5": 90,
+                      "6": 210,
+                      "7": 228,
+                      "8": 162,
+                      "9": 239
+                    },
+                    "senderTimestamp": 1757530732,
+                    "recipientKeyHash": {
+                      "0": 170,
+                      "1": 235,
+                      "2": 226,
+                      "3": 168,
+                      "4": 183,
+                      "5": 245,
+                      "6": 81,
+                      "7": 138,
+                      "8": 232,
+                      "9": 31
+                    },
+                    "recipientTimestamp": 1758321108
+                  },
+                  "deviceListMetadataVersion": 2,
+                  "messageSecret": {
+                    "0": 29,
+                    "1": 26,
+                    "2": 45,
+                    "3": 67,
+                    "4": 160,
+                    "5": 171,
+                    "6": 14,
+                    "7": 253,
+                    "8": 64,
+                    "9": 72,
+                    "10": 60,
+                    "11": 177,
+                    "12": 132,
+                    "13": 134,
+                    "14": 137,
+                    "15": 29,
+                    "16": 59,
+                    "17": 222,
+                    "18": 147,
+                    "19": 11,
+                    "20": 179,
+                    "21": 188,
+                    "22": 134,
+                    "23": 218,
+                    "24": 153,
+                    "25": 162,
+                    "26": 52,
+                    "27": 144,
+                    "28": 186,
+                    "29": 72,
+                    "30": 132,
+                    "31": 209
+                  }
+                }
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1758357828,
+              "instanceId": "305fc691-556c-4c87-a64e-5882aa0e6ce4",
+              "source": "android"
+            },
+            "destination": "https://n8n.bigaddict.shop/webhook/evolution",
+            "date_time": "2025-09-20T08:43:48.346Z",
+            "sender": "254799389806@s.whatsapp.net",
+            "server_url": "http://localhost:8080",
+            "apikey": "C828D2DD0487-4F08-9DAF-278B7F369C00"
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook/evolution",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -289,7 +898,7 @@
     }
   },
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2025-09-20T06:19:32.000Z",
-  "versionId": "faad8553-dba2-4c3a-a137-46698269b142"
+  "triggerCount": 2,
+  "updatedAt": "2025-09-20T20:54:11.000Z",
+  "versionId": "cea57459-19c7-4c91-95b7-b9e6d47d22cb"
 }
