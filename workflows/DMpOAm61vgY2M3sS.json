@@ -837,7 +837,41 @@
       "name": "Fetch required details from webhook1"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.bigaddict.shop",
+            "x-real-ip": "162.158.40.143",
+            "x-forwarded-for": "105.161.219.177, 162.158.40.143",
+            "x-forwarded-proto": "https",
+            "connection": "upgrade",
+            "content-length": "717",
+            "content-type": "application/json; charset=utf-8",
+            "user-agent": "okhttp/4.12.0",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "9823730cadef65ec-MBA",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-connecting-ip": "105.161.219.177",
+            "cf-ipcountry": "KE",
+            "cf-visitor": "{\"scheme\":\"https\"}"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "user_id": "1470b296-d176-41f0-856f-55c2a4709333",
+            "message": "TIK7TPA03F Confirmed. Ksh800.00 sent to BOAZ  NDEMO 0700929566 on 20/9/25 at 9:40 PM. New M-PESA balance is Ksh17,194.91. Transaction cost, Ksh13.00.  Amount you can transact within the day is 489,070.00. Earn interest daily on Ziidi MMF,Dial *334#",
+            "from": "MPESA",
+            "time": "2025-09-20T18:40:05.186161Z",
+            "formatted_message": "From: MPESA \nTIK7TPA03F Confirmed. Ksh800.00 sent to BOAZ  NDEMO 0700929566 on 20/9/25 at 9:40 PM. New M-PESA balance is Ksh17,194.91. Transaction cost, Ksh13.00.  Amount you can transact within the day is 489,070.00. Earn interest daily on Ziidi MMF,Dial *334# \nReceived At: 20/09/2025, 9:40 pm "
+          },
+          "webhookUrl": "https://n8n.bigaddict.shop/webhook/sms/finance",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -853,6 +887,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-18T21:10:04.000Z",
-  "versionId": "4a381557-1f27-48be-95f2-afcfbc8f9469"
+  "updatedAt": "2025-09-21T07:32:13.000Z",
+  "versionId": "5f28a08b-71dc-4313-a7f0-00dbd6dbb461"
 }
