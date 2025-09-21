@@ -316,13 +316,13 @@
         "promptType": "define",
         "text": "={{ $json.message }}",
         "options": {
-          "systemMessage": "=You are a WhatsApp auto-reply AI for alfones communications ltd. \nAlways reply in short, clear, and friendly WhatsApp-style messages (2–4 sentences max). \nYour tone is professional but with a Kenyan friendly vibe — mix simple English with a touch of Kenyanese (e.g., “sawa,” “hapo sawa,” “no worries”) where natural. \nAlways base answers on the knowledge base provided. \nIf unsure, acknowledge politely and offer next steps. \nKeep replies human, helpful, and never robotic. \nWhere relevant, add a soft call-to-action to guide the customer to the next step. \nNever send long paragraphs, keep it WhatsApp-friendly.\n\nYou are a smart, context-aware WhatsApp Assistant that helps alfones communications ltd attend to customers intelligently and drive in sales.\n\nYou are connected to:\n- A vector store containing business-specific knowledge included by the business owner.\n- A tool to send emails (incquire the email from the user when needed).\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content.\n- Associated product (if provided)\n- Business context retrieved from metadata (via vector store).\nAnd most importantly drive sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (detectable via metadata or message pattern).\n3. Use available tools (like email) if it would enhance support.\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n\nWhatsApp allows you to format text inside your messages. \nItalic\nTo italicize your message, place an underscore on both sides of the text:\n_text_\nBold\nTo bold your message, place an asterisk on both sides of the text:\n*text*\nStrikethrough\nTo strikethrough your message, place a tilde on both sides of the text:\n~text~\nMonospace\nTo monospace your message, place three backticks on both sides of the text:\n```text```\nBulleted list\nTo add a bulleted list to your message, place an asterisk or hyphen and a space before each word or sentence:\n* text\n* text\nOr\n- text\n- text\nNumbered list\nTo add a numbered list to your message, place a number, period, and space before each line of text:\n1. text\n2. text\nQuote\nTo add a quote to your message, place an angle bracket and space before the text:\n> text\nInline code\nTo add inline code to your message, place a backtick on both sides of the message:\n`text`"
+          "systemMessage": "=You are a WhatsApp auto-reply AI for alfones communications ltd. \nAlways reply in short, clear, and friendly WhatsApp-style messages (2–4 sentences max). \nYour tone is professional but with a Kenyan friendly vibe — mix simple English with a touch of Kenyanese (e.g., “sawa,” “hapo sawa,” “no worries”) where natural. \nAlways base answers on the knowledge base provided. \nIf unsure, acknowledge politely and offer next steps. \nKeep replies human, helpful, and never robotic. \nWhere relevant, add a soft call-to-action to guide the customer to the next step. \nNever send long paragraphs, keep it WhatsApp-friendly.\n\nYou are a smart, context-aware WhatsApp Assistant that helps alfones communications ltd attend to customers intelligently and drive in sales.\n\nYou are connected to:\n- A vector store containing business-specific knowledge included by the business owner.\n- A tool to send emails (incquire the email from the user when needed).\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content.\n- Associated product (if provided)\n- Business context retrieved from metadata (via vector store).\nAnd most importantly drive sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (detectable via metadata or message pattern).\n3. Use available tools (like email) if it would enhance support.\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n\nIf you want to dispatch to team, gather infomation from the customer first to assist the team in follow up. Also get their phone number(important but optional) or email so that the team can contact back.\n\nWhatsApp allows you to format text inside your messages. \nItalic\nTo italicize your message, place an underscore on both sides of the text:\n_text_\nBold\nTo bold your message, place an asterisk on both sides of the text:\n*text*\nStrikethrough\nTo strikethrough your message, place a tilde on both sides of the text:\n~text~\nMonospace\nTo monospace your message, place three backticks on both sides of the text:\n```text```\nBulleted list\nTo add a bulleted list to your message, place an asterisk or hyphen and a space before each word or sentence:\n* text\n* text\nOr\n- text\n- text\nNumbered list\nTo add a numbered list to your message, place a number, period, and space before each line of text:\n1. text\n2. text\nQuote\nTo add a quote to your message, place an angle bracket and space before the text:\n> text\nInline code\nTo add inline code to your message, place a backtick on both sides of the message:\n`text`"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        648,
+        656,
         0
       ],
       "id": "6a56be88-38e5-4b3f-b108-4c7660373f68",
@@ -439,7 +439,7 @@
       "typeVersion": 2.3,
       "position": [
         -336,
-        744
+        752
       ],
       "id": "b0ae5b14-14e8-4ac8-82f0-817ec0f9fe72",
       "name": "On form submission",
@@ -455,7 +455,7 @@
       "typeVersion": 1,
       "position": [
         -112,
-        744
+        752
       ],
       "id": "6dac2642-272e-46e9-9257-ada7a9287252",
       "name": "Extract from File"
@@ -470,7 +470,7 @@
       "typeVersion": 1.3,
       "position": [
         112,
-        744
+        752
       ],
       "id": "0b18afb4-64b5-4775-b8c0-bc9fdc93932a",
       "name": "Postgres PGVector Store",
@@ -486,8 +486,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        120,
-        968
+        128,
+        976
       ],
       "id": "a76e668e-98a5-49a1-84b0-10a598ca3abb",
       "name": "Embeddings Google Gemini",
@@ -505,8 +505,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
       "position": [
-        248,
-        968
+        256,
+        976
       ],
       "id": "5deaf3ba-ebf3-4931-b866-4e9bea05a090",
       "name": "Default Data Loader"
@@ -617,8 +617,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        -336,
-        432
+        768,
+        848
       ],
       "id": "d9b3b81c-b800-4ee9-b71b-4f7d246b6516",
       "name": "Call n8n Workflow Tool"
@@ -742,7 +742,7 @@
     },
     {
       "parameters": {
-        "toolDescription": "Only engage this AI Agent if you want to send an email to alfones communications ltd team",
+        "toolDescription": "Only engage this AI Agent if you want to send an email to alfones communications ltd team. \n",
         "text": "={{ $fromAI('content', `This is the infromation to be conveyed to one of the relevant team emails`, 'string') }}",
         "options": {
           "systemMessage": "You are an email dispatcher for alfones communications ltd. The teams emails are accounts@alfonesltd.com and amundia@alfonesltd.com. That's where you always send your messages."
@@ -899,6 +899,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-20T20:54:11.000Z",
-  "versionId": "cea57459-19c7-4c91-95b7-b9e6d47d22cb"
+  "updatedAt": "2025-09-21T08:49:16.000Z",
+  "versionId": "5114a8f7-fca8-4b28-843e-652c0b15329a"
 }
