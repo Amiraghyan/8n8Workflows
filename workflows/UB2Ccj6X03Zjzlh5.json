@@ -138,28 +138,6 @@
         []
       ]
     },
-    "Date & Time": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Date & Time1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Think": {
       "ai_tool": [
         [
@@ -214,6 +192,28 @@
           }
         ]
       ]
+    },
+    "Get time between Dates": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get current date": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-19T20:08:06.621Z",
@@ -234,7 +234,7 @@
       "typeVersion": 2.1,
       "position": [
         -336,
-        0
+        208
       ],
       "id": "f5cdd9c2-79f4-414a-970f-e802a73607f6",
       "name": "Webhook",
@@ -306,7 +306,7 @@
       "typeVersion": 3.4,
       "position": [
         -112,
-        0
+        208
       ],
       "id": "c9a4e908-dd63-40de-8b96-779b8d9c4d5b",
       "name": "Edit Fields"
@@ -373,7 +373,7 @@
       "typeVersion": 1,
       "position": [
         1760,
-        0
+        208
       ],
       "id": "c3a578c1-8175-4e13-aee2-b2e2192b08eb",
       "name": "Send text",
@@ -414,7 +414,7 @@
       "typeVersion": 3.4,
       "position": [
         1536,
-        0
+        208
       ],
       "id": "17e59a1f-a269-446f-8b83-d665ccb22ef6",
       "name": "Edit Fields1"
@@ -569,7 +569,7 @@
       "typeVersion": 1.1,
       "position": [
         -336,
-        1072
+        1280
       ],
       "id": "0b69cff1-ecdd-4872-acc2-a59db58fb5b8",
       "name": "When Executed by Another Workflow"
@@ -617,55 +617,18 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        768,
-        848
+        -336,
+        1072
       ],
       "id": "d9b3b81c-b800-4ee9-b71b-4f7d246b6516",
       "name": "Call n8n Workflow Tool"
-    },
-    {
-      "parameters": {
-        "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
-        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
-        "options": {
-          "timezone": "Africa/Nairobi"
-        }
-      },
-      "type": "n8n-nodes-base.dateTimeTool",
-      "typeVersion": 2,
-      "position": [
-        656,
-        224
-      ],
-      "id": "ff22b68a-c4c7-4d66-b146-057e3f719065",
-      "name": "Date & Time"
-    },
-    {
-      "parameters": {
-        "operation": "getTimeBetweenDates",
-        "startDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Date', ``, 'string') }}",
-        "endDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Date', ``, 'string') }}",
-        "units": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Units', ``, 'string') }}",
-        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
-        "options": {
-          "isoString": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_as_ISO_String', ``, 'boolean') }}"
-        }
-      },
-      "type": "n8n-nodes-base.dateTimeTool",
-      "typeVersion": 2,
-      "position": [
-        784,
-        224
-      ],
-      "id": "3dcdaa8d-e454-4f0c-8aa9-b0c75ad46f51",
-      "name": "Date & Time1"
     },
     {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1.1,
       "position": [
-        912,
+        656,
         224
       ],
       "id": "d649d1a7-0962-46e1-8862-2e1e4b9403e2",
@@ -683,7 +646,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        1040,
+        784,
         224
       ],
       "id": "cbc9d4aa-b92e-4eca-bd98-b36ee9044b7a",
@@ -703,7 +666,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        912,
+        784,
         432
       ],
       "id": "6c086977-1dc9-40e7-9856-c519d0f0fdb8",
@@ -727,7 +690,7 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        1312,
+        1056,
         432
       ],
       "id": "c838d6a2-7fe0-468d-b3ca-260cff4f8be7",
@@ -751,11 +714,48 @@
       "type": "@n8n/n8n-nodes-langchain.agentTool",
       "typeVersion": 2.2,
       "position": [
-        1168,
+        912,
         224
       ],
       "id": "dc8a00e0-78e1-44da-8444-8663c563bff1",
       "name": "team dispatch"
+    },
+    {
+      "parameters": {
+        "operation": "getTimeBetweenDates",
+        "startDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Date', ``, 'string') }}",
+        "endDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Date', ``, 'string') }}",
+        "units": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Units', ``, 'string') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "isoString": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_as_ISO_String', ``, 'boolean') }}"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        224
+      ],
+      "id": "3dcdaa8d-e454-4f0c-8aa9-b0c75ad46f51",
+      "name": "Get time between Dates"
+    },
+    {
+      "parameters": {
+        "includeTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Include_Current_Time', ``, 'boolean') }}",
+        "outputFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Output_Field_Name', ``, 'string') }}",
+        "options": {
+          "timezone": "Africa/Nairobi"
+        }
+      },
+      "type": "n8n-nodes-base.dateTimeTool",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        224
+      ],
+      "id": "ff22b68a-c4c7-4d66-b146-057e3f719065",
+      "name": "Get current date"
     }
   ],
   "pinData": {
@@ -899,6 +899,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-21T08:49:16.000Z",
-  "versionId": "5114a8f7-fca8-4b28-843e-652c0b15329a"
+  "updatedAt": "2025-09-21T20:02:38.000Z",
+  "versionId": "4f701c8a-a1cf-4bcd-a192-eaf2a5725fe4"
 }
