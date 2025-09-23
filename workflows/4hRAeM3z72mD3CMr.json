@@ -1,0 +1,66 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-09-23T12:04:37.817Z",
+  "id": "4hRAeM3z72mD3CMr",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "LinkedIn Post Generator",
+        "formDescription": "Fill in form to have an auto posting LinkedIn.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email",
+              "placeholder": "email@example",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Post topic",
+              "placeholder": "web development",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target audience",
+              "placeholder": "Entrepreneurs",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cf66d2e5-2390-4460-bbbf-c6a470960557",
+      "name": "On form submission",
+      "webhookId": "98d63643-e34e-4913-83c9-9547bc5b4b1d"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-23T12:04:37.823Z",
+      "updatedAt": "2025-09-23T12:04:37.823Z",
+      "role": "workflow:owner",
+      "workflowId": "4hRAeM3z72mD3CMr",
+      "projectId": "rATV5PDxVZJboiJp"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-23T13:56:12.000Z",
+  "versionId": "1946e99d-2fbf-4f6e-b63a-b73cd4da09f0"
+}
