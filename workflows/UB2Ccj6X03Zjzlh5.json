@@ -133,11 +133,6 @@
         ]
       ]
     },
-    "Call n8n Workflow Tool": {
-      "ai_tool": [
-        []
-      ]
-    },
     "Think": {
       "ai_tool": [
         [
@@ -150,39 +145,6 @@
       ]
     },
     "Send a message in Gmail": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "team dispatch",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send a message in Gmail1": {
-      "ai_tool": [
-        [
-          {
-            "node": "team dispatch",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "team dispatch": {
       "ai_tool": [
         [
           {
@@ -210,6 +172,28 @@
           {
             "node": "AI Agent",
             "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send dispatch sales",
+            "type": "main",
             "index": 0
           }
         ]
@@ -322,7 +306,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        656,
+        584,
         0
       ],
       "id": "6a56be88-38e5-4b3f-b108-4c7660373f68",
@@ -372,7 +356,7 @@
       "type": "n8n-nodes-evolution-api-en.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1760,
+        1472,
         208
       ],
       "id": "c3a578c1-8175-4e13-aee2-b2e2192b08eb",
@@ -413,7 +397,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1536,
+        1248,
         208
       ],
       "id": "17e59a1f-a269-446f-8b83-d665ccb22ef6",
@@ -439,7 +423,7 @@
       "typeVersion": 2.3,
       "position": [
         -336,
-        752
+        968
       ],
       "id": "b0ae5b14-14e8-4ac8-82f0-817ec0f9fe72",
       "name": "On form submission",
@@ -455,7 +439,7 @@
       "typeVersion": 1,
       "position": [
         -112,
-        752
+        968
       ],
       "id": "6dac2642-272e-46e9-9257-ada7a9287252",
       "name": "Extract from File"
@@ -470,7 +454,7 @@
       "typeVersion": 1.3,
       "position": [
         112,
-        752
+        968
       ],
       "id": "0b18afb4-64b5-4775-b8c0-bc9fdc93932a",
       "name": "Postgres PGVector Store",
@@ -486,8 +470,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        128,
-        976
+        120,
+        1192
       ],
       "id": "a76e668e-98a5-49a1-84b0-10a598ca3abb",
       "name": "Embeddings Google Gemini",
@@ -505,8 +489,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
       "position": [
-        256,
-        976
+        248,
+        1192
       ],
       "id": "5deaf3ba-ebf3-4931-b866-4e9bea05a090",
       "name": "Default Data Loader"
@@ -552,78 +536,6 @@
       }
     },
     {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "route"
-            },
-            {
-              "name": "data",
-              "type": "object"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -336,
-        1280
-      ],
-      "id": "0b69cff1-ecdd-4872-acc2-a59db58fb5b8",
-      "name": "When Executed by Another Workflow"
-    },
-    {
-      "parameters": {
-        "description": "Call this tool to send audio as response.",
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $workflow.id }}",
-          "mode": "id"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "route": "audio"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "route",
-              "displayName": "route",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "string",
-              "removed": false
-            },
-            {
-              "id": "data",
-              "displayName": "data",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "object",
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2.2,
-      "position": [
-        -336,
-        1072
-      ],
-      "id": "d9b3b81c-b800-4ee9-b71b-4f7d246b6516",
-      "name": "Call n8n Workflow Tool"
-    },
-    {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1.1,
@@ -661,67 +573,6 @@
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        784,
-        432
-      ],
-      "id": "6c086977-1dc9-40e7-9856-c519d0f0fdb8",
-      "name": "Google Gemini Chat Model1",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "hJGJTS0pValX9LMT",
-          "name": "BigAddict HB"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
-        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
-        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
-        "options": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.gmailTool",
-      "typeVersion": 2.1,
-      "position": [
-        1056,
-        432
-      ],
-      "id": "c838d6a2-7fe0-468d-b3ca-260cff4f8be7",
-      "name": "Send a message in Gmail1",
-      "webhookId": "8f52c165-872b-4e54-bdfc-3c3b2a251f1d",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "8ThqC1trQqFGaMfX",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "toolDescription": "Only engage this AI Agent if you want to send an email to alfones communications ltd team. \n",
-        "text": "={{ $fromAI('content', `This is the infromation to be conveyed to one of the relevant team emails`, 'string') }}",
-        "options": {
-          "systemMessage": "You are an email dispatcher for alfones communications ltd. The teams emails are accounts@alfonesltd.com and amundia@alfonesltd.com. That's where you always send your messages."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agentTool",
-      "typeVersion": 2.2,
-      "position": [
-        912,
-        224
-      ],
-      "id": "dc8a00e0-78e1-44da-8444-8663c563bff1",
-      "name": "team dispatch"
-    },
-    {
-      "parameters": {
         "operation": "getTimeBetweenDates",
         "startDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Date', ``, 'string') }}",
         "endDate": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_Date', ``, 'string') }}",
@@ -734,7 +585,7 @@
       "type": "n8n-nodes-base.dateTimeTool",
       "typeVersion": 2,
       "position": [
-        1200,
+        912,
         224
       ],
       "id": "3dcdaa8d-e454-4f0c-8aa9-b0c75ad46f51",
@@ -751,11 +602,84 @@
       "type": "n8n-nodes-base.dateTimeTool",
       "typeVersion": 2,
       "position": [
-        1328,
+        1040,
         224
       ],
       "id": "ff22b68a-c4c7-4d66-b146-057e3f719065",
       "name": "Get current date"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "ffg",
+        "remoteJid": "tgfd",
+        "messageText": "weret",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api-en.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        112,
+        640
+      ],
+      "id": "df52a8e0-171e-4b01-8e7f-3bbbd986e340",
+      "name": "Send dispatch sales",
+      "credentials": {
+        "evolutionApi": {
+          "id": "u4tiYQyo3g8JFP50",
+          "name": "EarlyKey"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -336,
+        640
+      ],
+      "id": "986a9985-0476-459d-990e-da3d5c9f6f7d",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "84f48cca-ce83-4742-99df-c712e52cbb04"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -112,
+        640
+      ],
+      "id": "03d45343-02a6-43ce-922e-20607c8dc908",
+      "name": "Switch"
     }
   ],
   "pinData": {
@@ -899,6 +823,6 @@
   },
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-21T20:02:38.000Z",
-  "versionId": "4f701c8a-a1cf-4bcd-a192-eaf2a5725fe4"
+  "updatedAt": "2025-09-24T20:02:39.000Z",
+  "versionId": "a5672a30-54e0-4e10-833b-42f41752dbe2"
 }
