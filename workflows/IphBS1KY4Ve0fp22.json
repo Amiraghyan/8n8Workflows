@@ -133,11 +133,6 @@
         ]
       ]
     },
-    "Call n8n Workflow Tool": {
-      "ai_tool": [
-        []
-      ]
-    },
     "Think": {
       "ai_tool": [
         [
@@ -205,6 +200,17 @@
       ]
     },
     "Get current date": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
       "ai_tool": [
         [
           {
@@ -316,13 +322,13 @@
         "promptType": "define",
         "text": "={{ $json.message }}",
         "options": {
-          "systemMessage": "=You are a WhatsApp auto-reply AI for Deejoh Phones and Accessories. \nAlways reply in short, clear, and friendly WhatsApp-style messages (2–4 sentences max). \nYour tone is professional but with a Kenyan friendly vibe — mix simple English with a touch of Kenyanese (e.g., “sawa,” “hapo sawa,” “no worries”) where natural. \nAlways base answers on the knowledge base provided. \nIf unsure, acknowledge politely and offer next steps. \nKeep replies human, helpful, and never robotic. \nWhere relevant, add a soft call-to-action to guide the customer to the next step. \nNever send long paragraphs, keep it WhatsApp-friendly.\n\nYou are a smart, context-aware WhatsApp Assistant that helps alfones communications ltd attend to customers intelligently and drive in sales.\n\nYou are connected to:\n- A vector store containing business-specific knowledge included by the business owner.\n- A tool to send emails (incquire the email from the user when needed).\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content.\n- Associated product (if provided)\n- Business context retrieved from metadata (via vector store).\nAnd most importantly drive sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (detectable via metadata or message pattern).\n3. Use available tools (like email) if it would enhance support.\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n\nIf you want to dispatch to team, gather infomation from the customer first to assist the team in follow up. Also get their phone number(important but optional) or email so that the team can contact back.\n\nWhatsApp allows you to format text inside your messages. \nItalic\nTo italicize your message, place an underscore on both sides of the text:\n_text_\nBold\nTo bold your message, place an asterisk on both sides of the text:\n*text*\nStrikethrough\nTo strikethrough your message, place a tilde on both sides of the text:\n~text~\nMonospace\nTo monospace your message, place three backticks on both sides of the text:\n```text```\nBulleted list\nTo add a bulleted list to your message, place an asterisk or hyphen and a space before each word or sentence:\n* text\n* text\nOr\n- text\n- text\nNumbered list\nTo add a numbered list to your message, place a number, period, and space before each line of text:\n1. text\n2. text\nQuote\nTo add a quote to your message, place an angle bracket and space before the text:\n> text\nInline code\nTo add inline code to your message, place a backtick on both sides of the message:\n`text`"
+          "systemMessage": "=You are a WhatsApp auto-reply AI for Deejoh Phones and Accessories. \nAlways reply in short, clear, and friendly WhatsApp-style messages (2–4 sentences max). \nYour tone is professional but with a Kenyan friendly vibe — mix simple English with a touch of Kenyanese (e.g., “sawa,” “hapo sawa,” “no worries”) where natural. \nAlways base answers on the knowledge base provided. \nIf unsure, acknowledge politely and offer next steps. \nKeep replies human, helpful, and never robotic. \nWhere relevant, add a soft call-to-action to guide the customer to the next step. \nNever send long paragraphs, keep it WhatsApp-friendly.\n\nYou are connected to:\n- A vector store containing business-specific knowledge and rules you should follow is included by the business owner.\n- A tool to send emails (incquire the email from the user when needed).\n\nYour goal is to generate helpful, precise, and human-like responses based on:\n- Message content.\n- Associated product (if provided)\n- Business context retrieved from metadata (via vector store).\nAnd most importantly drive sales.\n\nAlways follow these guidelines:\n1. Search the vector store first for related content before generating a response.\n2. Keep your tone aligned with the business’s tone—formal, friendly, or casual (detectable via metadata or message pattern).\n3. Use available tools (like email) if it would enhance support.\n4. If no relevant data is found in the vector store, politely fallback to general domain knowledge, and suggest the user rephrase if needed.\n\nIf you want to dispatch to team, gather infomation from the customer first to assist the team in follow up. Also get their phone number(important but optional) or email so that the team can contact back.\n\nWhatsApp allows you to format text inside your messages. \nItalic\nTo italicize your message, place an underscore on both sides of the text:\n_text_\nBold\nTo bold your message, place an asterisk on both sides of the text:\n*text*\nStrikethrough\nTo strikethrough your message, place a tilde on both sides of the text:\n~text~\nMonospace\nTo monospace your message, place three backticks on both sides of the text:\n```text```\nBulleted list\nTo add a bulleted list to your message, place an asterisk or hyphen and a space before each word or sentence:\n* text\n* text\nOr\n- text\n- text\nNumbered list\nTo add a numbered list to your message, place a number, period, and space before each line of text:\n1. text\n2. text\nQuote\nTo add a quote to your message, place an angle bracket and space before the text:\n> text\nInline code\nTo add inline code to your message, place a backtick on both sides of the message:\n`text`"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        656,
+        712,
         0
       ],
       "id": "c259f526-bae7-42fe-a6e1-d9cb68be44a1",
@@ -372,7 +378,7 @@
       "type": "n8n-nodes-evolution-api-en.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1760,
+        1888,
         208
       ],
       "id": "8fa951ec-fed3-42fc-b550-5e0e3e95cef6",
@@ -413,7 +419,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1536,
+        1664,
         208
       ],
       "id": "b790c754-3c06-4157-9887-48e1e4a718ac",
@@ -441,7 +447,7 @@
       "typeVersion": 2.3,
       "position": [
         -336,
-        752
+        744
       ],
       "id": "6bf7b9e0-6d5a-40a6-86b4-7657c7270e84",
       "name": "On form submission",
@@ -457,7 +463,7 @@
       "typeVersion": 1,
       "position": [
         -112,
-        752
+        744
       ],
       "id": "5beefc2d-a4f6-4faf-be04-e286e6f3964c",
       "name": "Extract from File"
@@ -472,7 +478,7 @@
       "typeVersion": 1.3,
       "position": [
         112,
-        752
+        744
       ],
       "id": "18dd7186-7f00-4b0d-9748-80b7ff437c6e",
       "name": "Postgres PGVector Store",
@@ -488,8 +494,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        128,
-        976
+        120,
+        968
       ],
       "id": "de29842c-4b85-44e2-a70c-0ae624f3facd",
       "name": "Embeddings Google Gemini",
@@ -507,8 +513,8 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
       "position": [
-        256,
-        976
+        248,
+        968
       ],
       "id": "e34d0aaf-1ff4-4c1c-ada1-89816c127c70",
       "name": "Default Data Loader"
@@ -552,78 +558,6 @@
           "name": "Google Gemini(PaLM) Api account 3"
         }
       }
-    },
-    {
-      "parameters": {
-        "workflowInputs": {
-          "values": [
-            {
-              "name": "route"
-            },
-            {
-              "name": "data",
-              "type": "object"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        -336,
-        1280
-      ],
-      "id": "d50b8c1d-933b-4a5d-8df3-34515ded1e5e",
-      "name": "When Executed by Another Workflow"
-    },
-    {
-      "parameters": {
-        "description": "Call this tool to send audio as response.",
-        "workflowId": {
-          "__rl": true,
-          "value": "={{ $workflow.id }}",
-          "mode": "id"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "route": "audio"
-          },
-          "matchingColumns": [],
-          "schema": [
-            {
-              "id": "route",
-              "displayName": "route",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "string",
-              "removed": false
-            },
-            {
-              "id": "data",
-              "displayName": "data",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "canBeUsedToMatch": true,
-              "type": "object",
-              "removed": false
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2.2,
-      "position": [
-        -336,
-        1072
-      ],
-      "id": "fe64c225-f9a5-4a21-9d43-ead055140d93",
-      "name": "Call n8n Workflow Tool"
     },
     {
       "parameters": {},
@@ -758,6 +692,45 @@
       ],
       "id": "ede3fd1f-18f7-4135-a6ab-666c25d5335b",
       "name": "Get current date"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7eb26e85",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        1072
+      ],
+      "id": "a5549dc6-b820-4185-a3ee-4fcb785b58d6",
+      "name": "Contact Biz owner",
+      "webhookId": "7eb26e85-be3a-4c5e-a2ed-caae8793abe8"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Send Whats-app text to the business owner.",
+        "url": "https://n8n.bigaddict.shop/webhook/7eb26e85",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1456,
+        224
+      ],
+      "id": "b5d6a276-010f-45ec-927c-6e5fecb0b961",
+      "name": "HTTP Request"
     }
   ],
   "pinData": {
@@ -907,7 +880,7 @@
       "name": "Mr. Alex"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2025-09-22T20:12:21.000Z",
-  "versionId": "4a580786-fb80-4ef8-b51a-37621174d3b3"
+  "triggerCount": 3,
+  "updatedAt": "2025-09-24T08:04:09.000Z",
+  "versionId": "1a1f5c6d-99f4-486b-bb4d-a776131d2d95"
 }
