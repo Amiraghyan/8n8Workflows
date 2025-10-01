@@ -788,6 +788,21 @@
       ],
       "id": "d9f86a2c-da5e-413e-98ca-c77fc8edfd08",
       "name": "If"
+    },
+    {
+      "parameters": {
+        "path": "wozapauto/help",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "335bf2de-d6fe-404d-b281-adbe3e8cd0c8",
+      "name": "Help Line",
+      "webhookId": "798c3a02-c960-4f63-a153-a35e0ce86017"
     }
   ],
   "pinData": {
@@ -938,7 +953,7 @@
   ],
   "staticData": null,
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2025-09-25T08:58:54.000Z",
-  "versionId": "f28f641c-e1a4-49e1-ae41-d9e593b56fac"
+  "triggerCount": 3,
+  "updatedAt": "2025-10-01T20:22:36.000Z",
+  "versionId": "79b8f0ac-4ea4-47d3-a512-944f29d96fda"
 }
