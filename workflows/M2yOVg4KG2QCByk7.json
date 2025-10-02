@@ -199,7 +199,29 @@
         ]
       ]
     },
-    "If": {
+    "Extract data from webhook": {
+      "main": [
+        [
+          {
+            "node": "Check if group",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if group": {
+      "main": [
+        [
+          {
+            "node": "Check if message from host number",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if message from host number": {
       "main": [
         [
           {
@@ -210,11 +232,11 @@
         ]
       ]
     },
-    "Extract data from webhook": {
+    "Webhook1": {
       "main": [
         [
           {
-            "node": "If",
+            "node": "Send Test Message",
             "type": "main",
             "index": 0
           }
@@ -239,7 +261,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1344,
+        -1856,
         0
       ],
       "id": "fe570092-06c1-4c73-b6df-28e138a36870",
@@ -311,7 +333,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -304,
+        -960,
         0
       ],
       "id": "1adfcb09-8e39-40cf-975f-7e22a4917cf6",
@@ -328,7 +350,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        240,
+        -432,
         0
       ],
       "id": "52764677-7afd-4e0a-aa60-6e7ac1351c8d",
@@ -341,7 +363,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -80,
+        -736,
         224
       ],
       "id": "b73a1e39-0824-4a8e-86e3-8f9e3501374b",
@@ -364,7 +386,7 @@
       "type": "n8n-nodes-evolution-api-en.evolutionApi",
       "typeVersion": 1,
       "position": [
-        1280,
+        624,
         0
       ],
       "id": "90d73788-b705-47c8-a4c6-9df1565c3307",
@@ -405,7 +427,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1056,
+        400,
         0
       ],
       "id": "d60a8ba4-7b47-40e3-a057-3942982e1970",
@@ -432,7 +454,7 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.3,
       "position": [
-        -960,
+        -1856,
         768
       ],
       "id": "87aba9a4-9c40-49cb-9207-1e90c0f04c07",
@@ -448,7 +470,7 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        -736,
+        -1632,
         768
       ],
       "id": "d6b0b1bd-928a-4ea6-80a6-7c5ef09be089",
@@ -463,7 +485,7 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.3,
       "position": [
-        -512,
+        -1408,
         768
       ],
       "id": "ca6db4d8-4c13-49ce-b977-e5ee5d4fcdd1",
@@ -480,7 +502,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -512,
+        -1408,
         992
       ],
       "id": "3523e0fb-749c-4960-8a1f-7689efb7334b",
@@ -499,7 +521,7 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
       "position": [
-        -384,
+        -1280,
         992
       ],
       "id": "c636ba5d-118e-43f7-a04d-49ce4fe4b67d",
@@ -510,7 +532,7 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "typeVersion": 1,
       "position": [
-        768,
+        112,
         432
       ],
       "id": "cf90cbd2-98af-405f-a00b-43fc15ad129b",
@@ -527,7 +549,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1.1,
       "position": [
-        176,
+        -480,
         224
       ],
       "id": "01fb64e1-af20-4bee-b111-13c7cd942594",
@@ -547,7 +569,7 @@
       "type": "n8n-nodes-base.dateTimeTool",
       "typeVersion": 2,
       "position": [
-        304,
+        -352,
         224
       ],
       "id": "a6caff17-7c47-4db8-84d5-e00dfa9d365a",
@@ -564,7 +586,7 @@
       "type": "n8n-nodes-base.dateTimeTool",
       "typeVersion": 2,
       "position": [
-        432,
+        -224,
         224
       ],
       "id": "65a41d63-4eb5-4cfb-a892-cc1c4903cbb4",
@@ -581,7 +603,7 @@
       "type": "n8n-nodes-evolution-api-en.evolutionApi",
       "typeVersion": 1,
       "position": [
-        -512,
+        -1408,
         432
       ],
       "id": "9682016e-066e-4cbf-b77d-871ca0aed049",
@@ -613,7 +635,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -960,
+        -1856,
         432
       ],
       "id": "29ddccb4-6cc6-4fbc-a60c-d96c447f17a0",
@@ -654,7 +676,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -736,
+        -1632,
         432
       ],
       "id": "53993d16-88bd-4aca-8db4-19ca8cca2998",
@@ -716,7 +738,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        560,
+        -96,
         224
       ],
       "id": "16ef7de2-73a8-46ae-8a60-d0eadfe1b13f",
@@ -733,7 +755,7 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
       "typeVersion": 1.3,
       "position": [
-        688,
+        32,
         224
       ],
       "id": "85e3d35f-1f98-4408-8c64-7fe1bcf07242",
@@ -754,7 +776,7 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        48,
+        -608,
         224
       ],
       "id": "c5be4d87-6c96-43bc-a604-7d0230410540",
@@ -765,40 +787,6 @@
           "name": "AIVEN pain2profit"
         }
       }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "7ad51667-8677-4bf6-99ce-78e2254f352b",
-              "leftValue": "={{ $json.body.data.key.fromMe }}",
-              "rightValue": "",
-              "operator": {
-                "type": "boolean",
-                "operation": "false",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        -528,
-        0
-      ],
-      "id": "1ecefbd5-f756-41b1-bedb-81d89ed6694e",
-      "name": "If"
     },
     {
       "parameters": {
@@ -869,6 +857,18 @@
               "name": "sender",
               "value": "={{ $json.body.sender }}",
               "type": "string"
+            },
+            {
+              "id": "80c58eaf-2e14-4df4-8ba1-12ab4baaf74c",
+              "name": "quotedMessage",
+              "value": "={{ $json.body.data?.contextInfo.quotedMessage }}",
+              "type": "object"
+            },
+            {
+              "id": "61c5bd4b-60f6-407f-b304-2b85510b8571",
+              "name": "is_group",
+              "value": "={{ $if($json.body.data.message?.senderKeyDistributionMessage.groupId, true, false) }}",
+              "type": "boolean"
             }
           ]
         },
@@ -877,11 +877,118 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1136,
+        -1632,
         0
       ],
       "id": "ccc6965b-59b8-49ac-9d17-a999c439a09a",
       "name": "Extract data from webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7b0a2893-2ac1-4427-9a32-c7dfb58be0b8",
+              "leftValue": "={{ $json.is_group }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1408,
+        0
+      ],
+      "id": "3c9b5567-84dc-4adc-8349-d2b941bb9361",
+      "name": "Check if group"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7ad51667-8677-4bf6-99ce-78e2254f352b",
+              "leftValue": "={{ $json.fromMe }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1184,
+        0
+      ],
+      "id": "1ecefbd5-f756-41b1-bedb-81d89ed6694e",
+      "name": "Check if message from host number"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $json.body.instance_name }}",
+        "remoteJid": "={{ $json.body.phone_number.replace('+', '') }}",
+        "messageText": "This is a test message please",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api-en.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        0,
+        688
+      ],
+      "id": "799536f5-6ec0-43db-be97-bd3e309b8a7a",
+      "name": "Send Test Message",
+      "credentials": {
+        "evolutionApi": {
+          "id": "u4tiYQyo3g8JFP50",
+          "name": "EarlyKey"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wozapauto/test-message",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -272,
+        688
+      ],
+      "id": "cf098316-7731-40ac-af03-b3539e94d638",
+      "name": "Webhook1",
+      "webhookId": "ff3eb8bc-da34-4b53-9fb6-2af92c06973b"
     }
   ],
   "pinData": {
@@ -1315,6 +1422,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-10-01T20:51:30.000Z",
-  "versionId": "ac529c2e-dc19-4078-9e9f-e95d6c672eee"
+  "updatedAt": "2025-10-01T22:08:40.000Z",
+  "versionId": "dde7c9fd-b9d4-4905-8922-21d2274569b2"
 }
